@@ -21,9 +21,16 @@
 --chess_2_mana         各棋子消耗映射
 
 --信息
+--stage                信息 准备0 预备1 战斗2
 --stat_info            玩家状态信息
 --battle_round         战斗回合
+--battle_start_time    战斗回合开始时间
 --dead_chess_list      各战场墓地
+
+--stage_start_time     state 开始时间
+--game_start_time      全局游戏开始时间
+--last_tick            上次tick时间
+
 
 --is_game_ended        结束游戏标记位
 --prepare_timer        准备阶段计时器
@@ -33,7 +40,6 @@
 
 --damage_stat          伤害统计
 --to_be_destory_list   战斗开始后临时创建的单位集合 key为队伍 val为列表
---mychess              各玩家拥有棋子 场内+场上
 
 --battle_state         战场结束标记位集合
 --client_key           保存客户端认证 开局时随机
@@ -51,8 +57,11 @@
 
 --打怪 
 
-if DAC == nil then
-	DAC = class({})
+require 'definitions'
+
+
+if WhoToAttack == nil then
+	WhoToAttack = class({})
 end
 
 
@@ -89,26 +98,159 @@ function Precache( context )
 end
 
 --入口函数
-function StartGame()
-	for i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-		CustomGameEventManager:Send_ServerToTeam(i,"start_game",{
-			key = GetClientToken(i),
-		})
-	end
+function WhoToAttack:StartGame()
 
-	--5秒后开始游戏
-	Timers:CreateTimer(5,function()
-		
-		print('GAME START!')
-		--初始化棋子库
-		--InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
-    	GameRules:GetGameModeEntity().start_time = GameRules:GetGameTime()
-		StartAPrepareRound()
+	self:SetThink("OnThink", self, 0)
+    
+    self.stage = 0
+    self.stage_start_time = GameRules:GetGameTime()
+    self.game_start_time = GameRules:GetGameTime()
+
+       for i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        CustomGameEventManager:Send_ServerToTeam(i,"start_game",{
+            key = GetClientToken(i),
+        })
+    end
+
+    --5秒后开始游戏
+    Timers:CreateTimer(5,function()
+        
+        print('GAME START!')
+        --初始化棋子库
+        --InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
+        GameRules:GetGameModeEntity().start_time = GameRules:GetGameTime()
+        self:SetState(1)
+        --StartAPrepareRound()
     end)
+    
+    
+    
+    
 end
 
+function WhoToAttack:OnThink()
+    if IsClient() or GameRules.DW.IsGameOver then return nil end
+    
+    if self.stage == 0 then
+        return 1
+    end
+    
+    local stageElapsed = GameRules:GetGameTime() - stage_start_time
+    local stageCountdown = math.floor(GameRules.Definitions.StageTime[self.stage] - stageElapsed)
+    local isNext = false;
+    
+    if(self.state == 1) then
+        -- for i,v in pairs (GameRules:GetGameModeEntity().heromap) do
+            -- --清理开始战斗后失效的技能
+            -- OnHeroInBattle(v)
+        -- end
+    end
+    
+    if(state == 3) then
+    
+        --20秒之后才开始计算胜负
+        if stageElapsed > 20 then
+        
+            for team = 6,13 do
+                self:CheckWinLoseForTeam(team)
+            end
+            
+            if GetBattleCount() == 0 and stageElapsed >= 3 then
+                isNext = true;
+            else 
+                if stageCountdown == 30 then
+                    --lock all touzhi
+                    for i,v in pairs(self.heromap) do
+                        if IsUnitExist(v) == true then
+                            --LockTouzhi(v:GetTeam())
+                        end
+                    end
+                end
+            end
+        
+            --第一种情况：时间到了，平局
+            
+        end
+        
+        if stageCountdown <= 0 then
+            for team = 6,13 do
+                if not TeamId2Hero(team).is_battle_completed then
+                    DrawARound(team)
+                    TeamId2Hero(team).is_battle_completed = true
+                end
+            end
+        end
+        
+    end
+    
+    
+    
+    if(stageCountdown > 0 and stageCountdown < 4 and self.last_tick ~= stageCountdown) then
+        self.last_tick = stageCountdown
+    end
+    
+    if(stageCountdown <= 0 or isNext) then
+        if(self.stage > GameRules.Definitions.StateCount) then 
+            self.stage(1)
+        elseif
+            self:SetState(self.stage + 1)
+        end
+    end
+	
+    if(GameRules:IsGamePaused()) then
+        return 1
+    end
+	
+    local playerInfoTable = {}
+    --for playerId, playerInfo in pairs(GameRules.DW.PlayerList) do
+        --拼装playerinfo
+    
+    --end
+    
+    --战斗中 检测是否战斗结束
+    
+	
+    --Paixu分数
+    return 1
+    
+end
 
-function StartAPrepareRound()
+function WhoToAttack:SetState(newStage)
+    self.stage = newStage;
+    self:OnStageChanged();
+    self.stage_start_time = GameRules:GetGameTime()
+end
+
+function WhoToAttack:OnStageChanged()
+    
+    print("new state " .. self.stage .. " round " .. self.)
+    
+    if(self.stage == 1) then
+        self:StartAPrepareRound()
+    end
+    
+    if(self.stage == 2) then
+        
+    end
+
+    if(self.stage == 3) then
+        self:StartABattleRound()
+    end
+    
+    if(self.stage == 4) then
+    
+    end
+    
+	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+		CustomGameEventManager:Send_ServerToTeam(team_i, "battle_info",{
+			key = GetClientKey(team_i),
+			type = stage,
+			round = GameRules:GetGameModeEntity().battle_round,
+		})
+	end
+end
+
+function WhoToAttack:StartAPrepareRound()
 	if GameRules:GetGameModeEntity().is_game_ended == true then
 		return
 	end
@@ -121,16 +263,6 @@ function StartAPrepareRound()
 		end
 	end
 	
-	--通知
-	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-		CustomGameEventManager:Send_ServerToTeam(team_i, "battle_info",{
-			key = GetClientKey(team_i),
-			type = "prepare",
-			round = GameRules:GetGameModeEntity().battle_round,
-		})
-	end
-	
-	GameRules:GetGameModeEntity().prepare_timer = 35
 	--选择开门玩家
 	
 	--GameRules:GetGameModeEntity().opened_ply;
@@ -141,272 +273,87 @@ function StartAPrepareRound()
 		-- t = 'round_pvp',
 		-- text = GameRules:GetGameModeEntity().battle_round
 	-- })
-	
-	GameRules:GetGameModeEntity().game_status = 1
-	GameRules:GetGameModeEntity().start_ai = false
-	--准备阶段 主循环 tick
-	Timers:CreateTimer(function()
-		--发送当前游戏时间给客户端
-		if GameRules:GetGameModeEntity().prepare_timer > 5 then
-			for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-				CustomGameEventManager:Send_ServerToTeam(team_i,"show_time",{
-					key = GetClientKey(team_i),
-					timer_round = GameRules:GetGameModeEntity().prepare_timer - 5,
-					round_status = "prepare",
-					total_time = math.floor(GameRules:GetGameTime() - GameRules:GetGameModeEntity().start_time),
-				})
-			end
-		else
-			for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-				CustomGameEventManager:Send_ServerToTeam(team_i,"show_time",{
-					key = GetClientKey(team_i),
-					timer_round = GameRules:GetGameModeEntity().prepare_timer,
-					round_status = "ready",
-					total_time = math.floor(GameRules:GetGameTime() - GameRules:GetGameModeEntity().start_time),
-					center_index = center_index,
-				})
-			end
-		end
 
-		if GameRules:GetGameModeEntity().prepare_timer <= 5 then
-			--剩余5秒，准备战斗
-			if GameRules:GetGameModeEntity().prepare_timer == 5 then
-				--通知UI初始化胜负显示
-				for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-					CustomGameEventManager:Send_ServerToTeam(team_i, "clear_round_win_lose",{
-						key = GetClientKey(team_i),
-					})
-				end
+    --给予每回合成长
+	-- Timers:CreateTimer(0.3,function()
+		-- for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
+			-- if IsUnitExist(v) == true then
+				-- AddPickAndRemoveAbility(v)
+				-- local level = v:GetLevel()
+				-- AddAbilityAndSetLevel(v,'summon_hero',level)
+
+				-- v.is_battle_completed = nil
 				
-				for i,v in pairs (GameRules:GetGameModeEntity().heromap) do
-					--清理开始战斗后失效的技能
-					OnHeroInBattle(v)
-				end
-			end
-		end
-		
-		if GameRules:GetGameModeEntity().prepare_timer == 2 then
-			--2秒，开始战斗回合
-			GameRules:GetGameModeEntity().game_status = 2
-			StartABattleRound()
-		end
-		
-		--开启ai
-		if GameRules:GetGameModeEntity().prepare_timer <= 0 then
-			GameRules:GetGameModeEntity().battle_round = GameRules:GetGameModeEntity().battle_round + 1
-			Timers:CreateTimer(1,function()
-				GameRules:GetGameModeEntity().start_ai = true
-			end)
-			return
-		end
-		
-		GameRules:GetGameModeEntity().prepare_timer = GameRules:GetGameModeEntity().prepare_timer - 1
-		return 1
-	end)
-	
-	Timers:CreateTimer(0.3,function()
-		for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-			if IsUnitExist(v) == true then
-				AddPickAndRemoveAbility(v)
-				local level = v:GetLevel()
-				AddAbilityAndSetLevel(v,'summon_hero',level)
+				-- --基于回合成长经验
+				-- if GameRules:GetGameModeEntity().battle_round ~= 1 then			
+					-- v:AddExperience(1,0,false,false)					
+				-- end
 
-				v.is_battle_completed = nil
-				
-				--基于回合成长经验
-				if GameRules:GetGameModeEntity().battle_round ~= 1 then			
-					v:AddExperience(1,0,false,false)					
-				end
-
-				GameRules:GetGameModeEntity().damage_stat[v:GetTeam()] = {}
-			end
-		end
+				-- GameRules:GetGameModeEntity().damage_stat[v:GetTeam()] = {}
+			-- end
+		-- end
 		
-	end)
+	-- end)
+	-- --抽卡
+	-- Timers:CreateTimer(0.5,function()
+		-- for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
+			-- if IsUnitExist(v) == true then
+				-- --自动抽卡一次
+				-- --Draw5ChessAndShow(v:GetTeam(), false)
+			-- end
+		-- end
+	-- end)
 	
+	-- Timers:CreateTimer(1,function()
 	
-	Timers:CreateTimer(0.5,function()
-		for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-			if IsUnitExist(v) == true then
-				--自动抽卡一次
-				--Draw5ChessAndShow(v:GetTeam(), false)
-			end
-		end
-	end)
-	
-	Timers:CreateTimer(1,function()
-	
-		for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-			if IsUnitExist(v) == true then
-				--给蓝
-				local mana = 0;
-				AddMana(v, mana)
-				AddTotalMoneyStat(v:GetPlayerID(), mana)
-			end
-		end
-	end)
-	
+		-- for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
+			-- if IsUnitExist(v) == true then
+				-- --给蓝
+				-- local mana = 0;
+				-- AddMana(v, mana)
+				-- AddTotalMoneyStat(v:GetPlayerID(), mana)
+			-- end
+		-- end
+	-- end)
 	
 	
 end
 
-function ChessAI(u)
-	if not GameRules:GetGameModeEntity().start_ai then
-		return
-	end
-	if u.aitimer ~= nil and Timers.timers[u.aitimer] ~= nil then
-		return
-	end
-	
-	--AddAbilityAndSetLevel(u,'jiaoxie')
-	--RemoveAbilityAndModifier(u,'jiaoxie_wudi')
-	
-	--Logic here register aitimer
-	u.aitimer = Timers:CreateTimer(delay, function()
-		if u == nil or u:IsNull() == true or u:IsAlive() == false or u.alreadywon == true or GameRules:GetGameModeEntity().is_game_ended == true then
-			return
-		end
-		
-		--防止误调用
-		if u:FindAbilityByName('modifier_no_hp_bar') ~= nil or u:FindAbilityByName('modifier_jiaoxie_wudi') ~= nil then
-			u:Destroy()
-			return
-		end
-		
-		local ai_delay = 0
-		
-		local attack_result = FindAClosestEnemyAndAttack(u)
-		if attack_result ~= nil and attack_result > 0 then
-			return attack_result + ai_delay
-		end
-				
-		--tick here
-		return RandomFloat(0.1,0.2) + ai_delay
-	end)
+function WhoToAttack:StartABattleRound()
+    if self.is_game_ended == true then
+        return
+    end
+    
+    PostPlayerInfo()
+    
+    --移除每个场地中的隐身modifier
+    for i = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        ShowPrepare(i)
+    end
+    
+    GameRules:SetTimeOfDay(0.3)
+    self.game_status = 2 --game_status 2 zhandou zhong
+    self.battle_timer = 50
+
+    --ResetAllDeadChessList()
+    
+    -- GameRules:GetGameModeEntity().battle_count = 0
+    InitBattleTable()
 end
 
-function StartABattleRound()
-	if GameRules:GetGameModeEntity().is_game_ended == true then
-		return
-	end
-	PostPlayerInfo()
-	
-	--移除每个场地中的隐身modifier
-	for i = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-		ShowPrepare(i)
-	end
-	
+function WhoToAttack:SendRoundTimeInfo()
 
-	GameRules:SetTimeOfDay(0.3)
-	GameRules:GetGameModeEntity().game_status = 2 --game_status 2 zhandou zhong
-	GameRules:GetGameModeEntity().battle_timer = 50
-
-	ResetAllDeadChessList()
-	
-	-- GameRules:GetGameModeEntity().battle_count = 0
-	InitBattleTable()
-
-	--添加战斗技能和棋子AI
-	Timers:CreateTimer(4.5,function()
-		for t = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-			for _,v in pairs(GameRules:GetGameModeEntity().to_be_destory_list[t]) do
-				v.is_in_battle = true
-				if GameRules:GetGameModeEntity().chess_ability_list[v:GetUnitName()] ~= nil then
-					local a = GameRules:GetGameModeEntity().chess_ability_list[v:GetUnitName()]
-
-					local a_level = 1
-					-- if string.find(v:GetUnitName(),'1') then
-						-- a_level = 2
-					-- end
-					-- if string.find(v:GetUnitName(),'11') then
-						-- a_level = 3
-					-- end
-					
-					if v:FindAbilityByName(a) == nil then
-						AddAbilityAndSetLevel(v,a,a_level)
-					else
-						v:FindAbilityByName(a):SetLevel(a_level)
-					end
-				end
-				Timers:CreateTimer(0.5,function()
-					if v == nil or v:IsNull() == true or v:IsAlive() == false or v.alreadywon == true then
-						return
-					end
-					ChessAI(v)
-					return 1
-				end)
-			end
-		end
-	end)
-
-	--启动判断每个场地胜负的计时器（延时2秒）
-	Timers:CreateTimer(2,function()
-		for team = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-			SetBattleTable(team,true)
-			StartWinLoseDrawTimerForTeam(team)
-		end
-	end)
-
-	--判断分是否战斗回合结束、进入准备回合的计时器（延时3秒）
-	Timers:CreateTimer(3,function()
-		CheckP2Status()
-		if GameRules:GetGameModeEntity().battle_timer <= 0 then
-			--战斗时间到了，进入准备回合
-			Timers:CreateTimer(2,function()
-				for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-					if IsUnitExist(v) == true then
-						RestoreARound(v:GetTeam())
-					end
-				end
-			end)
-			Timers:CreateTimer(5,function()
-				GameRules:GetGameModeEntity().game_status = 1
-				StartAPrepareRound()
-				return
-			end)
-			return
-		elseif GetBattleCount() == 0 and GameRules:GetGameModeEntity().battle_timer >= 3 then
-			--没有正在战斗的了，进入准备回合
-			Timers:CreateTimer(2,function()
-				for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-					if IsUnitExist(v) == true then
-						RestoreARound(v:GetTeam())
-					end
-				end
-			end)
-			Timers:CreateTimer(5,function()
-				GameRules:GetGameModeEntity().game_status = 1
-				StartAPrepareRound()
-				return
-			end)
-			return
-		else 
-		
-			if GameRules:GetGameModeEntity().battle_timer == 20 then
-				--lock all touzhi
-				for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-					if IsUnitExist(v) == true then
-						--LockTouzhi(v:GetTeam())
-					end
-				end
-			end
-			
-			--还有正在战斗的，发送时间给客户端
-			local center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
-			--发送当前游戏时间给客户端
-			for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-				CustomGameEventManager:Send_ServerToTeam(team_i,"show_time",{
-					key = GetClientKey(team_i),
-					timer_round = GameRules:GetGameModeEntity().battle_timer,
-					round_status = "battle",
-					total_time = math.floor(GameRules:GetGameTime() - GameRules:GetGameModeEntity().start_time),
-					center_index = center_index
-				})
-			end
-			GameRules:GetGameModeEntity().battle_timer = GameRules:GetGameModeEntity().battle_timer - 1
-			return 1
-		end
-	end)
+    -- local center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
+    -- --发送当前游戏时间给客户端
+    -- for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        -- CustomGameEventManager:Send_ServerToTeam(team_i,"show_time",{
+            -- key = GetClientKey(team_i),
+            -- timer_round = GameRules:GetGameModeEntity().battle_timer,
+            -- round_status = "battle",
+            -- total_time = math.floor(GameRules:GetGameTime() - GameRules:GetGameModeEntity().start_time),
+            -- center_index = center_index
+        -- })
+    -- end
 
 end
 
@@ -487,66 +434,81 @@ function DrawARound(team)
 	SetBattleTable(team,false)
 
 	--通知UI显示胜负
-	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-		CustomGameEventManager:Send_ServerToTeam(team_i,"show_round_win_lose",{
-			key = GetClientKey(team_i),
-			player_id = hero:GetPlayerID(),
-			winlose = "draw",
-		})
-	end
+	-- for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+		-- CustomGameEventManager:Send_ServerToTeam(team_i,"show_round_win_lose",{
+			-- key = GetClientKey(team_i),
+			-- player_id = hero:GetPlayerID(),
+			-- winlose = "draw",
+		-- })
+	-- end
 end
 
-function StartWinLoseDrawTimerForTeam(team)
+function WhoToAttack:CheckWinLoseForTeam(team)
+    if TeamId2Hero(team).is_battle_completed then
+        return
+    end
+    
+    --统计活着的敌我单位数量
+    local myUnit, enemyUnit = GetUnitCountInBattleGround(team)
 
-	Timers:CreateTimer(3,function()
-		if GameRules:GetGameModeEntity().battle_timer <= 0 then
-			--第一种情况：时间到了，平局
-			DrawARound(team)
-			TeamId2Hero(team).is_battle_completed = true
-			return
-		end
-		
-		--统计活着的敌我单位数量
-		local mychess, enemychess, my_last_chess = GetChessCountInBattleGround(team)
+    if myUnit == 0 and enemyUnit == 0 then
+        --第二种情况，敌我都没人了，平局
+        DrawARound(team)
+        TeamId2Hero(team).is_battle_completed = true
+        return
+    end
 
-		if mychess == 0 and enemychess == 0 then
-			--第二种情况，敌我都没人了，平局
-			DrawARound(team)
-			TeamId2Hero(team).is_battle_completed = true
-			return
-		end
-
-		if mychess > 0 and enemychess == 0 then
-			--第三种情况：敌方死光了，获胜
-			--WinARound(team,mychess,my_last_chess)
-			--DrawARound
-			TeamId2Hero(team).is_battle_completed = true
-			return
-		elseif mychess == 0 then
-			
-			--LoseARound(team,enemychess_new)
-			DrawARound()
-			TeamId2Hero(team).is_battle_completed = true
-			return
-			
-			-- Timers:CreateTimer(0.5,function()
-				-- --重新统计活着的敌我单位数量
-				-- local mychess,enemychess_new,my_last_chess = GetChessCountInBattleGround(team)
-				-- if enemychess_new == 0 then
-					-- --第四种情况：敌我都死光了，平局
-					-- DrawARound(team)
-					-- TeamId2Hero(team).is_battle_completed = true
-					-- return
-				-- else
-					-- --第五种情况：只剩敌人了，失败
-					
-				-- end
-			-- end)
-		else
-			return 1
-		end
-	end)
+    if myUnit > 0 and enemyUnit == 0 then
+        --第三种情况：敌方死光了，获胜
+        WinARound(team,mychess,my_last_chess)
+        TeamId2Hero(team).is_battle_completed = true
+        return
+    elseif myUnit == 0 then
+        
+        LoseARound(team,enemychess_new)
+        TeamId2Hero(team).is_battle_completed = true
+        return
+    else
+        return 1
+    end
 end
+
+function WhoToAttack:CreateUnit(team, unitName, amount)
+    local hero = TeamId2Hero(team)
+    for n =1, amount do
+        local newyUnit = CreateUnitByName(unitName, XY2Vector(vi.x,vi.y,team), true, hero, hero, team)
+        self:InitUnit(newyUnit)
+    end
+end
+
+--初始化新刷新的棋子
+function WhoToAttack:InitUnit(unit)
+    if unit == nil or not unit:IsNull() then
+        return
+    end
+    unit.is_in_battle = false
+    local unitName = unit:GetUnitName();
+    
+    if table.contains(GameRules.Definitions.ChessAbilityList, unitName) then
+        local a = GameRules.Definitions.ChessAbilityList[unitName]
+        local a_level = 1
+        if unit:FindAbilityByName(a) == nil then
+            AddAbilityAndSetLevel(unit,a,a_level)
+        else
+            unit:FindAbilityByName(a):SetLevel(a_level)
+        end
+    end
+    
+    if table.contains(GameRules.Definitions.UnitNames, unitName) then
+        table.insert(self.to_be_destory_list, unit)
+        CreateTimer(function()
+            unit:SetContextThink("OnUnitThink", function() return UnitAI:OnUnitThink(unit) end, 1)
+        end, 0.5)
+    end
+    
+end
+
+
 
 function ClearARound(teamid)
 	for _,v in pairs(GameRules:GetGameModeEntity().to_be_destory_list[teamid]) do
@@ -556,37 +518,23 @@ function ClearARound(teamid)
 		end
 	end
 	GameRules:GetGameModeEntity().to_be_destory_list[teamid] = {}
-
 end
 
-function RestoreOneChess(v,teamid)
-	Timers:CreateTimer(RandomFloat(0,0.9),function()
-		if TeamId2Hero(teamid):IsAlive() ~= true then
-			return
-		end
-		--结束时做什么事
-	end)
-end
 
 --业务工具方法
 
-function GetChessCountInBattleGround(team)
-	local mychess_count = 0
-	local enemychess_count = 0
-	local my_last_chess = nil
+function GetUnitCountInBattleGround(team)
+	local myunit_count = 0
+	local enemyunit_count = 0
 	
 	local team_objs = {}
-	local mychess_count = 0
 	
 	--返回每个阵营的单位数量
-	
-	
 	if GameRules:GetGameModeEntity().to_be_destory_list[team] ~= nil then
 		for p,q in pairs(GameRules:GetGameModeEntity().to_be_destory_list[team]) do
 			if q:GetUnitName() ~= 'fissure' then
 				if q.team_id == team then
 					mychess_count = mychess_count + 1
-					my_last_chess = q
 				else
 					enemychess_count = enemychess_count + 1
 				end
@@ -594,7 +542,7 @@ function GetChessCountInBattleGround(team)
 		end
 	end
 
-	return mychess_count,enemychess_count,my_last_chess
+	return myunit_count,enemyunit_count
 end
 
 
@@ -730,7 +678,7 @@ function SnapShotPlayers()
 	end
 end
 
-function InitChessPool()
+function InitCardPool()
 	
 	local chess_pool_times = GameRules:GetGameModeEntity().CHESS_POOL_SIZE or 6
 	for cost,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana) do
@@ -989,11 +937,7 @@ function AddChess2DeadChessList(keys)
 	})
 end
 
-function InitHeros()
 
-	--req server
-	StartGame()
-end
 
 function AddMana(unit, mana, show_number)
 	if mana == nil or mana <= 0 then
@@ -1007,7 +951,7 @@ function AddMana(unit, mana, show_number)
 end
 
 --事件监听
-function DAC:OnPlayerPickHero(keys)
+function WhoToAttack:OnPlayerPickHero(keys)
 	if not IsServer() then
 		return
 	end
@@ -1066,16 +1010,15 @@ function DAC:OnPlayerPickHero(keys)
 		--InitPlayerIDTable()
 
 		Timers:CreateTimer(0.1,function()
-			--EmitGlobalSound('dac.season.gamestart')
 			--开始
-			InitHeros()
+			StartGame()
 		end)
 	end 
 	
 end
 
 
-function DAC:OnPlayerConnectFull(keys)
+function WhoToAttack:OnPlayerConnectFull(keys)
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
 
 	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
@@ -1096,7 +1039,7 @@ function DAC:OnPlayerConnectFull(keys)
 	GameRules:GetGameModeEntity().isConnected[keys.index+1] = true
 end
 
-function DAC:OnPlayerDisconnect(keys)
+function WhoToAttack:OnPlayerDisconnect(keys)
 	if not IsServer() then
 		return
 	end
@@ -1117,7 +1060,7 @@ function DAC:OnPlayerDisconnect(keys)
 	)
 end
 
-function DAC:OnEntityKilled(keys)
+function WhoToAttack:OnEntityKilled(keys)
 	local u = EntIndexToHScript(keys.entindex_killed)
 	if u == nil then
 		return
@@ -1171,21 +1114,40 @@ function DAC:OnEntityKilled(keys)
 	
 end
 
+function WhoToAttack:OnNpcSpawned(data)
+    local spawnedUnit = EntIndexToHScript(data.entindex)
+    if(spawnedUnit == nil or spawnedUnit:IsNull()) then
+        return
+    end
+
+
+    spawnedUnit:SetDeathXP(0)
+
+    local owner = spawnedUnit:GetOwner()
+    if(owner == nil or owner:IsNull()) then return end
+
+    if(owner:GetTeam() == DOTA_TEAM_GOODGUYS or owner:GetTeam() == DOTA_TEAM_BADGUYS) then
+        local unitName = spawnedUnit:GetName()
+        
+    end
+end
+
+
 
 
 
 
 function Activate()
-	GameRules:GetGameModeEntity().AddonTemplate = DAC()
+	GameRules:GetGameModeEntity().AddonTemplate = WhoToAttack()
 	GameRules:GetGameModeEntity().AddonTemplate:InitGameMode()
 end
 
-function DAC:InitGameMode()
+function WhoToAttack:InitGameMode()
 
-	ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap(DAC,"OnPlayerPickHero"),self)
-	ListenToGameEvent("player_connect_full", Dynamic_Wrap(DAC,"OnPlayerConnectFull" ),self)
-	ListenToGameEvent("player_disconnect", Dynamic_Wrap(DAC, "OnPlayerDisconnect"), self)
-	ListenToGameEvent("entity_killed", Dynamic_Wrap(DAC, "OnEntityKilled"), self)
+	ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap(WhoToAttack,"OnPlayerPickHero"),self)
+	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
+	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
+	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
 	
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
@@ -1276,7 +1238,7 @@ function DAC:InitGameMode()
 end
 
 
-function DAC:ChangeBattleField(target,pos)
+function WhoToAttack:ChangeBattleField(target,pos)
 	local minDist = 0
 	local minIdx = -1
 	for k, vinfo in pairs(GameRules:GetGameModeEntity().base_pos) do
@@ -1287,4 +1249,41 @@ function DAC:ChangeBattleField(target,pos)
 	--GameRules:GetGameModeEntity().battle.insert
 	--更新羁绊
 	StatClassCount(minIdx)
+end
+
+
+
+function ChessAI(u)
+	if not GameRules:GetGameModeEntity().start_ai then
+		return
+	end
+	if u.aitimer ~= nil and Timers.timers[u.aitimer] ~= nil then
+		return
+	end
+	
+	--AddAbilityAndSetLevel(u,'jiaoxie')
+	--RemoveAbilityAndModifier(u,'jiaoxie_wudi')
+	
+	--Logic here register aitimer
+	u.aitimer = Timers:CreateTimer(delay, function()
+		if u == nil or u:IsNull() == true or u:IsAlive() == false or u.alreadywon == true or GameRules:GetGameModeEntity().is_game_ended == true then
+			return
+		end
+		
+		--防止误调用
+		if u:FindAbilityByName('modifier_no_hp_bar') ~= nil or u:FindAbilityByName('modifier_jiaoxie_wudi') ~= nil then
+			u:Destroy()
+			return
+		end
+		
+		local ai_delay = 0
+		
+		local attack_result = FindAClosestEnemyAndAttack(u)
+		if attack_result ~= nil and attack_result > 0 then
+			return attack_result + ai_delay
+		end
+				
+		--tick here
+		return RandomFloat(0.1,0.2) + ai_delay
+	end)
 end
