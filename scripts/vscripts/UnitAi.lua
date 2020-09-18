@@ -68,128 +68,23 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         end
 
         local unitName = unit:GetUnitName()
-        if(unitName == "npc_dota_juggernaut_healing_ward") then
-            local hTarget = UnitAI:GetNearestWeekestFriendlyTarget(unit)
-            if(hTarget ~= nil) then
-                return 4, hTarget
-            end
-        end
-
-        if(unitName == "npc_dota_techies_stasis_trap" or unitName == "npc_dota_techies_land_mine" or unitName == "npc_dota_techies_remote_mine" or unitName == "npc_dota_grimstroke_ink_creature") then
-            local hTarget = UnitAI:ClosestHeroEnemy(unit, teamId)
-            if(hTarget ~= nil) then
-                return 3, hTarget
-            end
-        end
-
-        if(unitName == "npc_dota_broodmother_spiderling" or unitName == "npc_dota_broodmother_spiderite") then
-            local hTarget = UnitAI:GetRangedEnemyTarget(unit)
-            if(hTarget ~= nil) then
-                return 3, hTarget
-            end
-        end
         
         local attackTarget = unit:GetAttackTarget()
         
         if(attackTarget == nil or attackTarget:IsAlive() == false) then
-
-            local nearestEnemy = UnitAI:GetAssassinTarget(unit, FIND_UNITS_EVERYWHERE, false, true)
-
-            if nearestEnemy == nil then
-                nearestEnemy = UnitAI:ClosestEnemyAll(unit, teamId)
-            end
-
+        
+            nearestEnemy = UnitAI:ClosestEnemyAll(unit, teamId)
             if(nearestEnemy == nil or nearestEnemy:IsAlive() == false) then
                 return 0, nil
             end
-            return 3, nearestEnemy
+            
+            return 30, nearestEnemy
         end
         
         return 0, nil
     end
     
-    if(cmdName == "USE_ITEM") then
-        if(unit.IsIllusion ~= nil and unit:IsIllusion()) then
-            return 0, nil
-        end
-
-        if(UnitAI:IsInBattleFightArea(unit) == false) then
-            return 0, nil
-        end
-        
-        if(unit:IsChanneling() or unit:IsStunned()) then
-            return 0, nil
-        end
-
-        if(unit:IsMuted()) then
-            return 0, nil
-        end
-        
-        if(GameRules:GetGameTime() - GameRules.DW.StageStartTime < 7) then
-            return 0, nil
-        end
-        
-        if(unit:HasInventory() == false) then
-            return 0, nil
-        end
-
-        local canCastItems = {}
-        
-        for slotIndex = 0, 16 do
-            if(slotIndex <= 5 or slotIndex == 16) then
-                local item = unit:GetItemInSlot(slotIndex)
-                if(item ~= nil) then
-                    local itemName = item:GetName()
-                    local canCast = true
-                    
-                    if(itemName == "item_armlet") then
-                        if item:GetToggleState() == false then
-                            item:ToggleAbility()
-                        end
-                    end
-                    
-                    if(item:IsMuted() or item:IsPassive() or item:IsToggle()) then
-                        canCast = false
-                    elseif(item:RequiresCharges() and item:GetCurrentCharges() <= 0) then
-                        canCast = false
-                    elseif(item:IsFullyCastable() == false or item:IsCooldownReady() == false) then
-                        canCast = false
-                    elseif(item:IsInAbilityPhase()) then
-                        canCast = false
-                    elseif((itemName == "item_mekansm" or itemName == "item_guardian_greaves") and unit:GetHealth() == unit:GetMaxHealth()) then
-                        canCast = false
-                    elseif(itemName == "item_mekansm" and unit:GetHealth() == unit:GetMaxHealth()) then
-                        canCast = false
-                    elseif(itemName == "item_blade_mail" and unit:GetHealth() > unit:GetMaxHealth() * 0.6) then
-                        canCast = false
-                    elseif(table.contains(UnitDontCastItems, itemName)) then
-                        canCast = false
-                    end
-                    
-                    if canCast then
-                        table.insert(canCastItems, item)
-                    end
-                end
-            end
-        end
-        
-        local selectedItem = nil
-        
-        if(#canCastItems > 0) then
-            selectedItem = canCastItems[RandomInt(1, #canCastItems)]
-        end
-        
-        if(selectedItem ~= nil) then
-            local spellData = UnitAI:GetSpellData(selectedItem)
-            if(spellData == nil) then
-                return 0, nil
-            end
-            
-            return 4, spellData
-        end
-        
-        return 0, nil
-    end
+    
     
     if(cmdName == "USE_ABILITY") then
         if(unit:IsSilenced() or unit:IsStunned()) then
@@ -199,64 +94,141 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         if(unit:IsChanneling()) then
             return 0, nil
         end
-
-        if(unit:GetName() == "npc_dota_hero_vengefulspirit" and unit:IsIllusion()) then
-            if unit:HasModifier("modifier_vengefulspirit_hybrid_special") == false then
-                return 0, nil
-            end
-        end
         
-        if(GameRules:GetGameTime() - GameRules.DW.StageStartTime < 6) then
+        
+        local unitName = unit:GetUnitName()
+        
+        if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().stage_start_time < 6) then
             return 0, nil
         end
         
         local canCastAbilities = {}
         
-        for i = 0, unit:GetAbilityCount() - 1 do
-            local ability = unit:GetAbilityByIndex(i)
-            local canCast = true
+        -- for i = 0, unit:GetAbilityCount() - 1 do
+            -- local ability = unit:GetAbilityByIndex(i)
+            -- local canCast = true
             
-            if(ability == nil or ability:GetLevel() <= 0) then
-                canCast = false
-            elseif(ability:IsHidden() or ability:IsPassive() or ability:IsActivated() == false) then
-                canCast = false
-            elseif(string.find(ability:GetName(), "_bonus") ~= nil) then
-                canCast = false
-            elseif(ability:IsFullyCastable() == false or ability:IsCooldownReady() == false) then
-                canCast = false
-            elseif(ability:IsInAbilityPhase()) then
-                canCast = false
-            elseif(bitContains(ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_AUTOCAST)) then
-                canCast = false
-            end
+            -- if(ability == nil or ability:GetLevel() <= 0) then
+                -- canCast = false
+            -- elseif(ability:IsHidden() or ability:IsPassive() or ability:IsActivated() == false) then
+                -- canCast = false
+            -- elseif(string.find(ability:GetName(), "_bonus") ~= nil) then
+                -- canCast = false
+            -- elseif(ability:IsFullyCastable() == false or ability:IsCooldownReady() == false) then
+                -- canCast = false
+            -- elseif(ability:IsInAbilityPhase()) then
+                -- canCast = false
+            -- elseif(bitContains(ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_AUTOCAST)) then
+                -- canCast = false
+            -- end
             
-            if canCast and ability:GetName() ~= "lone_druid_spirit_bear_return" then
-                table.insert(canCastAbilities, ability)
-            end
-        end
+            -- if canCast and ability:GetName() ~= "lone_druid_spirit_bear_return" then
+                -- table.insert(canCastAbilities, ability)
+            -- end
+        -- end
         
-        local selectedAbility = nil
+        -- local selectedAbility = nil
         
-        if(#canCastAbilities > 0) then
-            selectedAbility = canCastAbilities[RandomInt(1, #canCastAbilities)]
-        end
+        -- if(#canCastAbilities > 0) then
+            -- selectedAbility = canCastAbilities[RandomInt(1, #canCastAbilities)]
+        -- end
         
-        if(selectedAbility ~= nil) then
-            local spellData = UnitAI:GetSpellData(selectedAbility)
-            if(spellData == nil) then
-                return 0, nil
-            end
+        -- if(selectedAbility ~= nil) then
+            -- local spellData = UnitAI:GetSpellData(selectedAbility)
+            -- if(spellData == nil) then
+                -- return 0, nil
+            -- end
 
-            if(selectedAbility:GetName() == "templar_assassin_self_trap") then
-                if(unit.SpawnTime ~= nil and GameRules:GetGameTime() - unit.SpawnTime < 0.5) then
-                    return 0, nil
-                end
-            end
+            -- if(selectedAbility:GetName() == "templar_assassin_self_trap") then
+                -- if(unit.SpawnTime ~= nil and GameRules:GetGameTime() - unit.SpawnTime < 0.5) then
+                    -- return 0, nil
+                -- end
+            -- end
             
-            return 4, spellData
-        end
+            -- return 4, spellData
+        -- end
         
         return 0, nil
     end
 end
 
+function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
+    if(cmdName == "ATTACK_TARGET") then
+        if(cmdData == nil) then
+            print("ability no cmd data")
+            --unit:MoveToPositionAggressive(GameRules.DW.BattleFightPosition)
+            return 1
+        end
+        
+        local targetPosition = cmdData:GetAbsOrigin()
+        if(GameRules:GetGameTime() - GameRules.DW.StageStartTime < 10) then
+            local unitPosition = unit:GetAbsOrigin()
+            if(unitPosition.x < -1000 or unitPosition.x > 1000) then
+                targetPosition.y = unitPosition.y
+            end
+        end
+
+        local unitName = unit:GetUnitName()
+        if(unit:GetAttackDamage() > 1) then
+            unit:MoveToPositionAggressive(targetPosition)
+        end
+
+        local delay = 0.5
+        if(unit.GetDisplayAttackSpeed ~= nil and unit:GetDisplayAttackSpeed() > 0) then
+            delay = 170 / unit:GetDisplayAttackSpeed()
+        end
+        
+        return delay
+    end
+    
+    
+    if(cmdName == "USE_ABILITY") then
+        if(cmdData == nil) then
+            print("ability no cmd data")
+            --unit:MoveToPositionAggressive(GameRules.DW.BattleFightPosition)
+            return 1
+        end
+        
+        local loopTime = UnitAI:CastSpell(cmdData)
+        
+        return loopTime
+    end
+    
+    return 1
+end
+
+function UnitAI:ClosestEnemyAll(unit, teamId)
+    local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    UNIT_FILTER, FIND_CLOSEST, true)
+    
+    if #enemies == 0 then
+        return nil
+    end
+    
+    local firstEnemy = nil
+    
+    for index = 1, #enemies do
+        -- if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false and enemies[index]:IsAttackImmune() == false) then
+            -- if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
+                -- firstEnemy = enemies[index]
+                -- break
+            -- end
+        -- end
+        firstEnemy = enemies[index]
+        break
+    end
+    
+    return firstEnemy
+end
+
+
+-- function UnitAI:CastSpellNoTarget(hSpell)
+    -- local caster = hSpell:GetCaster()
+    -- if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
+        -- return 0.1
+    -- end
+    
+    -- caster:CastAbilityNoTarget(hSpell, UnitAI:GetPlayerId(caster))
+    
+    -- return UnitAI:GetSpellCastTime(hSpell)
+-- end
