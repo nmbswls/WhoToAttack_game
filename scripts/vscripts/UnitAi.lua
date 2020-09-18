@@ -1,5 +1,5 @@
 --modifier_hero_waitting 出门等待
-
+if UnitAI == nil then UnitAI = class({}) end
 
 function UnitAI:OnUnitThink(unit)
     if IsClient() or GameRules:GetGameModeEntity().IsGameOver then return nil end

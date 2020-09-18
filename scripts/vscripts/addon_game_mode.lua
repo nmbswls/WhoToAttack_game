@@ -58,6 +58,8 @@
 --打怪 
 
 require 'definitions'
+require 'UnitAi'
+require 'timers'
 
 
 if WhoToAttack == nil then
@@ -100,9 +102,7 @@ end
 --入口函数
 function WhoToAttack:StartGame()
 
-	self:SetThink("OnThink", self, 0)
-    
-    self.stage = 0
+
     self.stage_start_time = GameRules:GetGameTime()
     self.game_start_time = GameRules:GetGameTime()
 
@@ -118,7 +118,7 @@ function WhoToAttack:StartGame()
         print('GAME START!')
         --初始化棋子库
         --InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
-        GameRules:GetGameModeEntity().start_time = GameRules:GetGameTime()
+        self.start_time = GameRules:GetGameTime()
         self:SetState(1)
         --StartAPrepareRound()
     end)
@@ -129,24 +129,25 @@ function WhoToAttack:StartGame()
 end
 
 function WhoToAttack:OnThink()
-    if IsClient() or GameRules.DW.IsGameOver then return nil end
+    if IsClient() or self.is_game_ended then return nil end
     
-    if self.stage == 0 then
+    if self.stage == nil or self.stage == 0 then
         return 1
     end
     
-    local stageElapsed = GameRules:GetGameTime() - stage_start_time
+    local stageElapsed = GameRules:GetGameTime() - self.stage_start_time
     local stageCountdown = math.floor(GameRules.Definitions.StageTime[self.stage] - stageElapsed)
     local isNext = false;
     
-    if(self.state == 1) then
+    if(self.stage == 1) then
         -- for i,v in pairs (GameRules:GetGameModeEntity().heromap) do
             -- --清理开始战斗后失效的技能
             -- OnHeroInBattle(v)
         -- end
     end
     
-    if(state == 3) then
+	print("count down " .. stageCountdown)
+    if(self.stage == 3) then
     
         --20秒之后才开始计算胜负
         if stageElapsed > 20 then
@@ -191,8 +192,9 @@ function WhoToAttack:OnThink()
     
     if(stageCountdown <= 0 or isNext) then
         if(self.stage > GameRules.Definitions.StateCount) then 
-            self.stage(1)
-        elseif
+            self.battle_round = self.battle_round + 1
+            self:SetState(1)
+        else
             self:SetState(self.stage + 1)
         end
     end
@@ -223,7 +225,7 @@ end
 
 function WhoToAttack:OnStageChanged()
     
-    print("new state " .. self.stage .. " round " .. self.)
+    print("new state " .. self.stage .. " round " .. self.battle_round)
     
     if(self.stage == 1) then
         self:StartAPrepareRound()
@@ -245,18 +247,18 @@ function WhoToAttack:OnStageChanged()
 		CustomGameEventManager:Send_ServerToTeam(team_i, "battle_info",{
 			key = GetClientKey(team_i),
 			type = stage,
-			round = GameRules:GetGameModeEntity().battle_round,
+			round = self.battle_round,
 		})
 	end
 end
 
 function WhoToAttack:StartAPrepareRound()
-	if GameRules:GetGameModeEntity().is_game_ended == true then
+	if self.is_game_ended == true then
 		return
 	end
 	--每回合特殊处理
 	--预加载
-	if GameRules:GetGameModeEntity().battle_round < 5 then
+	if self.battle_round < 5 then
 		for k,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana[GameRules:GetGameModeEntity().battle_round+1]) do
 			--瞬间同时加载卡顿
 			PrecacheAUnit(k,v)
@@ -477,16 +479,17 @@ function WhoToAttack:CreateUnit(team, unitName, amount)
     local hero = TeamId2Hero(team)
     for n =1, amount do
         local newyUnit = CreateUnitByName(unitName, XY2Vector(vi.x,vi.y,team), true, hero, hero, team)
-        self:InitUnit(newyUnit)
+        self:InitUnit(team,newyUnit)
     end
 end
 
 --初始化新刷新的棋子
-function WhoToAttack:InitUnit(unit)
+function WhoToAttack:InitUnit(team, unit)
     if unit == nil or not unit:IsNull() then
         return
     end
     unit.is_in_battle = false
+	unit.team_id = team;
     local unitName = unit:GetUnitName();
     
     if table.contains(GameRules.Definitions.ChessAbilityList, unitName) then
@@ -725,98 +728,7 @@ function GetBattleCount()
 end
 
 
-function FindAClosestEnemyAndAttack(u)
-	
-	local team_id = u.at_team_id or u.team_id
-	local all_unit = GameRules:GetGameModeEntity().to_be_destory_list[team_id]
-	local attack_range = u:Script_GetAttackRange()
-	local attack_target_enemy = nil
-	local attack_target_enemy_alt = nil
 
-	local stragegy = 0;
-
-	
-	if stragegy == 0 then
-		--已经有目标
-		if u:GetAttackTarget() ~= nil and u:GetAttackTarget():IsNull() == false and u:GetAttackTarget():IsInvisible() == false and u:GetAttackTarget():IsAlive() == true and (u:GetAttackTarget():GetAbsOrigin() - u:GetAbsOrigin()):Length2D() < u:Script_GetAttackRange() + u:GetAttackTarget():GetHullRadius() + u:GetHullRadius() then
-			return 1
-		end
-		
-		--非矮人，选择一个较近的目标攻击
-		local closest_distance = 9999
-		local closest_distance_alt = 9999
-
-		for _,v in pairs(all_unit) do
-			if v ~= nil and v:IsNull() == false and v:IsAlive() == true then
-				if v.team_id ~= u.team_id and v:IsInvisible() == false then
-					local d = (v:GetAbsOrigin() - u:GetAbsOrigin()):Length2D()
-					if d < closest_distance and d < attack_range + v:GetHullRadius() + u:GetHullRadius() and v:HasModifier("modifier_winter_wyvern_cold_embrace") ~= true and IsBozangWudi(v) ~= true and IsChessKnight3Wudi(v) ~= true then
-						attack_target_enemy = v
-						closest_distance = d
-					end
-					if d < closest_distance_alt and d < attack_range + v:GetHullRadius() + u:GetHullRadius() then
-						attack_target_enemy_alt = v
-						closest_distance_alt = d
-					end
-				end
-			end
-		end
-
-		if attack_target_enemy ~= nil then
-			RemoveAbilityAndModifier(u,'jiaoxie')
-			u.attack_target = attack_target_enemy
-			if u:GetAttackTarget() == nil or u:GetAttackTarget():FindModifierByName('modifier_winter_wyvern_cold_embrace') ~= nil or IsBozangWudi(u:GetAttackTarget()) == true or IsChessKnight3Wudi(u:GetAttackTarget()) == true then
-				local newOrder = {
-			 		UnitIndex = u:entindex(), 
-			 		OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			 		TargetIndex = u.attack_target:entindex(), 
-			 		Queue = 0 
-			 	}
-				ExecuteOrderFromTable(newOrder)
-			end
-			return 1
-		else
-			u.attack_target = nil
-			return nil
-		end
-	else
-		-- --矮人，选择一个血量较低的目标攻击
-		-- local min_hp = 999999
-		-- local min_hp_alt = 999999
-
-		-- for _,v in pairs(all_unit) do
-			-- if v ~= nil and v:IsNull() == false and v:IsAlive() == true then
-				-- if v.team_id ~= u.team_id and v:IsInvisible() == false then
-					-- local h = v:GetHealth()
-					-- local d = (v:GetAbsOrigin() - u:GetAbsOrigin()):Length2D()
-					-- if h < min_hp and d < attack_range + v:GetHullRadius() + u:GetHullRadius() and v:HasModifier("modifier_winter_wyvern_cold_embrace") ~= true and IsBozangWudi(v) ~= true and IsChessKnight3Wudi(u:GetAttackTarget()) ~= true then
-						-- attack_target_enemy = v
-						-- min_hp = h
-					-- end
-					-- if h < min_hp_alt and d < attack_range + v:GetHullRadius() + u:GetHullRadius() then
-						-- attack_target_enemy_alt = v
-						-- min_hp_alt = h
-					-- end
-				-- end
-			-- end
-		-- end
-		-- if attack_target_enemy ~= nil then
-			-- RemoveAbilityAndModifier(u,'jiaoxie')
-			-- u.attack_target = attack_target_enemy
-				-- local newOrder = {
-			 		-- UnitIndex = u:entindex(), 
-			 		-- OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			 		-- TargetIndex = u.attack_target:entindex(), 
-			 		-- Queue = 0 
-			 	-- }
-				-- ExecuteOrderFromTable(newOrder)
-			-- return 1
-		-- else
-			-- u.attack_target = nil
-			-- return nil
-		-- end
-	end
-end
 
 --通用方法
 function PlayerId2Hero(id)
@@ -827,9 +739,6 @@ function GetClientToken(team)
 	return GameRules:GetGameModeEntity().client_key[team]
 end
 
-function XY2Vector(x,y,team_id)
-	return GameRules:GetGameModeEntity().base_vector[team_id] + Vector((x-1)*128,(y-1)*128,256)
-end
 
 function IsUnitExist(u)
 	if u ~= nil and u:IsNull() == false and u:IsAlive() == true and u.is_removing ~= true then
@@ -891,13 +800,13 @@ function GetPlayingPlayerCount()
 	end
 	GameRules:GetGameModeEntity().playing_player_count = playing_player_count
 	GameRules:GetGameModeEntity().obing_player_count = obing_player_count
-	combat('PLAYER COUNT: '..GameRules:GetGameModeEntity().playing_player_count)
-	if GameRules:GetGameModeEntity().obing_player_count > 0 then
-		combat('OB COUNT: '..GameRules:GetGameModeEntity().obing_player_count)
-		CustomGameEventManager:Send_ServerToAllClients("show_ob_count",{
-			count = GameRules:GetGameModeEntity().obing_player_count
-		})
-	end
+	
+	-- if GameRules:GetGameModeEntity().obing_player_count > 0 then
+		-- combat('OB COUNT: '..GameRules:GetGameModeEntity().obing_player_count)
+		-- CustomGameEventManager:Send_ServerToAllClients("show_ob_count",{
+			-- count = GameRules:GetGameModeEntity().obing_player_count
+		-- })
+	-- end
 	return GameRules:GetGameModeEntity().playing_player_count
 
 end
@@ -1005,13 +914,15 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	local all_playing_player_count = GetPlayingPlayerCount()
 	--下发消息 
 	--combat("PLAYER JOINED: "..playercount.."/"..GameRules:GetGameModeEntity().playing_player_count)
-
+    
+    print("player count " .. all_playing_player_count .. "   " .. playercount);
+    
 	if playercount == all_playing_player_count then
 		--InitPlayerIDTable()
 
 		Timers:CreateTimer(0.1,function()
 			--开始
-			StartGame()
+			self:StartGame()
 		end)
 	end 
 	
@@ -1037,6 +948,9 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 		end
 	end
 	GameRules:GetGameModeEntity().isConnected[keys.index+1] = true
+    
+    local player = PlayerResource:GetPlayer(keys.PlayerID)
+    player:SetSelectedHero("builder")
 end
 
 function WhoToAttack:OnPlayerDisconnect(keys)
@@ -1133,17 +1047,49 @@ function WhoToAttack:OnNpcSpawned(data)
 end
 
 
+function WhoToAttack:OnGameRulesStateChange()
+	local nNewState = GameRules:State_Get();
+	
+	if nNewState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+		print("game setup");
+		--self:GameSetup();
+    end
+end
+
+
 
 
 
 
 function Activate()
-	GameRules:GetGameModeEntity().AddonTemplate = WhoToAttack()
-	GameRules:GetGameModeEntity().AddonTemplate:InitGameMode()
+	GameRules:GetGameModeEntity().WhoToAttack = WhoToAttack()
+	GameRules:GetGameModeEntity().WhoToAttack:InitGameMode()
 end
 
 function WhoToAttack:InitGameMode()
+    
+    
+	
+    
+    self.stage = 0
+    GameRules:GetGameModeEntity():SetThink("OnThink", self, 0)
+    
+    GameRules:SetSameHeroSelectionEnabled(true)
+	GameRules:SetHeroSelectionTime(0)
+  	GameRules:SetStrategyTime(0)
+  	GameRules:SetShowcaseTime(0)
+    
+    
+    GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 1 );
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 1 );
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 0 );
+	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 );
+    
+    
+    GameRules:GetGameModeEntity().playing_player_count = 0
 
+    
+    ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( WhoToAttack, 'OnGameRulesStateChange' ), self );
 	ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap(WhoToAttack,"OnPlayerPickHero"),self)
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
@@ -1152,8 +1098,8 @@ function WhoToAttack:InitGameMode()
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
-	GameRules:GetGameModeEntity().battle_round = 1
-	GameRules:GetGameModeEntity().is_game_ended =false
+	self.battle_round = 1
+	self.is_game_ended =false
 	
 	
 	GameRules:GetGameModeEntity().team2playerid = {}
@@ -1235,6 +1181,8 @@ function WhoToAttack:InitGameMode()
 		chess_axe = 'axe_berserkers_call',
 		chess_dr = 'dr_shooter_aura',
 	}
+    
+    
 end
 
 
@@ -1266,7 +1214,7 @@ function ChessAI(u)
 	
 	--Logic here register aitimer
 	u.aitimer = Timers:CreateTimer(delay, function()
-		if u == nil or u:IsNull() == true or u:IsAlive() == false or u.alreadywon == true or GameRules:GetGameModeEntity().is_game_ended == true then
+		if u == nil or u:IsNull() == true or u:IsAlive() == false or u.alreadywon == true or self.is_game_ended == true then
 			return
 		end
 		
