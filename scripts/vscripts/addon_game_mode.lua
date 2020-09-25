@@ -479,6 +479,7 @@ function WhoToAttack:CreateUnit(team, unitName, amount)
     local hero = TeamId2Hero(team)
     for n =1, amount do
         local newyUnit = CreateUnitByName(unitName, XY2Vector(vi.x,vi.y,team), true, hero, hero, team)
+        newyUnit.team = team
         self:InitUnit(team,newyUnit)
     end
 end

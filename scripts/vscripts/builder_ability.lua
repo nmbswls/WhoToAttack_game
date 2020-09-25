@@ -1,7 +1,6 @@
 
 
 function SpawnUnit(keys)
-	local 
 	local caster = keys.caster
 	local casterPos = caster:GetAbsOrigin()
 	
@@ -9,7 +8,8 @@ function SpawnUnit(keys)
 	local ability = keys.ability
 	local unitName = ability:GetSpecialValueFor("unit_name")
 	
-	print("spawn unit for " .. unitName)
+    local team = caster:GetTeam()
+	print("spawn unit for " .. unitName .. " team " .. team)
     --给投掷
 end 
 
