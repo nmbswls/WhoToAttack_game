@@ -1,7 +1,6 @@
 
 
 function SpawnUnit(keys)
-	local 
 	local caster = keys.caster
 	local casterPos = caster:GetAbsOrigin()
 	
