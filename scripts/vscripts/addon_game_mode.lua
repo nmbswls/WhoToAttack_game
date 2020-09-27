@@ -1016,10 +1016,10 @@ function WhoToAttack:OnEntityKilled(keys)
 	
 	if GameRules:GetGameModeEntity().game_status == 2 then
 		--战斗阶段
-		local xx = Vector2X(u:GetAbsOrigin(),u.at_team_id or u.team_id)
-		local yy = Vector2Y(u:GetAbsOrigin(),u.at_team_id or u.team_id)
+		--local xx = Vector2X(u:GetAbsOrigin(),u.at_team_id or u.team_id)
+		--local yy = Vector2Y(u:GetAbsOrigin(),u.at_team_id or u.team_id)
 		--从目标战场中移除
-		RemoveFromToBeDestroyList(u)
+		--RemoveFromToBeDestroyList(u)
 	end
 	
 	--杀人者
@@ -1034,12 +1034,12 @@ function WhoToAttack:OnEntityKilled(keys)
 	--DeathRattle(u,attacker)
 
 	--进坟场
-	AddChess2DeadChessList({
-		at_team_id = u.at_team_id or u.team_id,
-		chess_base_name = GetUnitBaseName(u),
-		items = GetAllItemsInUnits({[1] = u}),
-		level = u:GetLevel(),
-	})
+	-- AddChess2DeadChessList({
+		-- at_team_id = u.at_team_id or u.team_id,
+		-- chess_base_name = GetUnitBaseName(u),
+		-- items = GetAllItemsInUnits({[1] = u}),
+		-- level = u:GetLevel(),
+	-- })
 
 	if attacker == nil then
 		return
