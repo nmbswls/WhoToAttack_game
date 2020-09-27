@@ -209,7 +209,7 @@ function UnitAI:ClosestEnemyAll(unit, teamId)
     
     for index = 1, #enemies do
         
-        if enemies[index].team_id ~= nil and enemies[index].team_id == unit.team_id then
+        if enemies[index].in_battle_id ~= nil and enemies[index].in_battle_id == unit.in_battle_id then
             firstEnemy = enemies[index]
             break
         end
