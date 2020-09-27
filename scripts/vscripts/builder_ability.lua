@@ -33,6 +33,7 @@ function Touzhi(keys)
         
     end
     
+    GameRules:GetGameModeEntity():MoveUnit(target, pos)
     --check range
     --ChangeBattleField
 end

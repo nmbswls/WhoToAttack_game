@@ -1214,7 +1214,37 @@ function WhoToAttack:InitGameMode()
 end
 
 
+function WhoToAttack:MoveUnit(target, pos)
 
+
+	if target == nil or target:IsNull() == true then
+		return
+	end
+
+	local pos = pos
+    
+    --可扩展的 暂时不需要
+	-- if set_forward == true then
+		-- caster:SetForwardVector((position - caster:GetAbsOrigin()):Normalized())
+	-- end
+
+	
+	target:Stop()
+	-- caster:InterruptMotionControllers(false)
+	-- caster:RemoveHorizontalMotionController(caster)
+	-- caster:RemoveVerticalMotionController(caster)
+	if caster:HasModifier("modifier_throw")  then
+		-- return
+		caster:RemoveModifierByName("modifier_throw")
+	end
+
+	caster:AddNewModifier(target,nil,"modifier_throw",
+	{
+		vx = pos.x,
+		vy = pos.y,
+	})	
+
+end
 
 
 
