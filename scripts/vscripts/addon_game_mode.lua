@@ -48,8 +48,8 @@
 --单位属性
 --is_battle_completed  战斗是否结束
 --is_in_battle         是否进战
+--in_battle_id         在哪个战场  at_team_id
 --alreadywon           是否已胜利
---at_team_id           在哪个战场
 --team_id              所属队伍
 --attack_target        所选的攻击对象
 
@@ -168,8 +168,6 @@ function WhoToAttack:OnThink()
                     end
                 end
             end
-        
-            --第一种情况：时间到了，平局
             
         end
         
@@ -240,7 +238,10 @@ function WhoToAttack:OnStageChanged()
     end
     
     if(self.stage == 4) then
-    
+        --未投掷也要清理
+        for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+            self:ClearBattle(team_i)
+        end
     end
     
 	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
@@ -331,6 +332,9 @@ function WhoToAttack:StartABattleRound()
     --移除每个场地中的隐身modifier
     for i = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
         ShowPrepare(i)
+        
+        --test code
+        self:SpawnNeutral(i);
     end
     
     GameRules:SetTimeOfDay(0.3)
@@ -341,6 +345,17 @@ function WhoToAttack:StartABattleRound()
     
     -- GameRules:GetGameModeEntity().battle_count = 0
     InitBattleTable()
+end
+
+
+function WhoToAttack:SpawnNeutral(team)
+    
+    local pos = GameRules.Definitions.TeamCenterPos[team]
+
+    for i = 1, 3 do
+        self:CreateUnit(3, pos, "test_monster", 1)
+    end
+    
 end
 
 function WhoToAttack:SendRoundTimeInfo()
@@ -413,17 +428,6 @@ function StatClassCount(team_id)
 	-- end
 end
 
-function RestoreARound(teamid)
-	GameRules:GetGameModeEntity().restore_check = true
-	ClearARound(teamid)
-
-	Timers:CreateTimer(0.8,function()
-		GameRules:GetGameModeEntity().restore_check = false
-		for _,v in pairs(GameRules:GetGameModeEntity().mychess[teamid]) do
-			--RestoreOneChess(v,teamid)
-		end
-	end)
-end
 
 function DrawARound(team)
 
@@ -454,14 +458,13 @@ function WhoToAttack:CheckWinLoseForTeam(team)
     local myUnit, enemyUnit = GetUnitCountInBattleGround(team)
 
     if myUnit == 0 and enemyUnit == 0 then
-        --第二种情况，敌我都没人了，平局
         DrawARound(team)
         TeamId2Hero(team).is_battle_completed = true
         return
     end
 
     if myUnit > 0 and enemyUnit == 0 then
-        --第三种情况：敌方死光了，获胜
+    
         WinARound(team,mychess,my_last_chess)
         TeamId2Hero(team).is_battle_completed = true
         return
@@ -475,10 +478,12 @@ function WhoToAttack:CheckWinLoseForTeam(team)
     end
 end
 
-function WhoToAttack:CreateUnit(team, unitName, amount)
+function WhoToAttack:CreateUnit(team, pos, unitName, amount)
     local hero = TeamId2Hero(team)
     for n =1, amount do
         local newyUnit = CreateUnitByName(unitName, XY2Vector(vi.x,vi.y,team), true, hero, hero, team)
+        newyUnit:SetAbsOrigin(pos);
+        FindClearSpaceForUnit(newyUnit, pos, true)
         newyUnit.team = team
         self:InitUnit(team,newyUnit)
     end
@@ -490,7 +495,8 @@ function WhoToAttack:InitUnit(team, unit)
         return
     end
     unit.is_in_battle = false
-	unit.team_id = team;
+	unit.team_id = team
+    unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
     
     if table.contains(GameRules.Definitions.ChessAbilityList, unitName) then
@@ -504,7 +510,7 @@ function WhoToAttack:InitUnit(team, unit)
     end
     
     if table.contains(GameRules.Definitions.UnitNames, unitName) then
-        table.insert(self.to_be_destory_list, unit)
+        --table.insert(self.to_be_destory_list, unit)
         CreateTimer(function()
             unit:SetContextThink("OnUnitThink", function() return UnitAI:OnUnitThink(unit) end, 1)
         end, 0.5)
@@ -512,10 +518,31 @@ function WhoToAttack:InitUnit(team, unit)
     
 end
 
+function WhoToAttack:ChangeBattleField(target, pos)
+    
+    if pos ~= nil then
+        --find closet
+    end
+
+	local minDist = 0
+	local minIdx = -1
+	--for k, vinfo in pairs(GameRules:GetGameModeEntity().base_pos) do
+		--if 
+	--end
+    local targetBattle = 6
+    target.is_in_battle = true
+	target.in_battle_id = targetBattle;
+    
+    table.insert(self.to_be_destory_list[targetBattle], target)
+	--GameRules:GetGameModeEntity().battle.insert
+	--更新羁绊
+	StatClassCount(minIdx)
+end
 
 
-function ClearARound(teamid)
-	for _,v in pairs(GameRules:GetGameModeEntity().to_be_destory_list[teamid]) do
+
+function WhoToAttack:ClearBattle(teamid)
+	for _,v in pairs(self.to_be_destory_list[teamid]) do
 		if v ~= nil and v:IsNull() == false then
 			--AddAbilityAndSetLevel(v,'no_selectable')
 			v:Destroy()
@@ -1187,18 +1214,7 @@ function WhoToAttack:InitGameMode()
 end
 
 
-function WhoToAttack:ChangeBattleField(target,pos)
-	local minDist = 0
-	local minIdx = -1
-	for k, vinfo in pairs(GameRules:GetGameModeEntity().base_pos) do
-		--if 
-	end
-	target.at_team_id = minIdx;
-	target.base = minIdx;
-	--GameRules:GetGameModeEntity().battle.insert
-	--更新羁绊
-	StatClassCount(minIdx)
-end
+
 
 
 

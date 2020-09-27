@@ -208,14 +208,19 @@ function UnitAI:ClosestEnemyAll(unit, teamId)
     local firstEnemy = nil
     
     for index = 1, #enemies do
+        
+        if enemies[index].team_id ~= nil and enemies[index].team_id == unit.team_id then
+            firstEnemy = enemies[index]
+            break
+        end
         -- if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false and enemies[index]:IsAttackImmune() == false) then
             -- if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
                 -- firstEnemy = enemies[index]
                 -- break
             -- end
         -- end
-        firstEnemy = enemies[index]
-        break
+        --firstEnemy = enemies[index]
+        --break
     end
     
     return firstEnemy
