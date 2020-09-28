@@ -15,17 +15,36 @@ end
 function Touzhi(keys)
     local caster = keys.caster
     
-    local target_battle = 6
+    local pos = keys.target_points[1]
+    print("touzhi target " .. p.x .. " " .. p.y)
+    
+    local minDist = 0
+    local minIdx = -1
+    
+    for team_i = 6, 13 do 
+        local p2 = GameRules.Definitions.TeamCenterPos[team_i]
+        local distance = (p2 - pos):Length2D()
+        if minIdx == -1 or distance < minDist then
+            minDist = distance
+            minIdx = team_i;
+        end
+    end
+    
+    print("touzhi target battle " .. minIdx)
+    local target_battle = minIdx
+    
+    
+    
     --FIND_UNITS_EVERYWHERE
-    local enemies = FindUnitsInRadius(6, caster:GetAbsOrigin(), nil, 200, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL,
+    local aroundUnits = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 200, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL,
     UNIT_FILTER, FIND_CLOSEST, true)
     
     --local pos = keys.
    
     
     local target = nil
-    if #enemies > 0 then
-        target = enemies[1]
+    if #aroundUnits > 0 then
+        target = aroundUnits[1]
     end
     --寻找范围内单位
     if target ~= nil then
