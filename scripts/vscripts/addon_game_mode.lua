@@ -1082,6 +1082,18 @@ function WhoToAttack:OnGameRulesStateChange()
 		print("game setup");
 		--self:GameSetup();
     end
+
+	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+
+        
+        for nPlayerNumber = 0, DOTA_MAX_TEAM_PLAYERS do
+                Timers:CreateTimer(0,function()
+                    local hPlayer = PlayerResource:GetPlayer(nPlayerNumber)
+                    if hPlayer and PlayerResource:IsValidTeamPlayer(nPlayerNumber) then
+                        hPlayer:MakeRandomHeroSelection()
+		    end
+		end)
+	end
 end
 
 

@@ -16,7 +16,7 @@
 		"Ability1"	"build_evil_01"
 		// Range of vision at night time.
 		"VisionNighttimeRange"	"1800"
-		"Ability2"	""
+		"Ability2"	"throw_one"
 		"Ability3"	""
 		"Ability4"	""
 		"Ability5"	""
