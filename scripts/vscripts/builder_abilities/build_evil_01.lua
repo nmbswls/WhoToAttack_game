@@ -15,19 +15,21 @@ end
 
 
 function build_evil_01:CastFilterResult()
-    
-    
-    -- if not GameRules:GetGameModeEntity().WhoToAttack.stage then
-        -- return UF_FAIL_CUSTOM
-    -- end
+    if not IsServer() then
+        return;
+    end
+    DeepPrintTable(self:GetCaster())
+    if not self:GetCaster().can_toss then
+        --print("not yet")
+        return UF_FAIL_CUSTOM
+    end
     
     return UF_SUCCESS
 end
 
-function build_evil_01:GetCustomCastErrorTarget( hTarget )
-	if not GameRules:GetGameModeEntity().WhoToAttack.stage then
-        return "nmsl"
+function build_evil_01:GetCustomCastError()
+	if not self:GetCaster().can_toss then
+        return "nmsl 时机未到"
     end
-
 	return ""
 end

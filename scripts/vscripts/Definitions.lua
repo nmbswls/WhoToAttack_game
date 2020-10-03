@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {5000, 3, 70, 6}
+	GameRules.Definitions.StageTime = {10, 30000, 70, 6}
     GameRules.Definitions.TeamCenterPos = {
 	    [6] = Vector(0,0,128),
 		[7] = Vector(100,0,128),

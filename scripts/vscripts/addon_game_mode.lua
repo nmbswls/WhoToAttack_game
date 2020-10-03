@@ -23,6 +23,7 @@
 --信息
 --stage                信息 准备0 预备1 战斗2
 --stat_info            玩家状态信息
+
 --battle_round         战斗回合
 --battle_start_time    战斗回合开始时间
 --dead_chess_list      各战场墓地
@@ -54,7 +55,7 @@
 --attack_target        所选的攻击对象
 
 --英雄属性
-
+--can_toss             是否可以投掷
 --打怪 
 
 require 'utils'
@@ -255,7 +256,23 @@ function WhoToAttack:OnStageChanged()
         end
     end
     
+    for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        local hero = TeamId2Hero(team_i);
+        if hero then
+            if self.stage == 2 or self.stage == 3 then
+                print("can toss now");
+                hero.can_toss = true;
+            else
+                hero.can_toss = false;
+            end
+        end
+        
+    end
+    
+    
 	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        
+       
 		CustomGameEventManager:Send_ServerToTeam(team_i, "battle_info",{
 			--key = GetClientKey(team_i),
 			type = stage,
@@ -949,6 +966,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 
 	hero.team = hero:GetTeam()
 	hero.team_id = hero:GetTeam()
+    hero.can_toss = false;
 
 	GameRules:GetGameModeEntity().team2playerid[hero:GetTeam()] = player:GetPlayerID()
 	GameRules:GetGameModeEntity().playerid2team[player:GetPlayerID()] = hero:GetTeam()
