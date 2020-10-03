@@ -46,9 +46,13 @@ function Touzhi(keys)
     
     local target = nil
     if #aroundUnits > 0 then
+        
+        print("unit number " .. #aroundUnits)
+    
         for i = 1, #aroundUnits do
             if aroundUnits[i]:GetEntityIndex() ~= caster:GetEntityIndex() then
                 target = aroundUnits[i]
+                break
             end
         end
         
