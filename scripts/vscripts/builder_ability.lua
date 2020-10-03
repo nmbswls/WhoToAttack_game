@@ -5,10 +5,12 @@ function SpawnUnit(keys)
 	local casterPos = caster:GetAbsOrigin()
 	
 	local ability = keys.ability
-	local unitName = ability:GetSpecialValueFor("unit_name")
+	local unitName = ability.unit_name
 	
     local team = caster:GetTeam()
 	print("spawn unit for " .. unitName .. " team " .. team)
+    
+    GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, casterPos,unitName,1);
     --给投掷
 end 
 
@@ -16,7 +18,7 @@ function Touzhi(keys)
     local caster = keys.caster
     
     local pos = keys.target_points[1]
-    print("touzhi target " .. p.x .. " " .. p.y)
+    print("touzhi target " .. pos.x .. " " .. pos.y)
     
     local minDist = 0
     local minIdx = -1
@@ -36,7 +38,7 @@ function Touzhi(keys)
     
     
     --FIND_UNITS_EVERYWHERE
-    local aroundUnits = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 200, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL,
+    local aroundUnits = FindUnitsInRadius(caster:GetTeam(), caster:GetAbsOrigin(), nil, 400, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_ALL,
     UNIT_FILTER, FIND_CLOSEST, true)
     
     --local pos = keys.
@@ -44,15 +46,25 @@ function Touzhi(keys)
     
     local target = nil
     if #aroundUnits > 0 then
-        target = aroundUnits[1]
+        for i = 1, #aroundUnits do
+            if aroundUnits[i]:GetEntityIndex() ~= caster:GetEntityIndex() then
+                target = aroundUnits[i]
+            end
+        end
+        
+        --target = aroundUnits[1]
     end
     --寻找范围内单位
     if target ~= nil then
-        GameRules:GetGameModeEntity():ChangeBattleField(target, pos)
+    
+        print("name " .. target:GetUnitName());
+    
+        GameRules:GetGameModeEntity().WhoToAttack:ChangeBattleField(target, pos)
+        GameRules:GetGameModeEntity().WhoToAttack:MoveUnit(target, pos)
         
     end
     
-    GameRules:GetGameModeEntity():MoveUnit(target, pos)
+    
     --check range
     --ChangeBattleField
 end

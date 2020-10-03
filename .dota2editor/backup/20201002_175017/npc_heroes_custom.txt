@@ -32,6 +32,5 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
 	}
 }

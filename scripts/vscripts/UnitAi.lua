@@ -1,7 +1,12 @@
 --modifier_hero_waitting 出门等待
 if UnitAI == nil then UnitAI = class({}) end
+UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ITEM", "USE_ABILITY"}
+UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS
 
 function UnitAI:OnUnitThink(unit)
+    if 1== 1 then
+        return nil
+    end
     if IsClient() or GameRules:GetGameModeEntity().IsGameOver then return nil end
 
     local highestScoreCommand = 1

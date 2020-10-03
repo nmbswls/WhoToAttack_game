@@ -57,9 +57,12 @@
 
 --打怪 
 
+require 'utils'
 require 'definitions'
 require 'UnitAi'
 require 'timers'
+
+LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 
 
 if WhoToAttack == nil then
@@ -119,7 +122,7 @@ function WhoToAttack:StartGame()
         --初始化棋子库
         --InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
         self.start_time = GameRules:GetGameTime()
-        self:SetState(1)
+        self:SetStage(1)
         --StartAPrepareRound()
     end)
     
@@ -130,6 +133,8 @@ end
 
 function WhoToAttack:OnThink()
     if IsClient() or self.is_game_ended then return nil end
+    
+    
     
     if self.stage == nil or self.stage == 0 then
         return 1
@@ -156,7 +161,7 @@ function WhoToAttack:OnThink()
                 self:CheckWinLoseForTeam(team)
             end
             
-            if GetBattleCount() == 0 and stageElapsed >= 3 then
+            if self:GetBattleCount() == 0 and stageElapsed >= 3 then
                 isNext = true;
             else 
                 if stageCountdown == 30 then
@@ -173,9 +178,12 @@ function WhoToAttack:OnThink()
         
         if stageCountdown <= 0 then
             for team = 6,13 do
-                if not TeamId2Hero(team).is_battle_completed then
-                    DrawARound(team)
-                    TeamId2Hero(team).is_battle_completed = true
+                
+                if TeamId2Hero(team) then
+                    if not TeamId2Hero(team).is_battle_completed then
+                        self:DrawARound(team)
+                        TeamId2Hero(team).is_battle_completed = true
+                    end
                 end
             end
         end
@@ -189,11 +197,13 @@ function WhoToAttack:OnThink()
     end
     
     if(stageCountdown <= 0 or isNext) then
-        if(self.stage > GameRules.Definitions.StateCount) then 
+    
+        
+        if(self.stage >= GameRules.Definitions.StageCount) then 
             self.battle_round = self.battle_round + 1
-            self:SetState(1)
+            self:SetStage(1)
         else
-            self:SetState(self.stage + 1)
+            self:SetStage(self.stage + 1)
         end
     end
 	
@@ -215,7 +225,7 @@ function WhoToAttack:OnThink()
     
 end
 
-function WhoToAttack:SetState(newStage)
+function WhoToAttack:SetStage(newStage)
     self.stage = newStage;
     self:OnStageChanged();
     self.stage_start_time = GameRules:GetGameTime()
@@ -239,6 +249,7 @@ function WhoToAttack:OnStageChanged()
     
     if(self.stage == 4) then
         --未投掷也要清理
+        self:ClearBattle(1)
         for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
             self:ClearBattle(team_i)
         end
@@ -246,7 +257,7 @@ function WhoToAttack:OnStageChanged()
     
 	for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
 		CustomGameEventManager:Send_ServerToTeam(team_i, "battle_info",{
-			key = GetClientKey(team_i),
+			--key = GetClientKey(team_i),
 			type = stage,
 			round = self.battle_round,
 		})
@@ -260,10 +271,11 @@ function WhoToAttack:StartAPrepareRound()
 	--每回合特殊处理
 	--预加载
 	if self.battle_round < 5 then
-		for k,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana[GameRules:GetGameModeEntity().battle_round+1]) do
-			--瞬间同时加载卡顿
-			PrecacheAUnit(k,v)
-		end
+        print("battle round " .. self.battle_round)
+		-- for k,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana[self.battle_round+1]) do
+			-- --瞬间同时加载卡顿
+			-- PrecacheAUnit(k,v)
+		-- end
 	end
 	
 	--选择开门玩家
@@ -331,7 +343,7 @@ function WhoToAttack:StartABattleRound()
     
     --移除每个场地中的隐身modifier
     for i = DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
-        ShowPrepare(i)
+        self:ShowPrepare(i)
         
         --test code
         self:SpawnNeutral(i);
@@ -344,7 +356,7 @@ function WhoToAttack:StartABattleRound()
     --ResetAllDeadChessList()
     
     -- GameRules:GetGameModeEntity().battle_count = 0
-    InitBattleTable()
+    self:InitBattleTable()
 end
 
 
@@ -429,7 +441,7 @@ function StatClassCount(team_id)
 end
 
 
-function DrawARound(team)
+function WhoToAttack:DrawARound(team)
 
 	local hero = TeamId2Hero(team)
 	if hero == nil or hero:IsNull() == true or hero:IsAlive() == false then
@@ -437,7 +449,7 @@ function DrawARound(team)
 	end
 	
 	-- GameRules:GetGameModeEntity().battle_count = GameRules:GetGameModeEntity().battle_count - 1
-	SetBattleTable(team,false)
+	self:SetBattleTable(team,false)
 
 	--通知UI显示胜负
 	-- for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
@@ -450,28 +462,34 @@ function DrawARound(team)
 end
 
 function WhoToAttack:CheckWinLoseForTeam(team)
-    if TeamId2Hero(team).is_battle_completed then
+    local hero = TeamId2Hero(team)
+    if not hero then
+        print("team" .. team .. " no hero")
+        return
+    end
+
+    if hero.is_battle_completed then
         return
     end
     
     --统计活着的敌我单位数量
-    local myUnit, enemyUnit = GetUnitCountInBattleGround(team)
+    local myUnit, enemyUnit = self:GetUnitCountInBattleGround(team)
 
     if myUnit == 0 and enemyUnit == 0 then
-        DrawARound(team)
-        TeamId2Hero(team).is_battle_completed = true
+        --DrawARound(team)
+        hero.is_battle_completed = true
         return
     end
 
     if myUnit > 0 and enemyUnit == 0 then
     
-        WinARound(team,mychess,my_last_chess)
-        TeamId2Hero(team).is_battle_completed = true
+        --WinARound(team,mychess,my_last_chess)
+        hero.is_battle_completed = true
         return
     elseif myUnit == 0 then
         
-        LoseARound(team,enemychess_new)
-        TeamId2Hero(team).is_battle_completed = true
+        --LoseARound(team,enemychess_new)
+        hero.is_battle_completed = true
         return
     else
         return 1
@@ -479,22 +497,26 @@ function WhoToAttack:CheckWinLoseForTeam(team)
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName, amount)
+    print("CreateUnit " .. unitName)
     local hero = TeamId2Hero(team)
     for n =1, amount do
-        local newyUnit = CreateUnitByName(unitName, XY2Vector(vi.x,vi.y,team), true, hero, hero, team)
-        newyUnit:SetAbsOrigin(pos);
-        FindClearSpaceForUnit(newyUnit, pos, true)
-        newyUnit.team = team
-        self:InitUnit(team,newyUnit)
+        
+        local newyUnit = CreateUnitByName(unitName, pos, true, hero, hero, team)
+        if newyUnit then
+            newyUnit:SetAbsOrigin(pos);
+            FindClearSpaceForUnit(newyUnit, pos, true)
+            newyUnit.team = team
+            
+            self:InitUnit(team,newyUnit)
+        end
     end
 end
 
 --初始化新刷新的棋子
 function WhoToAttack:InitUnit(team, unit)
-    if unit == nil or not unit:IsNull() then
+    if unit == nil or unit:IsNull() then
         return
-    end
-    unit.is_in_battle = false
+    end    unit.is_in_battle = false
 	unit.team_id = team
     unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
@@ -508,12 +530,11 @@ function WhoToAttack:InitUnit(team, unit)
             unit:FindAbilityByName(a):SetLevel(a_level)
         end
     end
-    
     if table.contains(GameRules.Definitions.UnitNames, unitName) then
-        --table.insert(self.to_be_destory_list, unit)
-        CreateTimer(function()
+        table.insert(self.to_be_destory_list[1], unit)
+        Timers:CreateTimer(0.5, function()
             unit:SetContextThink("OnUnitThink", function() return UnitAI:OnUnitThink(unit) end, 1)
-        end, 0.5)
+        end)
     end
     
 end
@@ -548,21 +569,21 @@ function WhoToAttack:ClearBattle(teamid)
 			v:Destroy()
 		end
 	end
-	GameRules:GetGameModeEntity().to_be_destory_list[teamid] = {}
+	self.to_be_destory_list[teamid] = {}
 end
 
 
 --业务工具方法
 
-function GetUnitCountInBattleGround(team)
+function WhoToAttack:GetUnitCountInBattleGround(team)
 	local myunit_count = 0
 	local enemyunit_count = 0
 	
 	local team_objs = {}
 	
 	--返回每个阵营的单位数量
-	if GameRules:GetGameModeEntity().to_be_destory_list[team] ~= nil then
-		for p,q in pairs(GameRules:GetGameModeEntity().to_be_destory_list[team]) do
+	if self.to_be_destory_list[team] ~= nil then
+		for p,q in pairs(self.to_be_destory_list[team]) do
 			if q:GetUnitName() ~= 'fissure' then
 				if q.team_id == team then
 					mychess_count = mychess_count + 1
@@ -590,9 +611,9 @@ function ResetAllDeadChessList()
 	}
 end
 
-function ShowPrepare(team)
-	if GameRules:GetGameModeEntity().to_be_destory_list[team] ~= nil then
-		for _,ent in pairs(GameRules:GetGameModeEntity().to_be_destory_list[team]) do
+function WhoToAttack:ShowPrepare(team)
+	if self.to_be_destory_list[team] ~= nil then
+		for _,ent in pairs(self.to_be_destory_list[team]) do
 			RemoveAbilityAndModifier(ent,'invisible_to_enemy')
 		end
 	end
@@ -741,13 +762,26 @@ function UpdateStatUI()
 		  hehe = RandomInt(1,100000)})
 end
 
-function SetBattleTable(team_id, value)
-	GameRules:GetGameModeEntity().battle_state[team_id] = value
+function WhoToAttack:InitBattleTable()
+	self.battle_state = {
+		[6] = false,
+		[7] = false,
+		[8] = false,
+		[9] = false,
+		[10] = false,
+		[11] = false,
+		[12] = false,
+		[13] = false,
+	}
 end
 
-function GetBattleCount()
+function WhoToAttack:SetBattleTable(team_id, value)
+	self.battle_state[team_id] = value
+end
+
+function WhoToAttack:GetBattleCount()
 	local battle_count = 0
-	for _,i in pairs(GameRules:GetGameModeEntity().battle_count) do
+	for _,i in pairs(self.battle_state) do
 		if i == true then
 			battle_count = battle_count + 1
 		end
@@ -840,18 +874,7 @@ function GetPlayingPlayerCount()
 end
 
 
-function InitBattleTable()
-	GameRules:GetGameModeEntity().battle_state = {
-		[6] = false,
-		[7] = false,
-		[8] = false,
-		[9] = false,
-		[10] = false,
-		[11] = false,
-		[12] = false,
-		[13] = false,
-	}
-end
+
 
 function AddChess2DeadChessList(keys)
 	local at_team_id = keys.at_team_id --必填
@@ -918,6 +941,8 @@ function WhoToAttack:OnPlayerPickHero(keys)
 		hero:RemoveAbility("empty"..i)
 	end
 	
+    AddAbilityAndSetLevel(hero,"build_evil_01",1)
+    AddAbilityAndSetLevel(hero,"throw_one",1)
 	
 	hero:SetMana(0)
 	hero:SetStashEnabled(false)
@@ -1084,15 +1109,17 @@ function WhoToAttack:OnGameRulesStateChange()
     end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-
+        print("hero select");
         
         for nPlayerNumber = 0, DOTA_MAX_TEAM_PLAYERS do
                 Timers:CreateTimer(0,function()
                     local hPlayer = PlayerResource:GetPlayer(nPlayerNumber)
                     if hPlayer and PlayerResource:IsValidTeamPlayer(nPlayerNumber) then
+                        print("hero select random");
                         hPlayer:MakeRandomHeroSelection()
-		    end
-		end)
+					end
+			end)
+		end
 	end
 end
 
@@ -1198,7 +1225,8 @@ function WhoToAttack:InitGameMode()
 		[12] = {},
 		[13] = {},
 	}
-	GameRules:GetGameModeEntity().to_be_destory_list = {
+	self.to_be_destory_list = {
+        [1] = {},
 		[6] = {},
 		[7] = {},
 		[8] = {},
@@ -1212,9 +1240,6 @@ function WhoToAttack:InitGameMode()
 	GameRules:GetGameModeEntity().isConnected = {}
 	
 	GameRules:GetGameModeEntity().CHESS_POOL_SIZE = 5
-	GameRules:GetGameModeEntity().game_status = 0
-	GameRules:GetGameModeEntity().prepare_timer = 35
-	GameRules:GetGameModeEntity().battle_timer = 50
 
 	GameRules:GetGameModeEntity().chess_ability_list = {
 		chess_cm = 'cm_mana_aura',
@@ -1245,12 +1270,12 @@ function WhoToAttack:MoveUnit(target, pos)
 	-- caster:InterruptMotionControllers(false)
 	-- caster:RemoveHorizontalMotionController(caster)
 	-- caster:RemoveVerticalMotionController(caster)
-	if caster:HasModifier("modifier_throw")  then
+	if target:HasModifier("modifier_toss")  then
 		-- return
-		caster:RemoveModifierByName("modifier_throw")
+		target:RemoveModifierByName("modifier_toss")
 	end
-
-	caster:AddNewModifier(target,nil,"modifier_throw",
+    
+	target:AddNewModifier(target,nil,"modifier_toss",
 	{
 		vx = pos.x,
 		vy = pos.y,

@@ -10,8 +10,7 @@
 	// =================================================================================================================
 	"build_evil_01"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"builder_abilities/build_evil_01.lua"
+		"BaseClass"	"ability_datadriven"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -52,13 +51,11 @@
 				"duration"	"17.0 17.0 17.0 17.0"
 			}
 		}
-		"unit_name"	"test_monster"
 	}
 
 	"throw_one"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"tiny_toss"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"

@@ -117,6 +117,5 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"AutoAttacksByDefault"	"0"
 	}
 }

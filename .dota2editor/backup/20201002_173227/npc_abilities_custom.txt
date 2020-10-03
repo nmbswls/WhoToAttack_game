@@ -10,6 +10,7 @@
 	// =================================================================================================================
 	"build_evil_01"
 	{
+		"BaseClass"	"ability_datadriven"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
@@ -48,6 +49,23 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"duration"	"17.0 17.0 17.0 17.0"
+			}
+		}
+	}
+
+	"throw_one"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/builder_ability.lua"
+				"Function"	"Touzhi"
 			}
 		}
 	}

@@ -10,8 +10,7 @@
 	// =================================================================================================================
 	"build_evil_01"
 	{
-		"BaseClass"	"ability_lua"
-		"ScriptFile"	"builder_abilities/build_evil_01.lua"
+		"BaseClass"	"ability_datadriven"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
