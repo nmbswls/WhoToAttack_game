@@ -24,9 +24,12 @@
 --stage                信息 准备0 预备1 战斗2
 --stat_info            玩家状态信息
 
---battle_round         战斗回合
+--battle_round         回合数
 --battle_start_time    战斗回合开始时间
---dead_chess_list      各战场墓地
+--open_door_list       开门列表
+
+
+--*dead_chess_list      各战场墓地
 
 --stage_start_time     state 开始时间
 --game_start_time      全局游戏开始时间
@@ -55,7 +58,11 @@
 --attack_target        所选的攻击对象
 
 --英雄属性
+--将战场绑在hero身上 合理吗？
 --can_toss             是否可以投掷
+--base                 基地
+
+
 --打怪 
 
 require 'utils'
@@ -116,6 +123,19 @@ function WhoToAttack:StartGame()
         })
     end
 
+    --init player base_pos
+    for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+        local pos = GameRules.Definitions.TeamCenterPos[team_i]
+        local hero = TeamId2Hero(team_i);
+        if hero then
+           local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
+           hero.base = newBase
+           newBase.in_battle_id = team_i
+        end
+        
+    end
+    
+    
     --5秒后开始游戏
     Timers:CreateTimer(5,function()
         
@@ -123,6 +143,7 @@ function WhoToAttack:StartGame()
         --初始化棋子库
         --InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
         self.start_time = GameRules:GetGameTime()
+        self.battle_round = 1
         self:SetStage(1)
         --StartAPrepareRound()
     end)
@@ -153,29 +174,33 @@ function WhoToAttack:OnThink()
     end
     
 	print("count down " .. stageCountdown)
-    if(self.stage == 3) then
-    
-        --20秒之后才开始计算胜负
-        if stageElapsed > 20 then
+    if self.state == 2 then
         
-            for team = 6,13 do
-                self:CheckWinLoseForTeam(team)
-            end
-            
-            if self:GetBattleCount() == 0 and stageElapsed >= 3 then
-                isNext = true;
-            else 
-                if stageCountdown == 30 then
-                    --lock all touzhi
-                    for i,v in pairs(self.heromap) do
-                        if IsUnitExist(v) == true then
-                            --LockTouzhi(v:GetTeam())
-                        end
+    end
+    
+    if(self.stage == 3) then
+        
+        --20秒之后才开始计算胜负
+        
+        for team = 6,13 do
+            --self:CheckWinLoseForTeam(team)
+        end
+        
+        if self:GetBattleCount() == 0 and stageElapsed >= 3 then
+            print("go next??")
+            isNext = true;
+        else 
+            if stageCountdown == 30 then
+                --lock all touzhi
+                for i,v in pairs(self.heromap) do
+                    if IsUnitExist(v) == true then
+                        --LockTouzhi(v:GetTeam())
                     end
                 end
             end
-            
         end
+            
+        
         
         if stageCountdown <= 0 then
             for team = 6,13 do
@@ -241,11 +266,13 @@ function WhoToAttack:OnStageChanged()
     end
     
     if(self.stage == 2) then
-        
+        self:StartABattleRound()
     end
 
     if(self.stage == 3) then
-        self:StartABattleRound()
+        for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
+            self:SetBattleTable(team_i, true)
+        end
     end
     
     if(self.stage == 4) then
@@ -295,6 +322,34 @@ function WhoToAttack:StartAPrepareRound()
 		-- end
 	end
 	
+    local allTeam = {}
+    for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
+        
+        table.insert(allTeam, v:GetTeam());
+    end
+    if self.battle_round % 3 == 1 then
+        self.open_door_list = allTeam
+    elseif self.battle_round % 3 == 2 then
+        local shuffled = table.shuffle(allTeam);
+        self.open_door_list = {}
+        for i = 1, 1 do
+            table.insert(self.open_door_list, shuffled[i]);
+        end
+    else
+        local newTeam = {}
+        for i = 1, #allTeam do
+            if not table.contains(self.open_door_list, allTeam[i]) then
+                table.insert(newTeam, shuffled[i])
+            end
+        end
+        self.open_door_list = newTeam
+    end
+    print("open list:");
+    for i = 1, #self.open_door_list do
+        print(self.open_door_list[i]);
+    end
+    
+    
 	--选择开门玩家
 	
 	--GameRules:GetGameModeEntity().opened_ply;
@@ -372,6 +427,8 @@ function WhoToAttack:StartABattleRound()
 
     --ResetAllDeadChessList()
     
+    
+    
     -- GameRules:GetGameModeEntity().battle_count = 0
     self:InitBattleTable()
 end
@@ -382,7 +439,10 @@ function WhoToAttack:SpawnNeutral(team)
     local pos = GameRules.Definitions.TeamCenterPos[team]
 
     for i = 1, 3 do
-        self:CreateUnit(3, pos, "test_monster", 1)
+        local unit = self:CreateUnit(3, pos, "test_monster")
+        Timers:CreateTimer(0.5, function()
+            unit.in_battle_id = team;
+        end)
     end
     
 end
@@ -513,27 +573,32 @@ function WhoToAttack:CheckWinLoseForTeam(team)
     end
 end
 
-function WhoToAttack:CreateUnit(team, pos, unitName, amount)
-    print("CreateUnit " .. unitName)
+function WhoToAttack:GetBattleField(team)
+
+    --to do
+end
+
+
+function WhoToAttack:CreateUnit(team, pos, unitName)
     local hero = TeamId2Hero(team)
-    for n =1, amount do
+    --local newyUnit = CreateUnitByName(unitName, pos, true, hero, hero, team)
+    local newyUnit = CreateUnitByName(unitName, pos, true, nil, nil, team)
+    if newyUnit then
+        newyUnit:SetAbsOrigin(pos);
+        FindClearSpaceForUnit(newyUnit, pos, true)
+        newyUnit.team = team
         
-        local newyUnit = CreateUnitByName(unitName, pos, true, hero, hero, team)
-        if newyUnit then
-            newyUnit:SetAbsOrigin(pos);
-            FindClearSpaceForUnit(newyUnit, pos, true)
-            newyUnit.team = team
-            
-            self:InitUnit(team,newyUnit)
-        end
+        self:InitUnit(team,newyUnit)
     end
+    return newyUnit
 end
 
 --初始化新刷新的棋子
 function WhoToAttack:InitUnit(team, unit)
     if unit == nil or unit:IsNull() then
         return
-    end    unit.is_in_battle = false
+    end    
+    unit.is_in_battle = false
 	unit.team_id = team
     unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
@@ -556,6 +621,12 @@ function WhoToAttack:InitUnit(team, unit)
     
 end
 
+
+function WhoToAttack:UpgradeBuild()
+    
+end
+
+
 function WhoToAttack:ChangeBattleField(target, pos)
     
     if pos ~= nil then
@@ -564,10 +635,17 @@ function WhoToAttack:ChangeBattleField(target, pos)
 
 	local minDist = 0
 	local minIdx = -1
-	--for k, vinfo in pairs(GameRules:GetGameModeEntity().base_pos) do
-		--if 
-	--end
-    local targetBattle = 6
+    
+	for team_i = 6, 13 do 
+        local p2 = GameRules.Definitions.TeamCenterPos[team_i]
+        local distance = (p2 - pos):Length2D()
+        if minIdx == -1 or distance < minDist then
+            minDist = distance
+            minIdx = team_i;
+        end
+    end
+    
+    local targetBattle = minIdx
     target.is_in_battle = true
 	target.in_battle_id = targetBattle;
     
@@ -582,6 +660,7 @@ end
 function WhoToAttack:ClearBattle(teamid)
 	for _,v in pairs(self.to_be_destory_list[teamid]) do
 		if v ~= nil and v:IsNull() == false then
+            print("to destoy: " .. v:GetUnitName())
 			--AddAbilityAndSetLevel(v,'no_selectable')
 			v:Destroy()
 		end
@@ -603,9 +682,9 @@ function WhoToAttack:GetUnitCountInBattleGround(team)
 		for p,q in pairs(self.to_be_destory_list[team]) do
 			if q:GetUnitName() ~= 'fissure' then
 				if q.team_id == team then
-					mychess_count = mychess_count + 1
+					myunit_count = myunit_count + 1
 				else
-					enemychess_count = enemychess_count + 1
+					enemyunit_count = enemyunit_count + 1
 				end
 			end
 		end
@@ -780,6 +859,8 @@ function UpdateStatUI()
 end
 
 function WhoToAttack:InitBattleTable()
+
+    print("init battle table")
 	self.battle_state = {
 		[6] = false,
 		[7] = false,
@@ -799,6 +880,7 @@ end
 function WhoToAttack:GetBattleCount()
 	local battle_count = 0
 	for _,i in pairs(self.battle_state) do
+        
 		if i == true then
 			battle_count = battle_count + 1
 		end
@@ -960,6 +1042,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	
     AddAbilityAndSetLevel(hero,"build_evil_01",1)
     AddAbilityAndSetLevel(hero,"throw_one",1)
+    AddAbilityAndSetLevel(hero,"wudi",1)
 	
 	hero:SetMana(0)
 	hero:SetStashEnabled(false)
@@ -1183,7 +1266,7 @@ function WhoToAttack:InitGameMode()
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
-	self.battle_round = 1
+	self.battle_round = 0
 	self.is_game_ended =false
 	
 	
@@ -1243,6 +1326,7 @@ function WhoToAttack:InitGameMode()
 		[12] = {},
 		[13] = {},
 	}
+    self.open_door_list = {}
 	self.to_be_destory_list = {
         [1] = {},
 		[6] = {},

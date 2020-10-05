@@ -13,7 +13,7 @@
 		// General
 		// ----------------------------------------------------------------
 		// Model.
-		"Model"	"models/creeps/neutral_creeps/n_creep_gnoll/n_creep_gnoll_frost.vmdl"
+		"Model"	"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"n_creep_Ranged"
 		"GameSoundsFile"	"soundevents/game_sounds_creeps.vsndevts"
@@ -37,9 +37,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"30"
+		"AttackDamageMin"	"5"
 		// Damage range max.
-		"AttackDamageMax"	"36"
+		"AttackDamageMax"	"5"
 		// Speed of attack.
 		"AttackRate"	"1.6"
 		// Normalized time in animation cycle to attack.
@@ -59,11 +59,11 @@
 		// Bounty
 		// ----------------------------------------------------------------
 		// Experience earn.
-		"BountyXP"	"24"
+		"BountyXP"	"0"
 		// Gold earned min.
-		"BountyGoldMin"	"21"
+		"BountyGoldMin"	"0"
 		// Gold earned max.
-		"BountyGoldMax"	"29"
+		"BountyGoldMax"	"0"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -72,9 +72,9 @@
 		// Status
 		// ----------------------------------------------------------------
 		// Base health.
-		"StatusHealth"	"75"
+		"StatusHealth"	"200"
 		// Health regeneration rate.
-		"StatusHealthRegen"	"0.5"
+		"StatusHealthRegen"	"0"
 		// Base mana.
 		"StatusMana"	"0"
 		// Mana regeneration rate.
@@ -118,5 +118,30 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+	}
+
+	"player_base"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"base_fantan"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/undying/undying_tower.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}
 }

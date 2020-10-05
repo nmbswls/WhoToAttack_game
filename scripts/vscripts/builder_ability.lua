@@ -23,14 +23,7 @@ function Touzhi(keys)
     local minDist = 0
     local minIdx = -1
     
-    for team_i = 6, 13 do 
-        local p2 = GameRules.Definitions.TeamCenterPos[team_i]
-        local distance = (p2 - pos):Length2D()
-        if minIdx == -1 or distance < minDist then
-            minDist = distance
-            minIdx = team_i;
-        end
-    end
+    
     
     print("touzhi target battle " .. minIdx)
     local target_battle = minIdx

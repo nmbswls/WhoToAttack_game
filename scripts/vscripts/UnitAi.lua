@@ -1,14 +1,17 @@
 --modifier_hero_waitting 出门等待
 if UnitAI == nil then UnitAI = class({}) end
-UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ITEM", "USE_ABILITY"}
+UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ABILITY"}
 UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS
 
 function UnitAI:OnUnitThink(unit)
-    if 1== 1 then
-        return nil
-    end
-    if IsClient() or GameRules:GetGameModeEntity().IsGameOver then return nil end
 
+    if IsClient() or GameRules:GetGameModeEntity().WhoToAttack.is_game_ended then return nil end
+    
+    if GameRules:GetGameModeEntity().WhoToAttack.stage ~= 3 then
+        return 1
+    end
+    
+    
     local highestScoreCommand = 1
     local highestScore = 0
     local highestData = nil
@@ -84,6 +87,8 @@ function UnitAI:EvaluateCommand(unit, cmdName)
             end
             
             return 30, nearestEnemy
+        else
+            print("has attack target")
         end
         
         return 0, nil
@@ -92,22 +97,22 @@ function UnitAI:EvaluateCommand(unit, cmdName)
     
     
     if(cmdName == "USE_ABILITY") then
-        if(unit:IsSilenced() or unit:IsStunned()) then
-            return 0, nil
-        end
+        -- if(unit:IsSilenced() or unit:IsStunned()) then
+            -- return 0, nil
+        -- end
         
-        if(unit:IsChanneling()) then
-            return 0, nil
-        end
+        -- if(unit:IsChanneling()) then
+            -- return 0, nil
+        -- end
         
         
-        local unitName = unit:GetUnitName()
+        -- local unitName = unit:GetUnitName()
         
-        if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().stage_start_time < 6) then
-            return 0, nil
-        end
+        -- if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().stage_start_time < 6) then
+            -- return 0, nil
+        -- end
         
-        local canCastAbilities = {}
+        -- local canCastAbilities = {}
         
         -- for i = 0, unit:GetAbilityCount() - 1 do
             -- local ability = unit:GetAbilityByIndex(i)
@@ -166,7 +171,7 @@ function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
         end
         
         local targetPosition = cmdData:GetAbsOrigin()
-        if(GameRules:GetGameTime() - GameRules.DW.StageStartTime < 10) then
+        if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().WhoToAttack.game_start_time < 10) then
             local unitPosition = unit:GetAbsOrigin()
             if(unitPosition.x < -1000 or unitPosition.x > 1000) then
                 targetPosition.y = unitPosition.y
@@ -177,6 +182,16 @@ function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
         if(unit:GetAttackDamage() > 1) then
             unit:MoveToPositionAggressive(targetPosition)
         end
+
+        -- if u:GetAttackTarget() == nil then
+				-- local newOrder = {
+			 		-- UnitIndex = u:entindex(), 
+			 		-- OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+			 		-- TargetIndex = u.attack_target:entindex(), 
+			 		-- Queue = 0 
+			 	-- }
+				-- ExecuteOrderFromTable(newOrder)
+
 
         local delay = 0.5
         if(unit.GetDisplayAttackSpeed ~= nil and unit:GetDisplayAttackSpeed() > 0) then
@@ -212,21 +227,36 @@ function UnitAI:ClosestEnemyAll(unit, teamId)
     
     local firstEnemy = nil
     
-    for index = 1, #enemies do
-        
-        if enemies[index].in_battle_id ~= nil and enemies[index].in_battle_id == unit.in_battle_id then
-            firstEnemy = enemies[index]
-            break
-        end
-        -- if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false and enemies[index]:IsAttackImmune() == false) then
-            -- if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
-                -- firstEnemy = enemies[index]
-                -- break
+    if #enemies > 1 then
+        for index = 1, #enemies do
+            
+            print("try search get enemy in battle " .. enemies[index].in_battle_id );
+            if enemies[index].in_battle_id ~= nil and enemies[index].in_battle_id == unit.in_battle_id 
+                and not unit:HasModifier("modifier_base_fantan") 
+                then
+                
+                firstEnemy = enemies[index]
+                break
+            end
+            -- if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false and enemies[index]:IsAttackImmune() == false) then
+                -- if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
+                    -- firstEnemy = enemies[index]
+                    -- break
+                -- end
             -- end
-        -- end
-        --firstEnemy = enemies[index]
-        --break
+            --firstEnemy = enemies[index]
+            --break
+        end
+    
+        
+    else
+        
+        if enemies[1].in_battle_id ~= nil and enemies[1].in_battle_id == unit.in_battle_id then
+            firstEnemy = enemies[1]
+        end
     end
+    
+    
     
     return firstEnemy
 end

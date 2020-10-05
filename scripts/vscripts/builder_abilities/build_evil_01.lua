@@ -18,7 +18,7 @@ function build_evil_01:CastFilterResult()
     if not IsServer() then
         return;
     end
-    DeepPrintTable(self:GetCaster())
+    --DeepPrintTable(self:GetCaster())
     if not self:GetCaster().can_toss then
         --print("not yet")
         return UF_FAIL_CUSTOM

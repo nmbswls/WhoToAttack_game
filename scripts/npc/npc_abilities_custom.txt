@@ -76,9 +76,13 @@
 	"wudi"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"precache"
+		{
+			"particle"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
+		}
 		"Modifiers"
 		{
 			"modifier_wudi"
@@ -86,9 +90,42 @@
 				"Properties"	{}
 				"States"
 				{
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"Passive"	"1"
-				"IsHidden"	"1"
+				"IsHidden"	"0"
+				"EffectName"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
+			}
+		}
+	}
+
+	"base_fantan"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"precache"
+		{
+			"particle"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
+		}
+		"Modifiers"
+		{
+			"modifier_base_fantan"
+			{
+				"Passive"	"1"
+				"OnAttacked"
+				{
+					"Damage"
+					{
+						"Target"	"ATTACKER"
+						"Damage"	"10000"
+						"Type"	"DAMAGE_TYPE_PURE"
+					}
+				}
+				"EffectName"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
+				"EffectAttachType"	"follow_overhead"
 			}
 		}
 	}
