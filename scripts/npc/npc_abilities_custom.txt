@@ -131,7 +131,7 @@
 		}
 	}
 
-<<<<<<< HEAD
+
 	"build_test_01"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -337,8 +337,8 @@
 			}
 		}
 	}
-=======
-// Ursa: Fury Swipes
+
+    // Ursa: Fury Swipes
 	//=================================================================================================================
 	"ursa_fury_swipes"
 	{
@@ -3197,5 +3197,5 @@
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
 	}	
->>>>>>> c010967da753e6a5bdf0cbf3cee3f52a341f8d75
+
 }
