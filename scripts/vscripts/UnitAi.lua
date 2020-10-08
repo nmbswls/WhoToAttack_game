@@ -1,4 +1,11 @@
 --modifier_hero_waitting 出门等待
+--技能释放信息
+----ability = hSpell 技能实例
+----type = "unit_target" 目标类型
+----target = hTarget
+require 'utils'
+
+local MIN_TIME_CAST = 6
 if UnitAI == nil then UnitAI = class({}) end
 UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ABILITY"}
 UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS
@@ -97,66 +104,60 @@ function UnitAI:EvaluateCommand(unit, cmdName)
     
     
     if(cmdName == "USE_ABILITY") then
-        -- if(unit:IsSilenced() or unit:IsStunned()) then
-            -- return 0, nil
-        -- end
+        if(unit:IsSilenced() or unit:IsStunned()) then
+            return 0, nil
+        end
         
-        -- if(unit:IsChanneling()) then
-            -- return 0, nil
-        -- end
+        if(unit:IsChanneling()) then
+            return 0, nil
+        end
         
         
-        -- local unitName = unit:GetUnitName()
+        local unitName = unit:GetUnitName()
         
-        -- if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().stage_start_time < 6) then
-            -- return 0, nil
-        -- end
+        if(GameRules:GetGameTime() - GameRules:GetGameModeEntity().WhoToAttack.stage_start_time < MIN_TIME_CAST) then
+            return 0, nil
+        end
         
-        -- local canCastAbilities = {}
+        local canCastAbilities = {}
         
-        -- for i = 0, unit:GetAbilityCount() - 1 do
-            -- local ability = unit:GetAbilityByIndex(i)
-            -- local canCast = true
+        for i = 0, unit:GetAbilityCount() - 1 do
+            local ability = unit:GetAbilityByIndex(i)
+            local canCast = true
             
-            -- if(ability == nil or ability:GetLevel() <= 0) then
-                -- canCast = false
-            -- elseif(ability:IsHidden() or ability:IsPassive() or ability:IsActivated() == false) then
-                -- canCast = false
-            -- elseif(string.find(ability:GetName(), "_bonus") ~= nil) then
-                -- canCast = false
-            -- elseif(ability:IsFullyCastable() == false or ability:IsCooldownReady() == false) then
-                -- canCast = false
-            -- elseif(ability:IsInAbilityPhase()) then
-                -- canCast = false
+            if(ability == nil or ability:GetLevel() <= 0) then
+                canCast = false
+            elseif(ability:IsHidden() or ability:IsPassive() or ability:IsActivated() == false) then
+                canCast = false
+            elseif(string.find(ability:GetName(), "_bonus") ~= nil) then
+                canCast = false
+            elseif(ability:IsFullyCastable() == false or ability:IsCooldownReady() == false) then
+                canCast = false
+            elseif(ability:IsInAbilityPhase()) then
+                canCast = false
             -- elseif(bitContains(ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_AUTOCAST)) then
                 -- canCast = false
-            -- end
+            end
             
-            -- if canCast and ability:GetName() ~= "lone_druid_spirit_bear_return" then
-                -- table.insert(canCastAbilities, ability)
-            -- end
-        -- end
+            if canCast then
+                table.insert(canCastAbilities, ability)
+            end
+        end
         
-        -- local selectedAbility = nil
+        local selectedAbility = nil
         
-        -- if(#canCastAbilities > 0) then
-            -- selectedAbility = canCastAbilities[RandomInt(1, #canCastAbilities)]
-        -- end
+        if(#canCastAbilities > 0) then
+            selectedAbility = canCastAbilities[RandomInt(1, #canCastAbilities)]
+        end
         
-        -- if(selectedAbility ~= nil) then
-            -- local spellData = UnitAI:GetSpellData(selectedAbility)
-            -- if(spellData == nil) then
-                -- return 0, nil
-            -- end
-
-            -- if(selectedAbility:GetName() == "templar_assassin_self_trap") then
-                -- if(unit.SpawnTime ~= nil and GameRules:GetGameTime() - unit.SpawnTime < 0.5) then
-                    -- return 0, nil
-                -- end
-            -- end
+        if(selectedAbility ~= nil) then
+            local spellData = UnitAI:GetSpellData(selectedAbility)
+            if(spellData == nil) then
+                return 0, nil
+            end
             
-            -- return 4, spellData
-        -- end
+            return 4, spellData
+        end
         
         return 0, nil
     end
@@ -179,18 +180,19 @@ function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
         end
 
         local unitName = unit:GetUnitName()
-        if(unit:GetAttackDamage() > 1) then
-            unit:MoveToPositionAggressive(targetPosition)
-        end
+        -- if(unit:GetAttackDamage() > 1) then
+            -- unit:MoveToPositionAggressive(targetPosition)
+        -- end
 
-        -- if u:GetAttackTarget() == nil then
-				-- local newOrder = {
-			 		-- UnitIndex = u:entindex(), 
-			 		-- OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-			 		-- TargetIndex = u.attack_target:entindex(), 
-			 		-- Queue = 0 
-			 	-- }
-				-- ExecuteOrderFromTable(newOrder)
+        if unit:GetAttackTarget() == nil then
+            local newOrder = {
+                UnitIndex = unit:entindex(), 
+                OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+                TargetIndex = cmdData:entindex(), 
+                Queue = 0 
+            }
+            ExecuteOrderFromTable(newOrder)
+        end
 
 
         local delay = 0.5
@@ -217,8 +219,84 @@ function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
     return 1
 end
 
+
+
+function UnitAI:CastSpell(spellData)
+    local hSpell = spellData.ability
+    
+    if hSpell == nil or hSpell:IsFullyCastable() == false or hSpell:IsActivated() == false then
+        return 0.1
+    end
+    
+    if(hSpell:GetCaster():HasModifier("modifier_hero_waitting")) then
+        return 0.1
+    end
+    
+    if(spellData.type == "toggle") then
+        if hSpell:GetToggleState() == false then
+            hSpell:ToggleAbility()
+            table.insert(hSpell:GetCaster().toggleOffList, hSpell)
+        end
+        return 0.1
+    end
+    
+    if(spellData.type == "unit_target") then
+        return UnitAI:CastSpellUnitTarget(hSpell, spellData.target)
+    end
+    
+    -- if(spellData.type == "point_target") then
+        -- return UnitAI:CastSpellPointTarget(hSpell, spellData.target)
+    -- end
+    
+    -- if(spellData.type == "no_target") then
+        -- return UnitAI:CastSpellNoTarget(hSpell)
+    -- end
+    
+    -- if(spellData.type == "tree_target") then
+        -- return UnitAI:CastSpellTreeTarget(hSpell, spellData.target)
+    -- end
+    
+    return 0.1
+end
+
+
+function UnitAI:CastSpellUnitTarget(hSpell, hTarget)
+    local caster = hSpell:GetCaster()
+    if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
+        return 0.1
+    end
+    
+    if(hTarget == nil or hTarget:IsNull() or hTarget:IsAlive() == false) then
+        return 0.1
+    end
+    
+    caster:CastAbilityOnTarget(hTarget, hSpell, UnitAI:GetPlayerId(caster))
+    
+    return UnitAI:GetSpellCastTime(hSpell)
+end
+
+
+function UnitAI:GetSpellCastTime(hSpell)
+    
+    if hSpell == nil or hSpell:IsNull() then
+        return 0.2
+    end
+
+    local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
+    if(flCastPoint < 0.2) then
+        flCastPoint = 0.2
+    end
+    
+    return flCastPoint
+    
+end
+
 function UnitAI:ClosestEnemyAll(unit, teamId)
-    local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    -- local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    -- UNIT_FILTER, FIND_CLOSEST, true)
+    
+    
+    local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
     UNIT_FILTER, FIND_CLOSEST, true)
     
     if #enemies == 0 then
@@ -230,7 +308,6 @@ function UnitAI:ClosestEnemyAll(unit, teamId)
     if #enemies > 1 then
         for index = 1, #enemies do
             
-            print("try search get enemy in battle " .. enemies[index].in_battle_id );
             if enemies[index].in_battle_id ~= nil and enemies[index].in_battle_id == unit.in_battle_id 
                 and not unit:HasModifier("modifier_base_fantan") 
                 then
@@ -261,6 +338,206 @@ function UnitAI:ClosestEnemyAll(unit, teamId)
     return firstEnemy
 end
 
+function UnitAI:GetSpellData(hSpell)
+    if hSpell == nil or hSpell:IsActivated() == false then
+        return nil
+    end
+    
+    local nBehavior = hSpell:GetBehavior()
+    local nTargetTeam = hSpell:GetAbilityTargetTeam()
+    local nTargetType = hSpell:GetAbilityTargetType()
+    local nTargetFlags = hSpell:GetAbilityTargetFlags()
+
+    local abilityName = hSpell:GetName()
+    local hero = hSpell:GetCaster()
+    if(hero == nil or hero:IsNull()) then
+        return nil
+    end
+
+    --handle special skills
+    -- if(abilityName == "item_blink") then
+        -- return {ability = hSpell, type = "point_target", target = castPos}
+    -- end
+    
+    if bitContains(nTargetTeam, DOTA_UNIT_TARGET_TEAM_ENEMY) then
+        if bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) then
+            if UnitAI:IsNoTargetSpellCastValid(hSpell, DOTA_UNIT_TARGET_TEAM_ENEMY) then
+                return {ability = hSpell, type = "no_target", target = nil}
+            end
+        elseif bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_POINT) then
+            local vTargetLoc = UnitAI:GetBestAOEPointTarget(hSpell, DOTA_UNIT_TARGET_TEAM_ENEMY)
+            if vTargetLoc ~= nil then
+                return {ability = hSpell, type = "point_target", target = vTargetLoc}
+            end
+        elseif bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) then
+            if bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_AOE) then
+                local hTarget = UnitAI:GetBestTargetInRange(hSpell)
+                if hTarget ~= nil then
+                    return {ability = hSpell, type = "unit_target", target = hTarget}
+                end
+            else
+                
+                local hTarget = UnitAI:GetBestOneTarget(hSpell)
+                if hTarget ~= nil and hTarget:IsAlive() then
+                    return {ability = hSpell, type = "unit_target", target = hTarget}
+                end
+                
+            end
+        end
+    end
+    
+    return nil
+end
+
+
+function UnitAI:GetBestOneTarget(hSpell)
+    local enemies = FindUnitsInRadius(hSpell:GetCaster():GetTeamNumber(), hSpell:GetCaster():GetAbsOrigin(), hSpell:GetCaster(),
+    UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, UNIT_FILTER, FIND_CLOSEST, true)
+    
+    if #enemies == 0 then
+        return nil
+    end
+    
+    for i = 1, #enemies do
+        if enemies[i]:IsAlive() then
+            return enemies[i]
+        end
+    end
+    
+    return nil
+end
+
+
+function UnitAI:IsNoTargetSpellCastValid(hSpell, targetTeamType)
+    local nUnitsRequired = 1
+    
+    --大招要三个老逼释放
+    if hSpell:GetAbilityType() == ABILITY_TYPE_ULTIMATE then
+        nUnitsRequired = 3
+    end
+    
+    local nAbilityRadius = 0
+
+    if hSpell.GetAOERadius ~= nil then
+        nAbilityRadius = hSpell:GetAOERadius()
+    end
+
+    if nAbilityRadius == nil or nAbilityRadius == 0 then
+        nAbilityRadius = 600
+    end
+
+    
+    local units = FindUnitsInRadius(hSpell:GetCaster():GetTeamNumber(), hSpell:GetCaster():GetAbsOrigin(),
+    hSpell:GetCaster(), nAbilityRadius, targetTeamType, DOTA_UNIT_TARGET_ALL, UNIT_FILTER, 0, true)
+    
+    if #units < nUnitsRequired then
+        return false
+    end
+    
+    return true
+end
+
+function UnitAI:GetBestAOEPointTarget(hSpell, targetTeamType)
+    
+    local nUnitsRequired = 1
+    if hSpell:GetAbilityType() == ABILITY_TYPE_ULTIMATE then
+        nUnitsRequired = 2
+    end
+    
+    local nAbilityRadius = 0
+
+    if hSpell.GetAOERadius ~= nil then
+        nAbilityRadius = hSpell:GetAOERadius()
+    end
+    
+    if nAbilityRadius == nil or nAbilityRadius == 0 then
+        nAbilityRadius = 250
+    end
+    
+    local vLocation = GetTargetAOELocation(hSpell:GetCaster():GetTeamNumber(),
+        DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
+        targetTeamType,
+        hSpell:GetCaster():GetAbsOrigin(),
+        UnitAI:GetSpellRange(hSpell),
+        nAbilityRadius,
+    nUnitsRequired)
+    if vLocation == vec3_invalid then
+        return nil
+    end
+    
+    return vLocation
+end
+
+function UnitAI:GetBestTargetInRange(hSpell)
+    local abilityKeyValues = hSpell:GetAbilityKeyValues()
+    local castMagicImmuneTarget = false
+    if(abilityKeyValues ~= nil and abilityKeyValues.SpellImmunityType == "SPELL_IMMUNITY_ENEMIES_YES") then
+        castMagicImmuneTarget = true
+    end
+    
+    local unit = hSpell:GetCaster()
+    local teamId = unit:GetTeamNumber()
+    local radius = UnitAI:GetSpellRange(hSpell)
+
+
+    
+    local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), unit, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
+    UNIT_FILTER, FIND_CLOSEST, true)
+    
+    if #enemies == 0 then
+        return nil
+    end
+    
+    local firstEnemy = nil
+    
+    for index = 1, #enemies do
+        if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false) then
+            if(enemies[index]:IsMagicImmune() == false or castMagicImmuneTarget) then
+                if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
+                    firstEnemy = enemies[index]
+                    break
+                end
+            end
+        end
+    end
+    
+    return firstEnemy
+end
+
+function UnitAI:GetSpellRange(hSpell)
+    if(hSpell == nil) then
+        return 250
+    end
+    
+    local baseCastRange = hSpell:GetCastRange(vec3_invalid, nil)
+    if(baseCastRange == nil or baseCastRange < 250) then
+        baseCastRange = 250
+    end
+    
+    local abilityName = hSpell:GetName()
+    if(abilityName == "item_blink") then
+        return 1200
+    end
+    
+    if(abilityName == "item_hurricane_pike") then
+        return 400
+    end
+    
+    return baseCastRange + 100
+end
+
+function UnitAI:GetPlayerId(unit)
+
+    local team = unit:GetTeam()
+    
+    local pid = GameRules:GetGameModeEntity().team2playerid[team]
+    if pid == nil then
+        pid = -1
+    end
+    
+
+    return pid
+end
 
 -- function UnitAI:CastSpellNoTarget(hSpell)
     -- local caster = hSpell:GetCaster()

@@ -155,3 +155,19 @@ function table.clear(tbl)
         tbl[i] = nil
     end
 end
+
+function string.split(s, sep)
+    if sep == nil then
+            sep = "%s"
+    end
+    local t={} ; i=1
+    for str in string.gmatch(s, "([^"..sep.."]+)") do
+            t[i] = str
+            i = i + 1
+    end
+    return t
+end
+
+function bitContains(flag, value)
+    return value == bit.band(value, flag)
+end

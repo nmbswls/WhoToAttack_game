@@ -14,9 +14,9 @@
 --isConnected          保存连接状态
 
 
---配置
+--配置 存储于GameRules.Definitions
 --CHESS_POOL_SIZE      基本卡池大小
---chess_list_by_mana   不同等级的棋子列表
+--CardListByCost       不同等级的单位列表
 --chess_ability_list   单位技能映射表 可多个
 --chess_2_mana         各棋子消耗映射
 
@@ -42,6 +42,8 @@
 --game_status          游戏状态 1 准备 2 战斗
 --start_ai             ai是否开启
 
+--card_pool            卡池
+
 --damage_stat          伤害统计
 --to_be_destory_list   战斗开始后临时创建的单位集合 key为队伍 val为列表
 
@@ -53,7 +55,6 @@
 --is_battle_completed  战斗是否结束
 --is_in_battle         是否进战
 --in_battle_id         在哪个战场  at_team_id
---alreadywon           是否已胜利
 --team_id              所属队伍
 --attack_target        所选的攻击对象
 
@@ -61,9 +62,13 @@
 --将战场绑在hero身上 合理吗？
 --can_toss             是否可以投掷
 --base                 基地
-
+--now_hold_cards       当前从卡池中抽出 玩家预览选择的卡片
+--build_skill_cnt      建造技能数量
+--build_skills         可建造单位技能
+----skill_name level exp     代表一个建造技能
 
 --打怪 
+
 
 require 'utils'
 require 'definitions'
@@ -71,12 +76,11 @@ require 'UnitAi'
 require 'timers'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
-
+LinkLuaModifier("modifier_base", "lua_modifier/modifier_base.lua", LUA_MODIFIER_MOTION_NONE)
 
 if WhoToAttack == nil then
 	WhoToAttack = class({})
 end
-
 
 function Precache( context )
     print("Precache...")
@@ -141,7 +145,7 @@ function WhoToAttack:StartGame()
         
         print('GAME START!')
         --初始化棋子库
-        --InitChessPool(GameRules:GetGameModeEntity().playing_player_count)
+        self:InitCardPool(GameRules:GetGameModeEntity().playing_player_count)
         self.start_time = GameRules:GetGameTime()
         self.battle_round = 1
         self:SetStage(1)
@@ -173,7 +177,7 @@ function WhoToAttack:OnThink()
         -- end
     end
     
-	print("count down " .. stageCountdown)
+	--print("count down " .. stageCountdown)
     if self.state == 2 then
         
     end
@@ -621,9 +625,117 @@ function WhoToAttack:InitUnit(team, unit)
     
 end
 
-
-function WhoToAttack:UpgradeBuild()
+function WhoToAttack:CheckBuildSkill(hero, skillName)
+    if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
+        print("too many build skills");
+        return false
+    end
     
+    for i = 1, #hero.build_skills do 
+        if hero.build_skills[i].name == skillName then
+            if hero.build_skills[i].level >= 10 then
+                return false
+            end
+        end
+    end
+    
+    return true
+end
+
+function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
+    print("try upgrade " .. buildUnit)
+    if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
+        print("too many build skills");
+        return
+    end
+    
+    local completeSkillName = GetBuildSkillName(buildUnit)
+    
+    local skillIdx = nil;
+    for i = 1, #hero.build_skills do 
+        if hero.build_skills[i].skill_name == completeSkillName then
+            skillIdx = i;
+            break;
+        end
+    end
+    
+    
+    local ability = nil
+    
+    
+    if skillIdx == nil then
+        
+        table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
+        hero.build_skill_cnt = hero.build_skill_cnt + 1
+        skillIdx = hero.build_skill_cnt
+        
+        ability = AddBuildSkill(hero, completeSkillName)
+        
+    else 
+        
+        hero.build_skills[skillIdx].level = hero.build_skills[skillIdx].level + 1
+
+        
+        
+        ability = hero:FindAbilityByName(completeSkillName)
+        -- local oldSkill = hero:GetAbilityByIndex(skillIdx-1)
+        -- if oldSkill then
+            -- hero:RemoveAbilityByHandle(oldSkill)
+        -- end
+    end
+    
+    if ability ~= nil then
+        ability:SetLevel(hero.build_skills[skillIdx].level)
+    end
+    -- local newSkillName = "build_" .. hero.build_skills[skillIdx].name .. "_" .. string.format("%02d", hero.build_skills[skillIdx].level)
+    
+    -- local newAbility = hero:AddAbility(newSkillName)
+    -- newAbility:SetLevel(hero.build_skills[skillIdx].exp)
+    -- newAbility:SetAbilityIndex(skillIdx-1)
+    
+    
+    for i=0,15 do
+		local aaa = hero:GetAbilityByIndex(i)
+        if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
+	end
+    
+end
+
+
+function WhoToAttack:DelBuildSkill(hero, skillIdx)
+    
+    print("try del " .. skillIdx)
+    
+    if skillIdx > hero.build_skill_cnt then
+        print("not enough skill")
+        return
+    end
+    
+    
+    
+    RemoveAbility(hero, skillIdx)
+    table.remove(hero.build_skills, skillIdx)
+    for i=0,15 do
+        local aaa = hero:GetAbilityByIndex(i)
+        if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
+	end
+end
+
+
+function WhoToAttack:AdjustSkillOrder(hero)
+    if not hero then
+        return
+    end
+    for i = 0, 9 do
+        local ability = hero:GetAbilityByIndex(i)
+        if ability then
+            local abilityName = ability:GetAbilityName();
+            local needAName = "build_" .. hero.build_skills[i+1].name
+            if abilityName ~= needAName then
+                hero:SwapAbilities(needAName, abilityName,true,true)
+            end
+        end
+    end
 end
 
 
@@ -826,29 +938,102 @@ function SnapShotPlayers()
 	end
 end
 
-function InitCardPool()
+function WhoToAttack:InitCardPool()
 	
-	local chess_pool_times = GameRules:GetGameModeEntity().CHESS_POOL_SIZE or 6
-	for cost,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana) do
-		for _,chess in pairs(v) do
-			local chess_count = 5
-			for i=1,chess_count do
-				AddAChessToChessPool(chess)
+	local chess_pool_times = GameRules.Definitions.ChessPoolSize or 6
+    
+	for cost,vlist in pairs(GameRules.Definitions.CardListByCost) do
+		for _,unit in pairs(vlist) do
+			local init_cnt = GameRules.Definitions.CardInitCntByCost[cost] * chess_pool_times
+			for i=1, init_cnt do
+				self:AddCardToPool(unit)
 			end
 		end
 	end
 end
 
-function AddAChessToChessPool(chess)
+function WhoToAttack:AddCardToPool(unit)
 
 	local maxcount = 3
 
+    local cost = GameRules.Definitions.Uname2Mana[unit];
+    if cost == nil then
+        print("cost info lost: " .. unit)
+        return
+    end
 	for count = 1,maxcount do
-		if GameRules:GetGameModeEntity().chess_2_mana[chess] ~= nil and FindValueInTable(special_piece,chess) == false then
-			local cost = GameRules:GetGameModeEntity().chess_2_mana[chess]
-			table.insert(GameRules:GetGameModeEntity().chess_pool[cost],chess)
+        table.insert(self.card_pool[cost], unit)
+	end
+end
+
+function WhoToAttack:DrawCards(team_id)
+    
+    local h = TeamId2Hero(team_id)
+
+	if h.now_hold_cards ~= nil then
+		for _,card in pairs(h.now_hold_cards) do
+			if card ~= nil then
+				self:AddCardToPool(card)
+			end
 		end
 	end
+	h.now_hold_cards = {}
+	
+	local cards,now_hold_cards = RandomNDrawNew(team_id,5)
+	h.now_hold_cards = now_hold_cards
+    print("total: " .. cards)
+end
+
+function WhoToAttack:RandomNDrawNew(team_id,n)
+	local ret_list_str = ""
+	local ret_list_table = {}
+	local true_count = 0
+		
+	while true_count < n do
+		local ret = RandomDrawChessNew(team_id,is_auto_draw)
+		if ret ~= nil then
+			ret_list_str = ret_list_str..ret..','
+			true_count = true_count + 1
+			ret_list_table[true_count] = ret
+		end
+	end
+	return ret_list_str, ret_list_table
+end
+
+function WhoToAttack:RandomDrawNew(team_id)
+	local h = TeamId2Hero(team_id)
+    
+	local ret_card = nil
+    
+	local ran = RandomInt(1,100)
+	local hero_level = h:GetLevel()
+
+	--local table_11chess = Get11ChessBaseNameTable(team_id)
+	
+    local gailv = { 60, 80,100}
+    --正常抽牌
+    local cost = 0;
+    for i, per in pairs(gailv) do
+        if ran <= per then
+            cost = i
+            break
+        end
+    end
+    
+    ret_card = self:DrawCardFromPool();
+    print("draw card " .. ret_card);
+	return ret_card
+end
+
+function WhoToAttack:DrawCardFromPool(cost, hero)
+	
+	
+	local index = RandomInt(1,table.maxn(self.card_pool[cost]))
+	local chess_name = self.card_pool[cost][index]
+
+    
+	table.remove(self.chess_pool[cost],index)
+	return chess_name
 end
 
 
@@ -916,21 +1101,23 @@ function PrecacheAUnit(delay,unitname)
 	end)
 end
 
+
+
 function AddAbilityAndSetLevel(u,a,l)
 	if l == nil then
 		l = 1
 	end
 	if u == nil or u:IsNull() == true then
-		return
+		return nil
 	end
-	if u:FindAbilityByName(a) == nil then
-		u:AddAbility(a)
-		if u:FindAbilityByName(a) ~= nil then
-			u:FindAbilityByName(a):SetLevel(l)
-		end
-	else
-		u:FindAbilityByName(a):SetLevel(l)
+    local newAbility = u:FindAbilityByName(a)
+	if newAbility == nil then
+		newAbility = u:AddAbility(a)
 	end
+    if newAbility ~= nil then
+        u:FindAbilityByName(a):SetLevel(l)
+    end
+    return newAbility
 end
 
 function RemoveAbilityAndModifier(u,a)
@@ -1035,21 +1222,49 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetHullRadius(1)
 	hero:SetAbilityPoints(0)
 	
+    for i=1, GameRules.Definitions.MaxBuildSkill do 
+        hero:FindAbilityByName("empty"..i):SetLevel(1)
+    end
 	--移除占位符技能
-	for i=1,16 do
+	for i=GameRules.Definitions.MaxBuildSkill+1,16 do
 		hero:RemoveAbility("empty"..i)
 	end
 	
-    AddAbilityAndSetLevel(hero,"build_evil_01",1)
-    AddAbilityAndSetLevel(hero,"throw_one",1)
-    AddAbilityAndSetLevel(hero,"wudi",1)
-	
+    
+    --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
+
+    
+    hero:AddItemByName("item_throw_one")
+    
+    
+    -- hero:SetAbilityByIndex(a0,11);
+    -- hero:SetAbilityByIndex(a1,12);
+    -- hero:SetAbilityByIndex(a2,13);
+    -- hero:SetAbilityByIndex(nil, 1);
+    -- a0:SetAbilityIndex(11)
+    --a1:SetAbilityIndex(12)
+    --a2:SetAbilityIndex(13)
+    
+    -- for i=0,10 do
+		-- local aaa = hero:GetAbilityByIndex(i)
+        -- if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
+        
+	-- end
+    Timers:CreateTimer(2,function()
+        self:UpgradeBuildSkill(hero,"evil_01")
+    end)
+    
+    
+    
 	hero:SetMana(0)
 	hero:SetStashEnabled(false)
 
 	hero.team = hero:GetTeam()
 	hero.team_id = hero:GetTeam()
     hero.can_toss = false;
+    
+    hero.build_skill_cnt = 0
+    hero.build_skills = {}
 
 	GameRules:GetGameModeEntity().team2playerid[hero:GetTeam()] = player:GetPlayerID()
 	GameRules:GetGameModeEntity().playerid2team[player:GetPlayerID()] = hero:GetTeam()
@@ -1081,6 +1296,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	end 
 	
 end
+
 
 
 function WhoToAttack:OnPlayerConnectFull(keys)
@@ -1140,13 +1356,21 @@ function WhoToAttack:OnEntityKilled(keys)
 		return
 	end
 	
-	if GameRules:GetGameModeEntity().game_status == 2 then
+    if self.stage == 1 or self.stage == 4 then
+        --只有游戏中单位被杀才有反应
+        return
+    end
+    
+	
+    
+    --发钱
+    
 		--战斗阶段
 		--local xx = Vector2X(u:GetAbsOrigin(),u.at_team_id or u.team_id)
 		--local yy = Vector2Y(u:GetAbsOrigin(),u.at_team_id or u.team_id)
 		--从目标战场中移除
 		--RemoveFromToBeDestroyList(u)
-	end
+	
 	
 	--杀人者
 	if keys.entindex_attacker == nil then
@@ -1155,7 +1379,14 @@ function WhoToAttack:OnEntityKilled(keys)
 	
 	local attacker = EntIndexToHScript(keys.entindex_attacker)
 	attacker = attacker.damage_owner or attacker
-
+    
+    if attacker == nil then
+        return
+    end
+    local attacker_team = attacker:GetTeam()
+    
+    print("team " .. attacker_team .. " add money")
+    
 	--亡语
 	--DeathRattle(u,attacker)
 
@@ -1224,7 +1455,66 @@ function WhoToAttack:OnGameRulesStateChange()
 	end
 end
 
+function WhoToAttack:HandleCommand(keys)
+	--DeepPrintTable(keys)
+	
+	
+	local player = PlayerResource:GetPlayer(keys.playerid)
+    local hero = player:GetAssignedHero();
+	
+	
+	
+    if hero == nil then
+        return
+    end
+	
+	local heroindex = hero:GetEntityIndex()
+	local team = hero:GetTeam()
+	local tokens =  string.split(string.lower(keys.text))
 
+	
+	print(tokens[1]);
+	
+	if tokens[1] == '-dialog' then
+		dialog_manager:FireDialogEvent()
+	end
+	if tokens[1] == '-cp' then
+	
+	end
+    
+    if tokens[1] == '-upskill' then
+        local stype = "evil"
+        if tokens[2] ~= nil then
+            stype = tokens[2]
+        end
+        self:UpgradeBuildSkill(hero, stype)
+    end
+    
+    if tokens[1] == '-draw' then
+        
+        self:DrawCards(team)
+        
+    end
+    
+    if tokens[1] == '-del' then
+        if tokens[2] ~= nil then
+            self:DelBuildSkill(hero,tonumber(tokens[2]))
+        end
+    end
+    
+
+	--测试命令
+	if string.find(keys.text,"^e%w%w%w$") ~= nil then
+		if hero.effect ~= nil then
+			hero:RemoveAbility(hero.effect)
+			hero:RemoveModifierByName('modifier_texiao_star')
+		end
+		hero:AddAbility(keys.text)
+		hero:FindAbilityByName(keys.text):SetLevel(1)
+		hero.effect = keys.text
+	end
+	
+end
 
 
 
@@ -1262,7 +1552,8 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
-	
+	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
+    
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
@@ -1341,12 +1632,17 @@ function WhoToAttack:InitGameMode()
 	
 	GameRules:GetGameModeEntity().isConnected = {}
 	
-	GameRules:GetGameModeEntity().CHESS_POOL_SIZE = 5
+	
 
-	GameRules:GetGameModeEntity().chess_ability_list = {
-		chess_cm = 'cm_mana_aura',
-		chess_axe = 'axe_berserkers_call',
-		chess_dr = 'dr_shooter_aura',
+	self.card_pool = {
+		[1] = {},
+		[2] = {},
+		[3] = {},
+		[4] = {},
+		[5] = {},
+        [6] = {},
+        [7] = {},
+        [8] = {},
 	}
     
     
@@ -1420,4 +1716,92 @@ function ChessAI(u)
 		--tick here
 		return RandomFloat(0.1,0.2) + ai_delay
 	end)
+end
+
+
+
+local function findEmptyAbility(hero)
+	local ability = nil
+	for i = 0, GameRules.Definitions.MaxBuildSkill-1 do
+		ability = hero:GetAbilityByIndex(i)
+		if ability then
+			local name = ability:GetAbilityName()
+			if name == "empty1"
+				or name == "empty2"
+			    or name == "empty3"
+			    or name == "empty4"
+			    or name == "empty5"
+                or name == "empty6"
+                or name == "empty7"
+                or name == "empty8"
+			   then
+				return name
+			end
+		end
+	end
+	return nil
+end
+
+function AddBuildSkill(hero, completeSKillName)
+    
+	local emptyAbility = findEmptyAbility(hero)
+    if not emptyAbility then
+        print("no empty skill slot found")
+        return nil
+    end
+    
+    local newAbility = hero:AddAbility(completeSKillName)
+    hero:SwapAbilities(completeSKillName, emptyAbility, true, false)
+    hero:RemoveAbility(emptyAbility)
+    return newAbility
+end
+
+
+function RemoveAbility(hero, skillIdx)
+    
+    if not hero.build_skills[skillIdx] then
+        return
+    end
+    local abilityName = hero.build_skills[skillIdx].skill_name
+    local ability = hero:FindAbilityByName(abilityName)
+    
+    --s1 s2 s3 s4 e5 e6 e7 e8
+    --s1 s2 s4 s3 
+    
+    local lastFilledSkill = nil
+    print("skill cnt " .. hero.build_skill_cnt)
+    for i = skillIdx, hero.build_skill_cnt do
+        
+        if i+1 > GameRules.Definitions.MaxBuildSkill then
+            lastFilledSkill = i
+            break
+        end
+        print("cnmcnmcnm " .. (i+1))
+        local nextSkillName = hero:GetAbilityByIndex(i):GetAbilityName();
+        --local nextSkillName = hero.build_skills[i+1].skill_name;
+        print("nextSkillName " .. nextSkillName)
+        if string.find(nextSkillName,'empty') ~= nil then
+            lastFilledSkill = i
+            break
+        end
+        
+        hero:SwapAbilities(hero.build_skills[i].skill_name, nextSkillName, true, true)
+        
+    end
+    
+    local replaceAbilityName = "empty" .. lastFilledSkill
+    
+    print("last skill name " .. replaceAbilityName)
+    
+    local replaceAbility = hero:AddAbility(replaceAbilityName)
+    replaceAbility:SetLevel(1)
+	hero:SwapAbilities(replaceAbilityName,abilityName,true,false)
+    
+    --remove something
+    hero:RemoveAbility(abilityName)
+    
+end
+
+function GetBuildSkillName(unitName)
+    return "build_" .. unitName
 end

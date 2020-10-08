@@ -1,3 +1,30 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
 "DOTAAbilities"
 {
+	"Version"		"1"
+
+	"item_throw_one"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"tiny_toss"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"1"
+		"AOERadius"	"300"
+		"ID"	"1500"
+		"ItemDroppable"	"0"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"POINT"
+				"ScriptFile"	"scripts/vscripts/builder_ability.lua"
+				"Function"	"Touzhi"
+			}
+		}
+	}
 }
