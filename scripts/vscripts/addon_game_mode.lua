@@ -24,6 +24,8 @@
 --stage                信息 准备0 预备1 战斗2
 --stat_info            玩家状态信息
 
+--battle_field_list    战场信息
+
 --battle_round         回合数
 --battle_start_time    战斗回合开始时间
 --open_door_list       开门列表
@@ -58,10 +60,13 @@
 --team_id              所属队伍
 --attack_target        所选的攻击对象
 
+--battle_field
+
 --英雄属性
 --将战场绑在hero身上 合理吗？
 --can_toss             是否可以投掷
 --base                 基地
+--is_open
 --now_hold_cards       当前从卡池中抽出 玩家预览选择的卡片
 --build_skill_cnt      建造技能数量
 --build_skills         可建造单位技能
@@ -135,7 +140,7 @@ function WhoToAttack:StartGame()
         if hero then
            local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
            hero.base = newBase
-           newBase:AddNewModifier(nil, nil, "modifier_base", {})
+           newBase:AddNewModifier(newBase, nil, "modifier_base", {})
            newBase.in_battle_id = team_i
         end
         
@@ -329,12 +334,14 @@ function WhoToAttack:StartAPrepareRound()
 	end
 	
     local allTeam = {}
-    for i,v in pairs(GameRules:GetGameModeEntity().heromap) do
-        
-        table.insert(allTeam, v:GetTeam());
+    for team_i,battle_field in pairs(self.battle_field_list) do
+        table.insert(allTeam, team_i);
+        battle_field.is_open = false;
     end
+    
     if self.battle_round % 3 == 1 then
-        self.open_door_list = allTeam
+        --self.open_door_list = allTeam
+        self.open_door_list = {}
     elseif self.battle_round % 3 == 2 then
         local shuffled = table.shuffle(allTeam);
         self.open_door_list = {}
@@ -353,6 +360,9 @@ function WhoToAttack:StartAPrepareRound()
     print("open list:");
     for i = 1, #self.open_door_list do
         print(self.open_door_list[i]);
+        
+        local bf = TeamId2BattleField(self.open_door_list[i])
+        bf.is_open = true;
     end
     
     
@@ -740,11 +750,37 @@ function WhoToAttack:AdjustSkillOrder(hero)
     end
 end
 
+function WhoToAttack:GetPosBattleField(pos)
+
+    if pos == nil then
+        return nil
+    end
+
+	local minDist = 0
+	local minIdx = -1
+
+    for team_i = 6, 13 do 
+        local p2 = GameRules.Definitions.TeamCenterPos[team_i]
+        local distance = (p2 - pos):Length2D()
+        if minIdx == -1 or distance < minDist then
+            minDist = distance
+            minIdx = team_i;
+        end
+    end
+    
+    if minIdx == -1 then
+        return nil
+    end
+    return self.battle_field_list[minIdx]
+    
+end
+
 
 function WhoToAttack:ChangeBattleField(target, pos)
     
-    if pos ~= nil then
+    if pos == nil then
         --find closet
+        return
     end
 
 	local minDist = 0
@@ -851,6 +887,14 @@ function TeamId2Hero(id)
 		return nil
 	else
 		return GameRules:GetGameModeEntity().teamid2hero[id]
+	end
+end
+
+function TeamId2BattleField(id)
+	if id == nil then
+		return nil
+	else
+		return GameRules:GetGameModeEntity().WhoToAttack.battle_field_list[id]
 	end
 end
 
@@ -1264,6 +1308,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero.team = hero:GetTeam()
 	hero.team_id = hero:GetTeam()
     hero.can_toss = false;
+    hero.is_open = true;
     
     hero.build_skill_cnt = 0
     hero.build_skills = {}
@@ -1668,7 +1713,16 @@ function WhoToAttack:InitGameMode()
 	
 	GameRules:GetGameModeEntity().isConnected = {}
 	
-	
+	self.battle_field_list = {
+        [6] = {is_open = true},
+		[7] = {is_open = true},
+		[8] = {is_open = true},
+		[9] = {is_open = true},
+		[10] = {is_open = true},
+		[11] = {is_open = true},
+		[12] = {is_open = true},
+		[13] = {is_open = true},
+    }
 
 	self.card_pool = {
 		[1] = {},

@@ -244,13 +244,13 @@ function UnitAI:CastSpell(spellData)
         return UnitAI:CastSpellUnitTarget(hSpell, spellData.target)
     end
     
-    -- if(spellData.type == "point_target") then
-        -- return UnitAI:CastSpellPointTarget(hSpell, spellData.target)
-    -- end
+    if(spellData.type == "point_target") then
+        return UnitAI:CastSpellPointTarget(hSpell, spellData.target)
+    end
     
-    -- if(spellData.type == "no_target") then
-        -- return UnitAI:CastSpellNoTarget(hSpell)
-    -- end
+    if(spellData.type == "no_target") then
+        return UnitAI:CastSpellNoTarget(hSpell)
+    end
     
     -- if(spellData.type == "tree_target") then
         -- return UnitAI:CastSpellTreeTarget(hSpell, spellData.target)
@@ -260,36 +260,9 @@ function UnitAI:CastSpell(spellData)
 end
 
 
-function UnitAI:CastSpellUnitTarget(hSpell, hTarget)
-    local caster = hSpell:GetCaster()
-    if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
-        return 0.1
-    end
-    
-    if(hTarget == nil or hTarget:IsNull() or hTarget:IsAlive() == false) then
-        return 0.1
-    end
-    
-    caster:CastAbilityOnTarget(hTarget, hSpell, UnitAI:GetPlayerId(caster))
-    
-    return UnitAI:GetSpellCastTime(hSpell)
-end
 
 
-function UnitAI:GetSpellCastTime(hSpell)
-    
-    if hSpell == nil or hSpell:IsNull() then
-        return 0.2
-    end
 
-    local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
-    if(flCastPoint < 0.2) then
-        flCastPoint = 0.2
-    end
-    
-    return flCastPoint
-    
-end
 
 function UnitAI:ClosestEnemyAll(unit, teamId)
     -- local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
@@ -360,29 +333,26 @@ function UnitAI:GetSpellData(hSpell)
     -- end
     
     if bitContains(nTargetTeam, DOTA_UNIT_TARGET_TEAM_ENEMY) then
+    
+        --如果是无目标 则只判断是否满足周围单位条件
         if bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) then
             if UnitAI:IsNoTargetSpellCastValid(hSpell, DOTA_UNIT_TARGET_TEAM_ENEMY) then
                 return {ability = hSpell, type = "no_target", target = nil}
             end
+            
+        --点目标 获取最佳释放位置
         elseif bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_POINT) then
             local vTargetLoc = UnitAI:GetBestAOEPointTarget(hSpell, DOTA_UNIT_TARGET_TEAM_ENEMY)
             if vTargetLoc ~= nil then
                 return {ability = hSpell, type = "point_target", target = vTargetLoc}
             end
         elseif bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) then
-            if bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_AOE) then
-                local hTarget = UnitAI:GetBestTargetInRange(hSpell)
-                if hTarget ~= nil then
-                    return {ability = hSpell, type = "unit_target", target = hTarget}
-                end
-            else
-                
-                local hTarget = UnitAI:GetBestOneTarget(hSpell)
-                if hTarget ~= nil and hTarget:IsAlive() then
-                    return {ability = hSpell, type = "unit_target", target = hTarget}
-                end
-                
+            
+            local hTarget = UnitAI:GetBestOneTarget(hSpell)
+            if hTarget ~= nil and hTarget:IsAlive() then
+                return {ability = hSpell, type = "unit_target", target = hTarget}
             end
+            
         end
     end
     
@@ -391,6 +361,7 @@ end
 
 
 function UnitAI:GetBestOneTarget(hSpell)
+    --可能会丢魔免 会打隐身 要搞掉
     local enemies = FindUnitsInRadius(hSpell:GetCaster():GetTeamNumber(), hSpell:GetCaster():GetAbsOrigin(), hSpell:GetCaster(),
     UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, UNIT_FILTER, FIND_CLOSEST, true)
     
@@ -504,6 +475,50 @@ function UnitAI:GetBestTargetInRange(hSpell)
     return firstEnemy
 end
 
+
+function UnitAI:CastSpellUnitTarget(hSpell, hTarget)
+    local caster = hSpell:GetCaster()
+    if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
+        return 0.1
+    end
+    
+    if(hTarget == nil or hTarget:IsNull() or hTarget:IsAlive() == false) then
+        return 0.1
+    end
+    
+    caster:CastAbilityOnTarget(hTarget, hSpell, UnitAI:GetPlayerId(caster))
+    
+    return UnitAI:GetSpellCastTime(hSpell)
+end
+
+
+function UnitAI:CastSpellPointTarget(hSpell, vLocation)
+    local caster = hSpell:GetCaster()
+    if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
+        return 0.1
+    end
+    
+
+    caster:CastAbilityOnPosition(vLocation, hSpell, UnitAI:GetPlayerId(caster))
+    
+    
+    return UnitAI:GetSpellCastTime(hSpell)
+end
+
+
+function UnitAI:CastSpellNoTarget(hSpell)
+    local caster = hSpell:GetCaster()
+    if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
+        return 0.1
+    end
+    
+    caster:CastAbilityNoTarget(hSpell, UnitAI:GetPlayerId(caster))
+    
+    return UnitAI:GetSpellCastTime(hSpell)
+end
+
+
+
 function UnitAI:GetSpellRange(hSpell)
     if(hSpell == nil) then
         return 250
@@ -539,13 +554,18 @@ function UnitAI:GetPlayerId(unit)
     return pid
 end
 
--- function UnitAI:CastSpellNoTarget(hSpell)
-    -- local caster = hSpell:GetCaster()
-    -- if(caster == nil or caster:IsNull() or caster:IsAlive() == false) then
-        -- return 0.1
-    -- end
+
+function UnitAI:GetSpellCastTime(hSpell)
     
-    -- caster:CastAbilityNoTarget(hSpell, UnitAI:GetPlayerId(caster))
+    if hSpell == nil or hSpell:IsNull() then
+        return 0.2
+    end
+
+    local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
+    if(flCastPoint < 0.2) then
+        flCastPoint = 0.2
+    end
     
-    -- return UnitAI:GetSpellCastTime(hSpell)
--- end
+    return flCastPoint
+    
+end
