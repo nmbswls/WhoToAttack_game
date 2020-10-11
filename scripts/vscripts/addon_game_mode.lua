@@ -70,6 +70,7 @@
 --打怪 
 
 
+require 'utils.msg'
 require 'utils'
 require 'definitions'
 require 'UnitAi'
@@ -134,6 +135,7 @@ function WhoToAttack:StartGame()
         if hero then
            local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
            hero.base = newBase
+           newBase:AddNewModifier(nil, nil, "modifier_base", {})
            newBase.in_battle_id = team_i
         end
         
@@ -1502,6 +1504,17 @@ function WhoToAttack:HandleCommand(keys)
         end
     end
     
+    if tokens[1] == 'add_money' then
+        
+        local data = {
+            [1] = {money = 10},
+            [2] = {money = 20}
+        }
+        
+        CustomNetTables:SetTableValue( "player_info_table", "player_info", { data = data, hehe = RandomInt(1,100000)})
+
+        
+    end
 
 	--测试命令
 	if string.find(keys.text,"^e%w%w%w$") ~= nil then
@@ -1517,7 +1530,29 @@ function WhoToAttack:HandleCommand(keys)
 end
 
 
+function WhoToAttack:DamageFilter(damageTable)
+    if not damageTable.entindex_attacker_const and damageTable.entindex_victim_const then return true end
 
+    local attacker = EntIndexToHScript(damageTable.entindex_attacker_const)
+    local victim = EntIndexToHScript(damageTable.entindex_victim_const)
+
+    -- 处理硬化技能
+    -- if victim:HasAbility('yinghua') then
+        -- if victim:HasModifier('modifier_skeleton_king_reincarnation_scepter_active') or 
+            -- victim:HasModifier('modifier_skeleton_king_reincarnation_scepter') then
+            -- return true
+        -- else
+            -- if not damageTable.entindex_inflictor_const then
+                -- local ability = victim:FindAbilityByName('yinghua')
+                -- local damage_block = ability:GetSpecialValueFor('damage_block')
+                -- local damage_min = ability:GetSpecialValueFor('damage_min')
+                -- if damageTable.damage > damage_min then
+                    -- damageTable.damage = math.max(damageTable.damage - damage_block, damage_min )
+                -- end
+            -- end
+        -- end
+    -- end
+end
 
 function Activate()
 	GameRules:GetGameModeEntity().WhoToAttack = WhoToAttack()
@@ -1554,6 +1589,7 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
 	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
     
+    GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	

@@ -2,7 +2,7 @@ modifier_base = class({})
 
 
 function modifier_base:IsHidden()
-    return true
+    return false
 end
 
 function modifier_base:IsPurgable()
@@ -17,8 +17,20 @@ end
 
 function modifier_base:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+        MODIFIER_EVENT_ON_ATTACKED ,
     }
     return funcs
 end
 
+function modifier_base:OnAttacked(params)
+
+    print("on attacked")
+    local attacker = params.attacker;
+    if not attacker or attacker:IsNull() then
+        return
+    end
+    
+    if attacker:IsAlive() then
+        attacker:Kill(nil, self:GetCaster())
+    end
+end

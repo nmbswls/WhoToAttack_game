@@ -572,7 +572,7 @@
 	"player_base"
 	{
 		"BaseClass"	"npc_dota_creature"
-		"Ability1"	"base_fantan"
+		"Ability1"	""
 		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
