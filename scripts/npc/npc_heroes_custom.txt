@@ -26,7 +26,7 @@
 		"Ability9"	"empty9"
 		"Ability10"	"empty10"
 		"Ability11"	"wudi"
-		"Ability12"	"empty12"
+		"Ability12"	"builder_grow"
 		"Ability13"	"empty13"
 		"Ability14"	"empty14"
 		"Ability15"	"empty15"

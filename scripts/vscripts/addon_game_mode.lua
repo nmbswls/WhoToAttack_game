@@ -340,8 +340,8 @@ function WhoToAttack:StartAPrepareRound()
     end
     
     if self.battle_round % 3 == 1 then
-        --self.open_door_list = allTeam
-        self.open_door_list = {}
+        self.open_door_list = allTeam
+        --self.open_door_list = {}
     elseif self.battle_round % 3 == 2 then
         local shuffled = table.shuffle(allTeam);
         self.open_door_list = {}
@@ -365,6 +365,14 @@ function WhoToAttack:StartAPrepareRound()
         bf.is_open = true;
     end
     
+    for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
+        if IsUnitExist(hero) == true then
+            --给蓝
+            local mana = 0;
+            
+            hero:SetMana(hero:GetMaxMana())
+        end
+    end
     
 	--选择开门玩家
 	
@@ -1278,7 +1286,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	
     
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
-
+    AddAbilityAndSetLevel(hero,"builder_grow",1)
     
     hero:AddItemByName("item_throw_one")
     
@@ -1549,12 +1557,18 @@ function WhoToAttack:HandleCommand(keys)
         end
     end
     
+    if tokens[1] == '-exp' then
+        hero:AddExperience(10,0,false,false)
+    end
+    
     if tokens[1] == 'add_money' then
         
         local data = {
             [1] = {money = 10},
             [2] = {money = 20}
         }
+        
+        msg.bottom('nmsl nsl', keys.playerid)
         
         CustomNetTables:SetTableValue( "player_info_table", "player_info", { data = data, hehe = RandomInt(1,100000)})
 
@@ -1599,6 +1613,37 @@ function WhoToAttack:DamageFilter(damageTable)
     -- end
 end
 
+function WhoToAttack:OnPlayerGainedLevel(keys)
+    
+    local hero = GameRules:GetGameModeEntity().playerid2hero[keys.player_id]
+    
+    
+    
+    
+    if not hero then
+        print("cnm mei hero")
+        return
+    end
+    hero:SetAbilityPoints(0)
+    hero:SetMana(1000)
+    hero:SetMaxMana(90 + hero:GetLevel() * 10)
+    
+    print(hero:GetMaxMana())
+	-- for i = 6, 13 do
+		-- GameRules:GetGameModeEntity().population_max[i] = GetMaxChessCount(i)
+		
+		-- local hero = TeamId2Hero(i)
+
+		-- if hero ~= nil then 
+
+		-- end
+
+
+	-- end
+end
+
+
+
 function Activate()
 	GameRules:GetGameModeEntity().WhoToAttack = WhoToAttack()
 	GameRules:GetGameModeEntity().WhoToAttack:InitGameMode()
@@ -1633,6 +1678,7 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
 	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
+    ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(WhoToAttack,"OnPlayerGainedLevel"), self)
     
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
 	
@@ -1734,8 +1780,28 @@ function WhoToAttack:InitGameMode()
         [7] = {},
         [8] = {},
 	}
-    
-    
+    GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
+    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(16)
+	GameRules:GetGameModeEntity().HeroExpTable = {
+			[1] = 0,--+1
+			[2] = 1,--+1
+			[3] = 2,--+2-->+4(1)(0)(1)
+			[4] = 6,--+4-->+8(1)(0)(1)
+			[5] = 14,--+8-->+16(1)(1)(1)
+			[6] = 30,--+16-->+32(2)(2)(2)
+			[7] = 62,--+24-->+48(3)(3)(2)
+			[8] = 110,--+32-->+56(4)(3)(3)
+			[9] = 166,--+40-->+64(4)(4)(3)
+
+			[10] = 230,--+48-->+64
+			[11] = 294,--+56-->+64
+			[12] = 358,--+64-->+64
+			[13] = 422,--+72-->+64
+			[14] = 486,--+80-->+64
+			[15] = 550,--+88-->+64
+			[16] = 614,
+		}
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(GameRules:GetGameModeEntity().HeroExpTable)
 end
 
 

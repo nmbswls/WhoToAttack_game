@@ -24,7 +24,7 @@
 		"AbilityCooldown"	"1 1 1 1 1 1 1 1 1 1"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"0"
+		"AbilityManaCost"	"20"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -332,6 +332,35 @@
 			"FireEffect"
 			{
 				"Target"	"TARGET"
+				"EffectName"	"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
+				"EffectAttachType"	"attach_hitloc"
+			}
+		}
+	}
+
+	"test_no_target"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"20"
+		"AbilityManaCost"	"10"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"Damage"
+			{
+				"Target"	"TARGET"
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"100"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
 				"EffectName"	"particles/units/heroes/hero_shadowshaman/shadowshaman_voodoo.vpcf"
 				"EffectAttachType"	"attach_hitloc"
 			}
@@ -3036,5 +3065,14 @@
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"60"
+	}
+
+	"builder_grow"
+	{
+		"BaseClass"	"ability_lua"
+		"ScriptFile"	"builder_abilities/builder_grow"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	}
 }

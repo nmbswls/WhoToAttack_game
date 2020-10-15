@@ -24,7 +24,7 @@
 		// Ability 1
 		"Ability1"	"test_one_target"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"test_no_target"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -672,9 +672,7 @@
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Creature Data
 		// ----------------------------------------------------------------
-		"Creature"
-		{
-		}
+		"Creature"	{}
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
@@ -767,9 +765,7 @@
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
 		// Creature Data
 		// ----------------------------------------------------------------
-		"Creature"
-		{
-		}
+		"Creature"	{}
 		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
