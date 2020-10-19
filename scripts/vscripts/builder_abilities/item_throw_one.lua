@@ -17,9 +17,6 @@ function item_throw_one:OnSpellStart()
     local minDist = 0
     local minIdx = -1
     
-    
-    
-    print("touzhi target battle " .. minIdx)
     local target_battle = minIdx
     
     
@@ -28,7 +25,6 @@ function item_throw_one:OnSpellStart()
     UNIT_FILTER, FIND_CLOSEST, true)
     
     --local pos = keys.
-   
     
     local target = nil
     if #aroundUnits > 0 then

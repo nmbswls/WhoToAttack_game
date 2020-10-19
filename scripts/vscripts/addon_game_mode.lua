@@ -802,7 +802,7 @@ function WhoToAttack:ChangeBattleField(target, pos)
             minIdx = team_i;
         end
     end
-    
+    print("touzhi target battle " .. minIdx)
     local targetBattle = minIdx
     target.is_in_battle = true
 	target.in_battle_id = targetBattle;
@@ -1033,10 +1033,40 @@ function WhoToAttack:DrawCards(team_id)
 	end
 	h.now_hold_cards = {}
 	
-	local cards,now_hold_cards = RandomNDrawNew(team_id,5)
+	local cards,now_hold_cards = self:RandomNDrawNew(team_id,5)
 	h.now_hold_cards = now_hold_cards
+    
+    local pid = GameRules:GetGameModeEntity().team2playerid[team_id]
+    msg.bottom('draw card '..cards, pid)
+
     print("total: " .. cards)
+    
 end
+
+
+function WhoToAttack:PickCard(team_id, card_idx)
+    
+    local hero = TeamId2Hero(team_id)
+
+	if not hero or not hero.now_hold_cards then
+        return
+    end
+	
+    if card_idx <= 0 or card_idx > #hero.now_hold_cards then
+        return
+    end
+    
+    if not hero.now_hold_cards[card_idx] then
+        print("card " .. card_idx .. " is nil")
+        return
+    end
+    
+    
+    print("pick card  " .. hero.now_hold_cards[card_idx])
+    hero.now_hold_cards[card_idx] = nil
+
+end
+
 
 function WhoToAttack:RandomNDrawNew(team_id,n)
 	local ret_list_str = ""
@@ -1044,7 +1074,7 @@ function WhoToAttack:RandomNDrawNew(team_id,n)
 	local true_count = 0
 		
 	while true_count < n do
-		local ret = RandomDrawChessNew(team_id,is_auto_draw)
+		local ret = self:RandomDrawNew(team_id)
 		if ret ~= nil then
 			ret_list_str = ret_list_str..ret..','
 			true_count = true_count + 1
@@ -1074,19 +1104,17 @@ function WhoToAttack:RandomDrawNew(team_id)
         end
     end
     
-    ret_card = self:DrawCardFromPool();
+    ret_card = self:DrawCardFromPool(cost, h);
     print("draw card " .. ret_card);
 	return ret_card
 end
 
 function WhoToAttack:DrawCardFromPool(cost, hero)
-	
-	
 	local index = RandomInt(1,table.maxn(self.card_pool[cost]))
 	local chess_name = self.card_pool[cost][index]
 
     
-	table.remove(self.chess_pool[cost],index)
+	table.remove(self.card_pool[cost],index)
 	return chess_name
 end
 
@@ -1551,6 +1579,13 @@ function WhoToAttack:HandleCommand(keys)
         
     end
     
+    if tokens[1] == '-pick' then
+        
+        if tokens[2] ~= nil then
+            self:PickCard(team, tonumber(tokens[2]))
+        end
+    end
+    
     if tokens[1] == '-del' then
         if tokens[2] ~= nil then
             self:DelBuildSkill(hero,tonumber(tokens[2]))
@@ -1672,7 +1707,7 @@ function WhoToAttack:InitGameMode()
     GameRules:GetGameModeEntity().playing_player_count = 0
 
     
-    ListenToGameEvent( "game_rules_state_change", Dynamic_Wrap( WhoToAttack, 'OnGameRulesStateChange' ), self );
+    ListenToGameEvent("game_rules_state_change", Dynamic_Wrap( WhoToAttack, 'OnGameRulesStateChange' ), self );
 	ListenToGameEvent("dota_player_pick_hero",Dynamic_Wrap(WhoToAttack,"OnPlayerPickHero"),self)
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)

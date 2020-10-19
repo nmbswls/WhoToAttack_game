@@ -87,8 +87,13 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         local attackTarget = unit:GetAttackTarget()
         
         if(attackTarget == nil or attackTarget:IsAlive() == false) then
-        
-            nearestEnemy = UnitAI:ClosestEnemyAll(unit, teamId)
+            local nearestEnemy = nil
+            local enemies = UnitAI:ClosestEnemyAll(unit)
+            
+            if #enemies > 0 then
+                nearestEnemy = enemies[1]
+            end
+            
             if(nearestEnemy == nil or nearestEnemy:IsAlive() == false) then
                 return 0, nil
             end
@@ -264,51 +269,29 @@ end
 
 
 
-function UnitAI:ClosestEnemyAll(unit, teamId)
-    -- local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL,
-    -- UNIT_FILTER, FIND_CLOSEST, true)
+function UnitAI:ClosestEnemyAll(unit, radius)
     
-    
-    local enemies = FindUnitsInRadius(teamId, unit:GetAbsOrigin(), nil, FIND_UNITS_EVERYWHERE, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
-    UNIT_FILTER, FIND_CLOSEST, true)
-    
-    if #enemies == 0 then
-        return nil
+    if radius == nil then
+        radius = FIND_UNITS_EVERYWHERE
     end
     
-    local firstEnemy = nil
+    local ret = {}
+    local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
+        UNIT_FILTER, FIND_CLOSEST, true)
     
-    if #enemies > 1 then
-        for index = 1, #enemies do
-            
-            if enemies[index].in_battle_id ~= nil and enemies[index].in_battle_id == unit.in_battle_id 
-                and not unit:HasModifier("modifier_base_fantan") 
-                then
-                
-                firstEnemy = enemies[index]
-                break
-            end
-            -- if(enemies[index]:GetAbsOrigin().y > MAX_BATTLE_Y and enemies[index]:IsAlive() and enemies[index]:IsInvulnerable() == false and enemies[index]:IsAttackImmune() == false) then
-                -- if(enemies[index]:IsInvisible() == false or UnitAI:HasTargetTrueSight(unit, enemies[index])) then
-                    -- firstEnemy = enemies[index]
-                    -- break
-                -- end
-            -- end
-            --firstEnemy = enemies[index]
-            --break
-        end
+    if #candidates == 0 then
+        return ret
+    end
     
-        
-    else
-        
-        if enemies[1].in_battle_id ~= nil and enemies[1].in_battle_id == unit.in_battle_id then
-            firstEnemy = enemies[1]
+    for index = 1, #candidates do
+        local candidate = candidates[index]
+        if not candidate:IsHero() and not candidate:HasModifier("modifier_base") 
+            and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
+            table.insert(ret, candidate)
         end
     end
     
-    
-    
-    return firstEnemy
+    return ret
 end
 
 function UnitAI:GetSpellData(hSpell)
@@ -337,6 +320,7 @@ function UnitAI:GetSpellData(hSpell)
         --如果是无目标 则只判断是否满足周围单位条件
         if bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) then
             if UnitAI:IsNoTargetSpellCastValid(hSpell, DOTA_UNIT_TARGET_TEAM_ENEMY) then
+                print("can cast")
                 return {ability = hSpell, type = "no_target", target = nil}
             end
             
@@ -362,8 +346,7 @@ end
 
 function UnitAI:GetBestOneTarget(hSpell)
     --可能会丢魔免 会打隐身 要搞掉
-    local enemies = FindUnitsInRadius(hSpell:GetCaster():GetTeamNumber(), hSpell:GetCaster():GetAbsOrigin(), hSpell:GetCaster(),
-    UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_ALL, UNIT_FILTER, FIND_CLOSEST, true)
+    local enemies = UnitAI:ClosestEnemyAll(hSpell:GetCaster(),UnitAI:GetSpellRange(hSpell))
     
     if #enemies == 0 then
         return nil
@@ -380,7 +363,7 @@ end
 
 
 function UnitAI:IsNoTargetSpellCastValid(hSpell, targetTeamType)
-    local nUnitsRequired = 1
+    local nUnitsRequired = 2
     
     --大招要三个老逼释放
     if hSpell:GetAbilityType() == ABILITY_TYPE_ULTIMATE then
@@ -397,10 +380,8 @@ function UnitAI:IsNoTargetSpellCastValid(hSpell, targetTeamType)
         nAbilityRadius = 600
     end
 
-    
-    local units = FindUnitsInRadius(hSpell:GetCaster():GetTeamNumber(), hSpell:GetCaster():GetAbsOrigin(),
-    hSpell:GetCaster(), nAbilityRadius, targetTeamType, DOTA_UNIT_TARGET_ALL, UNIT_FILTER, 0, true)
-    
+    local units = UnitAI:ClosestEnemyAll(hSpell:GetCaster(), nAbilityRadius)
+
     if #units < nUnitsRequired then
         return false
     end
