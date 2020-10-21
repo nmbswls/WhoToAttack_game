@@ -3075,4 +3075,215 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	}
+
+	// Build skills
+	"build_evil_skeleton"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_nature_ursa"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_hidden_drow"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_brwan_ogre"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_vibrant_dk"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_brwan_tusk"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_wizard_lich"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"4"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_hidden_ls"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"4"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_nature_viper"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
+
+	"build_brwan_centaur"
+	{
+		"BaseClass"	"ability_datadriven"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.6"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+	}
 }

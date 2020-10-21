@@ -88,10 +88,12 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         
         if(attackTarget == nil or attackTarget:IsAlive() == false) then
             local nearestEnemy = nil
-            local enemies = UnitAI:ClosestEnemyAll(unit)
+            local enemies, base = UnitAI:ClosestEnemyAll(unit)
             
             if #enemies > 0 then
                 nearestEnemy = enemies[1]
+            else
+                nearestEnemy = base
             end
             
             if(nearestEnemy == nil or nearestEnemy:IsAlive() == false) then
@@ -268,7 +270,7 @@ end
 
 
 
-
+--返回敌人集合 及 基地本身
 function UnitAI:ClosestEnemyAll(unit, radius)
     
     if radius == nil then
@@ -276,22 +278,27 @@ function UnitAI:ClosestEnemyAll(unit, radius)
     end
     
     local ret = {}
+    local base = nil
+    
     local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
         UNIT_FILTER, FIND_CLOSEST, true)
     
     if #candidates == 0 then
-        return ret
+        return ret, base
     end
     
     for index = 1, #candidates do
         local candidate = candidates[index]
-        if not candidate:IsHero() and not candidate:HasModifier("modifier_base") 
-            and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
-            table.insert(ret, candidate)
+        if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
+            if not candidate:HasModifier("modifier_base") then
+                table.insert(ret, candidate)
+            else
+                base = candidate
+            end
         end
     end
     
-    return ret
+    return ret, base
 end
 
 function UnitAI:GetSpellData(hSpell)

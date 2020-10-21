@@ -131,6 +131,7 @@ function WhoToAttack:StartGame()
         CustomGameEventManager:Send_ServerToTeam(i,"start_game",{
             key = GetClientToken(i),
         })
+        
     end
 
     --init player base_pos
@@ -471,6 +472,19 @@ function WhoToAttack:SpawnNeutral(team)
     
 end
 
+function WhoToAttack:CanBuildUnits()
+
+    if not self.stage then
+        return false
+    end
+    
+    if self.stage == 2 or self.stage == 3 then
+        return true
+    end
+    
+    return false
+end
+
 function WhoToAttack:SendRoundTimeInfo()
 
     -- local center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
@@ -626,7 +640,7 @@ function WhoToAttack:InitUnit(team, unit)
 	unit.team_id = team
     unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
-    
+    print("init units name:"..unitName)
     if table.contains(GameRules.Definitions.ChessAbilityList, unitName) then
         local a = GameRules.Definitions.ChessAbilityList[unitName]
         local a_level = 1
@@ -1010,7 +1024,7 @@ function WhoToAttack:AddCardToPool(unit)
 
 	local maxcount = 3
 
-    local cost = GameRules.Definitions.Uname2Mana[unit];
+    local cost = GameRules.Definitions.Uname2Cost[unit];
     if cost == nil then
         print("cost info lost: " .. unit)
         return
@@ -1040,6 +1054,10 @@ function WhoToAttack:DrawCards(team_id)
     msg.bottom('draw card '..cards, pid)
 
     print("total: " .. cards)
+    
+    CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
+            hand_cards = cards,
+        })
     
 end
 
@@ -1094,7 +1112,7 @@ function WhoToAttack:RandomDrawNew(team_id)
 
 	--local table_11chess = Get11ChessBaseNameTable(team_id)
 	
-    local gailv = { 60, 80,100}
+    local gailv = {30,50,70, 80, 90,100}
     --正常抽牌
     local cost = 0;
     for i, per in pairs(gailv) do
@@ -1110,6 +1128,11 @@ function WhoToAttack:RandomDrawNew(team_id)
 end
 
 function WhoToAttack:DrawCardFromPool(cost, hero)
+
+    if #self.card_pool[cost] == 0 then
+        return "null"
+    end
+
 	local index = RandomInt(1,table.maxn(self.card_pool[cost]))
 	local chess_name = self.card_pool[cost][index]
 
@@ -1315,7 +1338,6 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
     AddAbilityAndSetLevel(hero,"builder_grow",1)
-    
     hero:AddItemByName("item_throw_one")
     
     
@@ -1333,7 +1355,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
         
 	-- end
     Timers:CreateTimer(2,function()
-        self:UpgradeBuildSkill(hero,"evil_01")
+        self:UpgradeBuildSkill(hero,"evil_skeleton")
     end)
     
     
@@ -1603,7 +1625,7 @@ function WhoToAttack:HandleCommand(keys)
             [2] = {money = 20}
         }
         
-        msg.bottom('nmsl nsl', keys.playerid)
+        msg.bottom('nmsl nsl', keys.playerid, 1)
         
         CustomNetTables:SetTableValue( "player_info_table", "player_info", { data = data, hehe = RandomInt(1,100000)})
 
@@ -1646,6 +1668,7 @@ function WhoToAttack:DamageFilter(damageTable)
             -- end
         -- end
     -- end
+    return true
 end
 
 function WhoToAttack:OnPlayerGainedLevel(keys)

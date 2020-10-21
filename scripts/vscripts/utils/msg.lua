@@ -9,12 +9,13 @@ end
 -- 模仿官方的错误消息提示
 -- 默认为红色，如果需要其他颜色，需要用字符串传递颜色代码
 -- 默认为没有魔法的声音，如果需要其他报错声音，需要传递报错声音的字符串
-function m.bottom(msg, id, color, sound)
+function m.bottom(msg, id, duration, color, sound)
 	if id == nil then
 		CustomGameEventManager:Send_ServerToAllClients(PlayerResource:GetPlayer(id), 'msg_bottom', {
 			Message = tostring(msg),
 			Color = color,
 			Sound = sound,
+            Duration = duration,
 		})
 		return
 	end
@@ -22,6 +23,7 @@ function m.bottom(msg, id, color, sound)
 		Message = tostring(msg),
 		Color = color,
 		Sound = sound,
+        Duration = duration,
 	})
 end
 

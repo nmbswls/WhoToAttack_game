@@ -37,9 +37,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"5"
+		"AttackDamageMin"	"20"
 		// Damage range max.
-		"AttackDamageMax"	"5"
+		"AttackDamageMax"	"20"
 		// Speed of attack.
 		"AttackRate"	"1.6"
 		// Normalized time in animation cycle to attack.
@@ -605,7 +605,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".7"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -698,7 +698,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_skeletonking.vsndevts"
 		"Level"	"1"
 		"ModelScale"	"0.9"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -791,7 +791,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".35"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -904,7 +904,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_ursa.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".45"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1018,7 +1018,7 @@
 		"particle_folder"	"particles/units/heroes/hero_drow"
 		"Level"	"1"
 		"ModelScale"	".4"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1168,7 +1168,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_drowranger.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1317,7 +1317,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".35"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1459,7 +1459,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_tusk.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".45"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1604,7 +1604,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".4"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1742,7 +1742,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_zuus.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -1885,7 +1885,7 @@
 		"PickSound"	"warlock_warl_spawn_01"
 		"Level"	"1"
 		"ModelScale"	".35"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2046,7 +2046,7 @@
 		"particle_folder"	"particles/units/heroes/hero_warlock"
 		"Level"	"1"
 		"ModelScale"	".45"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2205,7 +2205,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".55"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2324,7 +2324,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_ogre_magi.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".65"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2463,7 +2463,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".55"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2579,7 +2579,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lycan.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".65"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2695,7 +2695,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dragon_knight.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".55"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2839,7 +2839,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_dragon_knight.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".65"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -2982,7 +2982,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lich.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".55"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3125,7 +3125,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_lich.vsndevts"
 		"Level"	"2"
 		"ModelScale"	".65"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3275,7 +3275,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".7"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3389,7 +3389,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
 		"Level"	"3"
 		"ModelScale"	"0.8"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3522,7 +3522,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_abyssal_underlord.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".6"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3657,7 +3657,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_abyssal_underlord.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".7"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3792,7 +3792,7 @@
 		"particle_folder"	"particles/units/heroes/hero_leshrac"
 		"Level"	"3"
 		"ModelScale"	".7"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -3939,7 +3939,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_leshrac.vsndevts"
 		"Level"	"3"
 		"ModelScale"	"0.8"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4091,7 +4091,7 @@
 		"SoundSet"	"Creep_Good_Engine"
 		"Level"	"3"
 		"ModelScale"	".5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4189,7 +4189,7 @@
 		"SoundSet"	"Creep_Bad_Engine"
 		"Level"	"3"
 		"ModelScale"	".7"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4288,7 +4288,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_viper.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".65"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4413,7 +4413,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_viper.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".75"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4556,7 +4556,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.05"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4700,7 +4700,7 @@
 		"HasInventory"	"1"
 		"Level"	"5"
 		"ModelScale"	"1.15"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4849,7 +4849,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_furion.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -4996,7 +4996,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_furion.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.1"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5143,7 +5143,7 @@
 		"particle_folder"	"particles/units/heroes/hero_abaddon"
 		"Level"	"5"
 		"ModelScale"	"0.95"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5271,7 +5271,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_abaddon.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.05"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5398,7 +5398,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_centaur.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"0.9"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5548,7 +5548,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_centaur.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5697,7 +5697,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_huskar.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5821,7 +5821,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_huskar.vsndevts"
 		"Level"	"5"
 		"ModelScale"	"1.1"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -5967,7 +5967,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6061,7 +6061,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lone_druid.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.6"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6155,7 +6155,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_tidehunter.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6274,7 +6274,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_tidehunter.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.6"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6399,7 +6399,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dazzle.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6529,7 +6529,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_dazzle.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.6"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6658,7 +6658,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_lion.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.5"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6777,7 +6777,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_lion.vsndevts"
 		"Level"	"6"
 		"ModelScale"	"1.6"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -6899,7 +6899,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -7015,7 +7015,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_phantom_assassin.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.2"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -7130,7 +7130,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -7246,7 +7246,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_earthshaker.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.2"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -7368,7 +7368,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.0"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities
@@ -7494,7 +7494,7 @@
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
 		"Level"	"8"
 		"ModelScale"	"2.2"
-		"AutoAttacksByDefault"	"1"
+		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
 		// Abilities

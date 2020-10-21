@@ -15,19 +15,30 @@ if GameRules.Definitions == nil then
     }
     GameRules.Definitions.MaxBuildSkill = 8
     GameRules.Definitions.UnitNames = {
-        [1] = "test_monster",
-        [2] = "monster1",
+        [1] = "evil_skeleton",
+        [2] = "nature_ursa",
+        [3] = "hidden_drow",
+        [4] = "brwan_ogre",
+        [5] = "vibrant_dk",
+        [6] = "brwan_tusk",
+        [7] = "wizard_lich",
+        [8] = "hidden_ls",
+        [9] = "nature_viper",
+        [10] = "brwan_centaur",
+        [11] = "test_monster"
     }
     GameRules.Definitions.ChessPoolSize = 6
+    
+    
+    GameRules.Definitions.MaxCost = 6
+    
     GameRules.Definitions.CardListByCost = {
-        [1] = {"u01","u02"},
-        [2] = {"u03","u04"},
-        [3] = {"u05","u06"},
-        [4] = {"u07","u08"},
-        [5] = {"u09"},
-        [6] = {"u10"},
-        [7] = {"u11"},
-        [8] = {"u12"},
+        [1] = {"evil_skeleton","nature_ursa"},
+        [2] = {"hidden_drow","brwan_ogre"},
+        [3] = {"vibrant_dk","brwan_tusk"},
+        [4] = {"wizard_lich","hidden_ls"},
+        [5] = {"nature_viper"},
+        [6] = {"brwan_centaur"},
     }
     GameRules.Definitions.CardInitCntByCost = {
         [1] = 4,
@@ -36,8 +47,6 @@ if GameRules.Definitions == nil then
         [4] = 3,
         [5] = 2,
         [6] = 2,
-        [7] = 1,
-        [8] = 1,
     }
     
     GameRules.Definitions.DrawLevelGailv = {
@@ -51,24 +60,22 @@ if GameRules.Definitions == nil then
         [8] = 1,
     }
     
-    GameRules.Definitions.Uname2Mana = {
-        u01 = 1,
-        u02 = 1,
-        u03 = 2,
-        u04 = 2,
-        u05 = 3,
-        u06 = 3,
-        u07 = 4,
-        u08 = 4,
-        u09 = 5,
-        u10 = 6,
-        u11 = 7,
-        u12 = 8,
+    GameRules.Definitions.Uname2Cost = {
+        evil_skeleton = 1,
+        nature_ursa = 1,
+        hidden_drow = 2,
+        brwan_ogre = 2,
+        vibrant_dk = 3,
+        brwan_tusk = 3,
+        wizard_lich = 4,
+        hidden_ls = 4,
+        nature_viper = 5,
+        brwan_centaur = 6,
     }
     
     GameRules.Definitions.ChessAbilityMap = {
-		u01 = 'cm_mana_aura',
-		u02 = 'axe_berserkers_call',
-		u03 = 'dr_shooter_aura',
+		evil_skeleton = 'cm_mana_aura',
+		nature_ursa = 'axe_berserkers_call',
+		hidden_drow = 'dr_shooter_aura',
 	}
 end
