@@ -611,7 +611,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"modifier_container"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3

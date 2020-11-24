@@ -8,6 +8,7 @@ function build_evil_01:OnSpellStart()
     
     local unitName = "test_monster"
     
+
 	--print("spawn unit for " .. unitName .. " team " .. team)
     
     GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, casterPos,unitName,1);

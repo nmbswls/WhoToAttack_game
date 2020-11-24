@@ -29,6 +29,7 @@
 --battle_round         回合数
 --battle_start_time    战斗回合开始时间
 --open_door_list       开门列表
+--thrones              王座列表 包含各英雄值
 
 
 --*dead_chess_list      各战场墓地
@@ -83,6 +84,9 @@ require 'timers'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_base", "lua_modifier/modifier_base.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
+
+
 
 if WhoToAttack == nil then
 	WhoToAttack = class({})
@@ -139,14 +143,19 @@ function WhoToAttack:StartGame()
         local pos = GameRules.Definitions.TeamCenterPos[team_i]
         local hero = TeamId2Hero(team_i);
         if hero then
-           local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
-           hero.base = newBase
-           newBase:AddNewModifier(newBase, nil, "modifier_base", {})
-           newBase.in_battle_id = team_i
+            local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
+            hero.base = newBase
+            newBase:AddNewModifier(newBase, nil, "modifier_base", {})
+            newBase.in_battle_id = team_i
+            
+            for i = 1,GameRules.Definitions.ThroneCnt do
+                table.insert(self.thrones[i], {team = team_i, score = 0})
+            end
         end
         
     end
     
+    self:UpdateThroneInfo()
     
     --5秒后开始游戏
     Timers:CreateTimer(5,function()
@@ -556,6 +565,23 @@ function StatClassCount(team_id)
 end
 
 
+function WhoToAttack:UpdateThroneInfo()
+
+    print("UpdateThroneInfo")
+    
+    for i = 1,GameRules.Definitions.ThroneCnt do
+        table.sort( self.thrones[i], function(a,b) return ( a.score > b.score ) end )
+        
+        for tid = 1, #self.thrones[i] do 
+            print(self.thrones[i][tid].team .. "   " ..  self.thrones[i][tid].score)
+        end
+    end
+    
+    
+    
+    CustomNetTables:SetTableValue( "player_info_table", "throne_info", { data = self.thrones[i], hehe = RandomInt(1,100000)})
+end
+
 function WhoToAttack:DrawARound(team)
 
 	local hero = TeamId2Hero(team)
@@ -627,7 +653,23 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         newyUnit.team = team
         
         self:InitUnit(team,newyUnit)
+        
+        local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
+        local ret = a:ApplyDataDrivenModifier(newyUnit, newyUnit,"modifier_test_01",{})
+        
+        if not ret then
+            --print("add modifier fail")
+        else
+            print("add modifier suc")
+        end
+        --add buffs
+        -- if hero.buffs then
+            
+        -- end
+        
     end
+    
+    
     return newyUnit
 end
 
@@ -640,8 +682,15 @@ function WhoToAttack:InitUnit(team, unit)
 	unit.team_id = team
     unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
+    local isSpecial = false
     print("init units name:"..unitName)
-    if table.contains(GameRules.Definitions.ChessAbilityList, unitName) then
+    
+    if string.find(unitName,'_special') ~= nil then
+        unitName = string.sub(unitName,1,-9)
+        isSpecial = true
+    end
+    
+    if table.contains(GameRules.Definitions.UnitAbilityMap, unitName) then
         local a = GameRules.Definitions.ChessAbilityList[unitName]
         local a_level = 1
         if unit:FindAbilityByName(a) == nil then
@@ -1074,16 +1123,20 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return
     end
     
-    if not hero.now_hold_cards[card_idx] then
+    local unitName = hero.now_hold_cards[card_idx]
+    
+    if not unitName then
         print("card " .. card_idx .. " is nil")
         return
     end
     
+    self:UpgradeBuildSkill(hero, unitName)
     
-    print("pick card  " .. hero.now_hold_cards[card_idx])
+    print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = nil
 
 end
+
 
 
 function WhoToAttack:RandomNDrawNew(team_id,n)
@@ -1103,16 +1156,28 @@ function WhoToAttack:RandomNDrawNew(team_id,n)
 end
 
 function WhoToAttack:RandomDrawNew(team_id)
-	local h = TeamId2Hero(team_id)
+	local hero = TeamId2Hero(team_id)
+    
+    if not hero then
+        return
+    end
     
 	local ret_card = nil
     
 	local ran = RandomInt(1,100)
-	local hero_level = h:GetLevel()
+	local hero_level = hero:GetLevel()
 
+    local level = hero:GetLevel()
 	--local table_11chess = Get11ChessBaseNameTable(team_id)
 	
-    local gailv = {30,50,70, 80, 90,100}
+    local gailv = {}
+    
+    if level > GameRules.Definitions.MaxLevel then
+        gailv = GameRules.Definitions.DrawLevelGailv[GameRules.Definitions.MaxLevel]
+    else
+        gailv = GameRules.Definitions.DrawLevelGailv[level]
+    end
+
     --正常抽牌
     local cost = 0;
     for i, per in pairs(gailv) do
@@ -1122,7 +1187,7 @@ function WhoToAttack:RandomDrawNew(team_id)
         end
     end
     
-    ret_card = self:DrawCardFromPool(cost, h);
+    ret_card = self:DrawCardFromPool(cost, hero);
     print("draw card " .. ret_card);
 	return ret_card
 end
@@ -1645,6 +1710,17 @@ function WhoToAttack:HandleCommand(keys)
 	
 end
 
+function WhoToAttack:OnPickCard(keys)
+    local idx = keys.card_idx
+    
+    local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
+    if not hero then
+        return
+    end
+    print(self)
+    GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx))
+    --PickCard();
+end
 
 function WhoToAttack:DamageFilter(damageTable)
     if not damageTable.entindex_attacker_const and damageTable.entindex_victim_const then return true end
@@ -1738,7 +1814,12 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
     ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(WhoToAttack,"OnPlayerGainedLevel"), self)
     
+    CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
+    
+    
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
+    
+    
 	
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
@@ -1792,15 +1873,13 @@ function WhoToAttack:InitGameMode()
 		[13] = {},
 	}
 	
-	GameRules:GetGameModeEntity().mychess = {
-    	[6] = {},
-		[7] = {},
-		[8] = {},
-		[9] = {},
-		[10] = {},
-		[11] = {},
-		[12] = {},
-		[13] = {},
+	self.thrones = {
+    	[1] = {},
+		[2] = {},
+		[3] = {},
+		[4] = {},
+		[5] = {},
+		[6] = {},
 	}
     self.open_door_list = {}
 	self.to_be_destory_list = {

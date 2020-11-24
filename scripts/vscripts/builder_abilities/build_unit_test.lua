@@ -10,11 +10,26 @@ function AddBuildAbility(keys)
     
     print("try use skill " .. unitName)
     
+    
+    
     if not GameRules:GetGameModeEntity().WhoToAttack:CanBuildUnits() then
         msg.bottom("尚不能建造单位",playerID,1)
         ability:RefundManaCost()
         return 
     end
+    
+    local rand = RandomInt(1,100)
+    local speGailv = ability:GetSpecialValueFor("gailv")
+    
+    print("gailv is " .. speGailv)
+    
+    if rand <= speGailv then
+        unitName = unitName .. "_special"
+    end
+    
+    
+    
+    
     local team = caster:GetTeam()
     GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,1);
 end
