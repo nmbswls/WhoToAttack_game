@@ -3080,6 +3080,7 @@
 	"build_evil_skeleton"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Dark_Troll_Summoner_Skeleton_Warrior_model"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3109,6 +3110,7 @@
 	"build_nature_ursa"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Ursa_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3138,6 +3140,7 @@
 	"build_hidden_drow"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Drow_Ranger_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3167,6 +3170,7 @@
 	"build_brwan_ogre"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Ogre_Magi_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3196,6 +3200,7 @@
 	"build_vibrant_dk"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Dragon_Knight_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3225,6 +3230,7 @@
 	"build_brwan_tusk"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Tusk_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3254,6 +3260,7 @@
 	"build_wizard_lich"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Lich_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3283,6 +3290,7 @@
 	"build_hidden_ls"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Lifestealer_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3312,6 +3320,7 @@
 	"build_nature_viper"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Viper_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -3341,6 +3350,7 @@
 	"build_brwan_centaur"
 	{
 		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Centaur_Warrunner_icon"
 		"ScriptFile"	"builder_abilities/build_unit_test"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"

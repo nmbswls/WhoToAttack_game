@@ -8429,7 +8429,7 @@
 		"SoundSet"	"Hero_PhantomAssassin"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.0"
+		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -8465,8 +8465,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8519,6 +8519,30 @@
 					"Name"	"phantom_assassin_blur"
 				}
 			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"7397"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"13477"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"13478"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"13479"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"13480"
+				}
+
+			}
 		}
 		"Ability5"	""
 		"Ability6"	""
@@ -8545,7 +8569,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_phantom_assassin.vsndevts"
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_phantom_assassin.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.2"
+		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -8581,8 +8605,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8635,6 +8659,30 @@
 					"Name"	"phantom_assassin_blur"
 				}
 			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"7247"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"9757"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"9321"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"7297"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"9845"
+				}
+
+			}
 		}
 		"Ability5"	""
 		"Ability6"	""
@@ -8660,7 +8708,7 @@
 		"SoundSet"	"Hero_Earthshaker"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.0"
+		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -8696,8 +8744,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8750,6 +8798,27 @@
 					"Name"	"earthshaker_enchant_totem"
 				}
 			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"6400"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"6401"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"6402"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"6403"
+				}
+
+
+			}
 		}
 		"Ability5"	""
 		"Ability6"	""
@@ -8776,7 +8845,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_earthshaker.vsndevts"
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_earthshaker.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.2"
+		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -8812,8 +8881,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8873,6 +8942,867 @@
 					"MinimumTargets"	"3"
 				}
 			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"6486"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"12692"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"9737"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"7293"
+				}
+
+
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"wizard_jakiro"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/jakiro/jakiro.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Jakiro"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.4"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"1"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"50"
+		// Damage range max.
+		"AttackDamageMax"	"60"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"100"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.4000"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"400"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_jakiro/jakiro_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1100"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"290"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"900"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"2"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"95"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"2"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"100.0"
+				}
+			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"lion_finger_of_death"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"14123"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"14124"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"14125"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"14126"
+				}
+
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"wizard_jakiro_special"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/jakiro/jakiro.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Jakiro"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.6"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"2"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"65"
+		// Damage range max.
+		"AttackDamageMax"	"75"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"100"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.4000"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"400"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_jakiro/jakiro_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1100"
+		"particle_folder"		"particles/units/heroes/hero_jakiro"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf"		"loadout"
+			}
+		}
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"290"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"1050"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"3"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"95"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"2"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"100.0"
+				}
+			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"lion_finger_of_death"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"7820"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"9745"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"14949"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"9298"
+				}
+
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"evil_sf"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/shadow_fiend/shadow_fiend.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Nevermore"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.4"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"4"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"45"
+		// Damage range max.
+		"AttackDamageMax"	"50"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"200"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.5000"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"175"
+			"faster"	"275"
+			"fastest"	"360"
+		}
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"500"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1200"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"305"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"950"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"1"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"95"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"2"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"100.0"
+				}
+			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"lion_finger_of_death"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"9019"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"9020"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"9021"
+				}
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"evil_sf_special"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/shadow_fiend/shadow_fiend.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Nevermore"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.6"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"5"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"65"
+		// Damage range max.
+		"AttackDamageMax"	"70"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"200"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.5000"
+		"AttackSpeedActivityModifiers"
+		{
+			"fast"		"175"
+			"faster"	"275"
+			"fastest"	"360"
+		}
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"500"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_nevermore/nevermore_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1200"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"305"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"1100"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"1"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"95"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"2"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"100.0"
+				}
+			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"lion_finger_of_death"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"6996"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"13507"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"8259"
+				}
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"brwan_axe"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/axe/axe.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Axe"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.4"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"2"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"80"
+		// Damage range max.
+		"AttackDamageMax"	"90"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"150"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.5"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"150"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"310"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"1050"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"2"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"90"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"3"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"0.0"
+				}
+			}
+			"DefaultState"	"Invade"
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"earthshaker_enchant_totem"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"9040"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"8910"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"8907"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"8908"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"8909"
+				}
+
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"brwan_axe_special"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/axe/axe.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_Axe"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+		"Level"	"8"
+		"ModelScale"	"1.6"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"3"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"95"
+		// Damage range max.
+		"AttackDamageMax"	"105"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"150"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.5"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"150"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"310"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"1200"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"2"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"90"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"3"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"0.0"
+				}
+			}
+			"DefaultState"	"Invade"
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"earthshaker_enchant_totem"
+				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"12964"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"12968"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"12965"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"12966"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"8468"
+				}
+
+			}
 		}
 		"Ability5"	""
 		"Ability6"	""
@@ -8898,7 +9828,7 @@
 		"SoundSet"	"Hero_Treant"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.0"
+		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -8934,8 +9864,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -8998,6 +9928,27 @@
 					"Radius"	"700"
 				}
 			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"9704"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"9705"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"9706"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"12181"
+				}
+
+
+			}
 		}
 		"Ability5"	""
 		"Ability6"	""
@@ -9024,7 +9975,7 @@
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_treant.vsndevts"
 		"VoiceFile"	"soundevents/voscripts/game_sounds_vo_treant.vsndevts"
 		"Level"	"8"
-		"ModelScale"	"2.2"
+		"ModelScale"	"1.5"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"ConsideredHero"	"1"
@@ -9060,8 +10011,8 @@
 		"AttackRange"	"150"
 		// Bounds
 		// ----------------------------------------------------------------
-		"RingRadius"	"130"
-		"HealthBarOffset"	"370"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"310"
 		// Movement
 		// ----------------------------------------------------------------
 		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
@@ -9131,6 +10082,27 @@
 					"Radius"	"700"
 					"UseSelfishly"	"1"
 				}
+			}
+                        "AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"9452"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"8899"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"9900"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"9899"
+				}
+
+
 			}
 		}
 		"Ability5"	""
