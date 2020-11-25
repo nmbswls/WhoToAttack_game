@@ -747,19 +747,15 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     
     if skillIdx == nil then
-        
         table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
         hero.build_skill_cnt = hero.build_skill_cnt + 1
         skillIdx = hero.build_skill_cnt
-        
         ability = AddBuildSkill(hero, completeSkillName)
-        
     else 
-        
+        if hero.build_skills[skillIdx].level == 10 then
+            return;
+        end
         hero.build_skills[skillIdx].level = hero.build_skills[skillIdx].level + 1
-
-        
-        
         ability = hero:FindAbilityByName(completeSkillName)
         -- local oldSkill = hero:GetAbilityByIndex(skillIdx-1)
         -- if oldSkill then
@@ -1679,6 +1675,10 @@ function WhoToAttack:HandleCommand(keys)
         end
     end
     
+    if tokens[1] == '-trydel' then
+        CustomGameEventManager:Send_ServerToPlayer(player, "player_remove_ability", {});
+    end
+    
     if tokens[1] == '-exp' then
         hero:AddExperience(10,0,false,false)
     end
@@ -1718,8 +1718,14 @@ function WhoToAttack:OnPickCard(keys)
         return
     end
     print(self)
-    GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx))
+    GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
     --PickCard();
+end
+
+function WhoToAttack:OnConfirmRemoveAbility(keys)
+    local name = keys.AbilityName
+    print(name)
+    --GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
 end
 
 function WhoToAttack:DamageFilter(damageTable)
@@ -1815,6 +1821,7 @@ function WhoToAttack:InitGameMode()
     ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(WhoToAttack,"OnPlayerGainedLevel"), self)
     
     CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
+    CustomGameEventManager:RegisterListener("ConfirmAbilityRemove",Dynamic_Wrap(WhoToAttack, 'OnConfirmRemoveAbility'))
     
     
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
