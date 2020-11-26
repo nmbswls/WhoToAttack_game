@@ -3087,7 +3087,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
+		"AbilityCooldown"	"0.1"
 		"AbilityManaCost"	"1"
 		"OnSpellStart"
 		{
@@ -3117,7 +3117,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
+		"AbilityCooldown"	"0.1"
 		"AbilityManaCost"	"1"
 		"OnSpellStart"
 		{
@@ -3147,8 +3147,68 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"2"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+"build_wizard_zeus"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Zeus_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"1"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+"build_vibrant_warlock"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Warlock_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"1"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3177,7 +3237,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
+		"AbilityCooldown"	"0.1"
 		"AbilityManaCost"	"2"
 		"OnSpellStart"
 		{
@@ -3207,8 +3267,98 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"3"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_nature_wolf"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Lycan_Wolf_model"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_hidden_riki"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Riki_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"2"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_evil_clinkz"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Clinkz_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"2"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3237,8 +3387,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"3"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"1"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3267,8 +3417,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"4"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"2"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3297,8 +3447,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"4"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3327,8 +3477,128 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
-		"AbilityManaCost"	"5"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_vibrant_techies"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Techies_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_evil_underlord"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Underlord_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_wizard_leshrac"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Leshrac_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_brwan_siege"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Siege_Creep_Radiant_model"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"3"
 		"OnSpellStart"
 		{
 			"RunScript"
@@ -3357,8 +3627,488 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"MaxLevel"	"10"
 		"AbilityCastPoint"	"0"
-		"AbilityCooldown"	"0.6"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_nature_enchantress"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Enchantress_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_wizard_furion"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Nature%27s_Prophet_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_evil_abaddon"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Abaddon_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_vibrant_huskar"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Huskar_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_nature_bear"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Lone_Druid_Spirit_Bear_model"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
 		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_brwan_tidehunter"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Tidehunter_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_vibrant_alchemist"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Alchemist_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_evil_dazzle"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Dazzle_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_hidden_ta"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Templar_Assassin_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_wizard_lion"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Lion_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"6"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_hidden_pa"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Phantom_Assassin_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_vibrant_earthshaker"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Earthshaker_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_wizard_jakiro"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Jakiro_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_evil_sf"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Shadow_Fiend_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_brwan_axe"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Axe_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
+	"build_nature_treant"
+	{
+		"BaseClass"	"ability_datadriven"
+                "AbilityTextureName" "Treant_Protector_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"8"
 		"OnSpellStart"
 		{
 			"RunScript"
