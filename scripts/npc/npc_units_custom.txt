@@ -572,7 +572,7 @@
 	"player_base"
 	{
 		"BaseClass"	"npc_dota_creature"
-		"Ability1"	""
+		"Ability1"	"passive_player_jidi"
 		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
@@ -2971,7 +2971,7 @@
 		"Ability16"	""
 	}
 
-"hidden_riki"
+	"hidden_riki"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2980,7 +2980,7 @@
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Riki"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
-                "particle_folder"		"particles/units/heroes/hero_riki"
+		"particle_folder"	"particles/units/heroes/hero_riki"
 		"Level"	"2"
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
@@ -3091,7 +3091,6 @@
 				{
 					"ItemDef"	"5276"
 				}
-				
 			}
 		}
 		"Ability5"	""
@@ -3108,7 +3107,7 @@
 		"Ability16"	""
 	}
 
-"hidden_riki_special"
+	"hidden_riki_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -3117,7 +3116,7 @@
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Riki"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_riki.vsndevts"
-                "particle_folder"		"particles/units/heroes/hero_riki"
+		"particle_folder"	"particles/units/heroes/hero_riki"
 		"Level"	"2"
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
@@ -3545,7 +3544,7 @@
 		"Ability16"	""
 	}
 
-"evil_clinkz"
+	"evil_clinkz"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -3687,7 +3686,7 @@
 		"Ability16"	""
 	}
 
-"evil_clinkz_special"
+	"evil_clinkz_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -3828,6 +3827,7 @@
 		"Ability15"	""
 		"Ability16"	""
 	}
+
 	"hidden_ls"
 	{
 		// General
@@ -4075,7 +4075,7 @@
 		"Ability16"	""
 	}
 
-"vibrant_techies"
+	"vibrant_techies"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -4201,7 +4201,7 @@
 		"Ability16"	""
 	}
 
-"vibrant_techies_special"
+	"vibrant_techies_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -7063,7 +7063,7 @@
 					"MinimumTargets"	"1"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7216,7 +7216,7 @@
 					"MinimumTargets"	"2"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7361,7 +7361,7 @@
 					"MinimumTargets"	"1"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7510,7 +7510,7 @@
 					"MinimumTargets"	"1"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7555,8 +7555,6 @@
 		"Ability15"	""
 		"Ability16"	""
 	}
-
-
 
 	"evil_dazzle"
 	{
@@ -7672,7 +7670,7 @@
 					"MinimumTargets"	"2"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7694,7 +7692,6 @@
 				{
 					"ItemDef"	"7361"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -7826,7 +7823,7 @@
 					"MinimumTargets"	"2"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7848,7 +7845,6 @@
 				{
 					"ItemDef"	"13471"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -7864,6 +7860,7 @@
 		"Ability15"	""
 		"Ability16"	""
 	}
+
 	"hidden_ta"
 	{
 		// General
@@ -7960,8 +7957,7 @@
 					"Support"	"0.0"
 				}
 			}
-
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -7979,8 +7975,6 @@
 				{
 					"ItemDef"	"12588"
 				}
-
-
 			}
 		}
 		"Ability5"	""
@@ -8093,8 +8087,7 @@
 					"Support"	"0.0"
 				}
 			}
-
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8112,8 +8105,6 @@
 				{
 					"ItemDef"	"14752"
 				}
-
-
 			}
 		}
 		"Ability5"	""
@@ -8233,7 +8224,7 @@
 					"Name"	"lion_finger_of_death"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8255,7 +8246,6 @@
 				{
 					"ItemDef"	"12952"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -8380,7 +8370,7 @@
 					"Name"	"lion_mana_drain"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8402,7 +8392,6 @@
 				{
 					"ItemDef"	"8007"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -8519,7 +8508,7 @@
 					"Name"	"phantom_assassin_blur"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8541,7 +8530,6 @@
 				{
 					"ItemDef"	"13480"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -8659,7 +8647,7 @@
 					"Name"	"phantom_assassin_blur"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8681,7 +8669,6 @@
 				{
 					"ItemDef"	"9845"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -8798,7 +8785,7 @@
 					"Name"	"earthshaker_enchant_totem"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8816,8 +8803,6 @@
 				{
 					"ItemDef"	"6403"
 				}
-
-
 			}
 		}
 		"Ability5"	""
@@ -8942,7 +8927,7 @@
 					"MinimumTargets"	"3"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -8960,8 +8945,6 @@
 				{
 					"ItemDef"	"7293"
 				}
-
-
 			}
 		}
 		"Ability5"	""
@@ -9081,7 +9064,7 @@
 					"Name"	"lion_finger_of_death"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9099,7 +9082,6 @@
 				{
 					"ItemDef"	"14126"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -9164,12 +9146,12 @@
 		"ProjectileModel"	"particles/units/heroes/hero_jakiro/jakiro_base_attack.vpcf"
 		// Speed of projectile.
 		"ProjectileSpeed"	"1100"
-		"particle_folder"		"particles/units/heroes/hero_jakiro"
+		"particle_folder"	"particles/units/heroes/hero_jakiro"
 		"RenderablePortrait"
 		{
 			"Particles"
 			{
-				"particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf"		"loadout"
+				"particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf"	"loadout"
 			}
 		}
 		// Bounds
@@ -9227,7 +9209,7 @@
 					"Name"	"lion_finger_of_death"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9245,7 +9227,6 @@
 				{
 					"ItemDef"	"9298"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -9304,7 +9285,7 @@
 		"AttackAnimationPoint"	"0.5000"
 		"AttackSpeedActivityModifiers"
 		{
-			"fast"		"175"
+			"fast"	"175"
 			"faster"	"275"
 			"fastest"	"360"
 		}
@@ -9371,7 +9352,7 @@
 					"Name"	"lion_finger_of_death"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9443,7 +9424,7 @@
 		"AttackAnimationPoint"	"0.5000"
 		"AttackSpeedActivityModifiers"
 		{
-			"fast"		"175"
+			"fast"	"175"
 			"faster"	"275"
 			"fastest"	"360"
 		}
@@ -9510,7 +9491,7 @@
 					"Name"	"lion_finger_of_death"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9640,7 +9621,7 @@
 					"Name"	"earthshaker_enchant_totem"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9662,7 +9643,6 @@
 				{
 					"ItemDef"	"8909"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -9779,7 +9759,7 @@
 					"Name"	"earthshaker_enchant_totem"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9801,7 +9781,6 @@
 				{
 					"ItemDef"	"8468"
 				}
-
 			}
 		}
 		"Ability5"	""
@@ -9928,7 +9907,7 @@
 					"Radius"	"700"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -9946,8 +9925,6 @@
 				{
 					"ItemDef"	"12181"
 				}
-
-
 			}
 		}
 		"Ability5"	""
@@ -10083,7 +10060,7 @@
 					"UseSelfishly"	"1"
 				}
 			}
-                        "AttachWearables"
+			"AttachWearables"
 			{
 				"Wearable1"
 				{
@@ -10101,8 +10078,6 @@
 				{
 					"ItemDef"	"9899"
 				}
-
-
 			}
 		}
 		"Ability5"	""

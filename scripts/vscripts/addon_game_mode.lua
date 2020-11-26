@@ -147,7 +147,7 @@ function WhoToAttack:StartGame()
             hero.base = newBase
             newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
-            
+            newBase.turn_attacker = {}
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
@@ -351,6 +351,8 @@ function WhoToAttack:StartAPrepareRound()
 		-- end
 	end
 	
+    
+    
     local allTeam = {}
     for team_i,battle_field in pairs(self.battle_field_list) do
         table.insert(allTeam, team_i);
@@ -387,7 +389,9 @@ function WhoToAttack:StartAPrepareRound()
         if IsUnitExist(hero) == true then
             --给蓝
             local mana = 0;
-            
+            if hero.base then
+                hero.base.turn_attacker = {}
+            end
             hero:SetMana(hero:GetMaxMana())
         end
     end
