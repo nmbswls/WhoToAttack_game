@@ -13,6 +13,16 @@ if GameRules.Definitions == nil then
 		[12] = Vector(127,-4991,128),
 		[13] = Vector(4991,-4991,128),
     }
+    GameRules.Definitions.TeamTinyPos = {
+	    [6] = Vector(-4735,2687,128),
+		[7] = Vector(127,2687,128),
+		[8] = Vector(4991,2687,128),
+		[9] = Vector(-4735,-2175,128),
+		[10] = Vector(4991,-2175,128),
+		[11] = Vector(-4735,-7040,128),
+		[12] = Vector(127,-7040,128),
+		[13] = Vector(4991,-7040,128),
+    }
     GameRules.Definitions.MaxBuildSkill = 8
     
     

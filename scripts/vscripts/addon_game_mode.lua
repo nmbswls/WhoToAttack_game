@@ -1821,7 +1821,15 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
 	-- end
 end
 
-
+function WhoToAttack:InitTinyBornPlace()
+    -- 将对应队伍的出生点放到随机的位置去
+    local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
+    for _, start in pairs(playerStarts) do
+        if start:GetTeamNumber() >= DOTA_TEAM_CUSTOM_1 or start:GetTeamNumber() <= DOTA_TEAM_CUSTOM_8 then
+            start:SetOrigin(GameRules.Definitions.TeamTinyPos[start:GetTeamNumber()]);
+        end
+    end
+end
 
 function Activate()
 	GameRules:GetGameModeEntity().WhoToAttack = WhoToAttack()
@@ -1862,6 +1870,10 @@ function WhoToAttack:InitGameMode()
     CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
     CustomGameEventManager:RegisterListener("ConfirmAbilityRemove",Dynamic_Wrap(WhoToAttack, 'OnConfirmRemoveAbility'))
     
+    --出生点初始化
+    Timers:CreateTimer(1, function()
+        self:InitTinyBornPlace()
+    end)
     
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
     
