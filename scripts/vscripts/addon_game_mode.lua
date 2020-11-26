@@ -860,12 +860,11 @@ function WhoToAttack:GetPosBattleField(pos)
     
 end
 
-
-function WhoToAttack:ChangeBattleField(target, pos)
+function WhoToAttack:CheckThrowTarget(target, pos)
     
     if pos == nil then
         --find closet
-        return
+        return -1
     end
 
 	local minDist = 0
@@ -880,14 +879,35 @@ function WhoToAttack:ChangeBattleField(target, pos)
         end
     end
     print("touzhi target battle " .. minIdx)
-    local targetBattle = minIdx
-    target.is_in_battle = true
-	target.in_battle_id = targetBattle;
     
-    table.insert(self.to_be_destory_list[targetBattle], target)
+    if minIdx == -1 then
+        return -1
+    end    
+    
+    local diffx = math.abs(GameRules.Definitions.TeamCenterPos[minIdx].x - pos.x);
+    local diffy = math.abs(GameRules.Definitions.TeamCenterPos[minIdx].y - pos.y);
+    
+    print("diffx " .. diffx)
+    print("diffy " .. diffy)
+    
+    if diffx > 500 or diffy > 500 then
+        return -1;
+    end
+    
+    return minIdx;
+    
+end
+
+
+function WhoToAttack:ChangeBattleField(target, battleIdx)
+    
+    target.is_in_battle = true
+	target.in_battle_id = battleIdx;
+    print()
+    table.insert(self.to_be_destory_list[battleIdx], target)
 	--GameRules:GetGameModeEntity().battle.insert
 	--更新羁绊
-	StatClassCount(minIdx)
+	StatClassCount(battleIdx)
 end
 
 

@@ -42,8 +42,15 @@ function item_throw_one:OnSpellStart()
     if target ~= nil then
     
         print("name " .. target:GetUnitName());
-    
-        GameRules:GetGameModeEntity().WhoToAttack:ChangeBattleField(target, pos)
+        
+        local idx = GameRules:GetGameModeEntity().WhoToAttack:CheckThrowTarget(target, pos);
+        
+        if idx == -1 then
+            local pid = GameRules:GetGameModeEntity().team2playerid[team]
+            msg.bottom('只能选择基地投掷',pid)
+            return;
+        end
+        GameRules:GetGameModeEntity().WhoToAttack:ChangeBattleField(target, idx)
         GameRules:GetGameModeEntity().WhoToAttack:MoveUnit(target, pos)
         
     end
