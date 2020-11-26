@@ -32,7 +32,7 @@
 		"Ability15"	"empty15"
 		"Ability16"	"empty16"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
-		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
 		"AttributeBaseStrength"	"0"
 		"AttributeStrengthGain"	"0"
 		"AttributeBaseAgility"	"0"

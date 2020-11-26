@@ -19,4 +19,35 @@
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
+    
+    "item_remove_ability"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"bom/ability_remove"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"ID"	"1500"
+		"ItemCastOnPickup"	"1"
+		"ItemCost"	"100"
+		"ItemDroppable"	"1"
+		"ItemSellable"	"1"
+		"ItemShareability"	"ITEM_NOT_SHAREABLE"
+		"ItemPurchasable"	"1"
+		"ItemKillable"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
+		"ItemStackable"	"1"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"builder_abilities/items/item_remove_ability.lua"
+				"Function"	"OnPlayerRemoveAbility"
+			}
+		}
+		"ItemRequiredCharges"	"1"
+	}
 }

@@ -155,6 +155,14 @@ function WhoToAttack:StartGame()
         
     end
     
+    
+    -- local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
+    -- for _, pos in pairs(playerStarts) do
+    
+    -- end
+    
+    
+    
     self:UpdateThroneInfo()
     
     --5秒后开始游戏
@@ -745,7 +753,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     local ability = nil
     
-    
+    print(skillIdx)
     if skillIdx == nil then
         table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
         hero.build_skill_cnt = hero.build_skill_cnt + 1
@@ -755,17 +763,19 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
         if hero.build_skills[skillIdx].level == 10 then
             return;
         end
+        print("try find exists skill")
         hero.build_skills[skillIdx].level = hero.build_skills[skillIdx].level + 1
         ability = hero:FindAbilityByName(completeSkillName)
+        if ability ~= nil then
+            ability:SetLevel(hero.build_skills[skillIdx].level)
+        end
         -- local oldSkill = hero:GetAbilityByIndex(skillIdx-1)
         -- if oldSkill then
             -- hero:RemoveAbilityByHandle(oldSkill)
         -- end
     end
     
-    if ability ~= nil then
-        ability:SetLevel(hero.build_skills[skillIdx].level)
-    end
+    
     -- local newSkillName = "build_" .. hero.build_skills[skillIdx].name .. "_" .. string.format("%02d", hero.build_skills[skillIdx].level)
     
     -- local newAbility = hero:AddAbility(newSkillName)
@@ -798,6 +808,10 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
         local aaa = hero:GetAbilityByIndex(i)
         if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
 	end
+    print("build list:")
+    for i = 1, #hero.build_skills do 
+        DeepPrintTable(hero.build_skills[i])
+    end
 end
 
 
@@ -1723,9 +1737,10 @@ function WhoToAttack:OnPickCard(keys)
 end
 
 function WhoToAttack:OnConfirmRemoveAbility(keys)
-    local name = keys.AbilityName
-    print(name)
-    --GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    local idx = keys.AbilityIdx
+    local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
+    print(idx + 1)
+    GameRules:GetGameModeEntity().WhoToAttack:DelBuildSkill(hero, tonumber(idx)+1)
 end
 
 function WhoToAttack:DamageFilter(damageTable)
@@ -1826,8 +1841,16 @@ function WhoToAttack:InitGameMode()
     
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
     
+    GameRules:SetUseUniversalShopMode(true);
+    GameRules:SetGoldTickTime(0)
+    GameRules:SetGoldPerTick(0)
+    GameRules:SetStartingGold(500)
+	GameRules:GetGameModeEntity():SetFogOfWarDisabled(true);
+    GameRules:GetGameModeEntity():SetSelectionGoldPenaltyEnabled(false)
+    GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
+    GameRules:GetGameModeEntity():SetBuybackEnabled(false)
     
-	
+    
 	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
 	self.battle_round = 0
@@ -2053,6 +2076,7 @@ function AddBuildSkill(hero, completeSKillName)
     local newAbility = hero:AddAbility(completeSKillName)
     hero:SwapAbilities(completeSKillName, emptyAbility, true, false)
     hero:RemoveAbility(emptyAbility)
+    newAbility:SetLevel(1);
     return newAbility
 end
 
