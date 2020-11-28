@@ -113,7 +113,7 @@
 		}
 		"Modifiers"
 		{
-			"modifier_base_fantan"
+			"modifier_player_jidi"
 			{
 				"Passive"	"1"
 				"OnAttacked"
