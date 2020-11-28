@@ -452,6 +452,34 @@ function WhoToAttack:StartAPrepareRound()
 	
 end
 
+function WhoToAttack:AddJidiWudi()
+	
+     for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
+        if IsUnitExist(hero) then
+            local jidi = hero.base
+            if jidi then
+				
+                jidi.AddNewModifier(jidi, nil, "modifier_wudi",
+		{
+			duration = -1,
+		})
+            end
+        end
+    end	
+end
+
+function WhoToAttack:RemoveJidiWudi()
+	for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
+	if IsUnitExist(hero) then
+	    local jidi = hero.base
+	    if jidi then
+
+		
+	    end
+	end
+	end	
+end
+
 function WhoToAttack:StartABattleRound()
     if self.is_game_ended == true then
         return
