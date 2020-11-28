@@ -42,7 +42,7 @@ function UnitAI:OnUnitThink(unit)
     end
 
     if(unit.IsCommandRestricted ~= nil and unit:IsCommandRestricted()) then 
-        return 0.25
+        return 0.2
     end
     
     for i, v in pairs(UNIT_CMD_LIST) do
@@ -57,7 +57,7 @@ function UnitAI:OnUnitThink(unit)
     if(highestData ~= nil) then
         return UnitAI:ExecuteCommand(unit, UNIT_CMD_LIST[highestScoreCommand], highestData)
     else
-        return 0.25
+        return 0.2
     end
 end
 
@@ -86,7 +86,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         
         local attackTarget = unit:GetAttackTarget()
         
-        if(attackTarget == nil or attackTarget:IsAlive() == false) then
+        if attackTarget == nil or attackTarget:IsAlive() == false or attackTarget:HasModifier("modifier_base") then
             local nearestEnemy = nil
             local enemies, base = UnitAI:ClosestEnemyAll(unit)
             
