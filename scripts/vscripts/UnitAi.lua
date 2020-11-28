@@ -86,7 +86,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         
         local attackTarget = unit:GetAttackTarget()
         
-        if attackTarget == nil or attackTarget:IsAlive() == false or attackTarget:HasModifier("modifier_base") then
+        if attackTarget == nil or attackTarget:IsAlive() == false or attackTarget:HasModifier("modifier_player_jidi") then
             local nearestEnemy = nil
             local enemies, base = UnitAI:ClosestEnemyAll(unit)
             
@@ -290,7 +290,7 @@ function UnitAI:ClosestEnemyAll(unit, radius)
     for index = 1, #candidates do
         local candidate = candidates[index]
         if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
-            if not candidate:HasModifier("modifier_base") then
+            if not candidate:HasModifier("modifier_player_jidi") then
                 table.insert(ret, candidate)
             else
                 base = candidate
