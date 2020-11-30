@@ -86,7 +86,10 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         
         local attackTarget = unit:GetAttackTarget()
         
-        if attackTarget == nil or attackTarget:IsAlive() == false or attackTarget:HasModifier("modifier_player_jidi") then
+        if attackTarget == nil or attackTarget:IsAlive() == false 
+            or attackTarget:IsInvulnerable()
+            or attackTarget:HasModifier("modifier_player_jidi") then
+            
             local nearestEnemy = nil
             local enemies, base = UnitAI:ClosestEnemyAll(unit)
             

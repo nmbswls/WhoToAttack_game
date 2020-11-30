@@ -19,8 +19,8 @@
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
-    
-    "item_remove_ability"
+
+	"item_remove_ability"
 	{
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"bom/ability_remove"
@@ -49,5 +49,26 @@
 			}
 		}
 		"ItemRequiredCharges"	"1"
+	}
+
+	"item_treasure_tier_1"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"ID"	"1501"
+		"ItemCastOnPickup"	"1"
+		"ItemCost"	"0"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/builder_abilities/items/item_treasure_tier_1.lua"
+				"Function"	"OnTreasureActive"
+			}
+		}
 	}
 }

@@ -82,6 +82,7 @@ require 'definitions'
 require 'UnitAi'
 require 'timers'
 
+
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_base", "lua_modifier/modifier_base.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
@@ -89,8 +90,10 @@ LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_
 
 
 if WhoToAttack == nil then
-	WhoToAttack = class({})
+	_G.WhoToAttack = class({})
 end
+
+require 'treasure'
 
 function Precache( context )
     print("Precache...")
@@ -222,7 +225,7 @@ function WhoToAttack:OnThink()
             if stageCountdown == 30 then
                 --lock all touzhi
                 for i,v in pairs(self.heromap) do
-                    if IsUnitExist(v) == true then
+                    if IsHeroValid(v) == true then
                         --LockTouzhi(v:GetTeam())
                     end
                 end
@@ -299,6 +302,7 @@ function WhoToAttack:OnStageChanged()
     end
 
     if(self.stage == 3) then
+        self:RemoveJidiWudi();
         for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
             self:SetBattleTable(team_i, true)
         end
@@ -351,7 +355,7 @@ function WhoToAttack:StartAPrepareRound()
 		-- end
 	end
 	
-    
+    self:AddJidiWudi();
     
     local allTeam = {}
     for team_i,battle_field in pairs(self.battle_field_list) do
@@ -379,14 +383,18 @@ function WhoToAttack:StartAPrepareRound()
     end
     print("open list:");
     for i = 1, #self.open_door_list do
-        print(self.open_door_list[i]);
         
-        local bf = TeamId2BattleField(self.open_door_list[i])
+        local tid = self.open_door_list[i];
+        print("tid " .. tid);
+        
+        local bf = TeamId2BattleField(tid)
         bf.is_open = true;
+        
+        CustomGameEventManager:Send_ServerToAllClients("ping_open_doors", {x = GameRules.Definitions.TeamCenterPos[tid].x, y = GameRules.Definitions.TeamCenterPos[tid].y, z = GameRules.Definitions.TeamCenterPos[tid].z})
     end
     
     for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
-        if IsUnitExist(hero) == true then
+        if IsHeroValid(hero) == true then
             --给蓝
             local mana = 0;
             if hero.base then
@@ -454,27 +462,32 @@ end
 
 function WhoToAttack:AddJidiWudi()
 	
+    print("add jidi wudi");
      for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
-        if IsUnitExist(hero) then
+        if IsHeroValid(hero) then
             local jidi = hero.base
             if jidi then
-				
-                jidi.AddNewModifier(jidi, nil, "modifier_wudi",
-		{
-			duration = -1,
-		})
+				local ability = jidi:FindAbilityByName('passive_player_jidi')
+                if ability then
+                    print("add jidi wudi     sssss");
+                    ability:ApplyDataDrivenModifier(jidi, jidi, "modifier_jidi_wudi",
+                    {
+                        duration = -1,
+                    })
+                end
             end
         end
     end	
 end
 
 function WhoToAttack:RemoveJidiWudi()
+    print("remove jidi wudi");
 	for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
-	if IsUnitExist(hero) then
+	if IsHeroValid(hero) then
 	    local jidi = hero.base
 	    if jidi then
 
-		
+            jidi:RemoveModifierByName("modifier_jidi_wudi");
 	    end
 	end
 	end	
@@ -607,13 +620,13 @@ end
 
 function WhoToAttack:UpdateThroneInfo()
 
-    print("UpdateThroneInfo")
+    --print("UpdateThroneInfo")
     
     for i = 1,GameRules.Definitions.ThroneCnt do
         table.sort( self.thrones[i], function(a,b) return ( a.score > b.score ) end )
         
         for tid = 1, #self.thrones[i] do 
-            print(self.thrones[i][tid].team .. "   " ..  self.thrones[i][tid].score)
+            --print(self.thrones[i][tid].team .. "   " ..  self.thrones[i][tid].score)
         end
     end
     
@@ -723,7 +736,7 @@ function WhoToAttack:InitUnit(team, unit)
     unit.in_battle_id = 0
     local unitName = unit:GetUnitName();
     local isSpecial = false
-    print("init units name:"..unitName)
+    --print("init units name:"..unitName)
     
     if string.find(unitName,'_special') ~= nil then
         unitName = string.sub(unitName,1,-9)
@@ -785,7 +798,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     local ability = nil
     
-    print(skillIdx)
+    --print(skillIdx)
     if skillIdx == nil then
         table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
         hero.build_skill_cnt = hero.build_skill_cnt + 1
@@ -795,7 +808,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
         if hero.build_skills[skillIdx].level == 10 then
             return;
         end
-        print("try find exists skill")
+        --print("try find exists skill")
         hero.build_skills[skillIdx].level = hero.build_skills[skillIdx].level + 1
         ability = hero:FindAbilityByName(completeSkillName)
         if ability ~= nil then
@@ -817,7 +830,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     for i=0,15 do
 		local aaa = hero:GetAbilityByIndex(i)
-        if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
+        --if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
 	end
     
 end
@@ -931,7 +944,6 @@ function WhoToAttack:ChangeBattleField(target, battleIdx)
     
     target.is_in_battle = true
 	target.in_battle_id = battleIdx;
-    print()
     table.insert(self.to_be_destory_list[battleIdx], target)
 	--GameRules:GetGameModeEntity().battle.insert
 	--更新羁绊
@@ -1317,6 +1329,22 @@ function GetClientToken(team)
 	return GameRules:GetGameModeEntity().client_key[team]
 end
 
+
+function IsHeroValid(hero)
+    if hero == nil or hero:IsNull() then
+        return false;
+    end
+    
+    if not hero:IsRealHero() then
+        return false;
+    end
+    
+    if not hero:IsAlive() then
+        return false;
+    end
+    
+    return true;
+end
 
 function IsUnitExist(u)
 	if u ~= nil and u:IsNull() == false and u:IsAlive() == true and u.is_removing ~= true then

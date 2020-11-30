@@ -3,6 +3,7 @@
 	"consumables"
 	{
 		"item"      "item_remove_ability"
+        "item"      "item_treasure_tier_1"
 	}
 
 	"attributes"
