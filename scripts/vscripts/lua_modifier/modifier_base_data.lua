@@ -13,4 +13,15 @@ function CheckOneAttack(keys)
         return
     end
     caster.turn_attacker[attackerIdx] = 1
+    local team_id = attacker:GetTeam();
+    local hero1 = GameRules:GetGameModeEntity().teamid2hero[team_id];
+    if hero1 then
+        hero1:ModifyGold(2, true, 0);
+    end
+    
+    
+    local hero2 = GameRules:GetGameModeEntity().teamid2hero[caster:GetTeam()];
+    if hero2 then
+        hero2:ModifyGold(2, true, 0);
+    end
 end
