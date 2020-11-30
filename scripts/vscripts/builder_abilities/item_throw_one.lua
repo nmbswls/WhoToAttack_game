@@ -10,6 +10,11 @@ function item_throw_one:OnSpellStart()
     local casterPos = caster:GetAbsOrigin()
     local team = caster:GetTeam()
     
+    if not GameRules:GetGameModeEntity().WhoToAttack:CanThrow() then
+        local pid = GameRules:GetGameModeEntity().team2playerid[team]
+        msg.bottom('时机未到',pid)
+        return;
+    end
     
     local pos = self:GetCursorPosition()
     print("touzhi target " .. pos.x .. " " .. pos.y)

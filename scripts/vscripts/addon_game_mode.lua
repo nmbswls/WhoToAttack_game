@@ -547,6 +547,19 @@ function WhoToAttack:CanBuildUnits()
     return false
 end
 
+function WhoToAttack:CanThrow()
+
+    if not self.stage then
+        return false
+    end
+    
+    if self.stage == 3 then
+        return true
+    end
+    
+    return false
+end
+
 function WhoToAttack:SendRoundTimeInfo()
 
     -- local center_index = ''..Entities:FindByName(nil,"center0"):entindex()..','..Entities:FindByName(nil,"center1"):entindex()..','..Entities:FindByName(nil,"center2"):entindex()..','..Entities:FindByName(nil,"center3"):entindex()..','..Entities:FindByName(nil,"center4"):entindex()..','..Entities:FindByName(nil,"center5"):entindex()..','..Entities:FindByName(nil,"center6"):entindex()..','..Entities:FindByName(nil,"center7"):entindex()
