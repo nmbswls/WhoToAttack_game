@@ -2054,26 +2054,7 @@ function WhoToAttack:InitGameMode()
 	}
     GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
     GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(GameRules.Definitions.MaxLevel)
-	GameRules:GetGameModeEntity().HeroExpTable = {
-			[1] = 0,--+1
-			[2] = 1,--+1
-			[3] = 2,--+2-->+4(1)(0)(1)
-			[4] = 6,--+4-->+8(1)(0)(1)
-			[5] = 14,--+8-->+16(1)(1)(1)
-			[6] = 30,--+16-->+32(2)(2)(2)
-			[7] = 62,--+24-->+48(3)(3)(2)
-			[8] = 110,--+32-->+56(4)(3)(3)
-			[9] = 166,--+40-->+64(4)(4)(3)
-
-			[10] = 230,--+48-->+64
-			[11] = 294,--+56-->+64
-			[12] = 358,--+64-->+64
-			[13] = 422,--+72-->+64
-			[14] = 486,--+80-->+64
-			[15] = 550,--+88-->+64
-			[16] = 614,
-		}
-    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(GameRules:GetGameModeEntity().HeroExpTable)
+    GameRules:GetGameModeEntity():SetCustomXPRequiredToReachNextLevel(GameRules.Definitions.HeroExpTable)
 end
 
 
