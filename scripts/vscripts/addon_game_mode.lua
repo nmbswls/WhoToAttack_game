@@ -2053,7 +2053,7 @@ function WhoToAttack:InitGameMode()
         [8] = {},
 	}
     GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
-    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(16)
+    GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(GameRules.Definitions.MaxLevel)
 	GameRules:GetGameModeEntity().HeroExpTable = {
 			[1] = 0,--+1
 			[2] = 1,--+1
