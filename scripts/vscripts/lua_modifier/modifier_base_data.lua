@@ -6,7 +6,7 @@ function CheckOneAttack(keys)
     local attacker = keys.attacker;
     
     print("check attack")
-    print(caster:GetUnitName())
+    print(attacker:GetUnitName())
     print(attacker:GetEntityIndex())
     local attackerIdx = attacker:GetEntityIndex()
     if caster.turn_attacker[attackerIdx] ~= nil then
@@ -14,6 +14,7 @@ function CheckOneAttack(keys)
     end
     caster.turn_attacker[attackerIdx] = 1
     local team_id = attacker:GetTeam();
+    local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()];
     local hero1 = GameRules:GetGameModeEntity().teamid2hero[team_id];
     if hero1 then
         hero1:ModifyGold(2, true, 0);
