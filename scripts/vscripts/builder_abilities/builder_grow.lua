@@ -21,5 +21,5 @@ modifier_builder_grow_mana = class({
 
 function modifier_builder_grow_mana:GetModifierManaBonus() 
     local level = self:GetParent():GetLevel();
-    return level * 10 
+    return level * 2 
 end
