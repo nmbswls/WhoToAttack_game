@@ -71,4 +71,25 @@
 			}
 		}
 	}
+	
+	"item_exp_book"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"ID"	"1501"
+		"ItemCastOnPickup"	"1"
+		"ItemCost"	"10"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"Target"	"CASTER"
+				"ScriptFile"	"scripts/vscripts/builder_abilities/items/item_exp_book.lua"
+				"Function"	"OnUse"
+			}
+		}
+	}
 }
