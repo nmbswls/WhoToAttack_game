@@ -3,38 +3,43 @@ if WtaThrones == nil then
 end
 
 function WtaThrones:init(teamNum)
-	local throneNum = GameRules.Definitions.ThroneNum;
+
+    print("throne init num:" .. teamNum)
+    
+	local throneNum = GameRules.Definitions.ThroneCnt;
 	self.teamNum = teamNum;
 	self.throneList = {};
 	self.throneTeamScores = {};
 	self.sortedTeamIdx = {};
 	for i=1,throneNum do 
 		table.insert(self.throneTeamScores,{});
-		table.insert(self.sortedPlayerIdx,{});
-		for tid=6, 6+self.teamNum-1 do
-			self.throneTeamScores[i][tid] = 0;
+		table.insert(self.sortedTeamIdx,{});
+		for tid = 6, 6+self.teamNum-1 do
+			self.throneTeamScores[i][tid] = 5;
 			table.insert(self.sortedTeamIdx[i],tid);
 		end
 	end
 	
 	for i=1,throneNum do 
-		local throne = CreateUnitByName("wta_throne");
+		local throne = CreateUnitByName("god_throne", GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
 		table.insert(self.throneList,throne);
 		local throneAb = throne:FindAbilityByName("throne_show_score");
-		for i=6,6+self.teamNum-1 do
-			throneAb:ApplyDataDrivenModifier(throneAb,throneAb,"modifier_show_score_player_" .. string.format("%02d", tid),{});
-		end
+		for tid = 6, 6+self.teamNum-1 do
+            local name = "modifier_show_score_player_" .. string.format("%02d", tid);
+			local mod = throneAb:ApplyDataDrivenModifier(throne,throne,name,{duration = -1});
+            mod:SetStackCount(5);
+        end
 	end
 	
 end
 
 function WtaThrones:AddScore(throneIdx, teamId)
 	
-	if throneIdx <= 0 or throneIdx > #self.thronesScores then
+	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then
 		return
 	end
 	
-	self.thronesScores[throneIdx][teamId] = self.thronesScores[throneIdx][teamId] + 1;
+	self.throneTeamScores[throneIdx][teamId] = self.throneTeamScores[throneIdx][teamId] + 1;
 	
 	self:_refreshScore(throneIdx, teamId)
 	
@@ -50,21 +55,23 @@ function WtaThrones:_updateThroneShow(throneIdx)
 		throne:RemoveModifierByName("modifier_show_score_player_" .. string.format("%02d", tid));
 	end
 	local order = self.sortedTeamIdx[throneIdx];
+    local scoreList = self.throneTeamScores[throneIdx];
 	local ability = throne:FindAbilityByName("throne_show_score");
 	for _, tid in pairs(order) do
 		--add again
-		ability:ApplyDataDrivenModifier(ability, ability, "modifier_show_score_player_" .. string.format("%02d", tid),{});
+		local mod = ability:ApplyDataDrivenModifier(throne, throne, "modifier_show_score_player_" .. string.format("%02d", tid),{duration = -1});
+        mod:SetStackCount(scoreList[tid]);
 	end
 
 end
 
 function WtaThrones:_refreshScore(throneIdx, teamId)
 
-	if throneIdx <= 0 or throneIdx > #self.thronesScores then
+	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then
 		return
 	end
 
-	local scoreList = self.thronesScores[throneIdx];
+	local scoreList = self.throneTeamScores[throneIdx];
 	local newOrder = {};
 	for tid=6,6+self.teamNum-1 do
 		table.insert(newOrder, tid);

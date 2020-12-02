@@ -200,6 +200,14 @@ if GameRules.Definitions == nil then
     }
     
     GameRules.Definitions.ThroneCnt = 6;
+    GameRules.Definitions.ThronePos = {
+        [1] = Vector(127,-127,128),
+        [2] = Vector(127,-327,128),
+        [3] = Vector(127,-527,128),
+        [4] = Vector(127,-727,128),
+        [5] = Vector(127,-927,128),
+        [6] = Vector(127,-1127,128),
+    }
     
     GameRules.Definitions.MaxLevel = 30;
     GameRules.Definitions.HeroExpTable = {
@@ -252,6 +260,7 @@ if GameRules.Definitions == nil then
         evil_skeleton = 1,
         nature_ursa = 1,
         hidden_drow = 1,
+        wizard_zeus = 1,
         brwan_ogre = 2,
         vibrant_dk = 2,
         brwan_tusk = 1,

@@ -72,6 +72,7 @@
 --build_skill_cnt      建造技能数量
 --build_skills         可建造单位技能
 ----skill_name level exp     代表一个建造技能
+--throne_bonus         王座效果
 
 --打怪 
 
@@ -94,6 +95,7 @@ if WhoToAttack == nil then
 end
 
 require 'treasure'
+require 'throne'
 
 function Precache( context )
     print("Precache...")
@@ -146,7 +148,7 @@ function WhoToAttack:StartGame()
         local pos = GameRules.Definitions.TeamCenterPos[team_i]
         local hero = TeamId2Hero(team_i);
         if hero then
-            local newBase = CreateUnitByName("player_base", pos, true, nil, nil, team_i)
+            local newBase = CreateUnitByName("player_jidi", pos, true, nil, nil, team_i)
             hero.base = newBase
             newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
@@ -164,7 +166,7 @@ function WhoToAttack:StartGame()
     
     -- end
     
-    
+    WtaThrones:init(GameRules:GetGameModeEntity().playing_player_count);
     
     self:UpdateThroneInfo()
     
@@ -357,6 +359,31 @@ function WhoToAttack:StartAPrepareRound()
 	
     self:AddJidiWudi();
     
+    for _,hero in pairs(GameRules:GetGameModeEntity().heromap) do
+        if IsHeroValid(hero) == true then
+            for _,bonusName in pairs(hero.throne_bonus) do
+                hero:RemoveModifierByName(bonusName);
+            end
+            hero.throne_bonus = {}
+        end
+    end
+    
+    
+    for i=1,GameRules.Definitions.ThroneCnt do
+        local orders = WtaThrones.sortedTeamIdx[i];
+        local throne = WtaThrones.throneList[i];
+        local ability = throne:FindAbilityByName("throne_give_bonus");
+        for idx, tid in pairs(orders) do 
+            local hero = GameRules:GetGameModeEntity().teamid2hero[tid];
+            if hero then
+                local bonusName = "modifier_bonus_" .. string.format("%02d", idx);
+                table.insert(hero.throne_bonus, bonusName);
+                ability:ApplyDataDrivenModifier(throne, hero, bonusName, {});
+            end
+        end
+    end
+    
+    
     local allTeam = {}
     for team_i,battle_field in pairs(self.battle_field_list) do
         table.insert(allTeam, team_i);
@@ -381,11 +408,11 @@ function WhoToAttack:StartAPrepareRound()
         end
         self.open_door_list = newTeam
     end
-    print("open list:");
+    --print("open list:");
     for i = 1, #self.open_door_list do
         
         local tid = self.open_door_list[i];
-        print("tid " .. tid);
+        --print("tid " .. tid);
         
         local bf = TeamId2BattleField(tid)
         bf.is_open = true;
@@ -462,7 +489,6 @@ end
 
 function WhoToAttack:AddJidiWudi()
 	
-    print("add jidi wudi");
      for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
         if IsHeroValid(hero) then
             local jidi = hero.base
@@ -481,7 +507,7 @@ function WhoToAttack:AddJidiWudi()
 end
 
 function WhoToAttack:RemoveJidiWudi()
-    print("remove jidi wudi");
+
 	for i,hero in pairs(GameRules:GetGameModeEntity().heromap) do
 	if IsHeroValid(hero) then
 	    local jidi = hero.base
@@ -526,7 +552,7 @@ function WhoToAttack:SpawnNeutral(team)
     local pos = GameRules.Definitions.TeamCenterPos[team]
 
     for i = 1, 3 do
-        local unit = self:CreateUnit(3, pos, "test_monster")
+        local unit = self:CreateUnit(3, pos, "evil_skeleton")
         Timers:CreateTimer(0.5, function()
             unit.in_battle_id = team;
         end)
@@ -726,7 +752,7 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         if not ret then
             --print("add modifier fail")
         else
-            print("add modifier suc")
+            --print("add modifier suc")
         end
         --add buffs
         -- if hero.buffs then
@@ -1302,7 +1328,6 @@ end
 
 function WhoToAttack:InitBattleTable()
 
-    print("init battle table")
 	self.battle_state = {
 		[6] = false,
 		[7] = false,
@@ -1538,7 +1563,9 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
     hero.build_skill_cnt = 0
     hero.build_skills = {}
-
+    
+    hero.throne_bonus = {}
+    
 	GameRules:GetGameModeEntity().team2playerid[hero:GetTeam()] = player:GetPlayerID()
 	GameRules:GetGameModeEntity().playerid2team[player:GetPlayerID()] = hero:GetTeam()
 
@@ -1557,7 +1584,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	--下发消息 
 	--combat("PLAYER JOINED: "..playercount.."/"..GameRules:GetGameModeEntity().playing_player_count)
     
-    print("player count " .. all_playing_player_count .. "   " .. playercount);
+    --print("player count " .. all_playing_player_count .. "   " .. playercount);
     
 	if playercount == all_playing_player_count then
 		--InitPlayerIDTable()
@@ -1714,13 +1741,11 @@ function WhoToAttack:OnGameRulesStateChange()
     end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-        print("hero select");
         
         for nPlayerNumber = 0, DOTA_MAX_TEAM_PLAYERS do
                 Timers:CreateTimer(0,function()
                     local hPlayer = PlayerResource:GetPlayer(nPlayerNumber)
                     if hPlayer and PlayerResource:IsValidTeamPlayer(nPlayerNumber) then
-                        print("hero select random");
                         hPlayer:MakeRandomHeroSelection()
 					end
 			end)
@@ -1788,6 +1813,10 @@ function WhoToAttack:HandleCommand(keys)
     
     if tokens[1] == '-exp' then
         hero:AddExperience(10,0,false,false)
+    end
+    
+    if tokens[1] == '-score' then
+        WtaThrones:AddScore(1,6)
     end
     
     if tokens[1] == 'add_money' then
@@ -1908,7 +1937,7 @@ end
 function WhoToAttack:InitGameMode()
     
     
-	
+
     
     self.stage = 0
     GameRules:GetGameModeEntity():SetThink("OnThink", self, 0)

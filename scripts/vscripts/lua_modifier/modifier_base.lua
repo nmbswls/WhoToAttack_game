@@ -39,7 +39,7 @@ function modifier_base:OnAttacked(params)
     end
     
     if attacker:IsAlive() then
-        print("try to kill " .. attacker:GetEntityIndex())
+        --print("try to kill " .. attacker:GetEntityIndex())
         attacker:Kill(nil, nil)
     end
 end

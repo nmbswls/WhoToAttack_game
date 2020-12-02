@@ -568,11 +568,36 @@
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
 	}
-
-	"player_base"
+    
+    "god_throne"
 	{
 		"BaseClass"	"npc_dota_creature"
-		"Ability1"	"passive_player_jidi"
+		"Ability1"	"is_god_throne"
+		"Ability2"	"throne_show_score"
+		"Ability3"	"throne_give_bonus"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/undying/undying_tower.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+	}
+    
+	"player_jidi"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"is_player_jidi"
 		"Ability2"	""
 		"Ability3"	""
 		"Ability4"	""
