@@ -293,6 +293,25 @@
 			}
 		}
 	}
+	"unit_feature_base"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"attribute_bonus"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_yinshen"
+			{
+				"TextureName"	"tiny_grow"
+				"IsBuff"	"1"
+			}
+			"modifier_yinshen_pre"
+			{
+				"TextureName"	"tiny_grow"
+				"IsBuff"	"1"
+			}
+		}
+	}
 
 	"build_test_01"
 	{
