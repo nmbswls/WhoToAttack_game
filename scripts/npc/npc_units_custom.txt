@@ -588,7 +588,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
-		"Model"	"models/heroes/undying/undying_tower.vmdl"
+		"Model"	"models/props_structures/tower_good.vmdl"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"

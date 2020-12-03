@@ -201,12 +201,12 @@ if GameRules.Definitions == nil then
     
     GameRules.Definitions.ThroneCnt = 6;
     GameRules.Definitions.ThronePos = {
-        [1] = Vector(127,-127,128),
-        [2] = Vector(127,-327,128),
-        [3] = Vector(127,-527,128),
-        [4] = Vector(127,-727,128),
-        [5] = Vector(127,-927,128),
-        [6] = Vector(127,-1127,128),
+        [1] = Vector(-511,127,128),
+        [2] = Vector(-511,-384,128),
+        [3] = Vector(767,127,128),
+        [4] = Vector(767,-384,128),
+        [5] = Vector(127,384,128),
+        [6] = Vector(127,-640,128),
     }
     
     GameRules.Definitions.MaxLevel = 30;
