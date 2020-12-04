@@ -3586,7 +3586,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -3670,7 +3670,7 @@
 			{
 				"Ability1"
 				{
-					"Name"	"lich_frost_nova"
+					"Name"	"clinkz_searing_arrows"
 				}
 			}
 			"AttachWearables"
@@ -3728,7 +3728,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -3812,7 +3812,7 @@
 			{
 				"Ability1"
 				{
-					"Name"	"lich_frost_nova"
+					"Name"	"clinkz_searing_arrows"
 				}
 			}
 			"AttachWearables"
@@ -7300,7 +7300,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -7378,12 +7378,9 @@
 			"DefaultState"	"Invade"
 			"OffensiveAbilities"
 			{
-				"Ability2"
+				"Ability1"
 				{
-					"Name"	"tidehunter_anchor_smash"
-					"AOE"	"1"
-					"Radius"	"375"
-					"MinimumTargets"	"1"
+					"Name"	"alchemist_acid_spray"
 				}
 			}
 			"AttachWearables"
@@ -7449,7 +7446,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -7527,12 +7524,9 @@
 			"DefaultState"	"Invade"
 			"OffensiveAbilities"
 			{
-				"Ability2"
+				"Ability1"
 				{
-					"Name"	"tidehunter_anchor_smash"
-					"AOE"	"1"
-					"Radius"	"375"
-					"MinimumTargets"	"1"
+					"Name"	"alchemist_acid_spray"
 				}
 			}
 			"AttachWearables"
@@ -7903,7 +7897,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"templar_assassin_refraction"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -7982,6 +7976,13 @@
 					"Support"	"0.0"
 				}
 			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"templar_assassin_refraction"
+				}
+			}
 			"AttachWearables"
 			{
 				"Wearable1"
@@ -8033,7 +8034,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"templar_assassin_refraction"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -8110,6 +8111,13 @@
 					"Aggression"	"100.0"
 					"Avoidance"	"0.0"
 					"Support"	"0.0"
+				}
+			}
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"templar_assassin_refraction"
 				}
 			}
 			"AttachWearables"
