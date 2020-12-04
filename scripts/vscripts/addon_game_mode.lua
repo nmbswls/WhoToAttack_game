@@ -1229,25 +1229,25 @@ function WhoToAttack:PickCard(team_id, card_idx)
     local hero = TeamId2Hero(team_id)
 
 	if not hero or not hero.now_hold_cards then
-        return
+        return false
     end
 	
     if card_idx <= 0 or card_idx > #hero.now_hold_cards then
-        return
+        return false
     end
     
     local unitName = hero.now_hold_cards[card_idx]
     
-    if not unitName then
+    if not unitName or unitName == "" then
         print("card " .. card_idx .. " is nil")
-        return
+        return false
     end
     
     self:UpgradeBuildSkill(hero, unitName)
     
     print("pick card  " .. unitName)
-    hero.now_hold_cards[card_idx] = nil
-
+    hero.now_hold_cards[card_idx] = ""
+    return true
 end
 
 
@@ -1600,6 +1600,7 @@ end
 
 
 function WhoToAttack:OnPlayerConnectFull(keys)
+	--to do 断线重连
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
 
 	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
@@ -1851,10 +1852,13 @@ function WhoToAttack:OnPickCard(keys)
     
     local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
     if not hero then
+	--不发送了 完全崩溃了
         return
     end
-    print(self)
-    GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    
+	local player = PlayerResource:GetPlayer(keys.PlayerID)
+    local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    CustomGameEventManager:Send_ServerToPlayer(player, "pick_card_rsp", {ret = ret, card_idx = tonumber(idx)+1});
     --PickCard();
 end
 
