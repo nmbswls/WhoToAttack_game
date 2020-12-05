@@ -69,6 +69,7 @@
 --base                 基地
 --is_open
 --now_hold_cards       当前从卡池中抽出 玩家预览选择的卡片
+--lock_draw            是否锁定所抽卡
 --build_skill_cnt      建造技能数量
 --build_skills         可建造单位技能
 ----skill_name level exp     代表一个建造技能
@@ -427,7 +428,13 @@ function WhoToAttack:StartAPrepareRound()
             if hero.base then
                 hero.base.turn_attacker = {}
             end
-            hero:SetMana(hero:GetMaxMana())
+            hero:SetMana(hero:GetMaxMana());
+	    
+	    --自动抽卡
+	    self:DrawCards(hero:GetTeam(), true);
+			
+	    --回合加经验
+	    hero:AddExperience(10,0,false,false);
         end
     end
     
@@ -1196,9 +1203,23 @@ function WhoToAttack:AddCardToPool(unit)
 	end
 end
 
-function WhoToAttack:DrawCards(team_id)
+function WhoToAttack:LockCard(team_id, locked)
+	local hero = TeamId2Hero(team_id)
+	if hero then
+		hero.lock_draw = locked
+	end
+end
+
+function WhoToAttack:DrawCards(team_id, auto_draw)
     
+    
+	
     local h = TeamId2Hero(team_id)
+	
+	--自动抽卡时 才会被锁定阻挡
+	if auto_draw and h.lock_draw then
+		return
+	ennd
 
 	if h.now_hold_cards ~= nil then
 		for _,card in pairs(h.now_hold_cards) do
