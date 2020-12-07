@@ -98,8 +98,24 @@ end
 require 'treasure'
 require 'throne'
 
+
+local sounds = {
+    "soundevents/game_sounds.vsndevts",
+    "soundevents/game_sounds_dungeon.vsndevts",
+    "soundevents/game_sounds_dungeon_enemies.vsndevts",
+    "soundevents/custom_soundboard_soundevents.vsndevts",
+    "soundevents/game_sounds_winter_2018.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts",
+    "soundevents/game_sounds_creeps.vsndevts",
+    "soundevents/game_sounds_ui.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts",
+}
+
 function Precache( context )
     print("Precache...")
+    for _, v in pairs(sounds) do
+        PrecacheResource("soundfile", v, context)
+    end
     -- local precache_list = require("precache")
 	-- for _, precache_item in pairs(precache_list) do
 		-- --预载precache.lua里的资源
@@ -1219,7 +1235,7 @@ function WhoToAttack:DrawCards(team_id, auto_draw)
 	--自动抽卡时 才会被锁定阻挡
 	if auto_draw and h.lock_draw then
 		return
-	ennd
+	end
 
 	if h.now_hold_cards ~= nil then
 		for _,card in pairs(h.now_hold_cards) do
