@@ -1895,7 +1895,7 @@ function WhoToAttack:OnPickCard(keys)
     
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
     local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
-    CustomGameEventManager:Send_ServerToPlayer(player, "pick_card_rsp", {ret = ret, card_idx = tonumber(idx)+1});
+    CustomGameEventManager:Send_ServerToPlayer(player, "pick_cards_rsp", {ret = ret, buy_idx = idx});
     --PickCard();
 end
 
