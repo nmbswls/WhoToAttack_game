@@ -23,7 +23,7 @@
 	"item_remove_ability"
 	{
 		"BaseClass"	"item_datadriven"
-		"AbilityTextureName"	"bom/ability_remove"
+		"AbilityTextureName"	"remove"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
@@ -75,6 +75,7 @@
 	"item_exp_book"
 	{
 		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"Tome_of_Knowledge_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
