@@ -4108,7 +4108,7 @@
 		"Model"	"models/heroes/techies/techies.vmdl"
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Techies"
-		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
@@ -4234,7 +4234,7 @@
 		"Model"	"models/heroes/techies/techies.vmdl"
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Techies"
-		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_life_stealer.vsndevts"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		"Level"	"3"
 		"ModelScale"	".8"
 		"AutoAttacksByDefault"	"0"
@@ -7302,7 +7302,7 @@
 		// Ability 1
 		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"alchemist_goblins_greed"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -7448,9 +7448,9 @@
 		// Ability 1
 		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"alchemist_goblins_greed"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"alchemist_chemical_rage"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9011,9 +9011,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"jakiro_dual_breath"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"jakiro_ice_path"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -9148,11 +9148,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"jakiro_dual_breath"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"jakiro_ice_path"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"jakiro_macropyre"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9293,9 +9293,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"nevermore_necromastery"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"nevermore_requiem"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -9432,11 +9432,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"nevermore_necromastery"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"nevermore_requiem"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"nevermore_dark_lord"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9571,9 +9571,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"axe_berserkers_call"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"axe_culling_blade"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -9709,11 +9709,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"axe_berserkers_call"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"axe_culling_blade"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"axe_counter_helix"
 		// Ability 4
 		"Ability4"	""
 		// Armor
