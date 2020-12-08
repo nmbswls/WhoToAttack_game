@@ -1,4 +1,5 @@
 "DOTAAbilities"
 {
     "item_ultimate_scepter" "REMOVE"
+    "item_enchanted_mango"  "REMOVE"
 }

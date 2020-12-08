@@ -1930,8 +1930,27 @@ function WhoToAttack:OnPickCard(keys)
     
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
     local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    
     CustomGameEventManager:Send_ServerToPlayer(player, "pick_cards_rsp", {ret = ret, buy_idx = idx});
     --PickCard();
+end
+
+function WhoToAttack:OnDrawCards(keys)
+    local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
+    if hero:GetGold() < 10 then
+        msg.bottom('money not enough', keys.PlayerID)
+        return
+    end
+    GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
+    
+    local player = PlayerResource:GetPlayer(keys.PlayerID)
+    CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
+end
+
+function WhoToAttack:OnLockCards(keys)
+    local locked = keys.locked
+    local player = PlayerResource:GetPlayer(keys.PlayerID)
+    CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = locked});
 end
 
 function WhoToAttack:OnConfirmRemoveAbility(keys)
@@ -2043,6 +2062,11 @@ function WhoToAttack:InitGameMode()
     
     CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
     CustomGameEventManager:RegisterListener("ConfirmAbilityRemove",Dynamic_Wrap(WhoToAttack, 'OnConfirmRemoveAbility'))
+    CustomGameEventManager:RegisterListener("lock_cards_req",Dynamic_Wrap(WhoToAttack, 'OnLockCards'))
+    CustomGameEventManager:RegisterListener("draw_cards_req",Dynamic_Wrap(WhoToAttack, 'OnDrawCards'))
+    
+    
+    
     
     --出生点初始化
     Timers:CreateTimer(1, function()
