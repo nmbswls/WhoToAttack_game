@@ -4,6 +4,7 @@
 	{
 		"item"      "item_remove_ability"
         "item"      "item_treasure_tier_1"
+        "item"      "item_exp_book"
 	}
 
 	"attributes"
