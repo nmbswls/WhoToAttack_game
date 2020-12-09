@@ -100,7 +100,7 @@
 			}
 		}
 	}
-    
+
 	"is_player_jidi"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -149,8 +149,8 @@
 			}
 		}
 	}
-    
-    "is_god_throne"
+
+	"is_god_throne"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -166,24 +166,22 @@
 			{
 				"Passive"	"1"
 				"IsHidden"	"1"
-                
-                "Properties"
+				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-100"
 					"MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT"	"-100"
 				}
-                
 				"States"
 				{
 					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
 			}
 		}
 	}
-    
-    "throne_give_bonus"
+
+	"throne_give_bonus"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"attribute_bonus"
@@ -232,11 +230,8 @@
 			}
 		}
 	}
-    
-    
-    
-    
-    "throne_show_score"
+
+	"throne_show_score"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"attribute_bonus"
@@ -293,6 +288,7 @@
 			}
 		}
 	}
+
 	"unit_feature_base"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -1644,7 +1640,7 @@
 		"AbilityDuration"	"1.5"
 	}
 
-	"enchantress_bunny_hop"
+	"enchantress_bunny_hop1"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
@@ -1672,28 +1668,28 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"hop_distance"	"700"
-				"RequiresScepter"	"1"
+				"RequiresScepter"	"0"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"hop_duration"	"0.5"
-				"RequiresScepter"	"1"
+				"RequiresScepter"	"0"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"hop_height"	"150"
-				"RequiresScepter"	"1"
+				"RequiresScepter"	"0"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_range"	"150"
-				"RequiresScepter"	"1"
+				"RequiresScepter"	"0"
 			}
 		}
-		"IsGrantedByScepter"	"1"
+		"IsGrantedByScepter"	"0"
 		"HasScepterUpgrade"	"1"
 		"AbilitySound"	"Hero_Enchantress.EnchantCreep"
 		"AbilityCastGestureSlot"	"DEFAULT"
@@ -1785,7 +1781,7 @@
 		"HasScepterUpgrade"	"1"
 	}
 
-	"abaddon_frostmourne1"
+	"abaddon_frostmourne"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -3207,873 +3203,825 @@
 		"AbilityModifierSupportBonus"	"10"
 	}
 
-"clinkz_searing_arrows"
+	"clinkz_searing_arrows"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5260"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilitySound"					"Hero_Clinkz.SearingArrows.Impact"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"625"
-		"AbilityCastPoint"				"0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.0 0.0"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastPoint"	"0.0 0.0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0.0 0.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"15"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"15"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"625"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5260"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"damage_bonus"					"22 34"
-				"LinkedSpecialBonus"			"special_bonus_unique_clinkz_1"
+				"var_type"	"FIELD_INTEGER"
+				"damage_bonus"	"22 34"
+				"LinkedSpecialBonus"	"special_bonus_unique_clinkz_1"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+		"AbilitySound"	"Hero_Clinkz.SearingArrows.Impact"
 	}
 
-"axe_berserkers_call"
+	"axe_berserkers_call"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5007"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Axe.Berserkers_Call"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"1"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4"
- 		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_1"
-		"AbilityCastGestureSlot"		"DEFAULT"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12 12"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.4"
+		"AbilityCastAnimation"	"ACT_DOTA_OVERRIDE_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"12 12"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"90 90"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5007"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300 500"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_2"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_armor"	"30 50"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.8 3.2"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		"AbilitySound"	"Hero_Axe.Berserkers_Call"
+		"AbilityCastGestureSlot"	"DEFAULT"
 		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0 0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"90 90"	
-		
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"300 500"
-				"LinkedSpecialBonus"		"special_bonus_unique_axe_2"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_armor"			"30 50"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"2.8 3.2"
-			}	
-		}
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"0 0"
 	}
 
-"axe_counter_helix"
+	"axe_counter_helix"
 	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"0.1"
 		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5009"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilitySound"					"Hero_Axe.CounterHelix"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"0.1"
-		
-	
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5009"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"80"
-				"LinkedSpecialBonus"		"special_bonus_unique_axe_4"
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"80"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_4"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"275"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"275"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"trigger_chance"			"25"
+				"var_type"	"FIELD_INTEGER"
+				"trigger_chance"	"25"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"cooldown"					"0.1"
+				"var_type"	"FIELD_FLOAT"
+				"cooldown"	"0.1"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+		"AbilitySound"	"Hero_Axe.CounterHelix"
 	}
 
-"axe_culling_blade"
+	"axe_culling_blade"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5010"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"		
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"2"
-
-		"AbilitySound"					"Hero_Axe.Culling_Blade_Success"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"65.0 55.0"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"65.0 55.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"0 0"		
-		
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0 0"
 		// Cast Range
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"150"
-		
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"150"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5010"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"kill_threshold"			"100 200"
-				"LinkedSpecialBonus"		"special_bonus_unique_axe_5"
+				"var_type"	"FIELD_INTEGER"
+				"kill_threshold"	"100 200"
+				"LinkedSpecialBonus"	"special_bonus_unique_axe_5"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100 200"
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100 200"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"speed_bonus"				"30"
+				"var_type"	"FIELD_INTEGER"
+				"speed_bonus"	"30"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"atk_speed_bonus"				"30"
+				"var_type"	"FIELD_INTEGER"
+				"atk_speed_bonus"	"30"
 			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"speed_duration"			"6"
+				"var_type"	"FIELD_FLOAT"
+				"speed_duration"	"6"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"speed_aoe"					"900"
+				"var_type"	"FIELD_INTEGER"
+				"speed_aoe"	"900"
 			}
 		}
-	}	
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"AbilitySound"	"Hero_Axe.Culling_Blade_Success"
+	}
 
-"nevermore_necromastery"
+	"nevermore_necromastery"
 	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5062"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"OnCastbar"					"0"
-		"HasScepterUpgrade"			"1"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_4"
-		
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5062"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"necromastery_damage_per_soul"	"20 20"
 				"CalculateSpellDamageTooltip"	"0"
-				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_1"
+				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_1"
 			}
 			"02"
 			{
-				"var_type"						"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"necromastery_max_souls"	"15 20"
-				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_4"
+				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_4"
 			}
 			"03"
 			{
-				"var_type"						"FIELD_FLOAT"
-				"necromastery_soul_release"		"0.5"
+				"var_type"	"FIELD_FLOAT"
+				"necromastery_soul_release"	"0.5"
 			}
 			"04"
 			{
-				"var_type"						"FIELD_INTEGER"
-				"necromastery_max_souls_scepter" "25"
-				"RequiresScepter"			"1"
-			}			
+				"var_type"	"FIELD_INTEGER"
+				"necromastery_max_souls_scepter"	"25"
+				"RequiresScepter"	"1"
+			}
 		}
+		"OnCastbar"	"0"
+		"HasScepterUpgrade"	"1"
 	}
 
-"nevermore_requiem"
+	"nevermore_requiem"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5064"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"2"
-		"HasScepterUpgrade"			"1"
-		"AbilitySound"					"Hero_Nevermore.RequiemOfSouls"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.8 0.8"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"50 50"
-
-		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"80 100"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.8 0.8"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"50 50"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 100"
-
-		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.5"	// Primarily about the damage
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100 100"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5064"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"			"FIELD_INTEGER"
-				"requiem_radius"	"1000"		
+				"var_type"	"FIELD_INTEGER"
+				"requiem_radius"	"1000"
 			}
 			"02"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_reduction_ms"	"-25"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"requiem_slow_duration"	"0.8"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"requiem_slow_duration_max"	"2.4"
 			}
 			"05"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_reduction_radius"	"700 700"
 			}
 			"06"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_soul_conversion"	"1"
 			}
 			"07"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_line_width_start"	"125"
 			}
 			"08"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_line_width_end"	"350"
 			}
 			"09"
 			{
-				"var_type"			"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"requiem_line_speed"	"700 700"
 			}
 			"10"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"soul_death_release"	"0.5"
-			}		
+			}
 			"11"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"requiem_heal_pct_scepter"	"100"
-				"RequiresScepter"			"1"
-			}	
+				"RequiresScepter"	"1"
+			}
 			"12"
 			{
-				"var_type"					"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"requiem_damage_pct_scepter"	"40"
-				"RequiresScepter"			"1"
+				"RequiresScepter"	"1"
 				"CalculateSpellDamageTooltip"	"0"
-			}		
-		}
-	}
-
-"nevermore_dark_lord"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5063"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"OnCastbar"					"0"
-		
-		
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_5"
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"presence_armor_reduction"		"-7"
-				"LinkedSpecialBonus"			"special_bonus_unique_nevermore_5"
-			}
-			"02"
-			{
-				"var_type"						"FIELD_INTEGER"
-				"presence_radius"				"1200"
 			}
 		}
-	}
-
-"jakiro_dual_breath"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5297"								// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Jakiro.DualBreath"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"900"
-		"AbilityCastPoint"				"0.15"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"10.0"
-		"AbilityDuration"				"5.0"
-
-		
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"HasScepterUpgrade"	"1"
+		"AbilitySound"	"Hero_Nevermore.RequiemOfSouls"
 		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0"
-		
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"80 100"
 		// Stats
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityModifierSupportValue"	"0.25"	// Applies two modifiers 
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
+		// Primarily about the damage
+		"AbilityModifierSupportValue"	"0.5"
+	}
+
+	"nevermore_dark_lord"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_5"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1200"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5063"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"start_radius"			"225"
+				"var_type"	"FIELD_INTEGER"
+				"presence_armor_reduction"	"-7"
+				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_5"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"end_radius"			"275"
+				"var_type"	"FIELD_INTEGER"
+				"presence_radius"	"1200"
+			}
+		}
+		"OnCastbar"	"0"
+	}
+
+	"jakiro_dual_breath"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.15"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"50"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"900"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5297"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"start_radius"	"225"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"end_radius"	"275"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"range"					"900"
+				"var_type"	"FIELD_INTEGER"
+				"range"	"900"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_5"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed"					"1050"
+				"var_type"	"FIELD_INTEGER"
+				"speed"	"1050"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"fire_delay"			"0.3"
+				"var_type"	"FIELD_FLOAT"
+				"fire_delay"	"0.3"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"burn_damage"			"60"
+				"var_type"	"FIELD_INTEGER"
+				"burn_damage"	"60"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_2"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"slow_movement_speed_pct"	"-28"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"slow_attack_speed_pct"		"-28"
+				"var_type"	"FIELD_INTEGER"
+				"slow_attack_speed_pct"	"-28"
 			}
 			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"speed_fire"			"1050"
+				"var_type"	"FIELD_INTEGER"
+				"speed_fire"	"1050"
 			}
-		}		
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
-	}
-
-
-"jakiro_ice_path"
-	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5298"									// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
-		"FightRecapLevel"				"1"
-		"AbilitySound"					"Hero_Jakiro.IcePath"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1200"
-		"AbilityCastPoint"				"0.2"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12.0"
-
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"AbilitySound"	"Hero_Jakiro.DualBreath"
+		"AbilityDuration"	"5.0"
 		// Damage.
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"					"0"
-
-		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"		
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"path_delay"				"0.5"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"2.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_jakiro"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"path_radius"				"150"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"50"
-			}
-		}		
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"0"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		// Applies two modifiers
+		"AbilityModifierSupportValue"	"0.25"
 	}
 
-"jakiro_macropyre"
+	"jakiro_ice_path"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5300"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"FightRecapLevel"				"2"
-		"AbilitySound"					"Hero_Jakiro.Macropyre.Cast"
-
-		"HasScepterUpgrade"			"1"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"1400"
-		"AbilityCastPoint"				"0.3"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"12.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"20"		
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"50"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1200"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5298"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage"					"100"
+				"var_type"	"FIELD_FLOAT"
+				"path_delay"	"0.5"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range"				"1400"					
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"2.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_jakiro"
 			}
-			
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"path_radius"				"260"
+				"var_type"	"FIELD_INTEGER"
+				"path_radius"	"150"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"10"
-			}	
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"50"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
+		"AbilitySound"	"Hero_Jakiro.IcePath"
+		// Damage.
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"	"0"
+	}
+
+	"jakiro_macropyre"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"60"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"20"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1400"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5300"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"100"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cast_range"	"1400"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"path_radius"	"260"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
 			"05"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"burn_interval"				"0.5"
+				"var_type"	"FIELD_FLOAT"
+				"burn_interval"	"0.5"
 			}
 			"06"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_scepter"			"125"
-				"RequiresScepter"		"1"
+				"var_type"	"FIELD_INTEGER"
+				"damage_scepter"	"125"
+				"RequiresScepter"	"1"
 			}
 			"07"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"cast_range_scepter"		"1800"
-				"RequiresScepter"		"1"
+				"var_type"	"FIELD_INTEGER"
+				"cast_range_scepter"	"1800"
+				"RequiresScepter"	"1"
 			}
 			"08"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration_scepter"			"30"
-				"RequiresScepter"		"1"
+				"var_type"	"FIELD_INTEGER"
+				"duration_scepter"	"30"
+				"RequiresScepter"	"1"
 			}
 			"09"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"linger_duration"			"2"
+				"var_type"	"FIELD_FLOAT"
+				"linger_duration"	"2"
 			}
-			
-		}	
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"AbilitySound"	"Hero_Jakiro.Macropyre.Cast"
+		"HasScepterUpgrade"	"1"
 	}
 
-"alchemist_acid_spray"
+	"alchemist_acid_spray"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5365"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.2"
-		"AbilityCastRange"				"900"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"22.0"
-		
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"22.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		"AbilityCastRange"	"900"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5365"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"radius"				"475"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"475"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"8"
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"8"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"damage"				"10"
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"10"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"armor_reduction"		"5"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_5"
+				"var_type"	"FIELD_INTEGER"
+				"armor_reduction"	"5"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_5"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"tick_rate"				"1.0"
+				"var_type"	"FIELD_FLOAT"
+				"tick_rate"	"1.0"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 
-"alchemist_goblins_greed"
+	"alchemist_goblins_greed"
 	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5368"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5368"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"duration"				"40"
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"40"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_gold"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_gold"	"1"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_bonus_gold"		"0"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_bonus_gold"	"0"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_gold_cap"		"1"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_gold_cap"	"1"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bounty_multiplier"		"1.0"
+				"var_type"	"FIELD_FLOAT"
+				"bounty_multiplier"	"1.0"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 	}
 
-"alchemist_chemical_rage"
+	"alchemist_chemical_rage"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"5369"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"FightRecapLevel"				"2"
-		"AbilitySound"					"Hero_Alchemist.ChemicalRage.Cast"
-
-		"HasScepterUpgrade"			"1"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"	"2"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0"
-		"AbilityCastAnimation"			"ACT_INVALID"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"60.0"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.0"
+		"AbilityCastAnimation"	"ACT_INVALID"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"60.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"10"
-
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"10"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5369"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"duration"				"25.0"
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"25.0"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_FLOAT"
+				"var_type"	"FIELD_FLOAT"
 				"transformation_time"	"0.35"
 			}
 			"03"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"base_attack_time"		"1.0"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_3"
+				"var_type"	"FIELD_FLOAT"
+				"base_attack_time"	"1.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_3"
 			}
 			"04"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_health"			"0"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"0"
 			}
 			"05"
 			{
-				"var_type"				"FIELD_INTEGER"
+				"var_type"	"FIELD_INTEGER"
 				"bonus_health_regen"	"40"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_4"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_4"
 			}
 			"06"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"bonus_mana_regen"		"0"
+				"var_type"	"FIELD_FLOAT"
+				"bonus_mana_regen"	"0"
 			}
 			"07"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"bonus_movespeed"		"50"
-				"LinkedSpecialBonus"		"special_bonus_unique_alchemist_6"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_movespeed"	"50"
+				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_6"
 			}
 			"08"
 			{
-				"var_type"				"FIELD_FLOAT"
-				"scepter_gold_damage"		"2"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_FLOAT"
+				"scepter_gold_damage"	"2"
+				"RequiresScepter"	"1"
 			}
 			"09"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_bonus_damage"		"30"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"scepter_bonus_damage"	"30"
+				"RequiresScepter"	"1"
 			}
 			"10"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"scepter_spell_amp"		"6"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"scepter_spell_amp"	"6"
+				"RequiresScepter"	"1"
 			}
 		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		"AbilitySound"	"Hero_Alchemist.ChemicalRage.Cast"
+		"HasScepterUpgrade"	"1"
 	}
 
 	"templar_assassin_refraction"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5194"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilitySound"					"Hero_TemplarAssassin.Refraction"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"17.0 17.0"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.0 0.0"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"17.0 17.0"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-		
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5194"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"instances"					"5 6"
-				"LinkedSpecialBonus"		"special_bonus_unique_templar_assassin"
+				"var_type"	"FIELD_INTEGER"
+				"instances"	"5 6"
+				"LinkedSpecialBonus"	"special_bonus_unique_templar_assassin"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"bonus_damage"				"40 60"
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"40 60"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_threshold"			"5 5"
+				"var_type"	"FIELD_INTEGER"
+				"damage_threshold"	"5 5"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"17.0 17.0"
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"17.0 17.0"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		"AbilitySound"	"Hero_TemplarAssassin.Refraction"
 	}
-
-
 
 	"lone_druid_spirit_bear_entangle"
 	{
@@ -5186,6 +5134,96 @@
 		"Modifiers"
 		{
 			"modifier_test_01"	{}
+		}
+	}
+
+"enchantress_untouchable"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5267"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+
+		"HasScepterUpgrade"			"1"
+		"AbilityDraftUltScepterAbility"		"enchantress_bunny_hop"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_attack_speed"		"-100 -140 -180"
+				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_duration"			"4"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	}
+
+"enchantress_bunny_hop"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"320"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"						"1"
+		"FightRecapLevel"				"1"
+		"IsGrantedByScepter"			"1"
+		"HasScepterUpgrade"				"1"
+		"AbilitySound"					"Hero_Enchantress.EnchantCreep"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCastGestureSlot"		"DEFAULT"
+		
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"3"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hop_distance"				"500"
+				"RequiresScepter"			"1"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"hop_duration"		"0.4"
+				"RequiresScepter"			"1"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"hop_height"		"150"
+				"RequiresScepter"			"1"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"attack_range"				"150"
+				"RequiresScepter"			"1"
+			}
 		}
 	}
 }

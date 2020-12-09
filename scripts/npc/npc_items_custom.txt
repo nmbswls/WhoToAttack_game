@@ -71,7 +71,7 @@
 			}
 		}
 	}
-	
+
 	"item_exp_book"
 	{
 		"BaseClass"	"item_datadriven"
@@ -92,5 +92,436 @@
 				"Function"	"OnUse"
 			}
 		}
+	}
+
+	"item_sphere"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"60.0"
+		"AbilityCastRange"	"700"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"123"
+		"ItemQuality"	"epic"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"0"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemShopTags"	"regen_health;regen_mana;str;agi;int;hard_to_tag"
+		"ItemAliases"	"ls;linken's sphere"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_all_stats"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_health_regen"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_mana_regen"	"0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"block_cooldown"	"60.0"
+			}
+		}
+		"ActiveDescriptionLine"	"2"
+		"ShouldBeSuggested"	"1"
+	}
+
+	"item_glimmer_cape"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"FightRecapLevel"	"1"
+		"AbilityCooldown"	"60"
+		"AbilityManaCost"	"0"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"550"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"254"
+		"ItemQuality"	"rare"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"0"
+		"ItemAliases"	"glimmer cape"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_magical_armor"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_delay"	"0.6"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"active_magical_armor"	"35"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"30"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"building_duration_limit"	"180"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"ShouldBeSuggested"	"1"
+	}
+
+	"item_philosophers_stone"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"290"
+		"Model"	"models/props_gameplay/neutral_box.vmdl"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"0"
+		"ItemPurchasable"	"1"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_gpm"	"30"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_mana"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"0"
+			}
+		}
+		"ItemIsNeutralDrop"	"0"
+	}
+
+	"item_pipe"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"FightRecapLevel"	"2"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"60.0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"800"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"90"
+		"ItemQuality"	"rare"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"0"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAlertable"	"1"
+		"ItemShopTags"	"regen_health;boost_magic_resist"
+		"ItemAliases"	"pipe of insight"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"health_regen"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"magic_resistance"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"barrier_debuff_duration"	"50.0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"tooltip_resist"	"0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"aura_health_regen"	"0"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"magic_resistance_aura"	"0"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"aura_radius"	"0"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"barrier_block"	"100"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"barrier_duration"	"60"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"barrier_radius"	"800"
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_all_stats"	"0"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"barrier_block_creep"	"100"
+			}
+		}
+		"ShouldBeSuggested"	"1"
+	}
+
+	"item_crimson_guard"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"60.0"
+		"AbilityCastRange"	"800"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"242"
+		"ItemQuality"	"epic"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"ItemCost"	"0"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemAlertable"	"1"
+		"ItemShopTags"	"armor;boost_armor;regen_health;block;health_pool"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_health"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_health_regen"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"bonus_armor"	"0"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_damage_melee"	"0"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_damage_ranged"	"0"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_chance"	"0"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"60"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_aoe_radius"	"800"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_damage_melee_active"	"20"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_damage_ranged_active"	"15"
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"block_chance_active"	"100"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"tooltip_reapply_time"	"40"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"ShouldBeSuggested"	"1"
+	}
+
+	"item_mjollnir"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"60"
+		// Item Info
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Stats
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"800"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"158"
+		"ItemQuality"	"artifact"
+		"ItemCost"	"0"
+		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemShopTags"	"damage;attack_speed;unique"
+		"ItemAliases"	"mjollnir"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"0"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"static_duration"	"60"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_chance"	"20"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_strikes"	"4"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_damage"	"200"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_primary_radius"	"600"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_seconary_radius"	"900"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"static_radius"	"900"
+			}
+			"10"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"static_cooldown"	"1.0"
+			}
+			"11"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chain_chance"	"0"
+			}
+			"12"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chain_damage"	"0"
+			}
+			"13"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chain_strikes"	"0"
+			}
+			"14"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"chain_radius"	"0"
+			}
+			"15"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chain_delay"	"0"
+			}
+			"16"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"chain_cooldown"	"0"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"ShouldBeSuggested"	"1"
 	}
 }
