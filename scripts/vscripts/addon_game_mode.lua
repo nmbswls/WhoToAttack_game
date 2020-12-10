@@ -1302,10 +1302,13 @@ function WhoToAttack:DrawCards(team_id, auto_draw)
     local pid = GameRules:GetGameModeEntity().team2playerid[team_id]
     msg.bottom('draw card '..cards, pid)
 
+    for _,n in pairs(now_hold_cards) do
+        print("c: " .. n)
+    end
     print("total: " .. cards)
     
     CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
-            hand_cards = cards,
+            hand_cards = now_hold_cards,
         })
     
 end
@@ -1331,6 +1334,19 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
     
+    local cost = GameRules.Definitions.Uname2Cost[unitName];
+    
+    if not cost then
+        print("card " .. card_idx .. " has no cost config.")
+        return false;
+    end
+    
+    if hero:GetGold() < cost then
+        msg.bottom('no enough money', pid, 1)
+    end
+    
+    hero:ModifyGold(-cost, false, 0);
+    
     local ret = self:UpgradeBuildSkill(hero, unitName)
     
     if not ret then
@@ -1354,7 +1370,7 @@ function WhoToAttack:RandomNDrawNew(team_id,n)
 		if ret ~= nil then
 			ret_list_str = ret_list_str..ret..','
 			true_count = true_count + 1
-			ret_list_table[true_count] = ret
+            table.insert(ret_list_table,ret);
 		end
 	end
 	return ret_list_str, ret_list_table
@@ -1694,17 +1710,19 @@ end
 function WhoToAttack:OnPlayerConnectFull(keys)
 	--to do 断线重连
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
-
+    
+    print("chong lian la ");
+    
 	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
 	GameRules:GetGameModeEntity().steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
 	GameRules:GetGameModeEntity().steamid2name[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = tostring(PlayerResource:GetPlayerName(keys.PlayerID))
 	GameRules:GetGameModeEntity().userid2player[keys.userid] = keys.index + 1
 
 	GameRules:GetGameModeEntity().connect_state[keys.PlayerID] = true
-	
+	local hero = PlayerId2Hero(keys.PlayerID)
 	--???
 	if GameRules:GetGameModeEntity().isConnected[keys.index + 1] == true then
-		local hero = PlayerId2Hero(keys.PlayerID)
+		
 		if hero ~= nil then
 			--重连 要重新推ui信息
 			hero.isDisconnected = false
@@ -1717,20 +1735,11 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 	
 	Timers:CreateTimer(RandomFloat(0.1,0.5),function()
 			local team_id = GameRules:GetGameModeEntity().playerid2team[keys.PlayerID]
-			local hero = PlayerId2Hero(keys.PlayerID)
--- 			CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
--- 			    hand_cards = "",
--- 			})
--- 			local cardstr = ''
--- 			for _,card in pairs(hero.curr_chess_table) do
--- 				cardstr = cardstr..card..','
--- 			end
--- 			CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(),"show_draw_card",{
--- 				key = GetClientKey(hero:GetTeam()),
--- 				cards = cardstr,
--- 				curr_money = hero:GetMana(),
--- 				key = GetClientKey(hero:GetTeam()),
--- 			})
+			if hero ~= nil then
+                CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
+                    hand_cards = hero.now_hold_cards,
+                })
+            end
 		end)
 end
 
