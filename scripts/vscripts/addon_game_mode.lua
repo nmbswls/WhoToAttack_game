@@ -108,6 +108,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts",
     "soundevents/game_sounds_creeps.vsndevts",
     "soundevents/game_sounds_ui.vsndevts",
+    "soundevents/game_sounds_items.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_drowranger.vsndevts",
@@ -1713,6 +1714,24 @@ function WhoToAttack:OnPlayerConnectFull(keys)
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     player:SetSelectedHero("builder")
+	
+	Timers:CreateTimer(RandomFloat(0.1,0.5),function()
+			local team_id = GameRules:GetGameModeEntity().playerid2team[keys.PlayerID]
+			local hero = PlayerId2Hero(keys.PlayerID)
+-- 			CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
+-- 			    hand_cards = "",
+-- 			})
+-- 			local cardstr = ''
+-- 			for _,card in pairs(hero.curr_chess_table) do
+-- 				cardstr = cardstr..card..','
+-- 			end
+-- 			CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(),"show_draw_card",{
+-- 				key = GetClientKey(hero:GetTeam()),
+-- 				cards = cardstr,
+-- 				curr_money = hero:GetMana(),
+-- 				key = GetClientKey(hero:GetTeam()),
+-- 			})
+		end)
 end
 
 function WhoToAttack:OnPlayerDisconnect(keys)

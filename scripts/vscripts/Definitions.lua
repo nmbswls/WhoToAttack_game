@@ -176,27 +176,33 @@ if GameRules.Definitions == nil then
         [35] = "brwan_axe",
         [36] = "nature_treant",
     }
-    GameRules.Definitions.ChessPoolSize = 6
+    GameRules.Definitions.ChessPoolSize = 8
     
     
-    GameRules.Definitions.MaxCost = 6
+    GameRules.Definitions.MaxCost = 8
     
     GameRules.Definitions.CardListByCost = {
         [1] = {"evil_skeleton","nature_ursa","hidden_drow","brwan_tusk","wizard_zeus","vibrant_warlock"},
         [2] = {"vibrant_dk","wizard_lich","nature_wolf","hidden_riki","evil_clinkz","brwan_ogre"},
         [3] = {"hidden_ls","nature_viper","vibrant_techies","evil_underlord","wizard_leshrac","brwan_siege"},
-        [4] = {"hidden_pa","vibrant_earthshaker","wizard_jakiro","evil_sf","brwan_axe","nature_treant"},
+        [4] = {},
         [5] = {"brwan_centaur","nature_enchantress","wizard_furion","evil_abaddon","vibrant_huskar"},
         [6] = {"nature_bear","brwan_tidehunter","vibrant_alchemist","evil_dazzle","hidden_ta","wizard_lion"},
+[7] = {},
+    
+[8] = {"hidden_pa","vibrant_earthshaker","wizard_jakiro","evil_sf","brwan_axe","nature_treant"},
+    
     }
     
     GameRules.Definitions.CardInitCntByCost = {
         [1] = 4,
         [2] = 4,
-        [3] = 3,
+        [3] = 4,
         [4] = 3,
-        [5] = 2,
-        [6] = 2,
+        [5] = 3,
+        [6] = 3,
+        [7] = 2,
+        [8] = 2,
     }
     
     GameRules.Definitions.ThroneCnt = 6;
@@ -246,14 +252,36 @@ if GameRules.Definitions == nil then
 	
     
     GameRules.Definitions.DrawLevelGailv = {
-        [1] = {100,100,100, 100, 100,100},
-        [2] = {90,100,100, 100, 100,100},
-        [3] = {30,50,70, 80, 90,100},
-        [4] = {30,50,70, 80, 90,100},
-        [5] = {30,50,70, 80, 90,100},
-        [6] = {30,50,70, 80, 90,100},
-        [7] = {30,50,70, 80, 90,100},
-        [8] = {30,50,70, 80, 90,100},
+        [1] = {100,100,100, 100, 100,100,100,100},
+        [2] = {90,100,100, 100, 100,100,100,100},
+        [3] = {85,100,100, 100, 100,100,100,100},
+        [4] = {80,100,100, 100, 100,100,100,100},
+        [5] = {70,90,100, 100, 100,100,100,100},
+        [6] = {65,85,100, 100, 100,100,100,100},
+        [7] = {55,80,100, 100, 100,100,100,100},
+        [8] = {45,75,100, 100, 100,100,100,100},
+        [9] = {40,75,100, 100, 100,100,100,100},
+        [10] = {35,70,95, 95, 100,100,100,100},
+        [11] = {30,65,90, 90, 100,100,100,100},
+        [12] = {20,60,85, 85, 100,100,100,100},
+        [13] = {20,55,82, 82, 100,100,100,100},
+        [14] = {15,50,80, 80, 100,100,100,100},
+        [15] = {15,45,75, 75, 95,100,100,100},
+        [16] = {13,42,73, 73, 93,100,100,100},
+        [17] = {10,37,70, 70, 90,100,100,100},
+        [18] = {9,34,69, 69, 90,100,100,100},
+        [19] = {8,31,64, 64, 88,100,100,100},
+        [20] = {7,28,61, 61, 86,99,99,100},
+        [21] = {6,24,54, 54, 81,98,98,100},
+        [22] = {5,20,48, 48, 78,97,97,100},
+        [23] = {5,18,44, 44, 72,95,95,100},
+        [24] = {5,15,40, 40, 65,92,92,100},
+        [25] = {5,15,39, 39, 63,90,90,100},
+        [26] = {5,15,38, 38, 62,88,88,100},
+        [27] = {5,15,37, 37, 61,86,86,100},
+        [28] = {5,15,35, 35, 59,84,84,100},
+        [29] = {4,14,34, 34, 57,82,82,100},
+        [30] = {3,12,32, 32, 55,80,80,100},
     }
     
     GameRules.Definitions.Uname2Cost = {
@@ -286,12 +314,12 @@ if GameRules.Definitions == nil then
         evil_dazzle = 6,
         hidden_ta = 6,
         wizard_lion = 6,
-        hidden_pa = 4,
-        vibrant_earthshaker = 4,
-        wizard_jakiro = 4,
-        evil_sf = 4,
-        brwan_axe = 4,
-        nature_treant = 4,
+        hidden_pa = 8,
+        vibrant_earthshaker = 8,
+        wizard_jakiro = 8,
+        evil_sf = 8,
+        brwan_axe = 8,
+        nature_treant = 8,
     }
     
     GameRules.Definitions.UnitAbilityMap = {

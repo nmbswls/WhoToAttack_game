@@ -568,8 +568,8 @@
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
 	}
-    
-    "god_throne"
+
+	"god_throne"
 	{
 		"BaseClass"	"npc_dota_creature"
 		"Ability1"	"is_god_throne"
@@ -593,7 +593,7 @@
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}
-    
+
 	"player_jidi"
 	{
 		"BaseClass"	"npc_dota_creature"
@@ -1339,6 +1339,7 @@
 		"Model"	"models/heroes/tuskarr/tuskarr.vmdl"
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Tusk"
+		"PickSound"	"tusk_tusk_spawn_01"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_tusk.vsndevts"
 		"Level"	"1"
 		"ModelScale"	".35"
@@ -5551,7 +5552,7 @@
 		// Ability 2
 		"Ability2"	"enchantress_bunny_hop"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"enchantress_untouchable"
 		// Ability 4
 		"Ability4"	""
 		// Armor
