@@ -1778,7 +1778,7 @@ function WhoToAttack:OnEntityKilled(keys)
 	if u:GetUnitName() == "invisible_unit" then
 		return
 	end
-	print("OnEntityKilled")
+    
     if self.stage == 1 or self.stage == 4 then
         --只有游戏中单位被杀才有反应
         return
