@@ -638,7 +638,7 @@ function WhoToAttack:CanThrow()
         return false
     end
     
-    if self.stage == 3 then
+    if self.stage == 2 or self.stage == 3 then
         return true
     end
     
@@ -1302,10 +1302,10 @@ function WhoToAttack:DrawCards(team_id, auto_draw)
     local pid = GameRules:GetGameModeEntity().team2playerid[team_id]
     msg.bottom('draw card '..cards, pid)
 
-    for _,n in pairs(now_hold_cards) do
-        print("c: " .. n)
-    end
-    print("total: " .. cards)
+    -- for _,n in pairs(now_hold_cards) do
+        -- print("c: " .. n)
+    -- end
+    -- print("total: " .. cards)
     
     CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
             hand_cards = now_hold_cards,
@@ -1765,6 +1765,9 @@ function WhoToAttack:OnPlayerDisconnect(keys)
 end
 
 function WhoToAttack:OnEntityKilled(keys)
+    
+    
+
 	local u = EntIndexToHScript(keys.entindex_killed)
 	if u == nil then
 		return
@@ -1775,37 +1778,31 @@ function WhoToAttack:OnEntityKilled(keys)
 	if u:GetUnitName() == "invisible_unit" then
 		return
 	end
-	
+	print("OnEntityKilled")
     if self.stage == 1 or self.stage == 4 then
         --只有游戏中单位被杀才有反应
         return
     end
-    
-	
-    
-    --发钱
-    
-		--战斗阶段
-		--local xx = Vector2X(u:GetAbsOrigin(),u.at_team_id or u.team_id)
-		--local yy = Vector2Y(u:GetAbsOrigin(),u.at_team_id or u.team_id)
-		--从目标战场中移除
-		--RemoveFromToBeDestroyList(u)
-	
 	
 	--杀人者
 	if keys.entindex_attacker == nil then
 		return
 	end
-	
 	local attacker = EntIndexToHScript(keys.entindex_attacker)
 	attacker = attacker.damage_owner or attacker
     
     if attacker == nil then
         return
     end
+    
     local attacker_team = attacker:GetTeam()
     
     print("team " .. attacker_team .. " add money")
+    
+    local hero1 = GameRules:GetGameModeEntity().teamid2hero[attacker_team];
+    if hero1 then
+        hero1:ModifyGold(2, true, 0);
+    end
     
 	--亡语
 	--DeathRattle(u,attacker)
@@ -1818,15 +1815,6 @@ function WhoToAttack:OnEntityKilled(keys)
 		-- level = u:GetLevel(),
 	-- })
 
-	if attacker == nil then
-		return
-	end
-	if string.find(attacker:GetUnitName(),'pve') ~= nil then
-		return
-	end
-	if string.find(u:GetUnitName(),'pve') ~= nil then
-		return
-	end
 	
 	--attacker 获取teamid
 	--给加钱
