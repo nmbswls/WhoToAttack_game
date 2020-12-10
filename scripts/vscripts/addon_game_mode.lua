@@ -876,10 +876,13 @@ function WhoToAttack:CheckBuildSkill(hero, skillName)
 end
 
 function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
+
+    local pid = hero:GetPlayerID();
     print("try upgrade " .. buildUnit)
     if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
         print("too many build skills");
-        return
+        msg.bottom('技能栏满', pid, 1)
+        return false
     end
     
     local completeSkillName = GetBuildSkillName(buildUnit)
@@ -903,7 +906,8 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
         ability = AddBuildSkill(hero, completeSkillName)
     else 
         if hero.build_skills[skillIdx].level == 10 then
-            return;
+            msg.bottom('召唤升到满级', pid, 1)
+            return false;
         end
         --print("try find exists skill")
         hero.build_skills[skillIdx].level = hero.build_skills[skillIdx].level + 1
@@ -930,6 +934,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
         --if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
 	end
     
+    return true
 end
 
 
@@ -942,9 +947,17 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
         return
     end
     
+    local sname = hero.build_skills[skillIdx].skill_name;
+    local slevel = hero.build_skills[skillIdx].level;
+    local unitName = string.sub(sname, 7)
     
+    for i=1,slevel do
+        self:AddCardToPool(unitName);
+    end
     
+    print("DelBuildSkill " .. sname .. " " .. slevel)
     RemoveAbility(hero, skillIdx)
+    
     table.remove(hero.build_skills, skillIdx)
     for i=0,15 do
         local aaa = hero:GetAbilityByIndex(i)
@@ -1242,16 +1255,17 @@ end
 
 function WhoToAttack:AddCardToPool(unit)
 
-	local maxcount = 3
+	--local maxcount = 3
 
     local cost = GameRules.Definitions.Uname2Cost[unit];
     if cost == nil then
         print("cost info lost: " .. unit)
         return
     end
-	for count = 1,maxcount do
+    
+	--for count = 1,maxcount do
         table.insert(self.card_pool[cost], unit)
-	end
+	--end
 end
 
 function WhoToAttack:LockCard(team_id, locked)
@@ -1299,6 +1313,7 @@ end
 function WhoToAttack:PickCard(team_id, card_idx)
     
     local hero = TeamId2Hero(team_id)
+    local pid = GameRules:GetGameModeEntity().team2playerid[team_id]
 
 	if not hero or not hero.now_hold_cards then
         return false
@@ -1315,7 +1330,11 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
     
-    self:UpgradeBuildSkill(hero, unitName)
+    local ret = self:UpgradeBuildSkill(hero, unitName)
+    
+    if not ret then
+        return false
+    end
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
@@ -1941,7 +1960,8 @@ function WhoToAttack:OnDrawCards(keys)
         msg.bottom('money not enough', keys.PlayerID)
         return
     end
-    GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
+    local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
+    
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
