@@ -1695,6 +1695,24 @@ function WhoToAttack:OnPlayerConnectFull(keys)
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     player:SetSelectedHero("builder")
+	
+	Timers:CreateTimer(RandomFloat(0.1,0.5),function()
+			local team_id = GameRules:GetGameModeEntity().playerid2team[keys.PlayerID]
+			local hero = PlayerId2Hero(keys.PlayerID)
+-- 			CustomGameEventManager:Send_ServerToTeam(team_id,"show_cards",{
+-- 			    hand_cards = "",
+-- 			})
+-- 			local cardstr = ''
+-- 			for _,card in pairs(hero.curr_chess_table) do
+-- 				cardstr = cardstr..card..','
+-- 			end
+-- 			CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(),"show_draw_card",{
+-- 				key = GetClientKey(hero:GetTeam()),
+-- 				cards = cardstr,
+-- 				curr_money = hero:GetMana(),
+-- 				key = GetClientKey(hero:GetTeam()),
+-- 			})
+		end)
 end
 
 function WhoToAttack:OnPlayerDisconnect(keys)
