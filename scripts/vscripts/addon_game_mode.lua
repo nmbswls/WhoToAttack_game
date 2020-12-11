@@ -1339,7 +1339,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
     
-    local cost = GameRules.Definitions.Uname2Cost[unitName];
+    local cost = GameRules.Definitions.Uname2Cost[unitName] * GameRules.Definitions.CardPriceRate;
     
     if not cost then
         print("card " .. card_idx .. " has no cost config.")
@@ -1803,12 +1803,13 @@ function WhoToAttack:OnEntityKilled(keys)
     end
     
     local attacker_team = attacker:GetTeam()
-    
+    local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
+	
     print("team " .. attacker_team .. " add money")
     
     local hero1 = GameRules:GetGameModeEntity().teamid2hero[attacker_team];
     if hero1 then
-        hero1:ModifyGold(2, true, 0);
+        hero1:ModifyGold(bonus, true, 0);
     end
     
 	--亡语
@@ -1979,12 +1980,15 @@ end
 
 function WhoToAttack:OnDrawCards(keys)
     local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
-    if hero:GetGold() < 10 then
+    if hero:GetGold() < GameRules.Definitions.CardRedrawCost then
         msg.bottom('money not enough', keys.PlayerID)
         return
     end
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
     
+    if not err then
+    --GameRules.Definitions.CardRedrawCost
+	end
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
