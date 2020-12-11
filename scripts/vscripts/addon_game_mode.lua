@@ -880,11 +880,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
 
     local pid = hero:GetPlayerID();
     print("try upgrade " .. buildUnit)
-    if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
-        print("too many build skills");
-        msg.bottom('技能栏满', pid, 1)
-        return false
-    end
+    
     
     local completeSkillName = GetBuildSkillName(buildUnit)
     
@@ -901,6 +897,14 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     --print(skillIdx)
     if skillIdx == nil then
+	--new skill check num
+	if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
+		print("too many build skills");
+		msg.bottom('技能栏满', pid, 1)
+		return false
+	    end
+		
+		
         table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
         hero.build_skill_cnt = hero.build_skill_cnt + 1
         skillIdx = hero.build_skill_cnt
@@ -960,6 +964,7 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
     RemoveAbility(hero, skillIdx)
     
     table.remove(hero.build_skills, skillIdx)
+    hero.build_skill_cnt = hero.build_skill_cnt - 1;
     for i=0,15 do
         local aaa = hero:GetAbilityByIndex(i)
         if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
@@ -1345,13 +1350,15 @@ function WhoToAttack:PickCard(team_id, card_idx)
         msg.bottom('no enough money', pid, 1)
     end
     
-    hero:ModifyGold(-cost, false, 0);
+    
     
     local ret = self:UpgradeBuildSkill(hero, unitName)
     
     if not ret then
         return false
     end
+	
+    hero:ModifyGold(-cost, false, 0);
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
@@ -1964,7 +1971,7 @@ function WhoToAttack:OnPickCard(keys)
     end
     
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
-    local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx))
     
     CustomGameEventManager:Send_ServerToPlayer(player, "pick_cards_rsp", {ret = ret, buy_idx = idx});
     --PickCard();
