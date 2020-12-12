@@ -14,6 +14,8 @@
 --isConnected          保存连接状态
 
 
+
+
 --配置 存储于GameRules.Definitions
 --CHESS_POOL_SIZE      基本卡池大小
 --CardListByCost       不同等级的单位列表
@@ -30,7 +32,7 @@
 --battle_start_time    战斗回合开始时间
 --open_door_list       开门列表
 --thrones              王座列表 包含各英雄值
-
+--alive_count          存活玩家个数
 
 --*dead_chess_list      各战场墓地
 
@@ -206,6 +208,7 @@ function WhoToAttack:StartGame()
             newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
+	    newBase.hero = hero
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
@@ -793,6 +796,48 @@ function WhoToAttack:GetBattleField(team)
     --to do
 end
 
+function WhoToAttack:ModifyBaseHP(hero, hp)
+	if hero == nil or hp == nil then
+		return
+	end
+	
+	if not hero.base then
+		return
+	end
+	local base = hero.base;
+	local nowHp = base:GetHealth();
+	if nowHp <= 0 then
+		return	
+	end
+	local newHp = nowHp + hp;
+	if newHp < 0 then
+		newHp = 0
+	end
+	
+	if newHp == 0 then
+		base:ForceKill(false)
+		hero:ForceKill(false)
+		self:DoPlayerDie(hero)
+	else
+		base:SetHealth(newHp)
+	end
+
+end
+
+function WhoToAttack:DoPlayerDie(hero)
+	if hero.dead then
+		return
+	end
+	hero.dead = true;
+	
+	hero.ranking = self.alive_count;
+	
+	self.alive_count -= 1;
+	
+	if self.alive_count == 0 then
+		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+	end
+end
 
 function WhoToAttack:CreateUnit(team, pos, unitName)
     local hero = TeamId2Hero(team)
@@ -1358,7 +1403,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
 	
-    hero:ModifyGold(-cost, false, 0);
+    hero:ModifyGold(-cost, true, 0);
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
@@ -1703,7 +1748,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
 	if playercount == all_playing_player_count then
 		--InitPlayerIDTable()
-
+		self.alive_count = playercount;
 		Timers:CreateTimer(0.1,function()
 			--开始
 			self:StartGame()
@@ -1987,8 +2032,8 @@ function WhoToAttack:OnDrawCards(keys)
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
     
     if not err then
-    --GameRules.Definitions.CardRedrawCost
-	end
+    	hero:ModifyGold(-GameRules.Definitions.CardRedrawCost, true, 0);
+    end
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
