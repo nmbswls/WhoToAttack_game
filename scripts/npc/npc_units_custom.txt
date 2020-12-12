@@ -638,7 +638,7 @@
 		// Ability 1
 		"Ability1"	"modifier_container"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"skeleton_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -731,7 +731,7 @@
 		// Ability 1
 		"Ability1"	"juggernaut_blade_dance"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"skeleton_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -3589,7 +3589,7 @@
 		// Ability 1
 		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"clinkz_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -3731,7 +3731,7 @@
 		// Ability 1
 		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"clinkz_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4372,7 +4372,7 @@
 		// Ability 1
 		"Ability1"	"abyssal_underlord_firestorm"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"underlord_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4509,7 +4509,7 @@
 		// Ability 2
 		"Ability2"	"abyssal_underlord_atrophy_aura"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"underlord_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -5993,7 +5993,7 @@
 		// Ability 1
 		"Ability1"	"frostmourne_datadriven"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"abaddon_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -7597,7 +7597,7 @@
 		// Ability 2
 		"Ability2"	"dazzle_shadow_wave"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"dazzle_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -7752,7 +7752,7 @@
 		// Ability 3
 		"Ability3"	"dazzle_bad_juju"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"dazzle_des"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -9298,7 +9298,7 @@
 		// Ability 2
 		"Ability2"	"nevermore_requiem"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"sf_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
