@@ -2090,9 +2090,12 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
         return
     end
     hero:SetAbilityPoints(0)
-	
+    local nowMana = hero:GetMana();
+    local nowMaxMana = hero:GetMaxMana();
     local growModifier = hero:FindModifierByName("modifier_builder_growth")
     growModifier:SetStackCount(hero:GetLevel());
+    local maxManaDiff = hero:GetMaxMana() - nowMaxMana;
+    hero:SetMana(nowMana + maxManaDiff);
     --hero:SetMana(1000)
 
     
