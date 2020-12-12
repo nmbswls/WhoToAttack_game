@@ -4082,7 +4082,7 @@
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_EXTRA_MANA_BONUS"	"2"
+					"MODIFIER_PROPERTY_MANA_BONUS"	"2"
 				}
 			}
 		}
