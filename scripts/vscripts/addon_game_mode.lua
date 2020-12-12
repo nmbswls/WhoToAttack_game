@@ -1690,7 +1690,8 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	
     
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
-    AddAbilityAndSetLevel(hero,"builder_growth",1)
+    local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
+    growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
     hero:AddItemByName("item_throw_one")
     
     
@@ -2089,11 +2090,9 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
         return
     end
     hero:SetAbilityPoints(0)
-    local growthAbility1 = hero:FindAbilityByName("builder_growth")
-    
-    growthAbility1:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
-    local modifier1 = hero:FindModifierByName("modifier_builder_growth")
-    modifier1:SetStackCount(hero:GetLevel());
+	
+    local growModifier = hero:FindModifierByName("modifier_builder_growth")
+    growModifier:SetStackCount(hero:GetLevel());
     --hero:SetMana(1000)
 
     
