@@ -2093,7 +2093,7 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
     
     growthAbility1:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
     local modifier1 = hero:FindModifierByName("modifier_builder_growth")
-    modifier1:SetStackCounnt(hero:GetLevel());
+    modifier1:SetStackCount(hero:GetLevel());
     --hero:SetMana(1000)
 
     
