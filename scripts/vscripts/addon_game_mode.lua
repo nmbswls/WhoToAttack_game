@@ -208,6 +208,7 @@ function WhoToAttack:StartGame()
             newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
+	    newBase.hero = hero
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
@@ -795,11 +796,16 @@ function WhoToAttack:GetBattleField(team)
     --to do
 end
 
-function WhoToAttack:ModifyHeroHP(hero, hp)
+function WhoToAttack:ModifyBaseHP(hero, hp)
 	if hero == nil or hp == nil then
 		return
 	end
-	local nowHp = hero:GetHealth();
+	
+	if not hero.base then
+		return
+	end
+	local base = hero.base;
+	local nowHp = base:GetHealth();
 	if nowHp <= 0 then
 		return	
 	end
@@ -809,10 +815,11 @@ function WhoToAttack:ModifyHeroHP(hero, hp)
 	end
 	
 	if newHp == 0 then
+		base:ForceKill(false)
 		hero:ForceKill(false)
-		GameRules:GetGameModeEntity().counterpart[hero:GetTeam()] = -1
+		self:DoPlayerDie(hero)
 	else
-		hero:SetHealth(newHp)
+		base:SetHealth(newHp)
 	end
 
 end
@@ -1396,7 +1403,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
 	
-    hero:ModifyGold(-cost, false, 0);
+    hero:ModifyGold(-cost, true, 0);
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
@@ -2025,8 +2032,8 @@ function WhoToAttack:OnDrawCards(keys)
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
     
     if not err then
-    --GameRules.Definitions.CardRedrawCost
-	end
+    	hero:ModifyGold(-GameRules.Definitions.CardRedrawCost, true, 0);
+    end
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
