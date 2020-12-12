@@ -832,7 +832,7 @@ function WhoToAttack:DoPlayerDie(hero)
 	
 	hero.ranking = self.alive_count;
 	
-	self.alive_count -= 1;
+	self.alive_count = self.alive_count - 1;
 	
 	if self.alive_count == 0 then
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
