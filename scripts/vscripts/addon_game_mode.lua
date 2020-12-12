@@ -14,6 +14,8 @@
 --isConnected          保存连接状态
 
 
+
+
 --配置 存储于GameRules.Definitions
 --CHESS_POOL_SIZE      基本卡池大小
 --CardListByCost       不同等级的单位列表
@@ -30,7 +32,7 @@
 --battle_start_time    战斗回合开始时间
 --open_door_list       开门列表
 --thrones              王座列表 包含各英雄值
-
+--alive_count          存活玩家个数
 
 --*dead_chess_list      各战场墓地
 
@@ -793,6 +795,42 @@ function WhoToAttack:GetBattleField(team)
     --to do
 end
 
+function WhoToAttack:ModifyHeroHP(hero, hp)
+	if hero == nil or hp == nil then
+		return
+	end
+	local nowHp = hero:GetHealth();
+	if nowHp <= 0 then
+		return	
+	end
+	local newHp = nowHp + hp;
+	if newHp < 0 then
+		newHp = 0
+	end
+	
+	if newHp == 0 then
+		hero:ForceKill(false)
+		GameRules:GetGameModeEntity().counterpart[hero:GetTeam()] = -1
+	else
+		hero:SetHealth(newHp)
+	end
+
+end
+
+function WhoToAttack:DoPlayerDie(hero)
+	if hero.dead then
+		return
+	end
+	hero.dead = true;
+	
+	hero.ranking = self.alive_count;
+	
+	self.alive_count -= 1;
+	
+	if self.alive_count == 0 then
+		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+	end
+end
 
 function WhoToAttack:CreateUnit(team, pos, unitName)
     local hero = TeamId2Hero(team)
@@ -1703,7 +1741,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
 	if playercount == all_playing_player_count then
 		--InitPlayerIDTable()
-
+		self.alive_count = playercount;
 		Timers:CreateTimer(0.1,function()
 			--开始
 			self:StartGame()
