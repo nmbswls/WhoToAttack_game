@@ -4065,6 +4065,32 @@
 		"AbilityDamage"	"60"
 	}
 
+	"builder_growth"
+	{
+		"BaseClass"	"ability_data"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		
+		"Modifiers"
+		{
+			"modifier_builder_growth"
+			{
+				"IsPurgable"            "0"
+				"IsBuff"		"1"
+				"RemoveOnDeath"         "0"
+
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_EXTRA_MANA_BONUS"	"2"
+				}
+			}
+		}
+	}
+
 	"builder_grow"
 	{
 		"BaseClass"	"ability_lua"
