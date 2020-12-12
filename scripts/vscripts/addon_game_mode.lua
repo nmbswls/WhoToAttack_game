@@ -2089,10 +2089,14 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
         return
     end
     hero:SetAbilityPoints(0)
-    hero:SetMana(1000)
-    hero:SetMaxMana(90 + hero:GetLevel() * 10)
+    --local growthAbility = hero:FindAbilityByName("builder_growth")
     
-    print(hero:GetMaxMana())
+    --growthAbility:ApplyDataDrivenModifier("modifier_builder_growth");
+    local modifier = hero:FindModifierByName("modifier_builder_growth")
+    modifier:SetStackCounnt(hero:GetLevel());
+    --hero:SetMana(1000)
+
+    
 	-- for i = 6, 13 do
 		-- GameRules:GetGameModeEntity().population_max[i] = GetMaxChessCount(i)
 		
