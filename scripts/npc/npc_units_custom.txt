@@ -824,7 +824,7 @@
 		// Ability 1
 		"Ability1"	"ursa_fury_swipes"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"ursa_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -939,7 +939,7 @@
 		// Ability 2
 		"Ability2"	"troll_warlord_fervor"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"ursa_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2499,7 +2499,7 @@
 		// Ability 2
 		"Ability2"	"lycan_summon_wolves_critical_strike"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"wolf_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2617,7 +2617,7 @@
 		// Ability 3
 		"Ability3"	"lycan_howl"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"wolf_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"3"
@@ -3731,7 +3731,7 @@
 		// Ability 1
 		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
-		"Ability2"	"clinkz_des"
+		"Ability2"	"clinkz_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4509,7 +4509,7 @@
 		// Ability 2
 		"Ability2"	"abyssal_underlord_atrophy_aura"
 		// Ability 3
-		"Ability3"	"underlord_des"
+		"Ability3"	"underlord_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -5138,7 +5138,7 @@
 		// Ability 1
 		"Ability1"	"viper_corrosive_skin"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"viper_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -5265,7 +5265,7 @@
 		// Ability 2
 		"Ability2"	"viper_nethertoxin"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"viper_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -5406,7 +5406,7 @@
 		// Ability 1
 		"Ability1"	"enchantress_impetus"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"enchanstress_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -5554,7 +5554,7 @@
 		// Ability 3
 		"Ability3"	"enchantress_untouchable"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"enchanstress_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -6123,7 +6123,7 @@
 		// Ability 2
 		"Ability2"	"abaddon_borrowed_time"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"abaddon_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -6817,7 +6817,7 @@
 		// Ability 1
 		"Ability1"	"lone_druid_spirit_bear_entangle"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"bear_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -6911,7 +6911,7 @@
 		// Ability 1
 		"Ability1"	"lone_druid_spirit_bear_entangle"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"bear_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -9439,7 +9439,7 @@
 		// Ability 3
 		"Ability3"	"nevermore_dark_lord"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"sf_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -9852,7 +9852,7 @@
 		// Ability 2
 		"Ability2"	"treant_living_armor"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"trent_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9999,7 +9999,7 @@
 		// Ability 3
 		"Ability3"	"treant_overgrowth"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"trent_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.

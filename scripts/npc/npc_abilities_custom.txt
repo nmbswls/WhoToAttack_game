@@ -4069,20 +4069,16 @@
 	{
 		"BaseClass"	"ability_data"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		
 		"Modifiers"
 		{
 			"modifier_builder_growth"
 			{
-				"IsPurgable"            "0"
-				"IsBuff"		"1"
-				"RemoveOnDeath"         "0"
-
+				"IsPurgable"	"0"
+				"IsBuff"	"1"
+				"RemoveOnDeath"	"0"
 				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_EXTRA_MANA_BONUS"	"2"
@@ -5263,6 +5259,13 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 
+	"clinkz_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"underlord_des"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -5270,7 +5273,21 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 
+	"underlord_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
 	"abaddon_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"abaddon_des2"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
@@ -5288,6 +5305,90 @@
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"sf_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ursa_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"wolf_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"wolf_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"viper_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"viper_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"enchanstress_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"enchanstress_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"bear_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"bear_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"trent_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"trent_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 }
