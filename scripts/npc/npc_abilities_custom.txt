@@ -4075,6 +4075,7 @@
 		{
 			"modifier_builder_growth"
 			{
+				"Passive"	"1"
 				"IsPurgable"	"0"
 				"IsBuff"	"1"
 				"RemoveOnDeath"	"0"
