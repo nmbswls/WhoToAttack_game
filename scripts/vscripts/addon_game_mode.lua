@@ -2089,9 +2089,9 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
         return
     end
     hero:SetAbilityPoints(0)
-    --local growthAbility = hero:FindAbilityByName("builder_growth")
+    local growthAbility = hero:FindAbilityByName("builder_growth")
     
-    --growthAbility:ApplyDataDrivenModifier("modifier_builder_growth");
+    growthAbility:ApplyDataDrivenModifier("modifier_builder_growth");
     local modifier = hero:FindModifierByName("modifier_builder_growth")
     modifier:SetStackCounnt(hero:GetLevel());
     --hero:SetMana(1000)
