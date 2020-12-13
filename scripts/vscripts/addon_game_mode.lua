@@ -1762,7 +1762,6 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 	--to do 断线重连
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
     
-    print("lianjie la la ");
     
 	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
 	GameRules:GetGameModeEntity().steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
@@ -2092,10 +2091,16 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
     local nowMaxMana = hero:GetMaxMana();
     local growModifier = hero:FindModifierByName("modifier_builder_growth")
     growModifier:SetStackCount(hero:GetLevel());
-    local maxManaDiff = hero:GetMaxMana() - nowMaxMana;
-    hero:SetMana(nowMana + maxManaDiff);
-    --hero:SetMana(1000)
-
+    
+    Timers:CreateTimer(0.01, function()
+        local maxManaDiff = hero:GetMaxMana() - nowMaxMana;
+        hero:SetMana(nowMana + maxManaDiff);
+        --hero:SetMana(1000)
+        print("max mana "..hero:GetMaxMana())
+        print("mana diff " .. maxManaDiff);
+    end)
+    
+    
     
 	-- for i = 6, 13 do
 		-- GameRules:GetGameModeEntity().population_max[i] = GetMaxChessCount(i)
