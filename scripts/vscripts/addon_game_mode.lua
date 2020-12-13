@@ -403,7 +403,6 @@ function WhoToAttack:StartAPrepareRound()
 	--每回合特殊处理
 	--预加载
 	if self.battle_round < 5 then
-        print("battle round " .. self.battle_round)
 		-- for k,v in pairs(GameRules:GetGameModeEntity().chess_list_by_mana[self.battle_round+1]) do
 			-- --瞬间同时加载卡顿
 			-- PrecacheAUnit(k,v)
@@ -554,7 +553,6 @@ function WhoToAttack:AddJidiWudi()
             if jidi then
 				local ability = jidi:FindAbilityByName('passive_player_jidi')
                 if ability then
-                    print("add jidi wudi     sssss");
                     ability:ApplyDataDrivenModifier(jidi, jidi, "modifier_jidi_wudi",
                     {
                         duration = -1,
@@ -1030,7 +1028,7 @@ function WhoToAttack:CheckThrowTarget(target, pos)
             minIdx = team_i;
         end
     end
-    print("touzhi target battle " .. minIdx)
+    --print("touzhi target battle " .. minIdx)
     
     if minIdx == -1 then
         return -1
@@ -1039,8 +1037,8 @@ function WhoToAttack:CheckThrowTarget(target, pos)
     local diffx = math.abs(GameRules.Definitions.TeamCenterPos[minIdx].x - pos.x);
     local diffy = math.abs(GameRules.Definitions.TeamCenterPos[minIdx].y - pos.y);
     
-    print("diffx " .. diffx)
-    print("diffy " .. diffy)
+    --print("diffx " .. diffx)
+    --print("diffy " .. diffy)
     
     if diffx > 500 or diffy > 500 then
         return -1;
@@ -1409,7 +1407,7 @@ function WhoToAttack:RandomDrawNew(team_id)
     end
     
     ret_card = self:DrawCardFromPool(cost, hero);
-    print("draw card " .. ret_card);
+    --print("draw card " .. ret_card);
 	return ret_card
 end
 
@@ -1711,7 +1709,7 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 	--to do 断线重连
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
     
-    print("chong lian la ");
+    print("lianjie la la ");
     
 	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
 	GameRules:GetGameModeEntity().steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
@@ -1992,7 +1990,7 @@ end
 function WhoToAttack:OnConfirmRemoveAbility(keys)
     local idx = keys.AbilityIdx
     local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
-    print(idx + 1)
+    
     GameRules:GetGameModeEntity().WhoToAttack:DelBuildSkill(hero, tonumber(idx)+1)
 end
 
@@ -2036,7 +2034,7 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
     hero:SetMana(1000)
     hero:SetMaxMana(90 + hero:GetLevel() * 10)
     
-    print(hero:GetMaxMana())
+    --print(hero:GetMaxMana())
 	-- for i = 6, 13 do
 		-- GameRules:GetGameModeEntity().population_max[i] = GetMaxChessCount(i)
 		
@@ -2344,17 +2342,14 @@ function RemoveAbility(hero, skillIdx)
     --s1 s2 s4 s3 
     
     local lastFilledSkill = nil
-    print("skill cnt " .. hero.build_skill_cnt)
     for i = skillIdx, hero.build_skill_cnt do
         
         if i+1 > GameRules.Definitions.MaxBuildSkill then
             lastFilledSkill = i
             break
         end
-        print("cnmcnmcnm " .. (i+1))
         local nextSkillName = hero:GetAbilityByIndex(i):GetAbilityName();
         --local nextSkillName = hero.build_skills[i+1].skill_name;
-        print("nextSkillName " .. nextSkillName)
         if string.find(nextSkillName,'empty') ~= nil then
             lastFilledSkill = i
             break

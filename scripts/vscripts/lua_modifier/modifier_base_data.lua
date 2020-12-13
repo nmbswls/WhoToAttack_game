@@ -5,7 +5,6 @@ function CheckOneAttack(keys)
     local caster = keys.caster;
     local attacker = keys.attacker;
     
-    print(attacker:GetUnitName())
     local attackerIdx = attacker:GetEntityIndex()
     if caster.turn_attacker[attackerIdx] ~= nil then
         return
