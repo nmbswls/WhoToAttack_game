@@ -1391,6 +1391,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
     
     if hero:GetGold() < cost then
         msg.bottom('no enough money', pid, 1)
+        return false
     end
     
     
