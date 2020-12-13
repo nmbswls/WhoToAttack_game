@@ -458,7 +458,7 @@ function WhoToAttack:StartAPrepareRound()
         local newTeam = {}
         for i = 1, #allTeam do
             if not table.contains(self.open_door_list, allTeam[i]) then
-                table.insert(newTeam, shuffled[i])
+                table.insert(newTeam, allTeam[i])
             end
         end
         self.open_door_list = newTeam
