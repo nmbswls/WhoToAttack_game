@@ -14,6 +14,8 @@
 --isConnected          保存连接状态
 
 
+
+
 --配置 存储于GameRules.Definitions
 --CHESS_POOL_SIZE      基本卡池大小
 --CardListByCost       不同等级的单位列表
@@ -30,7 +32,7 @@
 --battle_start_time    战斗回合开始时间
 --open_door_list       开门列表
 --thrones              王座列表 包含各英雄值
-
+--alive_count          存活玩家个数
 
 --*dead_chess_list      各战场墓地
 
@@ -206,6 +208,7 @@ function WhoToAttack:StartGame()
             newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
+	    newBase.hero = hero
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
@@ -791,6 +794,48 @@ function WhoToAttack:GetBattleField(team)
     --to do
 end
 
+function WhoToAttack:ModifyBaseHP(hero, hp)
+	if hero == nil or hp == nil then
+		return
+	end
+	
+	if not hero.base then
+		return
+	end
+	local base = hero.base;
+	local nowHp = base:GetHealth();
+	if nowHp <= 0 then
+		return	
+	end
+	local newHp = nowHp + hp;
+	if newHp < 0 then
+		newHp = 0
+	end
+	
+	if newHp == 0 then
+		base:ForceKill(false)
+		hero:ForceKill(false)
+		self:DoPlayerDie(hero)
+	else
+		base:SetHealth(newHp)
+	end
+
+end
+
+function WhoToAttack:DoPlayerDie(hero)
+	if hero.dead then
+		return
+	end
+	hero.dead = true;
+	
+	hero.ranking = self.alive_count;
+	
+	self.alive_count = self.alive_count - 1;
+	
+	if self.alive_count == 0 then
+		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+	end
+end
 
 function WhoToAttack:CreateUnit(team, pos, unitName)
     local hero = TeamId2Hero(team)
@@ -878,11 +923,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
 
     local pid = hero:GetPlayerID();
     print("try upgrade " .. buildUnit)
-    if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
-        print("too many build skills");
-        msg.bottom('技能栏满', pid, 1)
-        return false
-    end
+    
     
     local completeSkillName = GetBuildSkillName(buildUnit)
     
@@ -899,6 +940,14 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
     
     --print(skillIdx)
     if skillIdx == nil then
+	--new skill check num
+	if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
+		print("too many build skills");
+		msg.bottom('技能栏满', pid, 1)
+		return false
+	    end
+		
+		
         table.insert(hero.build_skills, {skill_name = completeSkillName, level = 1, exp = 1})
         hero.build_skill_cnt = hero.build_skill_cnt + 1
         skillIdx = hero.build_skill_cnt
@@ -958,6 +1007,7 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
     RemoveAbility(hero, skillIdx)
     
     table.remove(hero.build_skills, skillIdx)
+    hero.build_skill_cnt = hero.build_skill_cnt - 1;
     for i=0,15 do
         local aaa = hero:GetAbilityByIndex(i)
         if aaa then print(i .. " , ".. aaa:GetAbilityName()) end
@@ -1332,7 +1382,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
     
-    local cost = GameRules.Definitions.Uname2Cost[unitName];
+    local cost = GameRules.Definitions.Uname2Cost[unitName] * GameRules.Definitions.CardPriceRate;
     
     if not cost then
         print("card " .. card_idx .. " has no cost config.")
@@ -1343,13 +1393,15 @@ function WhoToAttack:PickCard(team_id, card_idx)
         msg.bottom('no enough money', pid, 1)
     end
     
-    hero:ModifyGold(-cost, false, 0);
+    
     
     local ret = self:UpgradeBuildSkill(hero, unitName)
     
     if not ret then
         return false
     end
+	
+    hero:ModifyGold(-cost, true, 0);
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
@@ -1636,7 +1688,8 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	
     
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
-    AddAbilityAndSetLevel(hero,"builder_grow",1)
+    local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
+    growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
     hero:AddItemByName("item_throw_one")
     
     
@@ -1694,7 +1747,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
 	if playercount == all_playing_player_count then
 		--InitPlayerIDTable()
-
+		self.alive_count = playercount;
 		Timers:CreateTimer(0.1,function()
 			--开始
 			self:StartGame()
@@ -1794,12 +1847,13 @@ function WhoToAttack:OnEntityKilled(keys)
     end
     
     local attacker_team = attacker:GetTeam()
-    
+    local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
+	
     print("team " .. attacker_team .. " add money")
     
     local hero1 = GameRules:GetGameModeEntity().teamid2hero[attacker_team];
     if hero1 then
-        hero1:ModifyGold(2, true, 0);
+        hero1:ModifyGold(bonus, true, 0);
     end
     
 	--亡语
@@ -1962,7 +2016,7 @@ function WhoToAttack:OnPickCard(keys)
     end
     
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
-    local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx)+1)
+    local ret = GameRules:GetGameModeEntity().WhoToAttack:PickCard(hero:GetTeam(), tonumber(idx))
     
     CustomGameEventManager:Send_ServerToPlayer(player, "pick_cards_rsp", {ret = ret, buy_idx = idx});
     --PickCard();
@@ -1970,12 +2024,15 @@ end
 
 function WhoToAttack:OnDrawCards(keys)
     local hero = GameRules:GetGameModeEntity().playerid2hero[keys.PlayerID]
-    if hero:GetGold() < 10 then
+    if hero:GetGold() < GameRules.Definitions.CardRedrawCost then
         msg.bottom('money not enough', keys.PlayerID)
         return
     end
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
     
+    if not err then
+    	hero:ModifyGold(-GameRules.Definitions.CardRedrawCost, true, 0);
+    end
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
@@ -2031,10 +2088,15 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
         return
     end
     hero:SetAbilityPoints(0)
-    hero:SetMana(1000)
-    hero:SetMaxMana(90 + hero:GetLevel() * 10)
+    local nowMana = hero:GetMana();
+    local nowMaxMana = hero:GetMaxMana();
+    local growModifier = hero:FindModifierByName("modifier_builder_growth")
+    growModifier:SetStackCount(hero:GetLevel());
+    local maxManaDiff = hero:GetMaxMana() - nowMaxMana;
+    hero:SetMana(nowMana + maxManaDiff);
+    --hero:SetMana(1000)
+
     
-    --print(hero:GetMaxMana())
 	-- for i = 6, 13 do
 		-- GameRules:GetGameModeEntity().population_max[i] = GetMaxChessCount(i)
 		

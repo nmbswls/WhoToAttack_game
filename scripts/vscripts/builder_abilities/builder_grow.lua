@@ -14,12 +14,17 @@ modifier_builder_grow_mana = class({
     
     DeclareFunctions        = function(self)
         return {
-            MODIFIER_PROPERTY_MANA_BONUS
+            --MODIFIER_PROPERTY_MANA_BONUS
+            MODIFIER_PROPERTY_EXTRA_MANA_BONUS
         }
     end,
 })
 
 function modifier_builder_grow_mana:GetModifierManaBonus() 
     local level = self:GetParent():GetLevel();
-    return level * 2 
+    return 5
+end
+function modifier_builder_grow_mana:GetModifierExtraManaBonus() 
+    local level = self:GetParent():GetLevel();
+    return level*2
 end

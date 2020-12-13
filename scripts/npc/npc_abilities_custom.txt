@@ -4065,6 +4065,29 @@
 		"AbilityDamage"	"60"
 	}
 
+	"builder_growth"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"Modifiers"
+		{
+			"modifier_builder_growth"
+			{
+				
+				"IsPurgable"	"0"
+				"IsBuff"	"1"
+				"RemoveOnDeath"	"0"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS"	"2"
+				}
+			}
+		}
+	}
+
 	"builder_grow"
 	{
 		"BaseClass"	"ability_lua"
@@ -5137,93 +5160,236 @@
 		}
 	}
 
-"enchantress_untouchable"
+	"enchantress_untouchable"
 	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5267"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-
-		"HasScepterUpgrade"			"1"
-		"AbilityDraftUltScepterAbility"		"enchantress_bunny_hop"
-		
-		// Special	
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5267"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_attack_speed"		"-100 -140 -180"
+				"var_type"	"FIELD_INTEGER"
+				"slow_attack_speed"	"-100 -140 -180"
 				"LinkedSpecialBonus"	"special_bonus_unique_enchantress_3"
 			}
 			"02"
 			{
-				"var_type"				"FIELD_INTEGER"
-				"slow_duration"			"4"
+				"var_type"	"FIELD_INTEGER"
+				"slow_duration"	"4"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"HasScepterUpgrade"	"1"
+		"AbilityDraftUltScepterAbility"	"enchantress_bunny_hop"
 	}
 
-"enchantress_bunny_hop"
+	"enchantress_bunny_hop"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"							"320"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_TREE"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"MaxLevel"						"1"
-		"FightRecapLevel"				"1"
-		"IsGrantedByScepter"			"1"
-		"HasScepterUpgrade"				"1"
-		"AbilitySound"					"Hero_Enchantress.EnchantCreep"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_TREE"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"MaxLevel"	"1"
 		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-		"AbilityCastGestureSlot"		"DEFAULT"
-		
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"3"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"3"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50"
-		
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"50"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"320"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"hop_distance"				"500"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"hop_distance"	"500"
+				"RequiresScepter"	"1"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_FLOAT"
-				"hop_duration"		"0.4"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_FLOAT"
+				"hop_duration"	"0.4"
+				"RequiresScepter"	"1"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"hop_height"		"150"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"hop_height"	"150"
+				"RequiresScepter"	"1"
 			}
 			"04"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"attack_range"				"150"
-				"RequiresScepter"			"1"
+				"var_type"	"FIELD_INTEGER"
+				"attack_range"	"150"
+				"RequiresScepter"	"1"
 			}
 		}
+		"IsGrantedByScepter"	"1"
+		"HasScepterUpgrade"	"1"
+		"AbilitySound"	"Hero_Enchantress.EnchantCreep"
+		"AbilityCastGestureSlot"	"DEFAULT"
+	}
+
+	"skeleton_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"clinkz_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"clinkz_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"underlord_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"underlord_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"abaddon_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"abaddon_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"dazzle_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"sf_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"sf_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ursa_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"wolf_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"wolf_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"viper_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"viper_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"enchanstress_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"enchanstress_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"bear_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"bear_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"trent_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"trent_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 }

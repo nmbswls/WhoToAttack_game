@@ -18,6 +18,8 @@ function CheckOneAttack(keys)
         hero1:ModifyGold(bonus, true, 0);
     end
     
+    GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, 1);
+    
     
     -- local hero2 = GameRules:GetGameModeEntity().teamid2hero[caster:GetTeam()];
     -- if hero2 then
