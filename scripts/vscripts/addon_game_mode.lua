@@ -12,7 +12,7 @@
 --userid2player        映射为玩家实体idx 不是从0开始的id
 --connect_state        全员连接状态 键为playerid
 --isConnected          保存连接状态
-
+--GetPlayingPlayerCount
 
 
 
@@ -438,26 +438,32 @@ function WhoToAttack:StartAPrepareRound()
         end
     end
     
-    
-    local allTeam = {}
+    local playerNum = GetPlayingPlayerCount();
+	
+    local aliveTeam = {}
     for team_i,battle_field in pairs(self.battle_field_list) do
-        table.insert(allTeam, team_i);
-        battle_field.is_open = false;
+	--if  
+	local hero = TeamId2Hero(team_i);
+	if hero and not hero.dead then
+        	table.insert(aliveTeam, team_i);
+        	battle_field.is_open = false;
+	end
     end
     
     if self.battle_round % 3 == 1 then
-        self.open_door_list = allTeam
+        self.open_door_list = aliveTeam
         --self.open_door_list = {}
     elseif self.battle_round % 3 == 2 then
-        local shuffled = table.shuffle(allTeam);
+        local shuffled = table.shuffle(aliveTeam);
         self.open_door_list = {}
-        for i = 1, 1 do
+	local openDoorNum = 1 -- GameRules.Definition.openDoorNumByPlayer[playerNum]
+        for i = 1, openDoorNum do
             table.insert(self.open_door_list, shuffled[i]);
         end
     else
         local newTeam = {}
-        for i = 1, #allTeam do
-            if not table.contains(self.open_door_list, allTeam[i]) then
+        for i = 1, #aliveTeam do
+            if not table.contains(self.open_door_list, aliveTeam[i]) then
                 table.insert(newTeam, shuffled[i])
             end
         end
