@@ -5702,7 +5702,7 @@
 				"IsPurgable"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE"	"%bonus_attack"
+					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_attack"
 				}
 				"IsBuff"	"1"
 			}
