@@ -593,7 +593,7 @@
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}
-	
+
 	"throne_evil"
 	{
 		"BaseClass"	"npc_dota_creature"
@@ -618,7 +618,7 @@
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 	}
-	
+
 	"throne_nature"
 	{
 		"BaseClass"	"npc_dota_creature"
@@ -781,7 +781,7 @@
 		// Ability 1
 		"Ability1"	"juggernaut_blade_dance"
 		// Ability 2
-		"Ability2"	"skeleton_des"
+		"Ability2"	"skeleton_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -989,7 +989,7 @@
 		// Ability 2
 		"Ability2"	"troll_warlord_fervor"
 		// Ability 3
-		"Ability3"	"ursa_des"
+		"Ability3"	"ursa_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -1101,7 +1101,7 @@
 		// Ability 1
 		"Ability1"	"drow_ranger_frost_arrows"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"drow_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -1251,9 +1251,9 @@
 		// Ability 1
 		"Ability1"	"drow_ranger_frost_arrows"
 		// Ability 2
-		"Ability2"	"vengefulspirit_command_aura"
+		"Ability2"	"RangeAura"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"drow_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -1401,7 +1401,7 @@
 		// Ability 1
 		"Ability1"	"tusk_walrus_punch"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"tusk_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -1545,7 +1545,7 @@
 		// Ability 2
 		"Ability2"	"tusk_tag_team"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"tusk_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -1688,7 +1688,7 @@
 		// Ability 1
 		"Ability1"	"zuus_arc_lightning"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"zeus_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -1826,7 +1826,7 @@
 		// Ability 1
 		"Ability1"	"zuus_arc_lightning"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"zeus_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -1969,7 +1969,7 @@
 		// Ability 1
 		"Ability1"	"warlock_shadow_word"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"warlock_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -2130,7 +2130,7 @@
 		// Ability 1
 		"Ability1"	"warlock_shadow_word"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"warlock_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -2287,7 +2287,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"ogre_des"
 		// Ability 2
 		"Ability2"	""
 		// Ability 3
@@ -2408,7 +2408,7 @@
 		// Ability 1
 		"Ability1"	"ogre_magi_bloodlust"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"ogre_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -2781,7 +2781,7 @@
 		// Ability 2
 		"Ability2"	"dragon_knight_dragon_tail"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"dk_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2927,7 +2927,7 @@
 		// Ability 3
 		"Ability3"	"dragon_knight_dragon_blood"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"dk_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		"ArmorPhysical"	"1"
@@ -3067,7 +3067,7 @@
 		// Ability 1
 		"Ability1"	""
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"riki_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -3203,7 +3203,7 @@
 		// Ability 1
 		"Ability1"	""
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"riki_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -3346,7 +3346,7 @@
 		// Ability 1
 		"Ability1"	"lich_frost_nova"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"lich_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -3491,7 +3491,7 @@
 		// Ability 2
 		"Ability2"	"lich_chain_frost"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"lich_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -3923,9 +3923,9 @@
 		// Ability 1
 		"Ability1"	"life_stealer_feast"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"life_stealer_ghoul_frenzy"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"ls_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -4037,11 +4037,11 @@
 		// Ability 1
 		"Ability1"	"life_stealer_feast"
 		// Ability 2
-		"Ability2"	"life_stealer_open_wounds"
+		"Ability2"	"life_stealer_ghoul_frenzy"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"life_stealer_open_wounds"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"ls_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -4168,9 +4168,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"suicide"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"techies_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4294,9 +4294,9 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"suicide"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"techies_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4692,7 +4692,7 @@
 		// Ability 1
 		"Ability1"	"leshrac_split_earth"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"leshrac_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -4841,7 +4841,7 @@
 		// Ability 2
 		"Ability2"	"leshrac_diabolic_edict"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"leshrac_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -4991,7 +4991,7 @@
 		// Ability 1
 		"Ability1"	""
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"siege_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -5089,7 +5089,7 @@
 		// Ability 1
 		"Ability1"	""
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"siege_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -5749,7 +5749,7 @@
 		// Ability 1
 		"Ability1"	"furion_wrath_of_nature"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"np_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -5896,7 +5896,7 @@
 		// Ability 1
 		"Ability1"	"furion_wrath_of_nature"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"np_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -6006,6 +6006,302 @@
 				"Wearable6"
 				{
 					"ItemDef"	"14281"
+				}
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"hidden_willow"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/dark_willow/dark_willow.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_DarkWillow"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts"
+		"Level"	"5"
+		"ModelScale"	"1.0"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	"dark_willow_bramble_maze"
+		// Ability 2
+		"Ability2"	"willow_des"
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"1"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"35"
+		// Damage range max.
+		"AttackDamageMax"	"40"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"140"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.3"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"475"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_dark_willow/dark_willow_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1200"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"90"
+		"HealthBarOffset"	"250"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"290"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"530"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"1"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"80"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"4"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"0.0"
+				}
+			}
+			"DefaultState"	"Invade"
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"dark_willow_bramble_maze"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"5797"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"5803"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"5798"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"5799"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"5800"
+				}
+				"Wearable6"
+				{
+					"ItemDef"	"5802"
+				}
+			}
+		}
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"hidden_willow_special"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/heroes/dark_willow/dark_willow.vmdl"
+		"BaseClass"	"npc_dota_creature"
+		"SoundSet"	"Hero_DarkWillow"
+		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts"
+		"Level"	"5"
+		"ModelScale"	"1.1"
+		"AutoAttacksByDefault"	"0"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
+		"ConsideredHero"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	"dark_willow_bramble_maze"
+		// Ability 2
+		"Ability2"	"dark_willow_bedlam"
+		// Ability 3
+		"Ability3"	"willow_des2"
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"2"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"40"
+		// Damage range max.
+		"AttackDamageMax"	"45"
+		"AttackRate"	"1.7"
+		// Speed of attack.
+		"BaseAttackSpeed"	"140"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.3"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"2000"
+		// Range within a target can be attacked.
+		"AttackRange"	"475"
+		// Particle system model for projectile.
+		"ProjectileModel"	"particles/units/heroes/hero_dark_willow/dark_willow_base_attack.vpcf"
+		// Speed of projectile.
+		"ProjectileSpeed"	"1200"
+		// Bounds
+		// ----------------------------------------------------------------
+		"RingRadius"	"90"
+		"HealthBarOffset"	"260"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Speed.
+		"MovementSpeed"	"290"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"630"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"1"
+		// Base mana.
+		"StatusMana"	"100"
+		"StatusStartingMana"	"80"
+		// Mana regeneration rate.
+		"StatusManaRegen"	"4"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"400"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"400"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_DIRE"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"DefaultState"	"Invade"
+			"States"
+			{
+				"Invade"
+				{
+					"Name"	"Invade"
+					"Aggression"	"100.0"
+					"Avoidance"	"0.0"
+					"Support"	"0.0"
+				}
+			}
+			"DefaultState"	"Invade"
+			"OffensiveAbilities"
+			{
+				"Ability1"
+				{
+					"Name"	"furion_wrath_of_nature"
+				}
+				"Ability2"
+				{
+					"Name"	"dark_willow_bedlam"
+				}
+			}
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"5797"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"5803"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"5798"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"5799"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"5800"
+				}
+				"Wearable6"
+				{
+					"ItemDef"	"5802"
 				}
 			}
 		}
@@ -6298,7 +6594,7 @@
 		// Ability 1
 		"Ability1"	"centaur_hoof_stomp"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"centaur_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -6450,7 +6746,7 @@
 		// Ability 2
 		"Ability2"	"centaur_return"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"centaur_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -6597,7 +6893,7 @@
 		// Ability 1
 		"Ability1"	"huskar_berserkers_blood"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"huskar_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -6725,7 +7021,7 @@
 		// Ability 3
 		"Ability3"	"huskar_burning_spear"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"huskar_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7057,7 +7353,7 @@
 		// Ability 2
 		"Ability2"	"tidehunter_anchor_smash"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"tide_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -7205,7 +7501,7 @@
 		// Ability 3
 		"Ability3"	"tidehunter_ravage"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"tide_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7355,7 +7651,7 @@
 		// Ability 2
 		"Ability2"	"alchemist_goblins_greed"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"ga_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -7503,7 +7799,7 @@
 		// Ability 3
 		"Ability3"	"alchemist_chemical_rage"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"ga_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7802,7 +8098,7 @@
 		// Ability 3
 		"Ability3"	"dazzle_bad_juju"
 		// Ability 4
-		"Ability4"	"dazzle_des"
+		"Ability4"	"dazzle_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7950,7 +8246,7 @@
 		// Ability 1
 		"Ability1"	"templar_assassin_refraction"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"ta_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -8087,7 +8383,7 @@
 		// Ability 1
 		"Ability1"	"templar_assassin_refraction"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"ta_des2"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -8224,7 +8520,7 @@
 		// Ability 1
 		"Ability1"	"lion_finger_of_death"
 		// Ability 2
-		"Ability2"	""
+		"Ability2"	"lion_des"
 		// Ability 3
 		"Ability3"	""
 		// Ability 4
@@ -8368,7 +8664,7 @@
 		// Ability 2
 		"Ability2"	"lion_mana_drain"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"lion_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -8513,7 +8809,7 @@
 		// Ability 2
 		"Ability2"	"phantom_assassin_coup_de_grace"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"pa_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -8652,7 +8948,7 @@
 		// Ability 2
 		"Ability2"	"phantom_assassin_coup_de_grace"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"pa_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -8790,7 +9086,7 @@
 		// Ability 2
 		"Ability2"	"earthshaker_aftershock"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"es_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -8927,7 +9223,7 @@
 		// Ability 3
 		"Ability3"	"earthshaker_echo_slam"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"es_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -9066,7 +9362,7 @@
 		// Ability 2
 		"Ability2"	"jakiro_ice_path"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"jakiro_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9205,7 +9501,7 @@
 		// Ability 3
 		"Ability3"	"jakiro_macropyre"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"jakiro_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -9626,7 +9922,7 @@
 		// Ability 2
 		"Ability2"	"axe_culling_blade"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"axe_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -9766,7 +10062,7 @@
 		// Ability 3
 		"Ability3"	"axe_counter_helix"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"axe_des"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
