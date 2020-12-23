@@ -41,6 +41,8 @@ EncounterInfo = {
 
 function WtaEncounters:init()
 	
+	--管理每个玩家身上的事件表
+	self.curEncounterList = {};
 	
 end
 
@@ -53,6 +55,8 @@ function WtaEncounters:handleOneEncounter(eid)
 	end
 	
 end
+
+function WtaEncounters:
 
 function WtaEncounters:GetRandomEncounter(turn, num)
 	if EncountersByTurn[turn] == nil then

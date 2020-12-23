@@ -1,9 +1,9 @@
 --handle player info here
-if PlayerInfoManager == nil then
-	PlayerInfoManager = class({})
+if PlayerManager == nil then
+	PlayerManager = class({})
 end
 
-function PlayerInfoManager:init()
+function PlayerManager:init()
 	self.team_mode = 1 -- 1 单人 2 多人
 	self.player_count = 0
 	self.team2playerid = {}
@@ -19,12 +19,12 @@ function PlayerInfoManager:init()
 	self.userid2player = {}
 end
 
-function PlayerInfoManager:getHeroByPlayer(player_id)
+function PlayerManager:getHeroByPlayer(player_id)
 	
 	return self.playerid2hero[player_id]
 end
 
-function PlayerInfoManager:getHeroByTeam(team_id)
+function PlayerManager:getHeroByTeam(team_id)
 	if team_id < 6 or team_id > 13 then
 		return nil,nil
 	end
@@ -35,11 +35,11 @@ function PlayerInfoManager:getHeroByTeam(team_id)
 	end
 end
 
-function PlayerInfoManager:getTeamIdByPlayer(player_id)
+function PlayerManager:getTeamIdByPlayer(player_id)
 	return self.playerid2team[player_id]
 end
 
-function PlayerInfoManager:DoEachHero(func)
+function PlayerManager:DoEachHero(func)
 	
 	if not self.heromap then
 		return
@@ -51,7 +51,7 @@ function PlayerInfoManager:DoEachHero(func)
 end
 
 
-function PlayerInfoManager:GetPlayingPlayerCount()
+function PlayerManager:GetPlayingPlayerCount()
 	if self.player_count > 0 then
 		return self.player_count
 	end
