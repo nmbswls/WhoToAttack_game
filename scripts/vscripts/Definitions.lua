@@ -2,17 +2,17 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {10, 10, 10, 6}
+	GameRules.Definitions.StageTime = {10, 2, 40, 6}
 	
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
 		[2] = 1,
-		[3] = 1,
-		[4] = 1,
-		[5] = 1,
-		[6] = 1,
-		[7] = 1,
-		[8] = 1,
+		[3] = 2,
+		[4] = 3,
+		[5] = 3,
+		[6] = 4,
+		[7] = 4,
+		[8] = 5,
 	}
 	
     GameRules.Definitions.TeamCenterPos = {
