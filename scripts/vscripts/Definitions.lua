@@ -211,27 +211,27 @@ if GameRules.Definitions == nil then
     GameRules.Definitions.ThroneCnt = 6;
 	GameRules.Definitions.ThroneConfig = {
 		[1] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
         [2] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
         [3] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
         [4] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
         [5] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
         [6] = {
-			unit_name = "throne_evil"
+			unit_name = "throne_evil",
 			bonus_name = "modifier_bonus_evil"
 		},
 	}
