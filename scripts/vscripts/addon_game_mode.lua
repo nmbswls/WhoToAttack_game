@@ -652,14 +652,13 @@ function WhoToAttack:UpdateThroneInfo()
     CustomNetTables:SetTableValue( "player_info_table", "throne_info", { data = self.thrones[i], hehe = RandomInt(1,100000)})
 end
 
-function WhoToAttack:DrawARound(team)
-	local hero = PlayerManager:getHeroByTeam(team)
+function WhoToAttack:DrawARound(hero)
 	if hero == nil or hero:IsNull() == true or hero:IsAlive() == false then
 		return
 	end
 	
 	-- GameRules:GetGameModeEntity().battle_count = GameRules:GetGameModeEntity().battle_count - 1
-	self:SetBattleTable(team,false)
+	self:SetBattleTable(hero.team, false)
 
 	--通知UI显示胜负
 	-- for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
@@ -2044,7 +2043,7 @@ end
 
 
 
-function findEmptyAbility(hero)
+function WhoToAttack:findEmptyAbility(hero)
 	local ability = nil
 	for i = 0, GameRules.Definitions.MaxBuildSkill-1 do
 		ability = hero:GetAbilityByIndex(i)
