@@ -228,7 +228,7 @@ function WhoToAttack:StartGame()
     -- end
     
     WtaThrones:init(GameRules:GetGameModeEntity().playing_player_count);
-    PlayerManager:init()
+    
     self:UpdateThroneInfo()
     
     --5秒后开始游戏
@@ -1881,7 +1881,8 @@ end
 function WhoToAttack:InitGameMode()
     
     
-
+	PlayerManager:init()
+	
 	self.teamNum = 8;
 	self.numPerTeam = 1;
     self.stage = 0
