@@ -6,15 +6,15 @@ end
 
 EncountersByTurn = {
 	[5] = {
-		[1] = {eid = 1, weight = 10}
-		[2] = {eid = 2, weight = 10}
-		[3] = {eid = 3, weight = 10}
-		[4] = {eid = 4, weight = 10}
-		[5] = {eid = 5, weight = 1}
-		[6] = {eid = 6, weight = 10}
-		[7] = {eid = 7, weight = 10}
-		[8] = {eid = 8, weight = 10}
-		[9] = {eid = 9, weight = 1}
+		[1] = {eid = 1, weight = 10},
+		[2] = {eid = 2, weight = 10},
+		[3] = {eid = 3, weight = 10},
+		[4] = {eid = 4, weight = 10},
+		[5] = {eid = 5, weight = 1},
+		[6] = {eid = 6, weight = 10},
+		[7] = {eid = 7, weight = 10},
+		[8] = {eid = 8, weight = 10},
+		[9] = {eid = 9, weight = 1},
 	},
 	[6] = {},
 	[7] = {},
