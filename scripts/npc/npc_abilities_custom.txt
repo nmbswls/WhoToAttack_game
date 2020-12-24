@@ -3081,6 +3081,44 @@
 		"AbilitySound"	"Hero_Treant.LeechSeed.Cast"
 	}
 
+	"riki_backstab"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5144"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+
+		"AbilityDraftUltShardAbility"		"riki_poison_dart"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage_multiplier"				"2.0"
+				"LinkedSpecialBonus"		"special_bonus_unique_riki_1"
+				"CalculateSpellDamageTooltip"	"0"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"backstab_angle"				"105 105 105"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_delay"					"50"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+	}
+
 	"treant_living_armor"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
@@ -5641,14 +5679,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/items_fx/aura_endurance.vpcf"
+		}
 		"Modifiers"
 		{
 			"brawnAura_Modifier"
@@ -5656,7 +5698,7 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixarmor"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
 				"Aura_ApplyToCaster"	"0"
@@ -5671,6 +5713,8 @@
 					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%incoming_damage"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/items_fx/aura_endurance.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5678,7 +5722,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -5698,14 +5742,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/ui/blessing_icon_ambient_green.vpcf"
+		}
 		"Modifiers"
 		{
 			"natureAura_Modifier"
@@ -5713,9 +5761,10 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixregen"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_ApplyToCaster"	"0"
 			}
 			"TestSysAura_Fixregen"
 			{
@@ -5727,6 +5776,8 @@
 					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%regen_pct"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/ui/blessing_icon_ambient_green.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5734,7 +5785,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -5754,14 +5805,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/econ/events/ti10/aghanim_aura_ti10/agh_aura_ti10.vpcf"
+		}
 		"Modifiers"
 		{
 			"wizard_Modifier"
@@ -5769,9 +5824,10 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixmana"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_ApplyToCaster"	"0"
 			}
 			"TestSysAura_Fixmana"
 			{
@@ -5783,6 +5839,8 @@
 					"MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE"	"%cd_pct"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/econ/events/ti10/aghanim_aura_ti10/agh_aura_ti10.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5790,7 +5848,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -5810,14 +5868,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Haste_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/items_fx/aura_vlads.vpcf"
+		}
 		"Modifiers"
 		{
 			"vibrant_Modifier"
@@ -5825,9 +5887,10 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixhealth"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_ApplyToCaster"	"0"
 			}
 			"TestSysAura_Fixhealth"
 			{
@@ -5838,6 +5901,8 @@
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5845,7 +5910,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -5865,14 +5930,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
+		}
 		"Modifiers"
 		{
 			"evil_Modifier"
@@ -5880,9 +5949,10 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixspeed"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_ApplyToCaster"	"0"
 			}
 			"TestSysAura_Fixspeed"
 			{
@@ -5894,6 +5964,8 @@
 					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%movementspeed"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5901,7 +5973,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -5921,14 +5993,18 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"MaxLevel"	"8"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"9999"
+		"AbilityCastRange"	"15000"
+		"precache"
+		{
+			"particle"	"particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_ambient.vpcf"
+		}
 		"Modifiers"
 		{
 			"hidden_Modifier"
@@ -5936,9 +6012,10 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Aura"	"TestSysAura_Fixattack"
-				"Aura_Radius"	"9999"
+				"Aura_Radius"	"15000"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_ApplyToCaster"	"0"
 			}
 			"TestSysAura_Fixattack"
 			{
@@ -5949,6 +6026,8 @@
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_attack"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_ambient.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 		"AbilitySpecial"
@@ -5956,7 +6035,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"Range"	"9999"
+				"Range"	"15000"
 			}
 			"02"
 			{
@@ -6038,7 +6117,7 @@
 		"AbilityCastRange"	"500"
 		"precache"
 		{
-			"particle"	"particles/econ/items/techies/techies_arcana/techies_suicide_flame.vpcf"
+			"particle"	"particles/units/heroes/hero_techies/techies_suicide.vpcf"
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
 		}
 		"OnOwnerDied"
@@ -6049,14 +6128,17 @@
 				{
 					"Center"	"CASTER"
 					"Radius"	"500"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_ALL | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
 				}
 				"Type"	"DAMAGE_TYPE_MAGICAL"
 				"Damage"	"300"
 			}
 			"FireEffect"
 			{
-				"EffectName"	"particles/econ/items/techies/techies_arcana/techies_suicide_flame.vpcf"
-				"Target"	"CASTER"
+				"EffectName"	"particles/units/heroes/hero_techies/techies_suicide.vpcf"
+				"Target"	"TARGET"
+				"EffectAttachType"	"follow_origin"
 			}
 			"FireSound"
 			{

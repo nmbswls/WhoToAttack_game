@@ -2374,7 +2374,7 @@
 				}
 			}
 		}
-		"Ability5"	""
+		"Ability5"	"NatureAura"
 		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""
@@ -2410,7 +2410,7 @@
 		// Ability 2
 		"Ability2"	"ogre_des2"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"HiddenAura"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -3065,7 +3065,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"riki_backstab"
 		// Ability 2
 		"Ability2"	"riki_des"
 		// Ability 3
@@ -3201,7 +3201,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"riki_backstab"
 		// Ability 2
 		"Ability2"	"riki_des2"
 		// Ability 3
@@ -6131,27 +6131,23 @@
 			{
 				"Wearable1"
 				{
-					"ItemDef"	"5797"
+					"ItemDef"	"13347"
 				}
 				"Wearable2"
 				{
-					"ItemDef"	"5803"
+					"ItemDef"	"13346"
 				}
 				"Wearable3"
 				{
-					"ItemDef"	"5798"
+					"ItemDef"	"13345"
 				}
 				"Wearable4"
 				{
-					"ItemDef"	"5799"
+					"ItemDef"	"13344"
 				}
 				"Wearable5"
 				{
-					"ItemDef"	"5800"
-				}
-				"Wearable6"
-				{
-					"ItemDef"	"5802"
+					"ItemDef"	"13343"
 				}
 			}
 		}
@@ -6281,27 +6277,23 @@
 			{
 				"Wearable1"
 				{
-					"ItemDef"	"5797"
+					"ItemDef"	"13086"
 				}
 				"Wearable2"
 				{
-					"ItemDef"	"5803"
+					"ItemDef"	"12422"
 				}
 				"Wearable3"
 				{
-					"ItemDef"	"5798"
+					"ItemDef"	"9209"
 				}
 				"Wearable4"
 				{
-					"ItemDef"	"5799"
+					"ItemDef"	"13680"
 				}
 				"Wearable5"
 				{
-					"ItemDef"	"5800"
-				}
-				"Wearable6"
-				{
-					"ItemDef"	"5802"
+					"ItemDef"	"13679"
 				}
 			}
 		}
