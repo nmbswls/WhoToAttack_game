@@ -138,6 +138,9 @@ if GameRules.Definitions == nil then
         [36] = {
             name = "nature_treant"
             },
+        [37] = {
+            name = "hidden_willow"
+            },
     }
     
     
@@ -178,6 +181,7 @@ if GameRules.Definitions == nil then
         [34] = "evil_sf",
         [35] = "brwan_axe",
         [36] = "nature_treant",
+        [37] = "hidden_willow",
     }
     GameRules.Definitions.ChessPoolSize = 8
     
@@ -189,7 +193,7 @@ if GameRules.Definitions == nil then
         [2] = {"vibrant_dk","wizard_lich","nature_wolf","hidden_riki","evil_clinkz","brwan_ogre"},
         [3] = {"hidden_ls","nature_viper","vibrant_techies","evil_underlord","wizard_leshrac","brwan_siege"},
         [4] = {},
-        [5] = {"brwan_centaur","nature_enchantress","wizard_furion","evil_abaddon","vibrant_huskar"},
+        [5] = {"brwan_centaur","nature_enchantress","wizard_furion","hidden_willow","evil_abaddon","vibrant_huskar"},
         [6] = {"nature_bear","brwan_tidehunter","vibrant_alchemist","evil_dazzle","hidden_ta","wizard_lion"},
 [7] = {},
     
@@ -337,6 +341,7 @@ if GameRules.Definitions == nil then
         wizard_furion = 5,
         evil_abaddon = 5,
         vibrant_huskar = 5,
+        hidden_willow = 5,
         nature_bear = 6,
         brwan_tidehunter = 6,
         vibrant_alchemist = 6,

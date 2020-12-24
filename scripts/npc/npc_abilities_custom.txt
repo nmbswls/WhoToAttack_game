@@ -180,20 +180,12 @@
 			}
 		}
 	}
-	
+
 	"throne_give_bonus_evil"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"attribute_bonus"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_attack"	"0"
-			}
-		}
 		"Modifiers"
 		{
 			"modifier_bonus_evil"
@@ -207,7 +199,6 @@
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
 			}
-			
 			"modifier_bonus_evil_aura"
 			{
 				"IsDebuff"	"0"
@@ -219,9 +210,16 @@
 				"IsBuff"	"1"
 			}
 		}
-		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack"	"0"
+			}
+		}
 	}
-	
+
 	"throne_give_bonus"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -627,7 +625,6 @@
 	// =================================================================================================================
 	"juggernaut_blade_dance"
 	{
-		"AbilityTextureName"	"icon_00"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		// General
@@ -1473,12 +1470,45 @@
 				"hp_leech_percent"	"2"
 				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_3"
 			}
+		}
+	}
+
+	"life_stealer_ghoul_frenzy"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"631"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_slow"	"20"
+				"LinkedSpecialBonus"	"special_bonus_unique_lifestealer_6"
+			}
 			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"1.5"
+			}
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_speed_bonus"	"30"
 			}
 		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 	}
 
 	"life_stealer_open_wounds"
@@ -1590,7 +1620,7 @@
 	"leshrac_diabolic_edict"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
@@ -2441,6 +2471,149 @@
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"AbilitySound"	"Hero_Dazzle.Weave"
 		"HasScepterUpgrade"	"1"
+	}
+
+	"dark_willow_bedlam"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"MaxLevel"	"3"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"10"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"6340"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_damage"	"55"
+				"LinkedSpecialBonus"	"special_bonus_unique_dark_willow_4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"attack_interval"	"0.25"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_radius"	"300"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"attack_targets"	"1"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"roaming_radius"	"200"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"roaming_seconds_per_rotation"	"1.8"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"roaming_duration"	"5.0"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		"LinkedAbility"	"dark_willow_terrorize"
+		"AbilityCastGestureSlot"	"ABSOLUTE"
+	}
+
+	"dark_willow_bramble_maze"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"FightRecapLevel"	"1"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"1100"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"6339"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"placement_range"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"placement_count"	"8"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"placement_duration"	"15"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"latch_duration"	"1.5"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"latch_range"	"90"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"latch_damage"	"50"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"latch_creation_interval"	"0.075"
+			}
+			"08"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"latch_creation_delay"	"0.1"
+			}
+			"09"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"initial_creation_delay"	"0.5"
+			}
+		}
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 	}
 
 	"lion_finger_of_death"
@@ -4768,6 +4941,36 @@
 		}
 	}
 
+	"build_hidden_willow"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Dark_Willow_icon"
+		"ScriptFile"	"builder_abilities/build_unit_test"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"MaxLevel"	"10"
+		"AbilityCastPoint"	"0"
+		"AbilityCooldown"	"0.1"
+		"AbilityManaCost"	"5"
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/builder_abilities/build_unit_test.lua"
+				"Function"	"AddBuildAbility"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+			}
+		}
+	}
+
 	"build_evil_abaddon"
 	{
 		"BaseClass"	"ability_datadriven"
@@ -5766,5 +5969,468 @@
 				"lifesteal"	"0 0 0 0 0 5 10 20"
 			}
 		}
+	}
+
+	"RangeAura"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Telescope_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_RANGED_ONLY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"AbilityCooldown"	"0"
+		"AbilityManaCost"	"0"
+		"AbilityCastRange"	"1200"
+		"Modifiers"
+		{
+			"range_Modifier"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Aura"	"TestSysAura_Fixrange"
+				"Aura_Radius"	"1200"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_RANGED_ONLY"
+				"Aura_ApplyToCaster"	"1"
+			}
+			"TestSysAura_Fixrange"
+			{
+				"IsDebuff"	"0"
+				"IsPurgable"	"0"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS"	"%bonus_range"
+				}
+				"IsBuff"	"1"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"Range"	"1200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_range"	"400"
+			}
+		}
+	}
+
+	"suicide"
+	{
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Blast_Off_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_COMPOSITE"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"	"0.05"
+		"AbilityCastRange"	"500"
+		"precache"
+		{
+			"particle"	"particles/econ/items/techies/techies_arcana/techies_suicide_flame.vpcf"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_techies.vsndevts"
+		}
+		"OnOwnerDied"
+		{
+			"Damage"
+			{
+				"Target"
+				{
+					"Center"	"CASTER"
+					"Radius"	"500"
+				}
+				"Type"	"DAMAGE_TYPE_MAGICAL"
+				"Damage"	"300"
+			}
+			"FireEffect"
+			{
+				"EffectName"	"particles/econ/items/techies/techies_arcana/techies_suicide_flame.vpcf"
+				"Target"	"CASTER"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Techies.Suicide.Arcana"
+			}
+		}
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"500"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"300"
+			}
+		}
+	}
+
+	"tusk_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"tusk_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ursa_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Regeneration_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"skeleton_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"dazzel_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ogre_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ogre_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"siege_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"siege_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"centaur_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"centaur_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"tide_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"tide_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"axe_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Illusion_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"drow_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	}
+
+	"drow_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"riki_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"riki_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ls_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ls_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"willow_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"willow_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ta_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ta_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"pa_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"pa_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invisibility_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"zeus_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"zeus_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"lich_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"lich_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"leshrac_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"leshrac_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"np_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"np_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"lion_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"lion_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"jakiro_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"jakiro_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Arcane_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"warlock_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"warlock_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"dk_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"dk_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"techies_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"techies_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"huskar_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"huskar_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ga_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"ga_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"es_des"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"es_des2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Haste_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	}
 }

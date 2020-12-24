@@ -150,6 +150,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_nevermore.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_axe.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_treant.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts",
     
 }
 
