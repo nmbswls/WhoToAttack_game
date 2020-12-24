@@ -510,6 +510,7 @@ function WhoToAttack:StartAPrepareRound()
         
         local hero = self.open_door_list[i];
 		local tid = hero.team_id;
+		print('open door' .. tid)
 		self.battle_field_list[tid].is_open = true;
         
         CustomGameEventManager:Send_ServerToAllClients("ping_open_doors", {x = GameRules.Definitions.TeamCenterPos[tid].x, y = GameRules.Definitions.TeamCenterPos[tid].y, z = GameRules.Definitions.TeamCenterPos[tid].z})
@@ -610,7 +611,7 @@ function WhoToAttack:CanBuildUnits()
         return false
     end
     
-    if self.stage == 2 or self.stage == 3 then
+    if self.stage == 1 or self.stage == 2 or self.stage == 3 then
         return true
     end
     
@@ -951,8 +952,8 @@ function WhoToAttack:GetPosBattleField(pos)
 	local minDist = 0
 	local minIdx = -1
 
-    for pid = 6, 13 do 
-        local p2 = GameRules.Definitions.TeamCenterPos[pid]
+    for team_i = 6, 13 do 
+        local p2 = GameRules.Definitions.TeamCenterPos[team_i]
         local distance = (p2 - pos):Length2D()
         if minIdx == -1 or distance < minDist then
             minDist = distance
@@ -963,7 +964,7 @@ function WhoToAttack:GetPosBattleField(pos)
     if minIdx == -1 then
         return nil
     end
-	
+	print('get pos batle field ' .. minIdx)
     return self.battle_field_list[minIdx]
 end
 
@@ -1373,16 +1374,69 @@ function RemoveAbilityAndModifier(u,a)
 	end
 end
 
-function WhoToAttack:ModifyBaseHP(hero, modHp)
 
-	hero:SetHealth(hero:GetHealth()+ modHp)
-	
-	Timers:CreateTimer(0.3,function()
-		if hero:IsAlive() == false or hero:GetHealth() <= 0 then
-			self:DoPlayerDie(hero);
-		end
-	end)
+
+function WhoToAttack:ModifyBaseHP(hero, hp)
+       if hero == nil or hp == nil then
+               return
+       end
+
+       if not hero.base then
+              return
+       end
+       local base = hero.base;
+       local nowHp = base:GetHealth();
+       if nowHp <= 0 then
+               return
+       end
+       local newHp = nowHp + hp;
+       if newHp < 0 then
+               newHp = 0
+       end
+
+       if newHp == 0 then
+		   base:ForceKill(false)
+		   hero:ForceKill(false)
+		   self:DoPlayerDie(hero)
+       else
+		   base:SetHealth(newHp)
+       end
+
 end
+
+function WhoToAttack:MoveUnit(target, pos)
+
+
+	if target == nil or target:IsNull() == true then
+	   return
+	end
+
+	local pos = pos
+
+	--可扩展的 暂时不需要
+	-- if set_forward == true then
+	   -- caster:SetForwardVector((position - caster:GetAbsOrigin()):Normalized())
+	-- end
+
+
+	target:Stop()
+	-- caster:InterruptMotionControllers(false)
+	-- caster:RemoveHorizontalMotionController(caster)
+	-- caster:RemoveVerticalMotionController(caster)
+	if target:HasModifier("modifier_toss")  then
+		-- return
+		target:RemoveModifierByName("modifier_toss")
+	end
+
+	target:AddNewModifier(target,nil,"modifier_toss",
+	{
+		vx = pos.x,
+		vy = pos.y,
+	})
+
+end
+
+
 
 -- function GetPlayingPlayerCount()
 	-- if GameRules:GetGameModeEntity().playing_player_count > 0 then
