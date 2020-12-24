@@ -13,13 +13,17 @@ function CheckOneAttack(keys)
     local team_id = attacker:GetTeam();
     local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * 2;
     
-    local hero1 = GameRules:GetGameModeEntity().teamid2hero[team_id];
+    local hero1 = PlayerManager:getHeroByTeam(team_id);
     if hero1 then
         hero1:ModifyGold(bonus, true, 0);
     end
     
     GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, 1);
-    
+	
+    if attacker:IsAlive() then
+        --print("try to kill " .. attacker:GetEntityIndex())
+        attacker:Kill(nil, nil)
+    end
     
     -- local hero2 = GameRules:GetGameModeEntity().teamid2hero[caster:GetTeam()];
     -- if hero2 then

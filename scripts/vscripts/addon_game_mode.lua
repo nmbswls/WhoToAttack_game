@@ -90,7 +90,6 @@ require 'timers'
 
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
-LinkLuaModifier("modifier_base", "lua_modifier/modifier_base.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
 
 
@@ -207,13 +206,14 @@ function WhoToAttack:StartGame()
     for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
         local pos = GameRules.Definitions.TeamCenterPos[team_i]
         local hero = PlayerManager:getHeroByTeam(team_i);
+		print("cnmcnmcnm")
         if hero then
+			print("fuck")
             local newBase = CreateUnitByName("player_jidi", pos, true, nil, nil, team_i)
             hero.base = newBase
-            newBase:AddNewModifier(newBase, nil, "modifier_base", {})
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
-	    newBase.hero = hero
+			newBase.hero = hero
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
@@ -227,7 +227,7 @@ function WhoToAttack:StartGame()
     
     -- end
     
-    WtaThrones:init(GameRules:GetGameModeEntity().playing_player_count);
+    WtaThrones:init(PlayerManager.player_count);
     
     self:UpdateThroneInfo()
     
@@ -460,13 +460,15 @@ function WhoToAttack:StartAPrepareRound()
         local orders = WtaThrones.sortedTeamIdx[i];
         local throne = WtaThrones.throneList[i];
         local ability = throne:GetAbilityByIndex(2);
-		print("throne ability name " .. ability:GetName())
         for idx, tid in pairs(orders) do 
             local hero = PlayerManager:getHeroByTeam(tid);
             if hero then
-                local bonusName = GameRules.Definition.ThroneConfig[i].bonus_name;
+				
+                local bonusName = GameRules.Definitions.ThroneConfig[i].bonus_name;
+				print('give bonue ' .. bonusName)
                 table.insert(hero.throne_bonus, bonusName);
                 ability:ApplyDataDrivenModifier(throne, hero, bonusName, {});
+				break;
             end
         end
     end
@@ -1019,7 +1021,7 @@ end
 function WhoToAttack:ClearBattle(teamid)
 	for _,v in pairs(self.to_be_destory_list[teamid]) do
 		if v ~= nil and v:IsNull() == false then
-            print("to destoy: " .. v:GetUnitName())
+            --print("to destoy: " .. v:GetUnitName())
 			--AddAbilityAndSetLevel(v,'no_selectable')
 			v:Destroy()
 		end
@@ -1371,6 +1373,16 @@ function RemoveAbilityAndModifier(u,a)
 	end
 end
 
+function WhoToAttack:ModifyBaseHP(hero, modHp)
+
+	hero:SetHealth(hero:GetHealth()+ modHp)
+	
+	Timers:CreateTimer(0.3,function()
+		if hero:IsAlive() == false or hero:GetHealth() <= 0 then
+			self:DoPlayerDie(hero);
+		end
+	end)
+end
 
 -- function GetPlayingPlayerCount()
 	-- if GameRules:GetGameModeEntity().playing_player_count > 0 then
@@ -1484,11 +1496,12 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	PlayerManager.heromap[heroindex] = EntIndexToHScript(heroindex)
 	PlayerManager.playerid2hero[player:GetPlayerID()] = EntIndexToHScript(heroindex)
 	PlayerManager.teamid2hero[hero:GetTeam()] = EntIndexToHScript(heroindex)
-	
 	local playercount = 0
 	for i,vi in pairs(PlayerManager.heromap) do
 		playercount = playercount +1
 	end
+	
+	local allCount = PlayerManager:GetPlayingPlayerCount();
 
 	-- local all_playing_player_count = GetPlayingPlayerCount()
 	-- --下发消息 
@@ -1496,14 +1509,13 @@ function WhoToAttack:OnPlayerPickHero(keys)
     
     -- --print("player count " .. all_playing_player_count .. "   " .. playercount);
     
-	-- if playercount == all_playing_player_count then
-		-- --InitPlayerIDTable()
-		-- self.alive_count = playercount;
-		-- Timers:CreateTimer(0.1,function()
-			-- --开始
-			-- self:StartGame()
-		-- end)
-	-- end 
+	if playercount == allCount then
+		self.alive_count = playercount;
+		Timers:CreateTimer(0.1,function()
+			--开始
+			self:StartGame()
+		end)
+	end 
 	
 end
 
@@ -1514,10 +1526,10 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
     
     
-	GameRules:GetGameModeEntity().playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
-	GameRules:GetGameModeEntity().steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
-	GameRules:GetGameModeEntity().steamid2name[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = tostring(PlayerResource:GetPlayerName(keys.PlayerID))
-	GameRules:GetGameModeEntity().userid2player[keys.userid] = keys.index + 1
+	PlayerManager.playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
+	PlayerManager.steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
+	PlayerManager.steamid2name[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = tostring(PlayerResource:GetPlayerName(keys.PlayerID))
+	PlayerManager.userid2player[keys.userid] = keys.index + 1
 
 	GameRules:GetGameModeEntity().connect_state[keys.PlayerID] = true
 	local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
@@ -1533,6 +1545,7 @@ function WhoToAttack:OnPlayerConnectFull(keys)
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     player:SetSelectedHero("builder")
+	
 	
 	Timers:CreateTimer(RandomFloat(0.1,0.5),function()
 			local team_id = GameRules:GetGameModeEntity().playerid2team[keys.PlayerID]
@@ -1655,10 +1668,9 @@ function WhoToAttack:OnGameRulesStateChange()
 					end
 			end)
 		end
-	elseif nNewState == DOTA_GAMERULES_STATE_PRE_GAME then
+	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS  then
 	
-		print("pre game")
-		self:StartGame();
+		print("start game")
 	end
 end
 
@@ -1943,7 +1955,6 @@ function WhoToAttack:InitGameMode()
     GameRules:GetGameModeEntity():SetBuybackEnabled(false)
     
     
-	GameRules:GetGameModeEntity().playerid2steamid = {}
 	
 	self.battle_round = 0
 	self.is_game_ended =false
@@ -1953,10 +1964,6 @@ function WhoToAttack:InitGameMode()
 	GameRules:GetGameModeEntity().playerid2team = {}
 	
 	
-	GameRules:GetGameModeEntity().steamid2playerid = {}
-    GameRules:GetGameModeEntity().playerid2steamid = {}
-    GameRules:GetGameModeEntity().steamid2name = {}
-	GameRules:GetGameModeEntity().userid2player = {}
 	
 	GameRules:GetGameModeEntity().client_key = {
 		[1] = RandomInt(1,1000000),

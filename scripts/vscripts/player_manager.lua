@@ -24,6 +24,8 @@ function PlayerManager:getHeroByPlayer(player_id)
 	return self.playerid2hero[player_id]
 end
 
+
+
 function PlayerManager:getHeroByTeam(team_id)
 	if team_id < 6 or team_id > 13 then
 		return nil,nil
@@ -68,7 +70,5 @@ function PlayerManager:GetPlayingPlayerCount()
 	end
 	self.player_count = ingameCnt
 	self.ob_player_count = obCnt
-	
-	return player_count
-
+	return self.player_count
 end

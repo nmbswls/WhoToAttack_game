@@ -8,7 +8,7 @@ require 'utils'
 local MIN_TIME_CAST = 6
 if UnitAI == nil then UnitAI = class({}) end
 UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ABILITY"}
-UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS
+UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS
 
 function UnitAI:OnUnitThink(unit)
 
@@ -285,7 +285,6 @@ function UnitAI:ClosestEnemyAll(unit, radius)
     
     local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
         UNIT_FILTER, FIND_CLOSEST, true)
-    
     if #candidates == 0 then
         return ret, base
     end
