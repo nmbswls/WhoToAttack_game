@@ -3,6 +3,18 @@ if GameRules.Definitions == nil then
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
 	GameRules.Definitions.StageTime = {10, 10, 10, 6}
+	
+	GameRules.Definitions.OpenDoorNumByAlive = {
+		[1] = 1,
+		[2] = 1,
+		[3] = 1,
+		[4] = 1,
+		[5] = 1,
+		[6] = 1,
+		[7] = 1,
+		[8] = 1,
+	}
+	
     GameRules.Definitions.TeamCenterPos = {
 	    [6] = Vector(-4735,4735,128),
 		[7] = Vector(127,4735,128),
