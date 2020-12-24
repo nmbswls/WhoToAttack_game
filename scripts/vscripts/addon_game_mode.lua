@@ -688,7 +688,7 @@ function WhoToAttack:DoPlayerDie(hero)
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName)
-    local hero = PlayerManager:TeamId2Hero(team)
+    local hero = PlayerManager:getHeroByTeam(team)
     --local newyUnit = CreateUnitByName(unitName, pos, true, hero, hero, team)
     local newyUnit = CreateUnitByName(unitName, pos, true, nil, nil, team)
     if newyUnit then
