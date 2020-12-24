@@ -652,8 +652,8 @@ function WhoToAttack:UpdateThroneInfo()
     CustomNetTables:SetTableValue( "player_info_table", "throne_info", { data = self.thrones[i], hehe = RandomInt(1,100000)})
 end
 
-function WhoToAttack:DrawARound(hero)
-
+function WhoToAttack:DrawARound(team)
+	local hero = PlayerManager:getHeroByTeam(team)
 	if hero == nil or hero:IsNull() == true or hero:IsAlive() == false then
 		return
 	end
@@ -2044,7 +2044,7 @@ end
 
 
 
-local function findEmptyAbility(hero)
+function findEmptyAbility(hero)
 	local ability = nil
 	for i = 0, GameRules.Definitions.MaxBuildSkill-1 do
 		ability = hero:GetAbilityByIndex(i)
