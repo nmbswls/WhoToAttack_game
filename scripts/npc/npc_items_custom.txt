@@ -169,29 +169,24 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_attack_speed"	"0"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
 				"bonus_magical_armor"	"0"
 			}
-			"03"
+			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"fade_delay"	"0.6"
 			}
-			"04"
+			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"active_magical_armor"	"35"
 			}
-			"05"
+			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"duration"	"30"
 			}
-			"06"
+			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
 				"building_duration_limit"	"180"
