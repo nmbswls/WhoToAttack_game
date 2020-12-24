@@ -837,7 +837,7 @@ end
 
 function WhoToAttack:AddBuildSkill(hero, completeSKillName)
     
-	local emptyAbility = findEmptyAbility(hero)
+	local emptyAbility = self:findEmptyAbility(hero)
     if not emptyAbility then
         print("no empty skill slot found")
         return nil
