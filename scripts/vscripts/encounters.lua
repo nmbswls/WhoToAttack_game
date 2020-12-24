@@ -56,7 +56,6 @@ function WtaEncounters:handleOneEncounter(eid)
 	
 end
 
-function WtaEncounters:
 
 function WtaEncounters:GetRandomEncounter(turn, num)
 	if EncountersByTurn[turn] == nil then
