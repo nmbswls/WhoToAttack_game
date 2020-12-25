@@ -44,6 +44,10 @@ function UnitAI:OnUnitThink(unit)
     if(unit.IsCommandRestricted ~= nil and unit:IsCommandRestricted()) then 
         return 0.2
     end
+	
+	if not unit.in_battle_id then 
+        return 1
+    end
     
     for i, v in pairs(UNIT_CMD_LIST) do
         local score, cmdData = UnitAI:EvaluateCommand(unit, v)
@@ -91,7 +95,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
             or attackTarget:HasModifier("modifier_player_jidi") then
             
             local nearestEnemy = nil
-            local enemies, base = UnitAI:ClosestEnemyAll(unit)
+            local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
             
             if #enemies > 0 then
                 nearestEnemy = enemies[1]
