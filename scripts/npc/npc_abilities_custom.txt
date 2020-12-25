@@ -1130,7 +1130,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armor"	"7"
+				"armor"	"5"
 			}
 			"04"
 			{
@@ -1223,6 +1223,232 @@
 				"LinkedSpecialBonusOperation"	"SPECIAL_BONUS_MULTIPLY"
 			}
 		}
+	}
+
+	"drow_ranger_wave_of_silence"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.25"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"10"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"0"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"300"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5632"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"wave_speed"	"2000.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"wave_width"	"250"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"silence_duration"	"1"
+				"LinkedSpecialBonus"	"special_bonus_unique_drow_ranger_4"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"knockback_distance_max"	"800"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"knockback_duration"	"0.8"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"knockback_height"	"0"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"wave_length"	"900"
+			}
+		}
+		"AbilitySound"	"Hero_DrowRanger.Silence"
+	}
+
+	"lycan_feral_impulse"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5397"
+		// Casting
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_damage"	"35"
+				"LinkedSpecialBonus"	"special_bonus_unique_lycan_4"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_hp_regen"	"6"
+				"LinkedSpecialBonus"	"special_bonus_unique_lycan_3"
+			}
+		}
+	}
+
+	"venomancer_poison_sting"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5179"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"9.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"22"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"movement_speed"	"-15"
+				"LinkedSpecialBonus"	"special_bonus_unique_venomancer_2"
+			}
+		}
+	}
+
+	"beastmaster_inner_beast"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5172"
+		// Casting
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"1200"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"bonus_attack_speed"	"30"
+				"LinkedSpecialBonus"	"special_bonus_unique_beastmaster_4"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"scepter_multiplier"	"2"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"scepter_duration"	"4"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_radius"	"1200"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_cooldown"	"35"
+			}
+			"07"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"scepter_manacost"	"50"
+			}
+		}
+	}
+
+	"abaddon_aphotic_shield"
+	{
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
+		"FightRecapLevel"	"1"
+		"AbilityCastPoint"	"0.3"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"9.0"
+		// Cost
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"500"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5586"
+		// Special
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"duration"	"15.0"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"damage_absorb"	"110"
+				"LinkedSpecialBonus"	"special_bonus_unique_abaddon"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"675"
+			}
+		}
+		"AbilitySound"	"Hero_Abaddon.AphoticShield.Cast"
 	}
 
 	"lich_frost_nova"
@@ -1613,6 +1839,54 @@
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityDamage"	"35"
 		"AbilityDuration"	"1"
+	}
+
+	"riki_smoke_screen"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5142"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_Riki.Smoke_Screen"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"450"
+		"AbilityCastPoint"				"0.2"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"15"
+		"AbilityDuration"				"4"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"100"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"300"
+				"LinkedSpecialBonus"		"special_bonus_unique_riki_7"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"duration"					"4"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"miss_rate"					"35"
+			}
+		}
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
 	}
 
 	"leshrac_diabolic_edict"
@@ -3215,8 +3489,6 @@
 	"abyssal_underlord_firestorm"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -3225,7 +3497,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"8"
+		"AbilityCooldown"	"8.0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -3247,11 +3519,13 @@
 			{
 				"var_type"	"FIELD_FLOAT"
 				"wave_duration"	"5.0"
+				"LinkedSpecialBonus"	"special_bonus_unique_underlord_7"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
 				"wave_count"	"4"
+				"LinkedSpecialBonus"	"special_bonus_unique_underlord_7"
 			}
 			"04"
 			{
@@ -3291,6 +3565,7 @@
 				"building_damage"	"0"
 			}
 		}
+		"HasShardUpgrade"	"1"
 	}
 
 	"abyssal_underlord_atrophy_aura"

@@ -2669,7 +2669,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"ability_rand_04"
+		"Ability1"	""
 		// Ability 2
 		"Ability2"	"lycan_summon_wolves_critical_strike"
 		// Ability 3
@@ -2786,7 +2786,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"bounty_hunter_wind_walk"
+		"Ability1"	""
 		// Ability 2
 		"Ability2"	"lycan_summon_wolves_critical_strike"
 		// Ability 3
@@ -3193,7 +3193,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"riki_backstab"
+		"Ability1"	""
 		// Ability 2
 		"Ability2"	"riki_des"
 		// Ability 3
@@ -3330,7 +3330,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"riki_backstab"
+		"Ability1"	"riki_smoke_screen"
 		// Ability 2
 		"Ability2"	"riki_des2"
 		// Ability 3
@@ -5747,11 +5747,11 @@
 		// Ability 1
 		"Ability1"	"enchantress_impetus"
 		// Ability 2
-		"Ability2"	"enchantress_bunny_hop"
+		"Ability2"	"drow_ranger_wave_of_silence"
 		// Ability 3
-		"Ability3"	"enchantress_untouchable"
+		"Ability3"	"enchanstress_des2"
 		// Ability 4
-		"Ability4"	"enchanstress_des2"
+		"Ability4"	""
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -5836,7 +5836,7 @@
 			{
 				"Ability2"
 				{
-					"Name"	"enchantress_bunny_hop"
+					"Name"	"drow_ranger_wave_of_silence"
 				}
 			}
 			"AttachWearables"
@@ -6481,7 +6481,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"frostmourne_datadriven"
+		"Ability1"	"abaddon_aphotic_shield"
 		// Ability 2
 		"Ability2"	"abaddon_des"
 		// Ability 3
@@ -6610,7 +6610,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"abaddon_frostmourne"
+		"Ability1"	"abaddon_aphotic_shield"
 		// Ability 2
 		"Ability2"	"abaddon_borrowed_time"
 		// Ability 3
@@ -7311,11 +7311,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"lone_druid_spirit_bear_entangle"
+		"Ability1"	"lycan_feral_impulse"
 		// Ability 2
-		"Ability2"	"bear_des"
+		"Ability2"	"venomancer_poison_sting"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"bear_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -7406,13 +7406,13 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"lone_druid_spirit_bear_entangle"
+		"Ability1"	"lycan_feral_impulse"
 		// Ability 2
-		"Ability2"	"bear_des2"
+		"Ability2"	"venomancer_poison_sting"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"beastmaster_inner_beast"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"bear_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
