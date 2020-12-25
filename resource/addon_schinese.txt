@@ -417,5 +417,7 @@
 		"throne_brawn"	"刚毅之神"
 		"throne_vibrant"	"热血之神"
 		"player_jidi"	"基地"
+		"DOTA_Tooltip_modifier_effect"	"开门特效"
+		"DOTA_Tooltip_modifier_effect_Description"	"开门"
 	}
 }

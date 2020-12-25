@@ -106,6 +106,7 @@
 		"precache"
 		{
 			"particle"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
+			"particle"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
 		}
 		"Modifiers"
 		{
@@ -143,6 +144,13 @@
 					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
+			}
+			"modifier_effect"
+			{
+				"EffectName"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
+				"EffectAttachType"	"follow_overhead"
+				"Passive"	"1"
+				"IsHidden"	"0"
 			}
 		}
 	}
@@ -1843,50 +1851,47 @@
 
 	"riki_smoke_screen"
 	{
-		// General
-		//-------------------------------------------------------------------------------------------------------------
-		"ID"					"5142"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-		"AbilitySound"					"Hero_Riki.Smoke_Screen"
-
-		// Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"450"
-		"AbilityCastPoint"				"0.2"
-
-		// Time		
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15"
-		"AbilityDuration"				"4"
-
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
+		"AbilityCastPoint"	"0.2"
+		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
+		// Time
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"	"15"
 		// Cost
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"	"100"
+		// Casting
+		// -------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"	"450"
+		// General
+		// -------------------------------------------------------------------------------------------------------------
+		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"ID"	"5142"
 		// Special
-		//-------------------------------------------------------------------------------------------------------------
+		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
 			"01"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"radius"					"300"
-				"LinkedSpecialBonus"		"special_bonus_unique_riki_7"
+				"var_type"	"FIELD_INTEGER"
+				"radius"	"300"
+				"LinkedSpecialBonus"	"special_bonus_unique_riki_7"
 			}
 			"02"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"duration"					"4"
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"4"
 			}
 			"03"
 			{
-				"var_type"					"FIELD_INTEGER"
-				"miss_rate"					"35"
+				"var_type"	"FIELD_INTEGER"
+				"miss_rate"	"35"
 			}
 		}
-		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+		"AbilitySound"	"Hero_Riki.Smoke_Screen"
+		"AbilityDuration"	"4"
 	}
 
 	"leshrac_diabolic_edict"
