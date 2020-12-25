@@ -232,23 +232,23 @@ if GameRules.Definitions == nil then
 		},
         [2] = {
 			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			bonus_name = "evil_Modifier"
 		},
         [3] = {
-			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			unit_name = "throne_hidden",
+			bonus_name = "hidden_Modifier"
 		},
         [4] = {
-			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			unit_name = "throne_vibrant",
+			bonus_name = "vibrant_Modifier"
 		},
         [5] = {
-			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			unit_name = "throne_wizard",
+			bonus_name = "wizard_Modifier"
 		},
         [6] = {
-			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			unit_name = "throne_brawn",
+			bonus_name = "brawnAura_Modifier"
 		},
 	}
     GameRules.Definitions.ThronePos = {

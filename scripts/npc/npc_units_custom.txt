@@ -601,7 +601,7 @@
 		"BaseClass"	"npc_dota_creature"
 		"Ability1"	"is_god_throne"
 		"Ability2"	"throne_show_score"
-		"Ability3"	"throne_give_bonus_evil"
+		"Ability3"	"EvilAura"
 		"Ability4"	""
 		"Ability5"	""
 		"Ability6"	""
@@ -628,6 +628,110 @@
 		"Ability1"	"is_god_throne"
 		"Ability2"	"throne_show_score"
 		"Ability3"	"throne_give_bonus_nature"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_structures/tower_good.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
+	}
+
+	"throne_wizard"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"is_god_throne"
+		"Ability2"	"throne_show_score"
+		"Ability3"	"WizardAura"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_structures/tower_good.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
+	}
+
+	"throne_hidden"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"is_god_throne"
+		"Ability2"	"throne_show_score"
+		"Ability3"	"HiddenAura"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_structures/tower_good.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
+	}
+
+	"throne_brawn"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"is_god_throne"
+		"Ability2"	"throne_show_score"
+		"Ability3"	"BrawnAura"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_structures/tower_good.vmdl"
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"StatusHealth"	"10000"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
+	}
+
+	"throne_vibrant"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"is_god_throne"
+		"Ability2"	"throne_show_score"
+		"Ability3"	"VibrantAura"
 		"Ability4"	""
 		"Ability5"	""
 		"Ability6"	""
@@ -688,7 +792,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -782,7 +886,7 @@
 		"ModelScale"	"0.9"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -876,7 +980,7 @@
 		"ModelScale"	".35"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -990,7 +1094,7 @@
 		"ModelScale"	".45"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1105,7 +1209,7 @@
 		"ModelScale"	".4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1256,7 +1360,7 @@
 		"ModelScale"	".5"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1407,7 +1511,7 @@
 		"ModelScale"	".35"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1550,7 +1654,7 @@
 		"ModelScale"	".45"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1696,7 +1800,7 @@
 		"ModelScale"	".4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1835,7 +1939,7 @@
 		"ModelScale"	".5"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -1979,7 +2083,7 @@
 		"ModelScale"	".35"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2141,7 +2245,7 @@
 		"ModelScale"	".45"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2301,7 +2405,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2421,7 +2525,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2561,7 +2665,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2678,7 +2782,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2795,7 +2899,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -2940,7 +3044,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3085,7 +3189,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3222,7 +3326,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3366,7 +3470,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3510,7 +3614,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3661,7 +3765,7 @@
 		"ModelScale"	".55"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3804,7 +3908,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -3947,7 +4051,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4062,7 +4166,7 @@
 		"ModelScale"	"0.8"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4196,7 +4300,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4323,7 +4427,7 @@
 		"ModelScale"	".8"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4450,7 +4554,7 @@
 		"ModelScale"	".6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4586,7 +4690,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4722,7 +4826,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -4870,7 +4974,7 @@
 		"ModelScale"	"0.8"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5023,7 +5127,7 @@
 		"ModelScale"	".5"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5122,7 +5226,7 @@
 		"ModelScale"	".7"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5222,7 +5326,7 @@
 		"ModelScale"	".65"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5348,7 +5452,7 @@
 		"ModelScale"	".75"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_REGULAR"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5492,7 +5596,7 @@
 		"ModelScale"	"1.05"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5637,7 +5741,7 @@
 		"ModelScale"	"1.15"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5787,7 +5891,7 @@
 		"ModelScale"	"1.0"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -5935,7 +6039,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6082,7 +6186,7 @@
 		"ModelScale"	"1.0"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6225,7 +6329,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6373,7 +6477,7 @@
 		"ModelScale"	"0.95"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6502,7 +6606,7 @@
 		"ModelScale"	"1.05"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6630,7 +6734,7 @@
 		"ModelScale"	"0.9"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6781,7 +6885,7 @@
 		"ModelScale"	"1.0"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -6931,7 +7035,7 @@
 		"ModelScale"	"1.0"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7056,7 +7160,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7203,7 +7307,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7298,7 +7402,7 @@
 		"ModelScale"	"1.2"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7393,7 +7497,7 @@
 		"ModelScale"	"1.05"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7540,7 +7644,7 @@
 		"ModelScale"	"1.15"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7693,7 +7797,7 @@
 		"ModelScale"	"1.2"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7840,7 +7944,7 @@
 		"ModelScale"	"1.3"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -7987,7 +8091,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8141,7 +8245,7 @@
 		"ModelScale"	"1.2"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8294,7 +8398,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8432,7 +8536,7 @@
 		"ModelScale"	"1.2"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8570,7 +8674,7 @@
 		"ModelScale"	"1.1"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8713,7 +8817,7 @@
 		"ModelScale"	"1.2"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8859,7 +8963,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -8999,7 +9103,7 @@
 		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9138,7 +9242,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9274,7 +9378,7 @@
 		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9416,7 +9520,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9554,7 +9658,7 @@
 		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9700,7 +9804,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9840,7 +9944,7 @@
 		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HERO"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -9980,7 +10084,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -10119,7 +10223,7 @@
 		"ModelScale"	"1.6"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -10258,7 +10362,7 @@
 		"ModelScale"	"1.4"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
@@ -10404,7 +10508,7 @@
 		"ModelScale"	"1.5"
 		"AutoAttacksByDefault"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"ConsideredHero"	"1"
+		"ConsideredHero"	"0"
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
