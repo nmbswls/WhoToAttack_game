@@ -1,9 +1,5 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAAbilities"
 {
-	"Version"		"1"
 
 	"item_throw_one"
 	{
@@ -13,8 +9,8 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCooldown"	"1"
-		"AOERadius"	"300"
+		"AbilityCooldown"	"0.1"
+		"AOERadius"	"600"
 		"ID"	"1500"
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
@@ -147,6 +143,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
 		"AbilityCooldown"	"60"
 		"AbilityManaCost"	"0"
@@ -192,7 +189,6 @@
 				"building_duration_limit"	"180"
 			}
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"ShouldBeSuggested"	"1"
 	}
 
@@ -325,6 +321,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCooldown"	"60.0"
@@ -405,7 +402,6 @@
 				"tooltip_reapply_time"	"40"
 			}
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"ShouldBeSuggested"	"1"
 	}
 
@@ -414,6 +410,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"AbilityCastPoint"	"0.0"
 		"AbilityCooldown"	"60"
 		// Item Info
@@ -516,7 +513,6 @@
 				"chain_cooldown"	"0"
 			}
 		}
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"ShouldBeSuggested"	"1"
 	}
 }

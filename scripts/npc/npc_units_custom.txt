@@ -1,9 +1,5 @@
-// Dota2 Editor
-// Get latest version: https://github.com/zombieJ/nw-dota2editor
-
 "DOTAUnits"
 {
-	"Version"		"1"
 
 	// =================================================================================
 	// Creature: Gnoll Assassin
@@ -118,6 +114,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+		"Ability17"	""
 	}
 
 	// ddd
@@ -231,6 +228,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+		"Ability17"	""
 	}
 
 	"u02"
@@ -343,6 +341,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+		"Ability17"	""
 	}
 
 	"u03"
@@ -455,6 +454,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+		"Ability17"	""
 	}
 
 	"u04"
@@ -567,6 +567,7 @@
 		"Ability15"	""
 		"Ability16"	""
 		"AutoAttacksByDefault"	"0"
+		"Ability17"	""
 	}
 
 	"god_throne"
@@ -592,6 +593,7 @@
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
 	}
 
 	"throne_evil"
@@ -617,6 +619,7 @@
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
 	}
 
 	"throne_nature"
@@ -624,7 +627,7 @@
 		"BaseClass"	"npc_dota_creature"
 		"Ability1"	"is_god_throne"
 		"Ability2"	"throne_show_score"
-		"Ability3"	"throne_give_bonus"
+		"Ability3"	"throne_give_bonus_nature"
 		"Ability4"	""
 		"Ability5"	""
 		"Ability6"	""
@@ -642,6 +645,7 @@
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Ability17"	""
 	}
 
 	"player_jidi"
@@ -668,6 +672,7 @@
 		"StatusHealth"	"10000"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"IsAncient"	"1"
+		"Ability17"	""
 	}
 
 	"evil_skeleton"
@@ -761,6 +766,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_skeleton_special"
@@ -854,6 +860,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_ursa"
@@ -967,6 +974,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_ursa_special"
@@ -1080,6 +1088,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_drow"
@@ -1230,6 +1239,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_drow_special"
@@ -1380,6 +1390,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_tusk"
@@ -1522,6 +1533,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_tusk_special"
@@ -1668,6 +1680,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_zeus"
@@ -1806,6 +1819,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_zeus_special"
@@ -1948,6 +1962,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_warlock"
@@ -2108,6 +2123,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_warlock_special"
@@ -2269,6 +2285,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_ogre"
@@ -2375,7 +2392,7 @@
 				}
 			}
 		}
-		"Ability5"	"NatureAura"
+		"Ability5"	""
 		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""
@@ -2387,6 +2404,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_ogre_special"
@@ -2411,7 +2429,7 @@
 		// Ability 2
 		"Ability2"	"ogre_des2"
 		// Ability 3
-		"Ability3"	"HiddenAura"
+		"Ability3"	""
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2527,6 +2545,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_wolf"
@@ -2643,6 +2662,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_wolf_special"
@@ -2759,6 +2779,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_dk"
@@ -2902,6 +2923,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_dk_special"
@@ -3046,6 +3068,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_riki"
@@ -3182,6 +3205,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_riki_special"
@@ -3326,6 +3350,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_lich"
@@ -3468,6 +3493,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_lich_special"
@@ -3619,6 +3645,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_clinkz"
@@ -3761,6 +3788,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_clinkz_special"
@@ -3903,6 +3931,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_ls"
@@ -4017,6 +4046,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_ls_special"
@@ -4150,6 +4180,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_techies"
@@ -4276,6 +4307,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_techies_special"
@@ -4402,6 +4434,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_underlord"
@@ -4536,6 +4569,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_underlord_special"
@@ -4671,6 +4705,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_leshrac"
@@ -4818,6 +4853,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_leshrac_special"
@@ -4972,6 +5008,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_siege"
@@ -5070,6 +5107,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_siege_special"
@@ -5168,6 +5206,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_viper"
@@ -5292,6 +5331,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_viper_special"
@@ -5436,6 +5476,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_enchantress"
@@ -5578,6 +5619,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_enchantress_special"
@@ -5729,6 +5771,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_furion"
@@ -5875,6 +5918,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_furion_special"
@@ -6022,6 +6066,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_willow"
@@ -6164,6 +6209,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_willow_special"
@@ -6310,6 +6356,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_abaddon"
@@ -6438,6 +6485,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_abaddon_special"
@@ -6566,6 +6614,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_centaur"
@@ -6715,6 +6764,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_centaur_special"
@@ -6865,6 +6915,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_huskar"
@@ -6988,6 +7039,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_huskar_special"
@@ -7135,6 +7187,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_bear"
@@ -7229,6 +7282,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_bear_special"
@@ -7323,6 +7377,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_tidehunter"
@@ -7468,6 +7523,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_tidehunter_special"
@@ -7621,6 +7677,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_alchemist"
@@ -7767,6 +7824,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_alchemist_special"
@@ -7913,6 +7971,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_dazzle"
@@ -8065,6 +8124,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_dazzle_special"
@@ -8218,6 +8278,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_ta"
@@ -8355,6 +8416,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_ta_special"
@@ -8492,6 +8554,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_lion"
@@ -8633,6 +8696,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_lion_special"
@@ -8779,6 +8843,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_pa"
@@ -8917,6 +8982,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"hidden_pa_special"
@@ -9056,6 +9122,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_earthshaker"
@@ -9190,6 +9257,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"vibrant_earthshaker_special"
@@ -9332,6 +9400,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_jakiro"
@@ -9469,6 +9538,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"wizard_jakiro_special"
@@ -9614,6 +9684,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_sf"
@@ -9753,6 +9824,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"evil_sf_special"
@@ -9892,6 +9964,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_axe"
@@ -10030,6 +10103,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"brwan_axe_special"
@@ -10168,6 +10242,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_treant"
@@ -10312,6 +10387,7 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 
 	"nature_treant_special"
@@ -10465,5 +10541,6 @@
 		"Ability14"	""
 		"Ability15"	""
 		"Ability16"	""
+		"Ability17"	""
 	}
 }

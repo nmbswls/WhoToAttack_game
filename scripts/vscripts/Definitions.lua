@@ -3,7 +3,7 @@ if GameRules.Definitions == nil then
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
 	GameRules.Definitions.StageTime = {10, 2, 1500, 6}
-	GameRules.Definitions.ThrowBaseRange = 500
+	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
 		[2] = 1,
@@ -227,8 +227,8 @@ if GameRules.Definitions == nil then
     GameRules.Definitions.ThroneCnt = 6;
 	GameRules.Definitions.ThroneConfig = {
 		[1] = {
-			unit_name = "throne_evil",
-			bonus_name = "modifier_bonus_evil"
+			unit_name = "throne_nature",
+			bonus_name = "modifier_bonus_nature"
 		},
         [2] = {
 			unit_name = "throne_evil",
