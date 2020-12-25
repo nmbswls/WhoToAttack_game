@@ -998,7 +998,7 @@ function WhoToAttack:CheckThrowTarget(target, pos)
     --print("diffx " .. diffx)
     --print("diffy " .. diffy)
     
-    if diffx > 500 or diffy > 500 then
+    if diffx > GameRules.Definitions.ThrowBaseRange or diffy > GameRules.Definitions.ThrowBaseRange then
         return -1;
     end
     
@@ -1400,6 +1400,7 @@ function WhoToAttack:ModifyBaseHP(hero, hp)
 		   self:DoPlayerDie(hero)
        else
 		   base:SetHealth(newHp)
+		   print('set health ' .. newHp)
        end
 
 end
