@@ -18,7 +18,7 @@ function CheckOneAttack(keys)
         hero1:ModifyGold(bonus, true, 0);
     end
     
-    GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, 1);
+    GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, -1);
 	
     if attacker:IsAlive() then
         --print("try to kill " .. attacker:GetEntityIndex())
