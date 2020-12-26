@@ -20,8 +20,12 @@ function WtaThrones:init(teamNum)
 		end
 	end
 	
+	
+	
+	
 	for i=1,throneNum do 
-		local throne = CreateUnitByName("god_throne", GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
+		local config = GameRules.Definitions.ThroneConfig[i];
+		local throne = CreateUnitByName(config.unit_name, GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
 		table.insert(self.throneList,throne);
 		local throneAb = throne:FindAbilityByName("throne_show_score");
 		for tid = 6, 6+self.teamNum-1 do

@@ -2,7 +2,19 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {10, 10, 7000, 6}
+	GameRules.Definitions.StageTime = {10, 2, 1500, 6}
+	GameRules.Definitions.ThrowBaseRange = 1200
+	GameRules.Definitions.OpenDoorNumByAlive = {
+		[1] = 1,
+		[2] = 1,
+		[3] = 2,
+		[4] = 3,
+		[5] = 3,
+		[6] = 4,
+		[7] = 4,
+		[8] = 5,
+	}
+	
     GameRules.Definitions.TeamCenterPos = {
 	    [6] = Vector(-4735,4735,128),
 		[7] = Vector(127,4735,128),
@@ -138,6 +150,9 @@ if GameRules.Definitions == nil then
         [36] = {
             name = "nature_treant"
             },
+        [37] = {
+            name = "hidden_willow"
+            },
     }
     
     
@@ -178,6 +193,7 @@ if GameRules.Definitions == nil then
         [34] = "evil_sf",
         [35] = "brwan_axe",
         [36] = "nature_treant",
+        [37] = "hidden_willow",
     }
     GameRules.Definitions.ChessPoolSize = 8
     
@@ -189,7 +205,7 @@ if GameRules.Definitions == nil then
         [2] = {"vibrant_dk","wizard_lich","nature_wolf","hidden_riki","evil_clinkz","brwan_ogre"},
         [3] = {"hidden_ls","nature_viper","vibrant_techies","evil_underlord","wizard_leshrac","brwan_siege"},
         [4] = {},
-        [5] = {"brwan_centaur","nature_enchantress","wizard_furion","evil_abaddon","vibrant_huskar"},
+        [5] = {"brwan_centaur","nature_enchantress","wizard_furion","hidden_willow","evil_abaddon","vibrant_huskar"},
         [6] = {"nature_bear","brwan_tidehunter","vibrant_alchemist","evil_dazzle","hidden_ta","wizard_lion"},
 [7] = {},
     
@@ -209,6 +225,32 @@ if GameRules.Definitions == nil then
     }
     
     GameRules.Definitions.ThroneCnt = 6;
+	GameRules.Definitions.ThroneConfig = {
+		[1] = {
+			unit_name = "throne_nature",
+			bonus_name = "modifier_bonus_nature"
+		},
+        [2] = {
+			unit_name = "throne_evil",
+			bonus_name = "evil_Modifier"
+		},
+        [3] = {
+			unit_name = "throne_hidden",
+			bonus_name = "hidden_Modifier"
+		},
+        [4] = {
+			unit_name = "throne_vibrant",
+			bonus_name = "vibrant_Modifier"
+		},
+        [5] = {
+			unit_name = "throne_wizard",
+			bonus_name = "wizard_Modifier"
+		},
+        [6] = {
+			unit_name = "throne_brawn",
+			bonus_name = "brawnAura_Modifier"
+		},
+	}
     GameRules.Definitions.ThronePos = {
         [1] = Vector(-511,127,128),
         [2] = Vector(-511,-384,128),
@@ -311,6 +353,7 @@ if GameRules.Definitions == nil then
         wizard_furion = 5,
         evil_abaddon = 5,
         vibrant_huskar = 5,
+        hidden_willow = 5,
         nature_bear = 6,
         brwan_tidehunter = 6,
         vibrant_alchemist = 6,

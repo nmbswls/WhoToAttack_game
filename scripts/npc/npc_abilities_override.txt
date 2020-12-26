@@ -1,12 +1,12 @@
 "DOTAAbilities"
 {
-<<<<<<< HEAD
+
     "item_ultimate_scepter" "REMOVE"
     "item_enchanted_mango"  "REMOVE"
-=======
-        "item_ultimate_scepter" "REMOVE"
-        "item_ring_of_health"			"REMOVE"	// 治疗指环
-        "item_recipe_pers"						"REMOVE"	// 坚韧球配方
+
+	"item_ultimate_scepter" "REMOVE"
+	"item_ring_of_health"			"REMOVE"	// 治疗指环
+	"item_recipe_pers"						"REMOVE"	// 坚韧球配方
 	"item_recipe_sphere"					"REMOVE"	// 林肯法球配方
 	"item_ultimate_orb"				"REMOVE"	// 极限法球
 	"item_void_stone"				"REMOVE"	// 虚无宝石
@@ -14,5 +14,5 @@
 	"item_recipe_pipe"						"REMOVE"	// 洞察烟斗配方
 	"item_recipe_crimson_guard"				"REMOVE"	// 赤红甲配方
 	"item_recipe_mjollnir"					"REMOVE"	// 雷神之锤配方
->>>>>>> 7496cb38682be138cd61a542b1ae85c84e4713f4
+
 }

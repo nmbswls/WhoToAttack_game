@@ -8,7 +8,7 @@ require 'utils'
 local MIN_TIME_CAST = 6
 if UnitAI == nil then UnitAI = class({}) end
 UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ABILITY"}
-UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS
+UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS
 
 function UnitAI:OnUnitThink(unit)
 
@@ -43,6 +43,10 @@ function UnitAI:OnUnitThink(unit)
 
     if(unit.IsCommandRestricted ~= nil and unit:IsCommandRestricted()) then 
         return 0.2
+    end
+	
+	if not unit.in_battle_id then 
+        return 1
     end
     
     for i, v in pairs(UNIT_CMD_LIST) do
@@ -91,7 +95,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
             or attackTarget:HasModifier("modifier_player_jidi") then
             
             local nearestEnemy = nil
-            local enemies, base = UnitAI:ClosestEnemyAll(unit)
+            local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
             
             if #enemies > 0 then
                 nearestEnemy = enemies[1]
@@ -285,7 +289,6 @@ function UnitAI:ClosestEnemyAll(unit, radius)
     
     local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP,
         UNIT_FILTER, FIND_CLOSEST, true)
-    
     if #candidates == 0 then
         return ret, base
     end
@@ -552,7 +555,7 @@ function UnitAI:GetSpellCastTime(hSpell)
         return 0.2
     end
 
-    local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
+    local flCastPoint = math.max(1, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
     if(flCastPoint < 0.2) then
         flCastPoint = 0.2
     end
