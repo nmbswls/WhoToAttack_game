@@ -421,5 +421,13 @@
 		"DOTA_Tooltip_modifier_effect_Description"	"开门"
 		"DOTA_Tooltip_modifier_opendoor_effect"	"开门特效"
 		"DOTA_Tooltip_modifier_opendoor_effect_Description"	"开门"
+		"DOTA_Tooltip_modifier_show_score_player_06"	"玩家1"
+		"DOTA_Tooltip_modifier_show_score_player_07"	"玩家2"
+		"DOTA_Tooltip_modifier_show_score_player_08"	"玩家3"
+		"DOTA_Tooltip_modifier_show_score_player_09"	"玩家4"
+		"DOTA_Tooltip_modifier_show_score_player_10"	"玩家5"
+		"DOTA_Tooltip_modifier_show_score_player_11"	"玩家6"
+		"DOTA_Tooltip_modifier_show_score_player_12"	"玩家7"
+		"DOTA_Tooltip_modifier_show_score_player_13"	"玩家8"
 	}
 }
