@@ -554,8 +554,11 @@ function UnitAI:GetSpellCastTime(hSpell)
     if hSpell == nil or hSpell:IsNull() then
         return 0.2
     end
-
-    local flCastPoint = math.max(1, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
+    print(hSpell:GetAbilityName())
+    print('hSpell:GetCastPoint() ' .. hSpell:GetCastPoint())
+    print('hSpell:GetChannelTime() ' .. hSpell:GetChannelTime())
+    print('hSpell:GetBackswingTime() ' .. hSpell:GetBackswingTime())
+    local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
     if(flCastPoint < 0.2) then
         flCastPoint = 0.2
     end

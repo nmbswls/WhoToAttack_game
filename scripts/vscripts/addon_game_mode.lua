@@ -444,6 +444,7 @@ function WhoToAttack:StartAPrepareRound()
 	
     self:AddJidiWudi();
     
+    
     for _,hero in pairs(PlayerManager.heromap) do
         if IsHeroValid(hero) == true then
             for _,bonusName in pairs(hero.throne_bonus) do
@@ -511,6 +512,18 @@ function WhoToAttack:StartAPrepareRound()
 		print('open door' .. tid)
 		self.battle_field_list[tid].is_open = true;
         
+        --加开门特效
+        local jidi = hero.base
+        if jidi then
+            local ability = jidi:FindAbilityByName('is_player_jidi')
+            if ability then
+                ability:ApplyDataDrivenModifier(jidi, jidi, "modifier_opendoor_effect",
+                {
+                    duration = -1,
+                })
+            end
+        end
+        
         CustomGameEventManager:Send_ServerToAllClients("ping_open_doors", {x = GameRules.Definitions.TeamCenterPos[tid].x, y = GameRules.Definitions.TeamCenterPos[tid].y, z = GameRules.Definitions.TeamCenterPos[tid].z})
     end
     
@@ -542,13 +555,14 @@ function WhoToAttack:AddJidiWudi()
 			
 			local jidi = hero.base
 			if jidi then
-				local ability = jidi:FindAbilityByName('passive_player_jidi')
+				local ability = jidi:FindAbilityByName('is_player_jidi')
 				if ability then
 					ability:ApplyDataDrivenModifier(jidi, jidi, "modifier_jidi_wudi",
 					{
 						duration = -1,
 					})
 				end
+                jidi:RemoveModifierByName("modifier_opendoor_effect");
 			end
 		end)
 end

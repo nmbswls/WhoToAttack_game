@@ -145,11 +145,10 @@
 				}
 				"IsBuff"	"1"
 			}
-			"modifier_effect"
+			"modifier_opendoor_effect"
 			{
 				"EffectName"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
 				"EffectAttachType"	"follow_overhead"
-				"Passive"	"1"
 				"IsHidden"	"0"
 			}
 		}
@@ -5709,7 +5708,7 @@
 	"modifier_container"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"Modifiers"
