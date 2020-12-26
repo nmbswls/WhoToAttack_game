@@ -459,7 +459,6 @@ function WhoToAttack:StartAPrepareRound()
         local orders = WtaThrones.sortedTeamIdx[i];
         local throne = WtaThrones.throneList[i];
         local ability = throne:GetAbilityByIndex(2);
-        
         local giveBonus = true;
         if #orders > 1 then
             if WtaThrones.throneTeamScores[i][orders[2]] == WtaThrones.throneTeamScores[i][orders[1]] then
@@ -471,10 +470,8 @@ function WhoToAttack:StartAPrepareRound()
             local hero = PlayerManager:getHeroByTeam(orders[1]);
             if hero then
                 local bonusName = GameRules.Definitions.ThroneConfig[i].bonus_name;
-				print('give bonue ' .. bonusName)
                 table.insert(hero.throne_bonus, bonusName);
                 ability:ApplyDataDrivenModifier(throne, hero, bonusName, {});
-				break;
             end
         end
     end
