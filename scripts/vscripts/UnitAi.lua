@@ -376,7 +376,7 @@ end
 
 
 function UnitAI:IsNoTargetSpellCastValid(hSpell, targetTeamType)
-    local nUnitsRequired = 2
+    local nUnitsRequired = 1
     
     --大招要三个老逼释放
     if hSpell:GetAbilityType() == ABILITY_TYPE_ULTIMATE then
