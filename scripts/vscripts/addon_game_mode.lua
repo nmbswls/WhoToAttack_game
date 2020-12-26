@@ -715,6 +715,7 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
         local ret = a:ApplyDataDrivenModifier(newyUnit, newyUnit,"modifier_test_01",{})
         
+        
         if not ret then
             --print("add modifier fail")
         else

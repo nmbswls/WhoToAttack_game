@@ -22,15 +22,23 @@ function AddBuildAbility(keys)
     local speGailv = ability:GetSpecialValueFor("gailv")
     
     print("gailv is " .. speGailv)
-    
+    local spe = false;
     if rand <= speGailv then
         unitName = unitName .. "_special"
+        spe = true
     end
     
     
     
     
     local team = caster:GetTeam()
-    GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,1);
+    local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,1);
+    
+    if newyUnit then
+        local firstSkill = newyUnit:GetAbilityByIndex(0)
+        if spe then
+            firstSkill:SetLevel(2);
+        end
+    end
 end
 
