@@ -37,13 +37,15 @@ function WtaThrones:init(teamNum)
 	
 end
 
-function WtaThrones:AddScore(throneIdx, teamId)
+function WtaThrones:AddScore(throneIdx, teamId, score)
 	
 	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then
 		return
 	end
 	
-	self.throneTeamScores[throneIdx][teamId] = self.throneTeamScores[throneIdx][teamId] + 1;
+    score = score or 1
+    
+	self.throneTeamScores[throneIdx][teamId] = self.throneTeamScores[throneIdx][teamId] + score;
 	
 	self:_refreshScore(throneIdx, teamId)
 	

@@ -37,6 +37,23 @@ function AddBuildAbility(keys)
         if spe then
             firstSkill:SetLevel(2);
         end
+        
+        local level = newyUnit:GetLevel();
+        if string.find(unitName, "nature") then
+            WtaThrones:AddScore(1,team, level)
+        elseif string.find(unitName, "evil") then
+            WtaThrones:AddScore(2,team, level)
+        elseif string.find(unitName, "hidden") then
+            WtaThrones:AddScore(3,team, level)
+        elseif string.find(unitName, "vibrant") then
+            WtaThrones:AddScore(4,team, level)
+        elseif string.find(unitName, "wizard") then
+            WtaThrones:AddScore(5,team, level)
+        elseif string.find(unitName, "brawn") then
+            WtaThrones:AddScore(6,team, level)
+    end
+    
+    
     end
 end
 

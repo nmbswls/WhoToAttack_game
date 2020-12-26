@@ -43,7 +43,8 @@ if GameRules.Definitions == nil then
 	
     GameRules.Definitions.UnitConfigs = {
         [1] = {
-            name = "evil_skeleton"
+            name = "evil_skeleton",
+            throne = "evil"
             },
         [2] = {
             name = "nature_ursa"
