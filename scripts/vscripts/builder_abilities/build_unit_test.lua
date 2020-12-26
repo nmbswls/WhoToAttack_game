@@ -29,8 +29,6 @@ function AddBuildAbility(keys)
     end
     
     
-    
-    
     local team = caster:GetTeam()
     local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,1);
     

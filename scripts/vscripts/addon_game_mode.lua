@@ -713,7 +713,7 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         self:InitUnit(team,newyUnit)
         
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
-        local ret = a:ApplyDataDrivenModifier(newyUnit, newyUnit,"modifier_test_01",{})
+        --local ret = a:ApplyDataDrivenModifier(newyUnit, newyUnit,"modifier_test_01",{})
         
         
         if not ret then
@@ -1429,7 +1429,6 @@ function WhoToAttack:ModifyBaseHP(hero, hp)
 		   self:DoPlayerDie(hero)
        else
 		   base:SetHealth(newHp)
-		   print('set health ' .. newHp)
        end
 
 end

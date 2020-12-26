@@ -5,6 +5,10 @@ function CheckOneAttack(keys)
     local caster = keys.caster;
     local attacker = keys.attacker;
     
+    if not attacker then
+        return
+    end
+    
     local attackerIdx = attacker:GetEntityIndex()
     if caster.turn_attacker[attackerIdx] ~= nil then
         print("重复attaker")
@@ -12,15 +16,14 @@ function CheckOneAttack(keys)
     end
     
     local team_id = attacker:GetTeam();
-    print("attacker name " .. attacker:GetUnitName())
-    local baseBase = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()];
     
-    if baseBase then
-        local bonus = baseBase * 2;
-        local hero1 = PlayerManager:getHeroByTeam(team_id);
-        if hero1 then
-            hero1:ModifyGold(bonus, true, 0);
-        end
+    local level = attacker:GetLevel() --GameRules.Definitions.Uname2Cost[attacker:GetUnitName()];
+    
+    --print("attacker name " .. attacker:GetUnitName() .. " level " .. level)
+    local bonus = level * 2;
+    local hero1 = PlayerManager:getHeroByTeam(team_id);
+    if hero1 then
+        hero1:ModifyGold(bonus, true, 0);
     end
     
     
