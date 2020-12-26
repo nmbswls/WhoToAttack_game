@@ -7,6 +7,7 @@ function CheckOneAttack(keys)
     
     local attackerIdx = attacker:GetEntityIndex()
     if caster.turn_attacker[attackerIdx] ~= nil then
+        print("重复attaker")
         return
     end
     caster.turn_attacker[attackerIdx] = 1

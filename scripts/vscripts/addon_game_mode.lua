@@ -206,9 +206,7 @@ function WhoToAttack:StartGame()
     for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
         local pos = GameRules.Definitions.TeamCenterPos[team_i]
         local hero = PlayerManager:getHeroByTeam(team_i);
-		print("cnmcnmcnm")
         if hero then
-			print("fuck")
             local newBase = CreateUnitByName("player_jidi", pos, true, nil, nil, team_i)
             hero.base = newBase
             newBase.in_battle_id = team_i
@@ -524,12 +522,12 @@ function WhoToAttack:StartAPrepareRound()
                 hero.base.turn_attacker = {}
             end
             hero:SetMana(hero:GetMaxMana());
-	    
-	    --自动抽卡
-	    self:DrawCards(hero:GetTeam(), true);
-			
-	    --回合加经验
-	    hero:AddExperience(10,0,false,false);
+    
+            --自动抽卡
+            self:DrawCards(hero:GetTeam(), true);
+                
+            --回合加经验
+            hero:AddExperience(10,0,false,false);
         end
     end
     
