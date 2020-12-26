@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {4, 10, 20, 4}
+	GameRules.Definitions.StageTime = {4, 5, 40, 4}
 	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,

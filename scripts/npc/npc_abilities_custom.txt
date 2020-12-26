@@ -106,7 +106,8 @@
 		"precache"
 		{
 			"particle"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
-			"particle"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
+			"particle"	"particles/econ/events/ti10/teleport/teleport_end_ti10_ground_light.vpcf"
+			"particle"	"particles/econ/events/ti10/portal/portal_open_good_ring.vpcf"
 		}
 		"Modifiers"
 		{
@@ -144,11 +145,13 @@
 					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/econ/events/ti10/teleport/teleport_end_ti10_ground_light.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 			"modifier_opendoor_effect"
 			{
-				"EffectName"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				"EffectName"	"particles/econ/events/ti10/portal/portal_open_good_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
 		}
@@ -2045,7 +2048,7 @@
 	"furion_wrath_of_nature"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_CREEP"
 		// Unit Targeting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
