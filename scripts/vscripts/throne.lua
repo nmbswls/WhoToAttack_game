@@ -83,7 +83,6 @@ function WtaThrones:_refreshScore(throneIdx, teamId)
 		table.insert(newOrder, tid);
 	end
 	
-	local sortedIdx = self.sortedTeamIdx[throneIdx];
 	
 	table.sort(newOrder,function(a,b)
 			local scoreA = scoreList[a];
