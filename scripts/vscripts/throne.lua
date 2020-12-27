@@ -53,7 +53,7 @@ function WtaThrones:UpdateLevelByTurn(turn)
         
     
     for i=1,GameRules.Definitions.ThroneCnt do 
-		local throne = self.throneList[throneIdx];
+		local throne = self.throneList[i];
         local ability = throne:GetAbilityByIndex(2);
         if ability then
             ability:SetLevel(targetLevel)
