@@ -2,9 +2,7 @@
 {
 	"consumables"
 	{
-		"item"      "item_remove_ability"
-        "item"      "item_treasure_tier_1"
-        "item"      "item_exp_book"
+
 	}
 
 	"attributes"
@@ -14,8 +12,9 @@
 
 	"weapons_armor"
 	{
-		
-		"item"		"item_mithril_hammer"
+	        "item"          "item_remove_ability"
+                "item"          "item_treasure_tier_1"
+                "item"          "item_exp_book"
                 "item"          "item_sphere"
                 "item"          "item_glimmer_cape"
                 "item"          "item_philosophers_stone"

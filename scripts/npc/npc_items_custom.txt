@@ -637,4 +637,44 @@
 			}
 		}
 	}
+
+	"item_warwra"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"ID"	"1506"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds.vsndevts"
+			"soundfile"	"soundevents/game_sounds_ui.vsndevts"
+			"soundfile"	"soundevents/game_sounds_ui.vsndevts"
+			"soundfile"	"soundevents/game_sounds_ui.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"FireSound"
+			{
+				"EffectName"	"lockjaw_Courier.gold"
+			}
+			"FireSound"
+			{
+				"EffectName"	"ui.spect_pickup_in"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Item.PickUpRingWorld"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Item.PickUpRecipeWorld"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Omniknight.GuardianAngel"
+			}
+		}
+	}
 }
