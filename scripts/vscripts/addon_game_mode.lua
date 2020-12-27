@@ -1698,15 +1698,20 @@ function WhoToAttack:OnEntityKilled(keys)
     end
     
     local attacker_team = attacker:GetTeam()
-    local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
-	
-    print("team " .. attacker_team .. " add money")
+    
+    local killed_level = u:GetLevel()
+    local bonus = killed_level * 1;
     
     local hero1 = PlayerManager:getHeroByTeam(attacker_team);
-    if hero1 then
+    
+    
+    if hero1 and bonus then
+        print("team " .. attacker_team .. " get bonus " .. bonus)
         hero1:ModifyGold(bonus, true, 0);
     end
     
+    --local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
+	
 	--亡语
 	--DeathRattle(u,attacker)
 
