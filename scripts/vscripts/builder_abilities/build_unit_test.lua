@@ -21,7 +21,7 @@ function AddBuildAbility(keys)
     local rand = RandomInt(1,100)
     local speGailv = ability:GetSpecialValueFor("gailv")
     
-    print("gailv is " .. speGailv)
+    --print("gailv is " .. speGailv)
     local spe = false;
     if rand <= speGailv then
         unitName = unitName .. "_special"

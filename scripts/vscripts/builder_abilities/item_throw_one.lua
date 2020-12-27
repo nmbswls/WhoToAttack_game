@@ -17,7 +17,7 @@ function item_throw_one:OnSpellStart()
     end
     
     local pos = self:GetCursorPosition()
-    print("touzhi target " .. pos.x .. " " .. pos.y)
+    --print("touzhi target " .. pos.x .. " " .. pos.y)
     
     local minDist = 0
     local minIdx = -1

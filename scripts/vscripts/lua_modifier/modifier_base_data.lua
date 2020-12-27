@@ -9,11 +9,18 @@ function CheckOneAttack(keys)
         return
     end
     
-    local attackerIdx = attacker:GetEntityIndex()
-    if caster.turn_attacker[attackerIdx] ~= nil then
-        print("重复attaker")
-        return
+    
+    if attacker:IsAlive() then
+        --print("try to kill " .. attacker:GetEntityIndex())
+        attacker:Kill(nil, nil)
     end
+    
+    local attackerIdx = attacker:GetEntityIndex()
+    
+    -- if caster.turn_attacker[attackerIdx] ~= nil then
+        -- print("重复attaker")
+        -- return
+    -- end
     
     local team_id = attacker:GetTeam();
     
@@ -29,12 +36,9 @@ function CheckOneAttack(keys)
     
     GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, -1);
 	
-    if attacker:IsAlive() then
-        --print("try to kill " .. attacker:GetEntityIndex())
-        attacker:Kill(nil, nil)
-    end
     
-    caster.turn_attacker[attackerIdx] = 1
+    
+    --caster.turn_attacker[attackerIdx] = 1
     -- local hero2 = GameRules:GetGameModeEntity().teamid2hero[caster:GetTeam()];
     -- if hero2 then
         -- hero2:ModifyGold(2, true, 0);
