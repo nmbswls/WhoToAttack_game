@@ -21,7 +21,9 @@ function WtaThrones:init(teamNum)
 	end
 	
 	
-	for i=1,GameRules.Definitions.ThroneCnt do 
+	
+	
+	for i=1, throneNum do 
 		local config = GameRules.Definitions.ThroneConfig[i];
 		local throne = CreateUnitByName(config.unit_name, GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
 		table.insert(self.throneList,throne);
@@ -50,7 +52,7 @@ function WtaThrones:UpdateLevelByTurn(turn)
     end
         
     
-    for i=1,throneNum do 
+    for i=1,GameRules.Definitions.ThroneCnt do 
 		local throne = self.throneList[throneIdx];
         local ability = throne:GetAbilityByIndex(2);
         if ability then
