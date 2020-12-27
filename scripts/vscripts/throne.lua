@@ -56,16 +56,18 @@ function WtaThrones:_updateThroneShow(throneIdx)
 
 	local throne = self.throneList[throneIdx];
 	
-	for tid=6,6+self.teamNum-1 do
-		--remove all
-		throne:RemoveModifierByName("modifier_show_score_player_" .. string.format("%02d", tid));
-	end
+    --不再删除后重新加buff 提高效率
+	-- for tid=6,6+self.teamNum-1 do
+		-- --remove all
+		-- throne:RemoveModifierByName("modifier_show_score_player_" .. string.format("%02d", tid));
+	-- end
 	local order = self.sortedTeamIdx[throneIdx];
     local scoreList = self.throneTeamScores[throneIdx];
 	local ability = throne:FindAbilityByName("throne_show_score");
 	for _, tid in pairs(order) do
 		--add again
-		local mod = ability:ApplyDataDrivenModifier(throne, throne, "modifier_show_score_player_" .. string.format("%02d", tid),{duration = -1});
+        local mod = throne:FindModifierByName("modifier_show_score_player_" .. string.format("%02d", tid))
+		--local mod = ability:ApplyDataDrivenModifier(throne, throne, "modifier_show_score_player_" .. string.format("%02d", tid),{duration = -1});
         mod:SetStackCount(scoreList[tid]);
 	end
 

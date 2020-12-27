@@ -34,7 +34,7 @@ function CheckOneAttack(keys)
     end
     
     
-    GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, -1);
+    GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, -level);
 	
     
     
