@@ -21,9 +21,7 @@ function WtaThrones:init(teamNum)
 	end
 	
 	
-	
-	
-	for i=1,throneNum do 
+	for i=1,GameRules.Definitions.ThroneCnt do 
 		local config = GameRules.Definitions.ThroneConfig[i];
 		local throne = CreateUnitByName(config.unit_name, GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
 		table.insert(self.throneList,throne);
