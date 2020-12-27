@@ -23,6 +23,7 @@
                 "item"          "item_addmana"
                 "item"          "item_mjollnir"	
                 "item"          "item_addattackspeed"
+                "item"          "item_castrefresh"
 	}
 			
 	"misc"

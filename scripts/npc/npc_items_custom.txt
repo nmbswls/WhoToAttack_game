@@ -555,4 +555,86 @@
 			}
 		}
 	}
+
+	"item_castrefresh"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Refresher_Orb_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"ID"	"1505"
+		"ItemCost"	"5"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"particle"	"particles/items2_fx/refresher.vpcf"
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+		}
+		"Modifiers"
+		{
+			"modifier_item_castrefresh"
+			{
+				"Properties"	{}
+				"States"	{}
+				"IsHidden"	"0"
+				"OnSpentMana"
+				{
+					"Random"
+					{
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target"	"CASTER"
+								"ModifierName"	"modifier_item_castrefresh_2"
+								"Duration"	"5"
+							}
+							"FireEffect"
+							{
+								"Target"	"CASTER"
+								"ControlPoints"	{}
+								"ControlPointEntities"	{}
+								"EffectName"	"particles/items2_fx/refresher.vpcf"
+								"EffectAttachType"	"follow_origin"
+							}
+							"FireSound"
+							{
+								"EffectName"	"DOTA_Item.Refresher.Activate"
+							}
+						}
+						"Chance"	"%refreshchance"
+					}
+				}
+				"Passive"	"1"
+			}
+			"modifier_item_castrefresh_2"
+			{
+				"IsHidden"	"0"
+				"Duration"	"5"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANACOST_PERCENTAGE"	"%manacostreduce"
+				}
+			}
+			"modifier_item_castrefresh_3"
+			{
+				"IsHidden"	"0"
+				"Duration"	"5"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"refreshchance"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"manacostreduce"	"100"
+			}
+		}
+	}
 }

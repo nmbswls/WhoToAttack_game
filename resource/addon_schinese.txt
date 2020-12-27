@@ -440,5 +440,11 @@
 		"DOTA_Tooltip_ability_build_brawn_axe"	"斧王"
 		"DOTA_Tooltip_ability_build_brawn_axe_Description"	"唤醒一位<font color=\"#f0ad4e\">刚毅</font>种族的斧王，有几率唤醒强大的个体"
 		"DOTA_Tooltip_ability_build_brawn_axe_gailv"	"唤醒几率："
+		"DOTA_Tooltip_modifier_item_castrefresh"	"refresh"
+		"DOTA_Tooltip_ability_item_castrefresh"	"不消耗魔法"
+		"DOTA_Tooltip_ability_item_castrefresh_Description"	"释放技能时有50%概率不消耗魔法"
+		"DOTA_Tooltip_modifier_item_castrefresh_2"	"refresh2"
+		"DOTA_Tooltip_modifier_item_castrefresh_3"	"refresh3"
+		"DOTA_Tooltip_modifier_item_castrefresh_Description"	"释放技能时有50%概率不消耗魔法"
 	}
 }

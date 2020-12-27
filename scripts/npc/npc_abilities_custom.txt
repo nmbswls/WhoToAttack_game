@@ -6202,7 +6202,6 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
-					"MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE"	"%health_pct"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
@@ -6218,12 +6217,12 @@
 			}
 			"02"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_health"	"0 0 0 0 20 40 60 100"
+				"var_type"	"FIELD_FLOAT"
+				"bonus_health"	"20 0 0 0 20 40 60 100"
 			}
 			"03"
 			{
-				"var_type"	"FIELD_INTEGER"
+				"var_type"	"FIELD_FLOAT"
 				"health_pct"	"50 0 0 0 1 5 10 20"
 			}
 		}
@@ -6332,11 +6331,18 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_attack"
-					"MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE"	"%lifesteal"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_ambient.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"OnAttackLanded"
+				{
+					"Lifesteal"
+					{
+						"Target"	"ATTACKER"
+						"LifestealPercent"	"%lifesteal"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"
@@ -6353,8 +6359,8 @@
 			}
 			"03"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"lifesteal"	"10 0 0 0 0 5 10 20"
+				"var_type"	"FIELD_FLOAT"
+				"lifesteal"	"0 0 1 2 3 5 10 20"
 			}
 		}
 	}

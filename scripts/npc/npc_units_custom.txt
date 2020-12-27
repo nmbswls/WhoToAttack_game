@@ -9892,7 +9892,7 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"95"
+		"StatusStartingMana"	"80"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"2"
 		// Vision
@@ -10032,7 +10032,7 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"95"
+		"StatusStartingMana"	"80"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"2"
 		// Vision
