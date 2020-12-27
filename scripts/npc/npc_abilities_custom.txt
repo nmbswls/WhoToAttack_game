@@ -106,7 +106,8 @@
 		"precache"
 		{
 			"particle"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
-			"particle"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
+			"particle"	"particles/econ/events/ti10/teleport/teleport_end_ti10_ground_light.vpcf"
+			"particle"	"particles/econ/events/ti10/portal/portal_open_good_ring.vpcf"
 		}
 		"Modifiers"
 		{
@@ -144,11 +145,13 @@
 					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 				"IsBuff"	"1"
+				"EffectName"	"particles/econ/events/ti10/teleport/teleport_end_ti10_ground_light.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 			"modifier_opendoor_effect"
 			{
-				"EffectName"	"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact_flash.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				"EffectName"	"particles/econ/events/ti10/portal/portal_open_good_ring.vpcf"
+				"EffectAttachType"	"follow_origin"
 				"IsHidden"	"0"
 			}
 		}
@@ -1104,6 +1107,7 @@
 	"lycan_howl"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		// Casting
@@ -1235,6 +1239,7 @@
 	"drow_ranger_wave_of_silence"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
@@ -1276,7 +1281,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"knockback_distance_max"	"800"
+				"knockback_distance_max"	"1400"
 			}
 			"05"
 			{
@@ -1851,6 +1856,7 @@
 	"riki_smoke_screen"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"AbilityCastPoint"	"0.2"
@@ -1898,6 +1904,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
@@ -2045,7 +2052,7 @@
 	"furion_wrath_of_nature"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_CREEP"
 		// Unit Targeting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
@@ -2236,6 +2243,7 @@
 	"centaur_hoof_stomp"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
@@ -2502,6 +2510,7 @@
 	"tidehunter_anchor_smash"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -2554,6 +2563,7 @@
 	"tidehunter_ravage"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
@@ -3044,7 +3054,7 @@
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -3245,6 +3255,7 @@
 	"earthshaker_echo_slam"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
@@ -3440,6 +3451,7 @@
 	"treant_overgrowth"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -3493,6 +3505,7 @@
 	"abyssal_underlord_firestorm"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -3771,6 +3784,7 @@
 	"axe_berserkers_call"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"	"1"
@@ -3969,6 +3983,7 @@
 	"nevermore_requiem"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NORMAL_WHEN_STOLEN"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -4259,7 +4274,7 @@
 		"AbilityCooldown"	"60"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"20"
+		"AbilityManaCost"	"1"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"1400"
@@ -4275,6 +4290,7 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"damage"	"100"
+				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_7"
 			}
 			"02"
 			{
@@ -4299,25 +4315,25 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_scepter"	"125"
+				"damage_scepter"	"125 175 225"
 				"RequiresScepter"	"1"
 			}
 			"07"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"cast_range_scepter"	"1800"
-				"RequiresScepter"	"1"
+				"var_type"	"FIELD_FLOAT"
+				"linger_duration"	"2"
 			}
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration_scepter"	"30"
+				"scepter_bonus_range"	"400"
 				"RequiresScepter"	"1"
 			}
 			"09"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"linger_duration"	"2"
+				"scepter_bonus_duration"	"20"
+				"RequiresScepter"	"1"
 			}
 		}
 		"AbilitySound"	"Hero_Jakiro.Macropyre.Cast"
@@ -4327,6 +4343,7 @@
 	"alchemist_acid_spray"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		// Casting
@@ -4420,6 +4437,7 @@
 	"alchemist_chemical_rage"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"	"2"
 		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
@@ -4505,6 +4523,7 @@
 	"templar_assassin_refraction"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
@@ -4775,7 +4794,7 @@
 		}
 	}
 
-	"build_brwan_ogre"
+	"build_brawn_ogre"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Ogre_Magi_icon"
@@ -4925,7 +4944,7 @@
 		}
 	}
 
-	"build_brwan_tusk"
+	"build_brawn_tusk"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Tusk_icon"
@@ -5135,7 +5154,7 @@
 		}
 	}
 
-	"build_brwan_siege"
+	"build_brawn_siege"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Siege_Creep_Radiant_model"
@@ -5165,7 +5184,7 @@
 		}
 	}
 
-	"build_brwan_centaur"
+	"build_brawn_centaur"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Centaur_Warrunner_icon"
@@ -5375,7 +5394,7 @@
 		}
 	}
 
-	"build_brwan_tidehunter"
+	"build_brawn_tidehunter"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Tidehunter_icon"
@@ -5645,7 +5664,7 @@
 		}
 	}
 
-	"build_brwan_axe"
+	"build_brawn_axe"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Axe_icon"
@@ -6183,6 +6202,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE"	"%health_pct"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
@@ -6204,7 +6224,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"health_pct"	"0 0 0 0 1 5 10 20"
+				"health_pct"	"50 0 0 0 1 5 10 20"
 			}
 		}
 	}
@@ -6312,6 +6332,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_attack"
+					"MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE"	"%lifesteal"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_ambient.vpcf"
@@ -6333,7 +6354,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"lifesteal"	"0 0 0 0 0 5 10 20"
+				"lifesteal"	"10 0 0 0 0 5 10 20"
 			}
 		}
 	}

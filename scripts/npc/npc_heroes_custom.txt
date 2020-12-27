@@ -35,9 +35,9 @@
 		"AttributeAgilityGain"	"0"
 		"AttributeBaseIntelligence"	"0"
 		"AttributeIntelligenceGain"	"0"
-		"StatusHealth"	"500"
+		"StatusHealth"	"9999"
 		"StatusHealthRegen"	"0"
-		"StatusMana"	"10"
+		"StatusMana"	"8"
 		"StatusManaRegen"	"0"
 		"Ability17"	""
 	}
