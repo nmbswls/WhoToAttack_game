@@ -501,9 +501,10 @@ function WhoToAttack:StartAPrepareRound()
         end
     else
         local tmp = {}
+        local last_open_door = self.open_door_list
         for i = 1, #aliveHero do
-            if not table.contains(self.open_door_list, aliveHero[i]) then
-                table.insert(tmp, shuffled[i])
+            if not table.contains(last_open_door, aliveHero[i]) then
+                table.insert(tmp, aliveHero[i])
             end
         end
         self.open_door_list = tmp
