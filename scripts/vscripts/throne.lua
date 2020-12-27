@@ -37,6 +37,31 @@ function WtaThrones:init(teamNum)
 	
 end
 
+function WtaThrones:UpdateLevelByTurn(turn)
+        
+    local targetLevel = 1
+    
+    if turn > 5 then
+        targetLevel = 2
+    elseif turn > 10 then
+        targetLevel = 3
+    elseif turn > 15 then
+        targetLevel = 4
+    elseif turn > 20 then
+        targetLevel = 5
+    end
+        
+    
+    for i=1,throneNum do 
+		local throne = self.throneList[throneIdx];
+        local ability = throne:GetAbilityByIndex(2);
+        if ability then
+            ability:SetLevel(targetLevel)
+        end
+	end
+    
+end
+
 function WtaThrones:AddScore(throneIdx, teamId, score)
 	
 	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then

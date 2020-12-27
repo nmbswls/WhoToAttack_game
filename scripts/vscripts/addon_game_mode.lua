@@ -444,7 +444,7 @@ function WhoToAttack:StartAPrepareRound()
 	
     self:AddJidiWudi();
     
-    
+    WtaThrones:UpdateLevelByTurn(self.battle_round)
     for _,hero in pairs(PlayerManager.heromap) do
         if IsHeroValid(hero) == true then
             for _,bonusName in pairs(hero.throne_bonus) do
