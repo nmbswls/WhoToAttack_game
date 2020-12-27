@@ -41,7 +41,13 @@ function WtaThrones:UpdateLevelByTurn(turn)
         
     local targetLevel = 1
     
-    if turn > 20 then
+    if turn > 35 then
+        targetLevel = 8
+    elseif turn > 30 then
+        targetLevel = 7
+    elseif turn > 25 then
+        targetLevel = 6
+    elseif turn > 20 then
         targetLevel = 5
     elseif turn > 15 then
         targetLevel = 4
