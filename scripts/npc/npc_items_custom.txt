@@ -316,95 +316,6 @@
 		"ShouldBeSuggested"	"1"
 	}
 
-	"item_crimson_guard"
-	{
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_ALL"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
-		// Stats
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"60.0"
-		"AbilityCastRange"	"800"
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"ID"	"242"
-		"ItemQuality"	"epic"
-		// Item Info
-		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"0"
-		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
-		"ItemAlertable"	"1"
-		"ItemShopTags"	"armor;boost_armor;regen_health;block;health_pool"
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_health"	"0"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"bonus_health_regen"	"0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"bonus_armor"	"0"
-			}
-			"04"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_damage_melee"	"0"
-			}
-			"05"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_damage_ranged"	"0"
-			}
-			"06"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_chance"	"0"
-			}
-			"07"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"duration"	"60"
-			}
-			"08"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_aoe_radius"	"800"
-			}
-			"09"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_damage_melee_active"	"20"
-			}
-			"10"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_damage_ranged_active"	"15"
-			}
-			"11"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"block_chance_active"	"100"
-			}
-			"12"
-			{
-				"var_type"	"FIELD_FLOAT"
-				"tooltip_reapply_time"	"40"
-			}
-		}
-		"ShouldBeSuggested"	"1"
-	}
-
 	"item_mjollnir"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
@@ -514,5 +425,134 @@
 			}
 		}
 		"ShouldBeSuggested"	"1"
+	}
+
+	"item_addmana"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Energy_Booster_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"1502"
+		"ItemCost"	"1"
+		"ItemDroppable"	"0"
+		"ItemSellable"	"0"
+		"ItemKillable"	"0"
+		"ItemRequirements"	{}
+		"Modifiers"
+		{
+			"modifier_item_addmana"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS"	"%addmana"
+				}
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"addmana"	"8"
+			}
+		}
+	}
+
+	"item_moneyevil"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"1503"
+		"ItemCost"	"1"
+		"ItemDroppable"	"0"
+		"ItemSellable"	"0"
+		"ItemKillable"	"0"
+		"ItemRequirements"	{}
+		"Modifiers"
+		{
+			"modifier_item_moneyevil"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_BONUS"	"%minusmana"
+				}
+			}
+			"modifier_item_moneyevil_2"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"	{}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"minusmana"	"-6"
+			}
+		}
+	}
+
+	"item_addattackspeed"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Magus_Accord_Alacrity_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastRange"	"700"
+		"ID"	"1504"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"	"particles/econ/items/invoker/invoker_ti7/invoker_ti7_alacrity_buff.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_item_addattackspeed"
+				"Duration"	"60"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.Alacrity"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_addattackspeed"
+			{
+				"Duration"	"60"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%asbounsinvoker"
+				}
+				"EffectAttachType"	"follow_overhead"
+				"EffectName"	"particles/econ/items/invoker/invoker_ti7/invoker_ti7_alacrity_buff.vpcf"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"asbounsinvoker"	"250"
+			}
+		}
 	}
 }

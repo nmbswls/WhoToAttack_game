@@ -4794,7 +4794,7 @@
 		}
 	}
 
-	"build_brwan_ogre"
+	"build_brawn_ogre"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Ogre_Magi_icon"
@@ -4944,7 +4944,7 @@
 		}
 	}
 
-	"build_brwan_tusk"
+	"build_brawn_tusk"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Tusk_icon"
@@ -5154,7 +5154,7 @@
 		}
 	}
 
-	"build_brwan_siege"
+	"build_brawn_siege"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Siege_Creep_Radiant_model"
@@ -5184,7 +5184,7 @@
 		}
 	}
 
-	"build_brwan_centaur"
+	"build_brawn_centaur"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Centaur_Warrunner_icon"
@@ -5394,7 +5394,7 @@
 		}
 	}
 
-	"build_brwan_tidehunter"
+	"build_brawn_tidehunter"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Tidehunter_icon"
@@ -5664,7 +5664,7 @@
 		}
 	}
 
-	"build_brwan_axe"
+	"build_brawn_axe"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Axe_icon"
@@ -6202,6 +6202,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					"MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE"	"%health_pct"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
@@ -6223,7 +6224,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"health_pct"	"0 0 0 0 1 5 10 20"
+				"health_pct"	"50 0 0 0 1 5 10 20"
 			}
 		}
 	}
@@ -6331,6 +6332,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_BASEDAMAGEOUTGOING_PERCENTAGE"	"%bonus_attack"
+					"MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE"	"%lifesteal"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/econ/items/riki/riki_immortal_ti6/riki_immortal_ti6_ambient.vpcf"
@@ -6352,7 +6354,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"lifesteal"	"0 0 0 0 0 5 10 20"
+				"lifesteal"	"10 0 0 0 0 5 10 20"
 			}
 		}
 	}

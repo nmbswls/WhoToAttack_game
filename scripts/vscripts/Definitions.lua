@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {4, 5, 1500, 4}
+	GameRules.Definitions.StageTime = {4, 10, 50, 4}
 	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
@@ -53,13 +53,13 @@ if GameRules.Definitions == nil then
             name = "hidden_drow"
             },
         [4] = {
-            name = "brwan_ogre"
+            name = "brawn_ogre"
             },
         [5] = {
             name = "vibrant_dk"
             },
         [6] = {
-            name = "brwan_tusk"
+            name = "brawn_tusk"
             },
         [7] = {
             name = "wizard_lich"
@@ -71,7 +71,7 @@ if GameRules.Definitions == nil then
             name = "nature_viper"
             },
         [10] = {
-            name = "brwan_centaur"
+            name = "brawn_centaur"
             },
         [11] = {
             name = "test_monster"
@@ -119,7 +119,7 @@ if GameRules.Definitions == nil then
             name = "nature_bear"
             },
         [26] = {
-            name = "brwan_tidehunter"
+            name = "brawn_tidehunter"
             },
         [27] = {
             name = "vibrant_alchemist"
@@ -146,7 +146,7 @@ if GameRules.Definitions == nil then
             name = "evil_sf"
             },
         [35] = {
-            name = "brwan_axe"
+            name = "brawn_axe"
             },
         [36] = {
             name = "nature_treant"
@@ -161,13 +161,13 @@ if GameRules.Definitions == nil then
         [1] = "evil_skeleton",
         [2] = "nature_ursa",
         [3] = "hidden_drow",
-        [4] = "brwan_ogre",
+        [4] = "brawn_ogre",
         [5] = "vibrant_dk",
-        [6] = "brwan_tusk",
+        [6] = "brawn_tusk",
         [7] = "wizard_lich",
         [8] = "hidden_ls",
         [9] = "nature_viper",
-        [10] = "brwan_centaur",
+        [10] = "brawn_centaur",
         [11] = "test_monster",
         [12] = "wizard_zeus",
         [13] = "vibrant_warlock",
@@ -177,13 +177,13 @@ if GameRules.Definitions == nil then
         [17] = "vibrant_techies",
         [18] = "evil_underlord",
         [19] = "wizard_leshrac",
-        [20] = "brwan_siege",
+        [20] = "brawn_siege",
         [21] = "nature_enchantress",
         [22] = "wizard_furion",
         [23] = "evil_abaddon",
         [24] = "vibrant_huskar",
         [25] = "nature_bear",
-        [26] = "brwan_tidehunter",
+        [26] = "brawn_tidehunter",
         [27] = "vibrant_alchemist",
         [28] = "evil_dazzle",
         [29] = "hidden_ta",
@@ -192,7 +192,7 @@ if GameRules.Definitions == nil then
         [32] = "vibrant_earthshaker",
         [33] = "wizard_jakiro",
         [34] = "evil_sf",
-        [35] = "brwan_axe",
+        [35] = "brawn_axe",
         [36] = "nature_treant",
         [37] = "hidden_willow",
     }
@@ -202,15 +202,15 @@ if GameRules.Definitions == nil then
     GameRules.Definitions.MaxCost = 8
     
     GameRules.Definitions.CardListByCost = {
-        [1] = {"evil_skeleton","nature_ursa","hidden_drow","brwan_tusk","wizard_zeus","vibrant_warlock"},
-        [2] = {"vibrant_dk","wizard_lich","nature_wolf","hidden_riki","evil_clinkz","brwan_ogre"},
-        [3] = {"hidden_ls","nature_viper","vibrant_techies","evil_underlord","wizard_leshrac","brwan_siege"},
+        [1] = {"evil_skeleton","nature_ursa","hidden_drow","brawn_tusk","wizard_zeus","vibrant_warlock"},
+        [2] = {"vibrant_dk","wizard_lich","nature_wolf","hidden_riki","evil_clinkz","brawn_ogre"},
+        [3] = {"hidden_ls","nature_viper","vibrant_techies","evil_underlord","wizard_leshrac","brawn_siege"},
         [4] = {},
-        [5] = {"brwan_centaur","nature_enchantress","wizard_furion","hidden_willow","evil_abaddon","vibrant_huskar"},
-        [6] = {"nature_bear","brwan_tidehunter","vibrant_alchemist","evil_dazzle","hidden_ta","wizard_lion"},
+        [5] = {"brawn_centaur","nature_enchantress","wizard_furion","hidden_willow","evil_abaddon","vibrant_huskar"},
+        [6] = {"nature_bear","brawn_tidehunter","vibrant_alchemist","evil_dazzle","hidden_ta","wizard_lion"},
 [7] = {},
     
-[8] = {"hidden_pa","vibrant_earthshaker","wizard_jakiro","evil_sf","brwan_axe","nature_treant"},
+[8] = {"hidden_pa","vibrant_earthshaker","wizard_jakiro","evil_sf","brawn_axe","nature_treant"},
     
     }
     
@@ -335,13 +335,13 @@ if GameRules.Definitions == nil then
         nature_ursa = 1,
         hidden_drow = 1,
         wizard_zeus = 1,
-        brwan_ogre = 2,
+        brawn_ogre = 2,
         vibrant_dk = 2,
-        brwan_tusk = 1,
+        brawn_tusk = 1,
         wizard_lich = 2,
         hidden_ls = 3,
         nature_viper = 3,
-        brwan_centaur = 5,
+        brawn_centaur = 5,
         vibrant_warlock = 1,
         nature_wolf = 2,
         hidden_riki = 2,
@@ -349,14 +349,14 @@ if GameRules.Definitions == nil then
         vibrant_techies = 3,
         evil_underlord = 3,
         wizard_leshrac = 3,
-        brwan_siege = 3,
+        brawn_siege = 3,
         nature_enchantress = 5,
         wizard_furion = 5,
         evil_abaddon = 5,
         vibrant_huskar = 5,
         hidden_willow = 5,
         nature_bear = 6,
-        brwan_tidehunter = 6,
+        brawn_tidehunter = 6,
         vibrant_alchemist = 6,
         evil_dazzle = 6,
         hidden_ta = 6,
@@ -365,7 +365,7 @@ if GameRules.Definitions == nil then
         vibrant_earthshaker = 8,
         wizard_jakiro = 8,
         evil_sf = 8,
-        brwan_axe = 8,
+        brawn_axe = 8,
         nature_treant = 8,
     }
     

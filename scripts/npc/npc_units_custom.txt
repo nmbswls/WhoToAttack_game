@@ -1497,7 +1497,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_tusk"
+	"brawn_tusk"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -1640,7 +1640,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_tusk_special"
+	"brawn_tusk_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2392,7 +2392,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_ogre"
+	"brawn_ogre"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -2511,7 +2511,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_ogre_special"
+	"brawn_ogre_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -5115,7 +5115,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_siege"
+	"brawn_siege"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -5214,7 +5214,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_siege_special"
+	"brawn_siege_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -6721,7 +6721,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_centaur"
+	"brawn_centaur"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -6871,7 +6871,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_centaur_special"
+	"brawn_centaur_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -7484,7 +7484,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_tidehunter"
+	"brawn_tidehunter"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -7630,7 +7630,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_tidehunter_special"
+	"brawn_tidehunter_special"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -9306,6 +9306,14 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_earthshaker/earthshaker_loadout.vpcf"	"loadout"
+			}
+		}
+		"particle_folder"	"particles/units/heroes/hero_earthshaker"
 		// Creature Data
 		// ----------------------------------------------------------------
 		"Creature"
@@ -9442,6 +9450,14 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_earthshaker/earthshaker_loadout.vpcf"	"loadout"
+			}
+		}
+		"particle_folder"	"particles/units/heroes/hero_earthshaker"
 		// Creature Data
 		// ----------------------------------------------------------------
 		"Creature"
@@ -9588,6 +9604,13 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf"	"loadout"
+			}
+		}
 		// Creature Data
 		// ----------------------------------------------------------------
 		"Creature"
@@ -9734,6 +9757,13 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
+		"RenderablePortrait"
+		{
+			"Particles"
+			{
+				"particles/units/heroes/hero_jakiro/jakiro_loadout.vpcf"	"loadout"
+			}
+		}
 		// Creature Data
 		// ----------------------------------------------------------------
 		"Creature"
@@ -10071,7 +10101,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_axe"
+	"brawn_axe"
 	{
 		// General
 		// ----------------------------------------------------------------
@@ -10210,7 +10240,7 @@
 		"Ability17"	""
 	}
 
-	"brwan_axe_special"
+	"brawn_axe_special"
 	{
 		// General
 		// ----------------------------------------------------------------
