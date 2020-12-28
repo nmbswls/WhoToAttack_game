@@ -988,7 +988,7 @@
 		// Ability 2
 		"Ability2"	"ursa_des"
 		// Ability 3
-		"Ability3"	"NomanaAura"
+		"Ability3"	""
 		// Ability 4
 		"Ability4"	""
 		// Armor
