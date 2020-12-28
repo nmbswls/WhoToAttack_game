@@ -35,7 +35,7 @@ function CheckOneAttack(keys)
     
     
     GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(caster.hero, -level);
-	
+	EmitSoundOn("ui.spect_pickup_in", attacker)
     
     
     --caster.turn_attacker[attackerIdx] = 1

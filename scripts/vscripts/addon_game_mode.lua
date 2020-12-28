@@ -1229,9 +1229,15 @@ function WhoToAttack:PickCard(team_id, card_idx)
     end
 	
     hero:ModifyGold(-cost, true, 0);
+	
     
     print("pick card  " .. unitName)
     hero.now_hold_cards[card_idx] = ""
+	--EmitGlobalSound("General.CastFail_NoMana")
+	local player = PlayerResource:GetPlayer(pid)
+	EmitGlobalSound("Item.PickUpRingWorld")
+	--EmitSoundOnClient("Item.PickUpRingWorld", hero)
+	
     return true
 end
 
@@ -1704,6 +1710,7 @@ function WhoToAttack:OnEntityKilled(keys)
     
     local hero1 = PlayerManager:getHeroByTeam(attacker_team);
     
+	EmitSoundOn("lockjaw_Courier.gold",u)
     
     if hero1 and bonus then
         print("team " .. attacker_team .. " get bonus " .. bonus)
@@ -1890,6 +1897,8 @@ function WhoToAttack:OnDrawCards(keys)
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
     CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = false});
+	
+	EmitSoundOnClient("Item.PickUpRecipeWorld", player)
 end
 
 function WhoToAttack:OnLockCards(keys)

@@ -37,6 +37,10 @@ function AddBuildAbility(keys)
         if spe then
             firstSkill:SetLevel(2);
         end
+		
+		newyUnit.originManaRegen = newyUnit:GetManaRegen();
+		print("originManaRegen " .. newyUnit.originManaRegen)
+		newyUnit:SetBaseManaRegen(0);
         
         local level = newyUnit:GetLevel();
         if string.find(unitName, "nature") then
