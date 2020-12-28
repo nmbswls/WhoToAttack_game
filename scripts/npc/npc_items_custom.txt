@@ -25,7 +25,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"ID"	"1500"
 		"ItemCastOnPickup"	"1"
-		"ItemCost"	"100"
+		"ItemCost"	"15"
 		"ItemDroppable"	"1"
 		"ItemSellable"	"1"
 		"ItemShareability"	"ITEM_NOT_SHAREABLE"
@@ -211,7 +211,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"30"
+				"bonus_gpm"	"10"
 			}
 			"02"
 			{
@@ -464,6 +464,7 @@
 	"item_moneyevil"
 	{
 		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Philosopher_Stone_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1503"
 		"ItemCost"	"1"
@@ -489,6 +490,16 @@
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Properties"	{}
+				"OnIntervalThink"
+				{
+					"GrantXPGold"
+					{
+						"Target"	"CASTER"
+						"SplitEvenly"	"0"
+						"GoldAmount"	"1"
+					}
+				}
+				"ThinkInterval"	"3"
 			}
 		}
 		"AbilitySpecial"

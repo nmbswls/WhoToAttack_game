@@ -13,11 +13,11 @@
 	"weapons_armor"
 	{
 	        "item"          "item_remove_ability"
-                "item"          "item_treasure_tier_1"
                 "item"          "item_exp_book"
                 "item"          "item_sphere"
                 "item"          "item_glimmer_cape"
                 "item"          "item_philosophers_stone"
+                "item"          "item_moneyevil"
                 "item"          "item_pipe"
                 "item"          "item_addmana"
                 "item"          "item_mjollnir"	

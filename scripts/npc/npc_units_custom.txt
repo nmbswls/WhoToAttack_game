@@ -988,7 +988,7 @@
 		// Ability 2
 		"Ability2"	"ursa_des"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"NomanaAura"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2831,7 +2831,7 @@
 		"StatusHealthRegen"	"5"
 		"StatusMana"	"100"
 		// Base mana.
-		"StatusStartingMana"	"50"
+		"StatusStartingMana"	"80"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"10"
 		// Vision
@@ -2948,7 +2948,7 @@
 		"StatusHealthRegen"	"0"
 		"StatusMana"	"100"
 		// Base mana.
-		"StatusStartingMana"	"50"
+		"StatusStartingMana"	"60"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"10"
 		// Vision
@@ -3093,7 +3093,7 @@
 		"StatusHealthRegen"	"1"
 		"StatusMana"	"100"
 		// Base mana.
-		"StatusStartingMana"	"50"
+		"StatusStartingMana"	"70"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"10"
 		// Vision
@@ -3238,7 +3238,7 @@
 		"StatusHealthRegen"	"1"
 		"StatusMana"	"100"
 		// Base mana.
-		"StatusStartingMana"	"50"
+		"StatusStartingMana"	"60"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"10"
 		// Vision
@@ -5648,9 +5648,9 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"80"
+		"StatusStartingMana"	"100"
 		// Mana regeneration rate.
-		"StatusManaRegen"	"20"
+		"StatusManaRegen"	"3"
 		// Vision
 		// ----------------------------------------------------------------
 		// Range of vision during day light.
@@ -5793,9 +5793,9 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"80"
+		"StatusStartingMana"	"100"
 		// Mana regeneration rate.
-		"StatusManaRegen"	"20"
+		"StatusManaRegen"	"3"
 		// Vision
 		// ----------------------------------------------------------------
 		// Range of vision during day light.
