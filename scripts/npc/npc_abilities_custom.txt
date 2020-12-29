@@ -345,6 +345,17 @@
 		{
 			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 		}
+=======
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_time"					"0.1"
+			}
+		}
+
 		"Modifiers"
 		{
 			"modifier_yinshen_begin"
@@ -378,7 +389,7 @@
 			}
 			"modifier_yinshen_last"
 			{
-				"Duration"	"%duration"
+				"Duration"	"999"
 				"isBuff"	"1"
 				"OnAttackLanded"
 				{
