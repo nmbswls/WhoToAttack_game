@@ -492,7 +492,13 @@
 		"DOTA_Tooltip_modifier_yinshen_last"	"隐身结束"
 		"DOTA_Tooltip_ability_wolf_yinshen"	"潜行"
 		"DOTA_Tooltip_ability_wolf_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外20点物理伤害"
-		"DOTA_Tooltip_modifier_wolf_yinshen"	"潜行"
-		"DOTA_Tooltip_modifier_wolf_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外20点物理伤害"
+		"DOTA_Tooltip_ability_riki_yinshen"	"潜行"
+		"DOTA_Tooltip_ability_riki_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外30点物理伤害"
+		"DOTA_Tooltip_ability_clinkz_yinshen"	"潜行"
+		"DOTA_Tooltip_ability_clinkz_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外15点物理伤害"
+		"DOTA_Tooltip_ability_ta_yinshen"	"潜行"
+		"DOTA_Tooltip_ability_ta_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外50点物理伤害"
+		"DOTA_Tooltip_modifier_ta_armorreduction"	"护甲削弱"
+		"DOTA_Tooltip_modifier_ta_armorreduction_Description"	"-8护甲"
 	}
 }
