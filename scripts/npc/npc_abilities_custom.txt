@@ -336,25 +336,110 @@
 		}
 	}
 
-	"unit_feature_base"
+	"unit_feature_yinshen"
 	{
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"attribute_bonus"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+
 		"Modifiers"
 		{
-			"modifier_yinshen"
+			"modifier_wind_walk_fade_datadriven"
 			{
-				"TextureName"	"tiny_grow"
-				"IsBuff"	"1"
+				"Duration"	"%fade_time"
+				"isBuff"	"1"
+				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"OnAttackLanded"
+				{		
+					
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"YinshenExtraDamage"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
 			}
-			"modifier_yinshen_pre"
+			"modifier_wind_walk_datadriven"
 			{
-				"TextureName"	"tiny_grow"
-				"IsBuff"	"1"
+				"Duration"	"%duration"
+				"isBuff"	"1"
+
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_PHYSICAL"
+						"Damage"	"%bonus_damage"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+
+				"OnAbilityExecuted"
+				{
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_wind_walk_datadriven"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+
+
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED" 
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"Target"
+						{
+							"Center"	"CASTER"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_DEAD"
+						}
+						"ModifierName"	"modifier_invisible"
+					}
+				}
 			}
 		}
 	}
+	
+	
+	
 
 	"build_test_01"
 	{

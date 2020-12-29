@@ -2177,3 +2177,16 @@ end
 function GetBuildSkillName(unitName)
     return "build_" .. unitName
 end
+
+function YinshenExtraDamage(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local damage = 10
+	local damageTable = {
+    	victim=target,
+    	attacker=caster,
+    	damage_type = DAMAGE_TYPE_PHYSICAL,
+    	damage=damage
+    }
+    ApplyDamage(damageTable)
+end
