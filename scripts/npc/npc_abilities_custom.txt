@@ -440,6 +440,14 @@
 				}
 			}
 		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_time"	"0.1"
+			}
+		}
 	}
 
 	"build_test_01"
@@ -7191,10 +7199,6 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Shadow_Walk_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"precache"
-		{
-			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
-		}
 		"Modifiers"
 		{
 			"modifier_wolf_yinshen"
@@ -7218,9 +7222,15 @@
 						"Target"	"CASTER"
 						"ModifierName"	"modifier_wolf_yinshen"
 					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
 				}
-				"EffectName"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"Properties"	{}
+				"IsHidden"	"1"
 			}
 			"modifier_wolf_yinshen_2"
 			{
@@ -7233,9 +7243,217 @@
 						"ModifierName"	"modifier_wolf_yinshen"
 						"Duration"	"40"
 					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"Duration"	"40"
+						"ModifierName"	"modifier_invisible"
+					}
 				}
 				"IsBuff"	"1"
 				"IsHidden"	"1"
+			}
+		}
+	}
+
+	"riki_yinshen"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Shadow_Walk_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_riki_yinshen"
+			{
+				"Duration"	"40"
+				"IsBuff"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_PHYSICAL"
+						"Damage"	"30"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_riki_yinshen"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"EffectAttachType"	"follow_origin"
+				"Properties"	{}
+				"IsHidden"	"1"
+			}
+			"modifier_riki_yinshen_2"
+			{
+				"Passive"	"1"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_riki_yinshen"
+						"Duration"	"40"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"Duration"	"40"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+			}
+		}
+	}
+
+	"clinkz_yinshen"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Shadow_Walk_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_cl_yinshen"
+			{
+				"Duration"	"40"
+				"IsBuff"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_PHYSICAL"
+						"Damage"	"15"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_cl_yinshen"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"EffectAttachType"	"follow_origin"
+				"Properties"	{}
+				"IsHidden"	"1"
+			}
+			"modifier_cl_yinshen_2"
+			{
+				"Passive"	"1"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_cl_yinshen"
+						"Duration"	"40"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"Duration"	"40"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+			}
+		}
+	}
+
+	"ta_yinshen"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Shadow_Walk_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_ta_yinshen"
+			{
+				"Duration"	"40"
+				"IsBuff"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_INVISIBLE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"OnAttackLanded"
+				{
+					"Damage"
+					{
+						"Target"	"TARGET"
+						"Type"	"DAMAGE_TYPE_PHYSICAL"
+						"Damage"	"50"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"TARGET"
+						"ModifierName"	"modifier_ta_armorreduction"
+						"Duration"	"10"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_ta_yinshen"
+					}
+					"RemoveModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"EffectAttachType"	"follow_origin"
+				"Properties"	{}
+				"IsHidden"	"1"
+			}
+			"modifier_ta_yinshen_2"
+			{
+				"Passive"	"1"
+				"OnCreated"
+				{
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"ModifierName"	"modifier_ta_yinshen"
+						"Duration"	"40"
+					}
+					"ApplyModifier"
+					{
+						"Target"	"CASTER"
+						"Duration"	"40"
+						"ModifierName"	"modifier_invisible"
+					}
+				}
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+			}
+			"modifier_ta_armorreduction"
+			{
+				"Duration"	"10"
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"-8"
+				}
+				"TextureName"	"Meld_icon"
 			}
 		}
 	}

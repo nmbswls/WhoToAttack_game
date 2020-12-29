@@ -988,7 +988,7 @@
 		// Ability 2
 		"Ability2"	"ursa_des"
 		// Ability 3
-		"Ability3"	"wolf_yinshen"
+		"Ability3"	""
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -3193,7 +3193,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"riki_yinshen"
 		// Ability 2
 		"Ability2"	"riki_des"
 		// Ability 3
@@ -3330,11 +3330,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	"riki_smoke_screen"
+		"Ability1"	"riki_yinshen"
 		// Ability 2
-		"Ability2"	"riki_des2"
+		"Ability2"	"riki_smoke_screen"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"riki_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -3773,7 +3773,7 @@
 		// Ability 2
 		"Ability2"	"clinkz_des"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"clinkz_yinshen"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -3914,9 +3914,9 @@
 		// Ability 1
 		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
-		"Ability2"	"clinkz_des2"
+		"Ability2"	"wolf_yinshen"
 		// Ability 3
-		"Ability3"	"wolf_yinshen"
+		"Ability3"	"clinkz_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -8542,9 +8542,9 @@
 		// Ability 1
 		"Ability1"	"templar_assassin_refraction"
 		// Ability 2
-		"Ability2"	"ta_des2"
+		"Ability2"	"ta_yinshen"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"ta_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
