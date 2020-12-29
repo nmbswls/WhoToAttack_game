@@ -704,7 +704,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"	"soundevents/voscripts/game_sounds_vo_axe.vsndevts"
 			"particle"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
 		}
 		"OnSpellStart"
@@ -717,7 +717,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Invoker.Alacrity"
+				"EffectName"	"axe_axe_spawn_01"
 			}
 		}
 		"Modifiers"
