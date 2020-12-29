@@ -488,5 +488,11 @@
 		"DOTA_Tooltip_ability_item_repairhammer_Description"	"修复基地，五秒内回复十点生命值"
 		"DOTA_Tooltip_modifier_item_repairhammer"	"修理中"
 		"DOTA_Tooltip_modifier_item_repairhammer_Description"	"回复十点生命值"
+		"DOTA_Tooltip_modifier_yinshen_begin"	"隐身开始"
+		"DOTA_Tooltip_modifier_yinshen_last"	"隐身结束"
+		"DOTA_Tooltip_ability_wolf_yinshen"	"潜行"
+		"DOTA_Tooltip_ability_wolf_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外20点物理伤害"
+		"DOTA_Tooltip_modifier_wolf_yinshen"	"潜行"
+		"DOTA_Tooltip_modifier_wolf_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外20点物理伤害"
 	}
 }

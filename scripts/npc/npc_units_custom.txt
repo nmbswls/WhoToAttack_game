@@ -988,7 +988,7 @@
 		// Ability 2
 		"Ability2"	"ursa_des"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"wolf_yinshen"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -2669,7 +2669,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"wolf_yinshen"
 		// Ability 2
 		"Ability2"	"lycan_summon_wolves_critical_strike"
 		// Ability 3
@@ -2786,7 +2786,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"wolf_yinshen"
 		// Ability 2
 		"Ability2"	"lycan_summon_wolves_critical_strike"
 		// Ability 3
@@ -3916,7 +3916,7 @@
 		// Ability 2
 		"Ability2"	"clinkz_des2"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"wolf_yinshen"
 		// Ability 4
 		"Ability4"	""
 		// Armor
