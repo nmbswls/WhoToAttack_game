@@ -342,6 +342,14 @@
 		"AbilityTextureName"	"attribute_bonus"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"fade_time"					"0.1"
+			}
+		}
 
 		"Modifiers"
 		{
@@ -379,7 +387,7 @@
 			}
 			"modifier_yinshen_last"
 			{
-				"Duration"	"%duration"
+				"Duration"	"999"
 				"isBuff"	"1"
 
 				"OnAttackLanded"
