@@ -730,6 +730,10 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         -- if hero.buffs then
             
         -- end
+		local yinshenFeature = newyUnit:FindAbilityByName("unit_feature_yinshen");
+		if yinshenFeature then
+			yinshenFeature:ApplyDataDrivenModifier(newyUnit, newyUnit, "modifier_yinshen_begin", {});
+		end
         
     end
     

@@ -345,7 +345,7 @@
 
 		"Modifiers"
 		{
-			"modifier_wind_walk_fade_datadriven"
+			"modifier_yinshen_begin"
 			{
 				"Duration"	"%fade_time"
 				"isBuff"	"1"
@@ -368,7 +368,7 @@
 					"ApplyModifier"
 					{
 						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
+						"ModifierName"	"modifier_yinshen_last"
 					}
 					"ApplyModifier"
 					{
@@ -377,23 +377,23 @@
 					}
 				}
 			}
-			"modifier_wind_walk_datadriven"
+			"modifier_yinshen_last"
 			{
 				"Duration"	"%duration"
 				"isBuff"	"1"
 
 				"OnAttackLanded"
 				{
-					"Damage"
+					"RunScript"
 					{
 						"Target"	"TARGET"
-						"Type"	"DAMAGE_TYPE_PHYSICAL"
-						"Damage"	"%bonus_damage"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"YinshenExtraDamage"
 					}
 					"RemoveModifier"
 					{
 						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
+						"ModifierName"	"modifier_yinshen_last"
 					}
 					"RemoveModifier"
 					{
@@ -407,7 +407,7 @@
 					"RemoveModifier"
 					{
 						"Target"	"CASTER"
-						"ModifierName"	"modifier_wind_walk_datadriven"
+						"ModifierName"	"modifier_yinshen_last"
 					}
 					"RemoveModifier"
 					{
