@@ -345,7 +345,6 @@
 		{
 			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 		}
-=======
 		
 		"AbilitySpecial"
 		{
@@ -6288,11 +6287,22 @@
 				"IsPurgable"	"0"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
+					//"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
 				}
 				"IsBuff"	"1"
 				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
 				"EffectAttachType"	"follow_origin"
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"AddMaxHP"
+						"hp"	"%bonus_health"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"

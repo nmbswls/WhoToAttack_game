@@ -2194,3 +2194,19 @@ function YinshenExtraDamage(keys)
     }
     ApplyDamage(damageTable)
 end
+
+function AddMaxHP(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local hp = keys.hp
+	
+	local hp1 = target:GetMaxHealth()
+	
+	hp1 = hp1 + tonumber(hp)
+	
+	
+	target:SetBaseMaxHealth(hp1)
+	target:SetMaxHealth(hp1)
+	target:SetHealth(hp1)
+	
+end
