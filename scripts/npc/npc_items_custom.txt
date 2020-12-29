@@ -655,6 +655,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCastRange"	"700"
 		"ID"	"1506"
 		"precache"
 		{
@@ -685,6 +686,375 @@
 			"FireSound"
 			{
 				"EffectName"	"Hero_Omniknight.GuardianAngel"
+			}
+		}
+	}
+
+	"item_shell"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Ion_Shell_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastRange"	"700"
+		"ID"	"1507"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"Duration"	"60"
+				"ModifierName"	"modifier_item_shell"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.Alacrity"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_shell"
+			{
+				"Duration"	"60"
+				"IsBuff"	"1"
+				"OnIntervalThink"
+				{
+					"Damage"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+							"Center"	"CASTER"
+							"Radius"	"275"
+						}
+						"Type"	"DAMAGE_TYPE_MAGICAL"
+						"Damage"	"2"
+					}
+				}
+				"ThinkInterval"	"0.2"
+				"EffectName"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
+				"EffectAttachType"	"follow_head"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"range"	"275"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"damage"	"10"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"60"
+			}
+		}
+	}
+
+	"item_omni"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Heavenly_Grace_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastRange"	"700"
+		"ID"	"1508"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"	"particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"Duration"	"60"
+				"ModifierName"	"modifier_item_omni"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.Alacrity"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_omni"
+			{
+				"Duration"	"60"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armorbonus"
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%regenbonus"
+				}
+				"EffectName"	"particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"armorbonus"	"8"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"regenbonus"	"10"
+			}
+		}
+	}
+
+	"item_asms"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Drum_of_Endurance_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastRange"	"15000"
+		"ID"	"1509"
+		"ItemCost"	"20"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/econ/events/ti9/ti9_drums_musicnotes.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+					"Center"	"CASTER"
+					"Radius"	"15000"
+				}
+				"Duration"	"10"
+				"ModifierName"	"modifier_item_asms"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.DoE.Activate"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_asms"
+			{
+				"Duration"	"10"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%asbonus"
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT"	"%msbonus"
+				}
+				"EffectName"	"particles/econ/events/ti9/ti9_drums_musicnotes.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"asbonus"	"50"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"msbonus"	"100"
+			}
+		}
+	}
+
+	"item_bkball"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Minotaur_Horn_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"AbilityCastRange"	"15000"
+		"ID"	"1510"
+		"ItemCost"	"30"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items5_fx/minotaur_horn.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+					"Types"	"DOTA_UNIT_TARGET_BASIC"
+					"Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+					"Center"	"CASTER"
+					"Radius"	"15000"
+				}
+				"Duration"	"10"
+				"ModifierName"	"modifier_item_bkball"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.BlackKingBar.Activate"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_bkball"
+			{
+				"Duration"	"10"
+				"IsBuff"	"1"
+				"Properties"	{}
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+				"EffectName"	"particles/items5_fx/minotaur_horn.vpcf"
+				"EffectAttachType"	"follow_origin"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"duration"	"10"
+			}
+		}
+	}
+
+	"item_mangotrees"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Mango_Tree_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"60"
+		"ID"	"1511"
+		"ItemCost"	"10"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"1"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_repairhammer"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Repair_Kit_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"300"
+		"AbilityCastRange"	"5000"
+		"ID"	"1512"
+		"ItemCost"	"10"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"particle"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"Duration"	"5"
+				"ModifierName"	"modifier_item_repairhammer"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Hero_Invoker.Alacrity"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_repairhammer"
+			{
+				"Duration"	"5"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"2"
+				}
+				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
+				"EffectAttachType"	"follow_origin"
 			}
 		}
 	}

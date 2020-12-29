@@ -335,7 +335,7 @@
 			}
 		}
 	}
-	
+
 	"unit_feature_base"
 	{
 		"BaseClass"	"ability_datadriven"
