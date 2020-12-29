@@ -5899,7 +5899,7 @@
 		// Ability 2
 		"Ability2"	"np_des"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"unit_feature_yinshen"
 		// Ability 4
 		"Ability4"	""
 		// Armor
