@@ -352,7 +352,7 @@ function UnitAI:GetSpellData(hSpell)
             
         end
     elseif bitContains(nTargetTeam, DOTA_UNIT_TARGET_TEAM_FRIENDLY) then
-		if nBehavior:GetAbilityName() == 'anc' then
+		if abilityName == 'anc' then
 			
 		end
 	end
