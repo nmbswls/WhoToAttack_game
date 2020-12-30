@@ -345,16 +345,6 @@
 		{
 			"particle"	"particles/generic_hero_status/status_invisibility_start.vpcf"
 		}
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"fade_time"					"0.1"
-			}
-		}
-
 		"Modifiers"
 		{
 			"modifier_yinshen_begin"
@@ -438,6 +428,14 @@
 						"ModifierName"	"modifier_invisible"
 					}
 				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_FLOAT"
+				"fade_time"	"0.1"
 			}
 		}
 		"AbilitySpecial"
@@ -1046,7 +1044,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_INVULNERABLE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_INVULNERABLE | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"AbilityCastPoint"	"0.45"
@@ -1109,6 +1107,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -1513,7 +1512,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS | DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -1623,7 +1622,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -2489,7 +2488,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -2605,6 +2604,7 @@
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -2707,8 +2707,9 @@
 	"dazzle_shallow_grave"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"	"1"
@@ -2746,6 +2747,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityCastPoint"	"0.3"
@@ -3504,6 +3506,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_BUILDING"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
@@ -3546,6 +3549,7 @@
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -3927,6 +3931,7 @@
 	"axe_counter_helix"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PURE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
@@ -3971,7 +3976,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES | DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
@@ -6293,14 +6298,10 @@
 			{
 				"IsDebuff"	"0"
 				"IsPurgable"	"0"
-				"Properties"
-				{
-					//"MODIFIER_PROPERTY_HEALTH_BONUS"	"%bonus_health"
-				}
+				"Properties"	{}
 				"IsBuff"	"1"
 				"EffectName"	"particles/items_fx/aura_vlads.vpcf"
 				"EffectAttachType"	"follow_origin"
-				
 				"OnCreated"
 				{
 					"RunScript"
