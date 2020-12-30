@@ -123,8 +123,7 @@
 						"Function"	"CheckOneAttack"
 					}
 				}
-				"EffectName"	"particles/addons_gameplay/tower_good_tintable3_lamp.vpcf"
-				"EffectAttachType"	"follow_overhead"
+				
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-100"
@@ -5826,7 +5825,7 @@
 	"modifier_container"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"Modifiers"
