@@ -773,7 +773,7 @@
 		"Ability16"	""
 		"Model"	"models/heroes/undying/undying_tower.vmdl"
 		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
-		"StatusHealth"	"10000"
+		"StatusHealth"	"250"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"IsAncient"	"1"
 		"Ability17"	""
@@ -5899,7 +5899,7 @@
 		// Ability 2
 		"Ability2"	"np_des"
 		// Ability 3
-		"Ability3"	"unit_feature_yinshen"
+		"Ability3"	""
 		// Ability 4
 		"Ability4"	""
 		// Armor
