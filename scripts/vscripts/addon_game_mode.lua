@@ -387,10 +387,11 @@ function WhoToAttack:OnStageChanged()
     
     if(self.stage == 2) then
         self:StartABattleRound()
+        self:RemoveJidiWudi();
     end
 
     if(self.stage == 3) then
-        self:RemoveJidiWudi();
+        
         for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
             self:SetBattleTable(team_i, true)
         end
