@@ -387,7 +387,7 @@ function WhoToAttack:OnStageChanged()
     
     if(self.stage == 2) then
         self:StartABattleRound()
-        Timers:CreateTimer(3, function()
+        Timers:CreateTimer(5, function()
             self:RemoveJidiWudi();
         end)
     end
