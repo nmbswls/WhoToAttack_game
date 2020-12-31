@@ -2054,7 +2054,7 @@ function WhoToAttack:InitGameMode()
     GameRules:SetUseUniversalShopMode(true);
     GameRules:SetGoldTickTime(0)
     GameRules:SetGoldPerTick(0)
-    GameRules:SetStartingGold(500)
+    GameRules:SetStartingGold(6)
 	GameRules:GetGameModeEntity():SetFogOfWarDisabled(true);
     GameRules:GetGameModeEntity():SetSelectionGoldPenaltyEnabled(false)
     GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
