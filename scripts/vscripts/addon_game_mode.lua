@@ -493,12 +493,14 @@ function WhoToAttack:StartAPrepareRound()
 		self.battle_field_list[tid].is_open = false;
 	end
 	
-    if self.battle_round % 3 == 1 then
+    local openDoorTurn = self.battle_round  % 5;
+    
+    if openDoorTurn == 0 then
         self.open_door_list = aliveHero
-    elseif self.battle_round % 3 == 2 then
+    elseif openDoorTurn == 1 or openDoorTurn == 3 then
         local shuffled = table.shuffle(aliveHero);
         self.open_door_list = {}
-        local openDoorNum = 1 -- GameRules.Definition.openDoorNumByPlayer[playerNum]
+        local openDoorNum = GameRules.Definitions.OpenDoorNumByAlive[playerNum]
         for i = 1, openDoorNum do
             table.insert(self.open_door_list, shuffled[i]);
         end
