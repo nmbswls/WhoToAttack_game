@@ -641,7 +641,7 @@ function WhoToAttack:CanThrow()
         return false
     end
     
-    if self.stage == 2 or self.stage == 3 then
+    if self.stage == 2 then
         return true
     end
     
