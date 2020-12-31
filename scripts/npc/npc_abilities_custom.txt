@@ -123,7 +123,6 @@
 						"Function"	"CheckOneAttack"
 					}
 				}
-				
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-100"
@@ -6187,12 +6186,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_regen"	"1 2 4 8 10 18 25 40"
+				"bonus_regen"	"1 2 4 8 12 17 22 28"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"regen_pct"	"0 0 0 0 1 2 5 10"
+				"regen_pct"	"0 0 0 0 1 2 4 7"
 			}
 		}
 	}
@@ -6323,7 +6322,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bonus_health"	"20 0 0 0 20 40 60 100"
+				"bonus_health"	"5 10 20 40 70 100 150 200"
 			}
 			"03"
 			{

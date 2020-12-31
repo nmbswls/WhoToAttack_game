@@ -37,7 +37,7 @@ if GameRules.Definitions == nil then
     }
     GameRules.Definitions.MaxBuildSkill = 8
     
-    GameRules.Definitions.CardRedrawCost = 5 -- 抽卡开销
+    GameRules.Definitions.CardRedrawCost = 2 -- 抽卡开销
     GameRules.Definitions.CardPriceRate = 1 --人口为x的卡价格为2x
     GameRules.Definitions.UnitBonusRate = 2 --人口为x的怪死后加多少钱 
 	

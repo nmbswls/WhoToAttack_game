@@ -105,10 +105,11 @@
 		"ItemQuality"	"epic"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"0"
+		"ItemCost"	"30"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"regen_health;regen_mana;str;agi;int;hard_to_tag"
 		"ItemAliases"	"ls;linken's sphere"
+		"ItemRequirements"	{}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -126,7 +127,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bonus_mana_regen"	"20"
+				"bonus_mana_regen"	"0"
 			}
 			"04"
 			{
@@ -157,8 +158,9 @@
 		"ItemQuality"	"rare"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"0"
+		"ItemCost"	"30"
 		"ItemAliases"	"glimmer cape"
+		"ItemRequirements"	{}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -202,8 +204,9 @@
 		"Model"	"models/props_gameplay/neutral_box.vmdl"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"0"
+		"ItemCost"	"40"
 		"ItemPurchasable"	"1"
+		"ItemRequirements"	{}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -211,7 +214,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"10"
+				"bonus_gpm"	"5"
 			}
 			"02"
 			{
@@ -243,11 +246,12 @@
 		"ItemQuality"	"rare"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"0"
+		"ItemCost"	"90"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemAlertable"	"1"
 		"ItemShopTags"	"regen_health;boost_magic_resist"
 		"ItemAliases"	"pipe of insight"
+		"ItemRequirements"	{}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -290,7 +294,7 @@
 			"08"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"barrier_block"	"100"
+				"barrier_block"	"150"
 			}
 			"09"
 			{
@@ -335,10 +339,11 @@
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"ID"	"158"
 		"ItemQuality"	"artifact"
-		"ItemCost"	"0"
+		"ItemCost"	"110"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"damage;attack_speed;unique"
 		"ItemAliases"	"mjollnir"
+		"ItemRequirements"	{}
 		// Special
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
@@ -361,7 +366,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"static_chance"	"20"
+				"static_chance"	"30"
 			}
 			"05"
 			{
@@ -371,7 +376,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"static_damage"	"200"
+				"static_damage"	"250"
 			}
 			"07"
 			{
@@ -433,7 +438,7 @@
 		"AbilityTextureName"	"item_Energy_Booster_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1502"
-		"ItemCost"	"1"
+		"ItemCost"	"90"
 		"ItemDroppable"	"0"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -467,7 +472,7 @@
 		"AbilityTextureName"	"item_Philosopher_Stone_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1503"
-		"ItemCost"	"1"
+		"ItemCost"	"70"
 		"ItemDroppable"	"0"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -499,7 +504,7 @@
 						"GoldAmount"	"1"
 					}
 				}
-				"ThinkInterval"	"3"
+				"ThinkInterval"	"5"
 			}
 		}
 		"AbilitySpecial"
@@ -523,7 +528,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"700"
 		"ID"	"1504"
-		"ItemCost"	"1"
+		"ItemCost"	"110"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -574,7 +579,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ID"	"1505"
-		"ItemCost"	"5"
+		"ItemCost"	"999"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -657,6 +662,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastRange"	"700"
 		"ID"	"1506"
+		"ItemRequirements"	{}
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds.vsndevts"
@@ -701,6 +707,8 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"700"
 		"ID"	"1507"
+		"ItemCost"	"50"
+		"ItemRequirements"	{}
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
@@ -779,7 +787,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"700"
 		"ID"	"1508"
-		"ItemCost"	"1"
+		"ItemCost"	"70"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -841,7 +849,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"15000"
 		"ID"	"1509"
-		"ItemCost"	"20"
+		"ItemCost"	"100"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -910,7 +918,7 @@
 		"AbilityCooldown"	"60"
 		"AbilityCastRange"	"15000"
 		"ID"	"1510"
-		"ItemCost"	"30"
+		"ItemCost"	"110"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -972,7 +980,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"60"
 		"ID"	"1511"
-		"ItemCost"	"10"
+		"ItemCost"	"60"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1023,7 +1031,7 @@
 		"AbilityCooldown"	"300"
 		"AbilityCastRange"	"5000"
 		"ID"	"1512"
-		"ItemCost"	"10"
+		"ItemCost"	"50"
 		"ItemRequirements"	{}
 		"precache"
 		{
