@@ -1079,6 +1079,8 @@
 		"Ability15"	""
 		"Ability16"	""
 		"Ability17"	""
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
 	}
 
 	"nature_ursa_special"
@@ -3771,11 +3773,11 @@
 		// Ability 1
 		"Ability1"	"clinkz_searing_arrows"
 		// Ability 2
-		"Ability2"	"clinkz_des"
+		"Ability2"	"siegeattack"
 		// Ability 3
 		"Ability3"	"clinkz_yinshen"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"clinkz_des"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -3916,9 +3918,9 @@
 		// Ability 2
 		"Ability2"	"wolf_yinshen"
 		// Ability 3
-		"Ability3"	"clinkz_des2"
+		"Ability3"	"siegeattack"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"clinkz_des2"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -5131,7 +5133,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"siegeattack"
 		// Ability 2
 		"Ability2"	"siege_des"
 		// Ability 3
@@ -5230,7 +5232,7 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"siegeattack"
 		// Ability 2
 		"Ability2"	"siege_des2"
 		// Ability 3
@@ -5897,9 +5899,9 @@
 		// Ability 1
 		"Ability1"	"furion_wrath_of_nature"
 		// Ability 2
-		"Ability2"	"np_des"
+		"Ability2"	"siegeattack"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"np_des"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -6045,9 +6047,9 @@
 		// Ability 1
 		"Ability1"	"furion_wrath_of_nature"
 		// Ability 2
-		"Ability2"	"np_des2"
+		"Ability2"	"siegeattack"
 		// Ability 3
-		"Ability3"	""
+		"Ability3"	"np_des2"
 		// Ability 4
 		"Ability4"	""
 		// Armor
@@ -7315,9 +7317,9 @@
 		// Ability 2
 		"Ability2"	"venomancer_poison_sting"
 		// Ability 3
-		"Ability3"	"bear_des"
+		"Ability3"	"siegeattack"
 		// Ability 4
-		"Ability4"	""
+		"Ability4"	"bear_des"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7412,7 +7414,7 @@
 		// Ability 3
 		"Ability3"	"beastmaster_inner_beast"
 		// Ability 4
-		"Ability4"	"bear_des2"
+		"Ability4"	"siegeattack"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -7469,7 +7471,7 @@
 		// Creature Data
 		// ----------------------------------------------------------------
 		"Creature"	{}
-		"Ability5"	""
+		"Ability5"	"bear_des2"
 		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""
@@ -7954,7 +7956,7 @@
 		// Ability 3
 		"Ability3"	"alchemist_chemical_rage"
 		// Ability 4
-		"Ability4"	"ga_des2"
+		"Ability4"	"siegeattack"
 		// Armor
 		// ----------------------------------------------------------------
 		// Physical protection.
@@ -8063,7 +8065,7 @@
 				}
 			}
 		}
-		"Ability5"	""
+		"Ability5"	"ga_des2"
 		"Ability6"	""
 		"Ability7"	""
 		"Ability8"	""

@@ -505,5 +505,7 @@
 		"DOTA_Tooltip_ability_ta_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外50点物理伤害"
 		"DOTA_Tooltip_modifier_ta_armorreduction"	"护甲削弱"
 		"DOTA_Tooltip_modifier_ta_armorreduction_Description"	"-8护甲"
+		"DOTA_Tooltip_ability_siegeattack"	"攻城"
+		"DOTA_Tooltip_ability_siegeattack_Description"	"攻城单位在血量低于30时强制攻击敌方基地"
 	}
 }
