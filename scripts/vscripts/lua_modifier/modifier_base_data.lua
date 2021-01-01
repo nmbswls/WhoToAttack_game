@@ -11,6 +11,9 @@ function CheckOneAttack(keys)
     
     
     if attacker:IsAlive() then
+        if attacker:HasModifier('modifier_dazzle_shallow_grave') then
+            attacker:RemoveModifierByName('modifier_dazzle_shallow_grave');
+        end
         --print("try to kill " .. attacker:GetEntityIndex())
         attacker:Kill(nil, nil)
     end

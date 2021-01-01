@@ -34,6 +34,7 @@ function AddBuildAbility(keys)
     
     if newyUnit then
         local firstSkill = newyUnit:GetAbilityByIndex(0)
+        firstSkill:SetLevel(1);
         if spe then
             firstSkill:SetLevel(2);
         end

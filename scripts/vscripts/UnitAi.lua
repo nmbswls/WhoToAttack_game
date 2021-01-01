@@ -274,7 +274,7 @@ function UnitAI:CastSpell(spellData)
 end
 
 
-function UnitAI:GetUnitsWithHpLowerThan(unit, radius, teamFlag, hpThreshold)
+function UnitAI:GetUnitsWithHpLowerThan(unit, radius, teamFlag, hpThreshold, excludeBuff)
     
     if radius == nil then
         radius = 1000
@@ -286,20 +286,39 @@ function UnitAI:GetUnitsWithHpLowerThan(unit, radius, teamFlag, hpThreshold)
     local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, teamFlag, DOTA_UNIT_TARGET_CREEP,
         UNIT_FILTER, FIND_CLOSEST, true)
     
-    print('GetUnitsWithHpLowerThan len ' .. #candidates)
+    --print('GetUnitsWithHpLowerThan len ' .. #candidates)
     
     if #candidates == 0 then
         return ret
     end
     
+    filterFunc = function(unit, hpThreshold, excludeBuff) 
+    
+        if unit:HasModifier("modifier_player_jidi") then
+            return false
+        end
+        
+        if hpThreshold and unit:GetHealth() >= unit:GetMaxHealth() * hpThreshold then
+            return false
+        end
+        
+        if excludeBuff and unit:HasModifier(excludeBuff) then
+            return false
+        end
+            
+        return true
+    end
+    
+    
     for index = 1, #candidates do
         local candidate = candidates[index]
         if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
-            if not candidate:HasModifier("modifier_player_jidi") then
-                if candidate:GetHealth() < candidate:GetMaxHealth() * hpThreshold then
-                    table.insert(ret, candidate)
-                end
+            
+            local isValid = filterFunc(candidate, hpThreshold,excludeBuff);
+            if isValid then
+                table.insert(ret, candidate)
             end
+            
         end
     end
     return ret
@@ -382,15 +401,31 @@ function UnitAI:GetSpellData(hSpell)
             
         end
     elseif bitContains(nTargetTeam, DOTA_UNIT_TARGET_TEAM_FRIENDLY) then
+        
+        local candis = {}
 		if abilityName == 'abaddon_aphotic_shield' then
-			local candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.9)
-            if #candis > 0 then
-                print('return spell niubi')
-                return {ability = hSpell, type = "unit_target", target = candis[1]}
-            else
-                --print('no candidate')
-            end
-		end
+        
+			candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.9)
+            
+		elseif abilityName == 'treant_living_armor' then
+        
+            candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.8, "modifier_treant_living_armor")
+        elseif abilityName == 'ogre_magi_bloodlust' then
+        
+            candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.8, "modifier_ogre_magi_bloodlust")
+        elseif abilityName == 'dazzle_shallow_grave' then
+        
+            candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.35)
+            
+        elseif abilityName == 'dazzle_shadow_wave' then
+        
+            candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.8)
+        
+        end
+        
+        if #candis > 0 then
+            return {ability = hSpell, type = "unit_target", target = candis[1]}
+        end
 	end
     
     return nil
