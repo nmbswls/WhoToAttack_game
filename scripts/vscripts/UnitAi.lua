@@ -42,7 +42,7 @@ function UnitAI:OnUnitThink(unit)
     end
 
     if(unit.IsCommandRestricted ~= nil and unit:IsCommandRestricted()) then 
-        return 0.2
+        return 0.4
     end
 	
 	if not unit.in_battle_id then 
@@ -61,7 +61,7 @@ function UnitAI:OnUnitThink(unit)
     if(highestData ~= nil) then
         return UnitAI:ExecuteCommand(unit, UNIT_CMD_LIST[highestScoreCommand], highestData)
     else
-        return 0.2
+        return 0.4
     end
 end
 
@@ -274,6 +274,36 @@ function UnitAI:CastSpell(spellData)
 end
 
 
+function UnitAI:GetUnitsWithHpLowerThan(unit, radius, teamFlag, hpThreshold)
+    
+    if radius == nil then
+        radius = 1000
+    end
+    
+    local ret = {}
+    local base = nil
+    
+    local candidates = FindUnitsInRadius(unit:GetTeam(), unit:GetAbsOrigin(), nil, radius, teamFlag, DOTA_UNIT_TARGET_CREEP,
+        UNIT_FILTER, FIND_CLOSEST, true)
+    
+    print('GetUnitsWithHpLowerThan len ' .. #candidates)
+    
+    if #candidates == 0 then
+        return ret
+    end
+    
+    for index = 1, #candidates do
+        local candidate = candidates[index]
+        if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
+            if not candidate:HasModifier("modifier_player_jidi") then
+                if candidate:GetHealth() < candidate:GetMaxHealth() * hpThreshold then
+                    table.insert(ret, candidate)
+                end
+            end
+        end
+    end
+    return ret
+end
 
 
 
@@ -318,8 +348,8 @@ function UnitAI:GetSpellData(hSpell)
     local nTargetFlags = hSpell:GetAbilityTargetFlags()
 
     local abilityName = hSpell:GetName()
-    local hero = hSpell:GetCaster()
-    if(hero == nil or hero:IsNull()) then
+    local caster = hSpell:GetCaster()
+    if(caster == nil or caster:IsNull()) then
         return nil
     end
 
@@ -352,8 +382,14 @@ function UnitAI:GetSpellData(hSpell)
             
         end
     elseif bitContains(nTargetTeam, DOTA_UNIT_TARGET_TEAM_FRIENDLY) then
-		if abilityName == 'anc' then
-			
+		if abilityName == 'abaddon_aphotic_shield' then
+			local candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.9)
+            if #candis > 0 then
+                print('return spell niubi')
+                return {ability = hSpell, type = "unit_target", target = candis[1]}
+            else
+                --print('no candidate')
+            end
 		end
 	end
     
@@ -556,7 +592,7 @@ end
 function UnitAI:GetSpellCastTime(hSpell)
     
     if hSpell == nil or hSpell:IsNull() then
-        return 0.2
+        return 0.4
     end
     local flCastPoint = math.max(0.25, hSpell:GetCastPoint() + hSpell:GetChannelTime() + hSpell:GetBackswingTime())
     if(flCastPoint < 0.2) then
