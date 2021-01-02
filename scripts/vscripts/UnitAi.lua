@@ -5,7 +5,7 @@
 ----target = hTarget
 require 'utils'
 
-local MIN_TIME_CAST = 6
+local MIN_TIME_CAST = 1
 if UnitAI == nil then UnitAI = class({}) end
 UNIT_CMD_LIST = {"ATTACK_TARGET", "USE_ABILITY"}
 UNIT_FILTER = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_NO_INVIS
@@ -14,7 +14,7 @@ function UnitAI:OnUnitThink(unit)
 
     if IsClient() or GameRules:GetGameModeEntity().WhoToAttack.is_game_ended then return nil end
     
-    if GameRules:GetGameModeEntity().WhoToAttack.stage ~= 3 then
+    if GameRules:GetGameModeEntity().WhoToAttack.stage ~= 2 and GameRules:GetGameModeEntity().WhoToAttack.stage ~= 3 then
         return 1
     end
     
@@ -85,8 +85,15 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         if(unit:IsAttackImmune() or unit:IsRooted()) then
             return 0, nil
         end
-
+        
         local unitName = unit:GetUnitName()
+        
+        if unit:HasAbility('siegeattack') then
+            if unit:GetHealth() < unit:GetMaxHealth() * 0.35 then
+                local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
+                return 30, base
+            end
+        end
         
         local attackTarget = unit:GetAttackTarget()
         
@@ -395,6 +402,21 @@ function UnitAI:GetSpellData(hSpell)
         elseif bitContains(nBehavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) then
             
             local hTarget = UnitAI:GetBestOneTarget(hSpell)
+            
+            --特殊处理淘汰之刃
+            if abilityName == 'axe_culling_blade' then
+                local hpMin = 0
+                if hSpell:GetLevel() == 1 then
+                    hpMin = 100
+                elseif hSpell:GetLevel() == 2 then
+                    hpMin = 200
+                end
+                
+                if hTarget ~= nil and hTarget:IsAlive() and hTarget:GetHealth() > hpMin then
+                    hTarget = nil
+                end
+            end
+            
             if hTarget ~= nil and hTarget:IsAlive() then
                 return {ability = hSpell, type = "unit_target", target = hTarget}
             end
@@ -420,7 +442,9 @@ function UnitAI:GetSpellData(hSpell)
         elseif abilityName == 'dazzle_shadow_wave' then
         
             candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.8)
-        
+        else abilityName == 'warlock_shadow_word' then
+            candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.9, 'modifier_warlock_shadow_word')
+            
         end
         
         if #candis > 0 then

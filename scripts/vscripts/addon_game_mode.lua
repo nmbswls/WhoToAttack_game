@@ -701,6 +701,9 @@ function WhoToAttack:DoPlayerDie(hero)
 		return
 	end
 	hero.dead = true;
+    if hero:IsAlive() == true then
+		hero:ForceKill(false)
+	end
 	
 	hero.ranking = self.alive_count;
 	
@@ -1440,7 +1443,7 @@ function WhoToAttack:ModifyBaseHP(hero, hp)
        end
        local newHp = nowHp + hp;
        if newHp < 0 then
-               newHp = 0
+           newHp = 0
        end
 
        if newHp == 0 then
