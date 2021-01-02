@@ -1429,30 +1429,29 @@ end
 
 
 function WhoToAttack:ModifyBaseHP(hero, hp)
-       if hero == nil or hp == nil then
-               return
-       end
+    if hero == nil or hp == nil then
+           return
+    end
 
-       if not hero.base then
-              return
-       end
-       local base = hero.base;
-       local nowHp = base:GetHealth();
-       if nowHp <= 0 then
-               return
-       end
-       local newHp = nowHp + hp;
-       if newHp < 0 then
-           newHp = 0
-       end
+    if not hero.base then
+          return
+    end
+    local base = hero.base;
+    local nowHp = base:GetHealth();
+    if nowHp <= 0 then
+      return
+    end
+    local newHp = nowHp + hp;
+    if newHp < 0 then
+       newHp = 0
+    end
 
-       if newHp == 0 then
-		   base:ForceKill(false)
-		   hero:ForceKill(false)
-		   self:DoPlayerDie(hero)
-       else
-		   base:SetHealth(newHp)
-       end
+    if newHp == 0 then
+       base:ForceKill(false)
+       self:DoPlayerDie(hero)
+    else
+       base:SetHealth(newHp)
+    end
 
 end
 
