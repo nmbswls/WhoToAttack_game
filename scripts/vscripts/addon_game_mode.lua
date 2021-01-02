@@ -2059,6 +2059,7 @@ function WhoToAttack:InitGameMode()
     GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(WhoToAttack, "DamageFilter"), self)
     
     GameRules:SetUseUniversalShopMode(true);
+    GameRules:SetHeroRespawnEnabled( false )
     GameRules:SetGoldTickTime(0)
     GameRules:SetGoldPerTick(0)
     GameRules:SetStartingGold(7)
