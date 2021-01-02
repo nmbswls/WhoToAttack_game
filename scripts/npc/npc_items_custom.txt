@@ -105,7 +105,7 @@
 		"ItemQuality"	"epic"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"30"
+		"ItemCost"	"0"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"regen_health;regen_mana;str;agi;int;hard_to_tag"
 		"ItemAliases"	"ls;linken's sphere"
@@ -127,7 +127,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bonus_mana_regen"	"0"
+				"bonus_mana_regen"	"20"
 			}
 			"04"
 			{
@@ -204,7 +204,7 @@
 		"Model"	"models/props_gameplay/neutral_box.vmdl"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"40"
+		"ItemCost"	"0"
 		"ItemPurchasable"	"1"
 		"ItemRequirements"	{}
 		// Special
@@ -214,7 +214,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"5"
+				"bonus_gpm"	"50"
 			}
 			"02"
 			{
