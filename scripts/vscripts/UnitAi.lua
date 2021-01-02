@@ -442,7 +442,7 @@ function UnitAI:GetSpellData(hSpell)
         elseif abilityName == 'dazzle_shadow_wave' then
         
             candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.8)
-        else abilityName == 'warlock_shadow_word' then
+        elseif abilityName == 'warlock_shadow_word' then
             candis = self:GetUnitsWithHpLowerThan(caster, UnitAI:GetSpellRange(hSpell), DOTA_UNIT_TARGET_TEAM_FRIENDLY, 0.9, 'modifier_warlock_shadow_word')
             
         end
