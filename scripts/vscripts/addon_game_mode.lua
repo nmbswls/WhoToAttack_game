@@ -618,12 +618,12 @@ function WhoToAttack:SpawnNeutral(team)
     
     local pos = GameRules.Definitions.TeamCenterPos[team]
 
-    for i = 1, 4 do
-        local unit = self:CreateUnit(3, pos, "evil_skeleton")
-        Timers:CreateTimer(0.5, function()
-            unit.in_battle_id = team;
-        end)
-    end
+    -- for i = 1, 4 do
+        -- local unit = self:CreateUnit(3, pos, "evil_skeleton")
+        -- Timers:CreateTimer(0.5, function()
+            -- unit.in_battle_id = team;
+        -- end)
+    -- end
     
 end
 
@@ -1574,7 +1574,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
         
 	-- end
     Timers:CreateTimer(2,function()
-        self:UpgradeBuildSkill(hero,"evil_abaddon")
+        --self:UpgradeBuildSkill(hero,"evil_abaddon")
     end)
     
     
