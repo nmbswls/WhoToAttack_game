@@ -1515,6 +1515,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
+		"MaxLevel"	"2"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
 		// Time
@@ -1542,7 +1543,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"damage_absorb"	"110"
+				"damage_absorb"	"80 110"
 				"LinkedSpecialBonus"	"special_bonus_unique_abaddon"
 			}
 			"03"
@@ -2340,6 +2341,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES_STRONG"
 		"FightRecapLevel"	"1"
+		"MaxLevel"	"2"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.5"
@@ -2368,7 +2370,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"stomp_damage"	"30"
+				"stomp_damage"	"40 60"
 			}
 		}
 		"AbilitySound"	"Hero_Centaur.HoofStomp"
@@ -2392,7 +2394,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"return_damage"	"30"
+				"return_damage"	"40"
 				"LinkedSpecialBonus"	"special_bonus_unique_centaur_3"
 			}
 			"02"
@@ -3010,7 +3012,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"5.0"
+		"AbilityCooldown"	"2.0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -3095,14 +3097,14 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"10"
+		"AbilityCooldown"	"5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"5"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"	"850"
-		"AbilityChannelTime"	"5.1"
+		"AbilityChannelTime"	"2.6"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
@@ -3114,12 +3116,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.0"
+				"duration"	"2.5"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_per_second"	"20"
+				"mana_per_second"	"40"
 				"LinkedSpecialBonus"	"special_bonus_unique_lion_5"
 			}
 			"03"
@@ -4451,6 +4453,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_PHYSICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"	"2"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.2"
@@ -4483,12 +4486,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"10"
+				"damage"	"10 15"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armor_reduction"	"5"
+				"armor_reduction"	"5 6"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_5"
 			}
 			"05"
@@ -4665,7 +4668,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage_threshold"	"5 5"
+				"damage_threshold"	"5 6"
 			}
 			"04"
 			{
@@ -4775,7 +4778,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -4805,7 +4808,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 5 6 8 10 15 20 25 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -4835,7 +4838,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.1 0.2 0.4 0.7 1 1.5 2 3 4 5"
+				"gailv"	"1 2 4 5 6 8 10 15 20 25"
 			}
 		}
 	}
@@ -4865,7 +4868,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"1 2 3 5 8 10 13 18 23 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -4895,7 +4898,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -4925,7 +4928,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -4955,7 +4958,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"2 4 7 12 17 22 27 33 40 50"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -4985,7 +4988,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"1 2 3 5 8 10 13 18 23 30"
 			}
 		}
 	}
@@ -5015,7 +5018,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 5 6 8 10 15 20 25 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5045,7 +5048,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5075,7 +5078,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 4 5 6 8 9 10"
+				"gailv"	"1 2 3 5 8 10 13 18 23 30"
 			}
 		}
 	}
@@ -5105,7 +5108,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5135,7 +5138,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -5165,7 +5168,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5195,7 +5198,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5225,7 +5228,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -5255,7 +5258,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 3 5 8 10 13 18 23 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5285,7 +5288,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"2 4 7 12 17 22 27 33 40 50"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5315,7 +5318,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 3 5 8 10 13 18 23 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5345,7 +5348,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 3 5 8 10 13 18 23 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5375,7 +5378,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 3 5 8 10 13 18 23 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5405,7 +5408,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"0 5 10 15 20 25 30 35 40 45"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5435,7 +5438,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -5465,7 +5468,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 5 6 8 10 15 20 25 30"
+				"gailv"	"8 15 22 29 37 45 55 67 80 95"
 			}
 		}
 	}
@@ -5495,7 +5498,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"1 2 3 5 8 10 13 18 23 30"
 			}
 		}
 	}
@@ -5525,7 +5528,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"0.5 1 2 3 5 6 8 10 12 15"
+				"gailv"	"1 2 3 5 8 10 13 18 23 30"
 			}
 		}
 	}
@@ -5555,7 +5558,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5585,7 +5588,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5615,7 +5618,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5645,7 +5648,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"1 2 4 5 6 8 10 15 20 25"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -6586,7 +6589,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"200 300"
+				"damage"	"150 250"
 			}
 		}
 	}
