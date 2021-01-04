@@ -93,7 +93,7 @@
 	"item_sphere"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"FightRecapLevel"	"1"
@@ -1069,6 +1069,35 @@
 				}
 				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	"item_summontiny"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Giant_Ring_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"160"
+		"AbilityManaCost"	"10"
+		"ID"	"1513"
+		"ItemCost"	"110"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"OnSpawn"
+				{
+					"FireSound"	{}
+				}
+				"UnitName"	"tiny_illusion"
+				"UnitCount"	"1"
+				"Duration"	"50"
 			}
 		}
 	}

@@ -479,11 +479,11 @@
 		"DOTA_Tooltip_modifier_item_omni"	"天国恩赐"
 		"DOTA_Tooltip_modifier_item_omni_Description"	"提高8护甲，10生命恢复"
 		"DOTA_Tooltip_ability_item_asms"	"<font color=\"#f0ad4e\">战歌之鼓</font>"
-		"DOTA_Tooltip_ability_item_asms_Description"	"提高友军50攻击速度，100移动速度\n持续10秒\n（作用范围全地图）"
+		"DOTA_Tooltip_ability_item_asms_Description"	"提高友军50攻击速度，100移动速度\n持续10秒"
 		"DOTA_Tooltip_modifier_item_asms"	"鼓舞"
 		"DOTA_Tooltip_modifier_item_asms_Description"	"提高50攻击速度，100移动速度"
 		"DOTA_Tooltip_ability_item_bkball"	"<font color=\"#d9534f\">恶牛号角</font>"
-		"DOTA_Tooltip_ability_item_bkball_Description"	"使友方单位获得技能免疫效果\n（作用范围全地图）"
+		"DOTA_Tooltip_ability_item_bkball_Description"	"使友方单位获得技能免疫效果"
 		"DOTA_Tooltip_modifier_item_bkball"	"技能免疫"
 		"DOTA_Tooltip_modifier_item_bkball_Description"	"持续10秒"
 		"DOTA_Tooltip_ability_item_bkball_duration"	"持续时间："
@@ -507,5 +507,7 @@
 		"DOTA_Tooltip_modifier_ta_armorreduction_Description"	"-8护甲"
 		"DOTA_Tooltip_ability_siegeattack"	"攻城"
 		"DOTA_Tooltip_ability_siegeattack_Description"	"攻城单位在血量低于30时强制攻击敌方基地"
+		"DOTA_Tooltip_ability_item_summontiny"	"<font color=\"#d9534f\">梦中的自己</font>"
+		"DOTA_Tooltip_ability_item_summontiny_Description"	"小小耗费极大的精神力将想象中的自己召唤至战场"
 	}
 }
