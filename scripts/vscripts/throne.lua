@@ -37,6 +37,13 @@ function WtaThrones:init(teamNum)
 	
 end
 
+function WtaThrones:ClearScore(team)
+	for throneIdx=1, GameRules.Definitions.ThroneCnt do 
+		self.throneTeamScores[throneIdx][team] = 0;
+		self:_updateThroneShow(throneIdx);
+	end
+end
+
 function WtaThrones:UpdateLevelByTurn(turn)
         
     local targetLevel = 1
@@ -78,7 +85,7 @@ function WtaThrones:AddScore(throneIdx, teamId, score)
     
 	self.throneTeamScores[throneIdx][teamId] = self.throneTeamScores[throneIdx][teamId] + score;
 	
-	self:_refreshScore(throneIdx, teamId)
+	--self:ReorderTeams(throneIdx)
 	
 	self:_updateThroneShow(throneIdx);
 end
@@ -104,7 +111,7 @@ function WtaThrones:_updateThroneShow(throneIdx)
 
 end
 
-function WtaThrones:_refreshScore(throneIdx, teamId)
+function WtaThrones:ReorderTeams(throneIdx)
 
 	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then
 		return

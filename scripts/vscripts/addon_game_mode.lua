@@ -300,8 +300,8 @@ function WhoToAttack:OnThink()
     end
     
 	--print("count down " .. stageCountdown)
-    if self.state == 2 then
-        
+    if self.stage == 2 then
+        self:PingOpenDoor()
     end
     
     if(self.stage == 3) then
@@ -336,8 +336,12 @@ function WhoToAttack:OnThink()
         end
     end
     
+    CustomGameEventManager:Send_ServerToAllClients("show_time",{
+			time_left = stageCountdown,
+			stage = self.stage,
+		})
     
-    
+	--?? shayisi
     if(stageCountdown > 0 and stageCountdown < 4 and self.last_tick ~= stageCountdown) then
         self.last_tick = stageCountdown
     end
@@ -357,6 +361,8 @@ function WhoToAttack:OnThink()
         return 1
     end
 	
+	
+	
     local playerInfoTable = {}
     --for playerId, playerInfo in pairs(GameRules.DW.PlayerList) do
         --拼装playerinfo
@@ -371,6 +377,24 @@ function WhoToAttack:OnThink()
     
 end
 
+function WhoToAttack:PingOpenDoor()
+	
+	print("ping open door")
+	if not self.open_door_list then
+		return
+	end
+	
+	for i = 1, #self.open_door_list do
+        
+        local hero = self.open_door_list[i];
+		local tid = hero.team_id;
+        
+        CustomGameEventManager:Send_ServerToAllClients("ping_open_doors", 
+			{x = GameRules.Definitions.TeamCenterPos[tid].x, 
+			y = GameRules.Definitions.TeamCenterPos[tid].y, 
+			z = GameRules.Definitions.TeamCenterPos[tid].z})
+    end
+end
 function WhoToAttack:SetStage(newStage)
     self.stage = newStage;
     self:OnStageChanged();
@@ -448,6 +472,7 @@ function WhoToAttack:StartAPrepareRound()
     self:AddJidiWudi();
     
     WtaThrones:UpdateLevelByTurn(self.battle_round)
+	
     for _,hero in pairs(PlayerManager.heromap) do
         if IsHeroValid(hero) == true then
             for _,bonusName in pairs(hero.throne_bonus) do
@@ -459,6 +484,7 @@ function WhoToAttack:StartAPrepareRound()
     
     
     for i=1,GameRules.Definitions.ThroneCnt do
+		WtaThrones:ReorderTeams(i);
         local orders = WtaThrones.sortedTeamIdx[i];
         local throne = WtaThrones.throneList[i];
         local ability = throne:GetAbilityByIndex(2);
@@ -534,7 +560,6 @@ function WhoToAttack:StartAPrepareRound()
             end
         end
         
-        CustomGameEventManager:Send_ServerToAllClients("ping_open_doors", {x = GameRules.Definitions.TeamCenterPos[tid].x, y = GameRules.Definitions.TeamCenterPos[tid].y, z = GameRules.Definitions.TeamCenterPos[tid].z})
     end
     
     for _,hero in pairs(PlayerManager.heromap) do
@@ -712,6 +737,8 @@ function WhoToAttack:DoPlayerDie(hero)
 	if self.alive_count == 0 then
 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 	end
+	
+	WtaThrones:ClearScore(hero.team);
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName)
@@ -1818,6 +1845,11 @@ function WhoToAttack:HandleCommand(keys)
             stype = tokens[2]
         end
         self:UpgradeBuildSkill(hero, stype)
+    end
+	
+	if tokens[1] == '-clear' then
+        
+        WtaThrones:ClearScore(team)
     end
     
     if tokens[1] == '-draw' then
