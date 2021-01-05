@@ -380,7 +380,6 @@ end
 
 function WhoToAttack:PingOpenDoor()
 	
-	print("ping open door")
 	if not self.open_door_list then
 		return
 	end
@@ -577,6 +576,16 @@ function WhoToAttack:StartAPrepareRound()
                 
             --回合加经验
             hero:AddExperience(10,0,false,false);
+			
+			local eids = {}
+			table.insert(eids,100);
+			table.insert(eids,101);
+			table.insert(eids,102);
+			CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
+				encounters = eids,
+			})
+			
+			
         end
     end
     
