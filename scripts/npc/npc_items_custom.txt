@@ -93,11 +93,12 @@
 	"item_sphere"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"60.0"
-		"AbilityCastRange"	"700"
+		"AbilityCooldown"	"50.0"
+		"AbilityCastRange"	"15000"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
@@ -144,13 +145,14 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"50"
 		"AbilityManaCost"	"0"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"550"
+		"AbilityCastRange"	"15000"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
@@ -233,12 +235,13 @@
 	"item_pipe"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"FightRecapLevel"	"2"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"60.0"
+		"AbilityCooldown"	"50.0"
 		"AbilityManaCost"	"0"
-		"AbilityCastRange"	"800"
+		"AbilityCastRange"	"15000"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
@@ -304,7 +307,7 @@
 			"10"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"barrier_radius"	"800"
+				"barrier_radius"	"15000"
 			}
 			"11"
 			{
@@ -314,7 +317,7 @@
 			"12"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"barrier_block_creep"	"100"
+				"barrier_block_creep"	"150"
 			}
 		}
 		"ShouldBeSuggested"	"1"
@@ -325,15 +328,16 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"AbilityCastPoint"	"0.0"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"50"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0"
 		// Stats
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"800"
+		"AbilityCastRange"	"15000"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
@@ -524,9 +528,10 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
-		"AbilityCastRange"	"700"
+		"AbilityCooldown"	"50"
+		"AbilityCastRange"	"15000"
 		"ID"	"1504"
 		"ItemCost"	"110"
 		"ItemRequirements"	{}
@@ -703,16 +708,17 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
-		"AbilityCastRange"	"700"
+		"AbilityCooldown"	"50"
+		"AbilityCastRange"	"15000"
 		"ID"	"1507"
 		"ItemCost"	"50"
 		"ItemRequirements"	{}
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
-			"soundfile"	"soundevents/voscripts/game_sounds_vo_axe.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 			"particle"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
 		}
 		"OnSpellStart"
@@ -725,7 +731,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"axe_axe_spawn_01"
+				"EffectName"	"Hero_Invoker.Alacrity"
 			}
 		}
 		"Modifiers"
@@ -784,8 +790,8 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
-		"AbilityCastRange"	"700"
+		"AbilityCooldown"	"50"
+		"AbilityCastRange"	"15000"
 		"ID"	"1508"
 		"ItemCost"	"70"
 		"ItemRequirements"	{}
@@ -846,7 +852,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1509"
 		"ItemCost"	"100"
@@ -915,7 +921,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1510"
 		"ItemCost"	"110"
@@ -1063,6 +1069,35 @@
 				}
 				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 				"EffectAttachType"	"follow_origin"
+			}
+		}
+	}
+
+	"item_summontiny"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Giant_Ring_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"160"
+		"AbilityManaCost"	"10"
+		"ID"	"1513"
+		"ItemCost"	"110"
+		"ItemRequirements"	{}
+		"OnSpellStart"
+		{
+			"SpawnUnit"
+			{
+				"Target"	"CASTER"
+				"OnSpawn"
+				{
+					"FireSound"	{}
+				}
+				"UnitName"	"tiny_illusion"
+				"UnitCount"	"1"
+				"Duration"	"50"
 			}
 		}
 	}
