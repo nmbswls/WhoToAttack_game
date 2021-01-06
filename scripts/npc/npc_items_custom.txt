@@ -1049,7 +1049,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
-				"Duration"	"5"
+				"Duration"	"9999"
 				"ModifierName"	"modifier_item_repairhammer"
 			}
 			"FireSound"
@@ -1061,14 +1061,29 @@
 		{
 			"modifier_item_repairhammer"
 			{
-				"Duration"	"5"
 				"IsBuff"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"2"
-				}
+				"Properties"	{}
 				"EffectName"	"particles/units/heroes/hero_omniknight/omniknight_guardian_angel_omni.vpcf"
 				"EffectAttachType"	"follow_origin"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE | MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"AddMaxHP2"
+						"hp"	"%addhp"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"addhp"	"10"
 			}
 		}
 	}

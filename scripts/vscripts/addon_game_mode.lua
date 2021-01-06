@@ -2260,3 +2260,19 @@ function AddMaxHP(keys)
 	target:SetHealth(hp1)
 	
 end
+
+function AddMaxHP2(keys)
+	local caster = keys.caster
+	local target = keys.target
+	local hp = keys.hp
+	
+	local hp1 = target:GetMaxHealth()
+        local hp2 = target:GetHealth()
+	hp1 = hp1 + tonumber(hp)
+	hp2 = hp2 + tonumber(hp)	
+	
+	target:SetBaseMaxHealth(hp1)
+	target:SetMaxHealth(hp1)
+	target:SetHealth(hp2)
+	
+end
