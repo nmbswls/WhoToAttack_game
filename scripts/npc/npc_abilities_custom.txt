@@ -737,7 +737,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"blade_dance_crit_chance"	"25"
+				"blade_dance_crit_chance"	"35"
 			}
 			"02"
 			{
@@ -764,7 +764,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"attack_speed"	"15"
+				"attack_speed"	"20"
 				"LinkedSpecialBonus"	"special_bonus_unique_troll_warlord_5"
 			}
 			"02"
@@ -1016,7 +1016,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"arc_damage"	"15 25"
+				"arc_damage"	"14 24"
 				"LinkedSpecialBonus"	"special_bonus_unique_zeus_2"
 			}
 			"02"
@@ -2040,7 +2040,7 @@
 		"AbilitySound"	"Hero_Leshrac.Diabolic_Edict"
 		// Damage.
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityDamage"	"20"
+		"AbilityDamage"	"15"
 		"AbilityDuration"	"10"
 	}
 
@@ -2062,7 +2062,7 @@
 		"AbilityManaCost"	"12"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"650"
+		"AbilityCastRange"	"1050"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
@@ -2308,12 +2308,12 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.0"
+				"duration"	"4.5"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration_scepter"	"5.0"
+				"duration_scepter"	"4.5"
 				"RequiresScepter"	"1"
 			}
 			"04"
