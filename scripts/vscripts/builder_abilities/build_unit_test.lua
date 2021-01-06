@@ -26,6 +26,7 @@ function AddBuildAbility(keys)
     if rand <= speGailv then
         unitName = unitName .. "_special"
         spe = true
+caster:EmitSoundParams("DOTA_Item.Daedelus.Crit",0,4,0)
     end
     
     

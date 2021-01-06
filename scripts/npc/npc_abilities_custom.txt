@@ -127,6 +127,7 @@
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-100"
 					"MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT"	"-100"
+					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
 				}
 				"States"
 				{
@@ -7610,5 +7611,89 @@
 		"BaseClass"	"ability_datadriven"
 		"AbilityTextureName"	"Demolish_pirit_Bear_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+
+	"show_drawchance"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invoke_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"30"
+		"RequiredLevel"	"-1"
+		"LevelsBetweenUpgrades"	"1"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost1chance"	"100 90 85 80 70 65 55 45 40 34 30 20 20 15 15"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost2chance"	"0 10 15 20 20 20 25 30 35 35 35 40 35 35 30"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost3chance"	"0 0 0 0 10 15 20 25 25 25 25 25 27 30 30"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost5chance"	"0 0 0 0 0 0 0 0 0 5 10 15 18 20 20"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost6chance"	"0 0 0 0 0 0 0 0 0 0 0 0 0 0 5"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost8chance"	"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0"
+			}
+		}
+	}
+
+	"show_drawchance2"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Invoke_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"	"30"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost1chance"	"13 10 9 8 7 6 5 5 5 5 5 5 5 4 3"
+			}
+			"02"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost2chance"	"29 27 25 23 21 18 15 13 10 10 10 10 10 10 9"
+			}
+			"03"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost3chance"	"31 33 35 33 33 30 28 26 25 24 23 22 20 20 20"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost5chance"	"20 20 21 24 25 27 30 28 25 24 24 24 24 23 23"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost6chance"	"7 10 10 12 13 17 19 23 27 27 26 25 25 25 25"
+			}
+			"06"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"cost8chance"	"0 0 0 0 1 2 3 5 8 10 12 14 16 18 20"
+			}
+		}
 	}
 }
