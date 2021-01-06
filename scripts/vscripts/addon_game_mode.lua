@@ -78,6 +78,7 @@
 --build_skills         可建造单位技能
 ----skill_name level exp     代表一个建造技能
 --throne_bonus         王座效果
+--cur_encounters       当前事件
 
 --打怪 
 
@@ -577,14 +578,14 @@ function WhoToAttack:StartAPrepareRound()
             --回合加经验
             hero:AddExperience(10,0,false,false);
 			
-			local eids = {}
-			table.insert(eids,100);
-			table.insert(eids,101);
-			table.insert(eids,102);
-			CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
-				encounters = eids,
-			})
+			local eids = WtaEncounters:GetRandomEncounter(self.battle_round, 3)
 			
+			if eids then
+				CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
+					encounters = eids,
+				})
+				hero.cur_encounters = eids;
+			end
 			
         end
     end
@@ -1936,6 +1937,25 @@ function WhoToAttack:OnPickCard(keys)
     --PickCard();
 end
 
+function WhoToAttack:OnChooseEncounter(keys)
+	local eidx = tonumber(keys.eidx);
+	
+	local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
+	local ret = false;
+	
+	if not eidx then
+		return false
+	end
+	
+	if hero and hero.cur_encounters then
+		if eidx > 0 and eidx <= #hero.cur_encounters then
+			ret = WtaEncounters:handleOneEncounter(hero, hero.cur_encounters[eidx])
+		end
+	end
+	CustomGameEventManager:Send_ServerToTeam(hero.team, "ChooseEncounterRsp", {ret = ret});
+end
+
+
 function WhoToAttack:OnDrawCards(keys)
     local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
     if hero:GetGold() < GameRules.Definitions.CardRedrawCost then
@@ -2090,6 +2110,7 @@ function WhoToAttack:InitGameMode()
     CustomGameEventManager:RegisterListener("lock_cards_req",Dynamic_Wrap(WhoToAttack, 'OnLockCards'))
     CustomGameEventManager:RegisterListener("draw_cards_req",Dynamic_Wrap(WhoToAttack, 'OnDrawCards'))
     
+	CustomGameEventManager:RegisterListener("ChooseEncounterReq",Dynamic_Wrap(WhoToAttack, 'OnChooseEncounter'))
     
     
     
