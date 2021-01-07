@@ -6218,7 +6218,7 @@
 		// Range within a target can be acquired.
 		"AttackAcquisitionRange"	"2000"
 		// Range within a target can be attacked.
-		"AttackRange"	"475"
+		"AttackRange"	"425"
 		// Particle system model for projectile.
 		"ProjectileModel"	"particles/units/heroes/hero_dark_willow/dark_willow_base_attack.vpcf"
 		// Speed of projectile.
@@ -6361,7 +6361,7 @@
 		// Range within a target can be acquired.
 		"AttackAcquisitionRange"	"2000"
 		// Range within a target can be attacked.
-		"AttackRange"	"475"
+		"AttackRange"	"425"
 		// Particle system model for projectile.
 		"ProjectileModel"	"particles/units/heroes/hero_dark_willow/dark_willow_base_attack.vpcf"
 		// Speed of projectile.

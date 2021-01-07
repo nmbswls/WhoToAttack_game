@@ -77,7 +77,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"ID"	"1501"
 		"ItemCastOnPickup"	"1"
-		"ItemCost"	"10"
+		"ItemCost"	"15"
 		"ItemRequirements"	{}
 		"OnSpellStart"
 		{
@@ -206,7 +206,7 @@
 		"Model"	"models/props_gameplay/neutral_box.vmdl"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"40"
+		"ItemCost"	"30"
 		"ItemPurchasable"	"1"
 		"ItemRequirements"	{}
 		// Special
@@ -216,7 +216,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"5"
+				"bonus_gpm"	"3"
 			}
 			"02"
 			{
@@ -343,7 +343,7 @@
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"ID"	"158"
 		"ItemQuality"	"artifact"
-		"ItemCost"	"110"
+		"ItemCost"	"120"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"damage;attack_speed;unique"
 		"ItemAliases"	"mjollnir"
@@ -476,7 +476,7 @@
 		"AbilityTextureName"	"item_Philosopher_Stone_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1503"
-		"ItemCost"	"70"
+		"ItemCost"	"60"
 		"ItemDroppable"	"0"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -533,7 +533,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1504"
-		"ItemCost"	"110"
+		"ItemCost"	"120"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -572,7 +572,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"asbounsinvoker"	"250"
+				"asbounsinvoker"	"400"
 			}
 		}
 	}
@@ -753,7 +753,7 @@
 							"Radius"	"275"
 						}
 						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"2"
+						"Damage"	"5"
 					}
 				}
 				"ThinkInterval"	"0.2"
@@ -771,7 +771,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"10"
+				"damage"	"25"
 			}
 			"03"
 			{
@@ -793,7 +793,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1508"
-		"ItemCost"	"70"
+		"ItemCost"	"60"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -833,12 +833,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armorbonus"	"8"
+				"armorbonus"	"10"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"regenbonus"	"10"
+				"regenbonus"	"15"
 			}
 		}
 	}
@@ -855,7 +855,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1509"
-		"ItemCost"	"100"
+		"ItemCost"	"110"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -924,7 +924,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1510"
-		"ItemCost"	"110"
+		"ItemCost"	"120"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -984,7 +984,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"55"
 		"ID"	"1511"
 		"ItemCost"	"60"
 		"ItemRequirements"	{}
@@ -1019,7 +1019,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"1"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
 				}
 				"Duration"	"1"
 			}
@@ -1037,7 +1037,7 @@
 		"AbilityCooldown"	"300"
 		"AbilityCastRange"	"5000"
 		"ID"	"1512"
-		"ItemCost"	"50"
+		"ItemCost"	"60"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1083,7 +1083,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"addhp"	"10"
+				"addhp"	"8"
 			}
 		}
 	}
@@ -1099,7 +1099,7 @@
 		"AbilityCooldown"	"160"
 		"AbilityManaCost"	"10"
 		"ID"	"1513"
-		"ItemCost"	"110"
+		"ItemCost"	"999"
 		"ItemRequirements"	{}
 		"OnSpellStart"
 		{
