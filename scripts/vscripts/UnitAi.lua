@@ -14,16 +14,19 @@ function UnitAI:OnUnitThink(unit)
 
     if IsClient() or GameRules:GetGameModeEntity().WhoToAttack.is_game_ended then return nil end
     
-    if GameRules:GetGameModeEntity().WhoToAttack.stage ~= 2 and GameRules:GetGameModeEntity().WhoToAttack.stage ~= 3 then
+    if not GameRules:GetGameModeEntity().WhoToAttack.stage or GameRules:GetGameModeEntity().WhoToAttack.stage == 1 then
         return 1
     end
     
+	if GameRules:GetGameModeEntity().WhoToAttack.stage == 4 then
+		return nil
+	end
     
     local highestScoreCommand = 1
     local highestScore = 0
     local highestData = nil
     
-    if(unit == nil or unit:IsNull() or unit:IsAlive() == false) then
+    if(unit == nil or not unit:IsValidEntity() or unit:IsAlive() == false) then
         return nil
     end
     
