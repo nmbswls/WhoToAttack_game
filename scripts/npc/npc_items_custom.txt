@@ -216,7 +216,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"5"
+				"bonus_gpm"	"3"
 			}
 			"02"
 			{
@@ -572,7 +572,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"asbounsinvoker"	"250"
+				"asbounsinvoker"	"400"
 			}
 		}
 	}
@@ -753,7 +753,7 @@
 							"Radius"	"275"
 						}
 						"Type"	"DAMAGE_TYPE_MAGICAL"
-						"Damage"	"2"
+						"Damage"	"5"
 					}
 				}
 				"ThinkInterval"	"0.2"
@@ -771,7 +771,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"10"
+				"damage"	"25"
 			}
 			"03"
 			{
@@ -833,12 +833,12 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armorbonus"	"8"
+				"armorbonus"	"10"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"regenbonus"	"10"
+				"regenbonus"	"15"
 			}
 		}
 	}
@@ -984,7 +984,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"55"
 		"ID"	"1511"
 		"ItemCost"	"60"
 		"ItemRequirements"	{}
@@ -1019,7 +1019,7 @@
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"1"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
 				}
 				"Duration"	"1"
 			}
@@ -1083,7 +1083,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"addhp"	"10"
+				"addhp"	"8"
 			}
 		}
 	}
