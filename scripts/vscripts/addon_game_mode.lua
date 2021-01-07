@@ -1752,10 +1752,12 @@ end
 
 function WhoToAttack:OnEntityKilled(keys)
     
-    
+    if not keys.entindex_killed then
+		return
+	end
 
 	local u = EntIndexToHScript(keys.entindex_killed)
-	if u == nil then
+	if u == nil or not u:IsValidEntity() then
 		return
 	end
 	if u:IsHero() == true then
@@ -1774,6 +1776,7 @@ function WhoToAttack:OnEntityKilled(keys)
 	if keys.entindex_attacker == nil then
 		return
 	end
+	
 	local attacker = EntIndexToHScript(keys.entindex_attacker)
 	attacker = attacker.damage_owner or attacker
     
