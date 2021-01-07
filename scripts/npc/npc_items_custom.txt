@@ -1049,7 +1049,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"TARGET"
-				"Duration"	"9999"
+				"Duration"	"3"
 				"ModifierName"	"modifier_item_repairhammer"
 			}
 			"FireSound"
@@ -1072,8 +1072,8 @@
 					{
 						"Target"	"CASTER"
 						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
-						"Function"	"AddMaxHP2"
-						"hp"	"%addhp"
+						"Function"	"Modifier_ChangeBaseHp"
+						"modHp"	 "%addhp"
 					}
 				}
 			}

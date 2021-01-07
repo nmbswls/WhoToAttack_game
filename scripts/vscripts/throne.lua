@@ -76,7 +76,9 @@ function WtaThrones:UpdateLevelByTurn(turn)
 end
 
 function WtaThrones:AddScore(throneIdx, teamId, score)
-	
+	if teamId == 3 then
+		return
+	end
 	if throneIdx <= 0 or throneIdx > #self.throneTeamScores then
 		return
 	end

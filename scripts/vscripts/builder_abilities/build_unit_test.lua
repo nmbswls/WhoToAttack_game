@@ -24,42 +24,18 @@ function AddBuildAbility(keys)
     --print("gailv is " .. speGailv)
     local spe = false;
     if rand <= speGailv then
-        unitName = unitName .. "_special"
         spe = true
-caster:EmitSoundParams("DOTA_Item.Daedelus.Crit",0,4,0)
+		caster:EmitSoundParams("DOTA_Item.Daedelus.Crit",0,4,0)
     end
     
     
     local team = caster:GetTeam()
-    local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,1);
+    local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(team, caster:GetAbsOrigin(),unitName,spe);
     
     if newyUnit then
-        local firstSkill = newyUnit:GetAbilityByIndex(0)
-        firstSkill:SetLevel(1);
-        if spe then
-            firstSkill:SetLevel(2);
-        end
 		
-		newyUnit.originManaRegen = newyUnit:GetManaRegen();
-		print("originManaRegen " .. newyUnit.originManaRegen)
-		newyUnit:SetBaseManaRegen(0);
-        
-        local level = newyUnit:GetLevel();
-        if string.find(unitName, "nature") then
-            WtaThrones:AddScore(1,team, level)
-        elseif string.find(unitName, "evil") then
-            WtaThrones:AddScore(2,team, level)
-        elseif string.find(unitName, "hidden") then
-            WtaThrones:AddScore(3,team, level)
-        elseif string.find(unitName, "vibrant") then
-            WtaThrones:AddScore(4,team, level)
-        elseif string.find(unitName, "wizard") then
-            WtaThrones:AddScore(5,team, level)
-        elseif string.find(unitName, "brawn") then
-            WtaThrones:AddScore(6,team, level)
+		
     end
-    
-    
-    end
+
 end
 

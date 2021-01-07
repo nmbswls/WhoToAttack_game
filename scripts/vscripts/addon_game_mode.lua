@@ -342,6 +342,7 @@ function WhoToAttack:OnThink()
     CustomGameEventManager:Send_ServerToAllClients("show_time",{
 			time_left = stageCountdown,
 			stage = self.stage,
+			round = self.battle_round,
 		})
     
 	--?? shayisi
@@ -651,16 +652,23 @@ function WhoToAttack:StartABattleRound()
 end
 
 
-function WhoToAttack:SpawnNeutral(team)
-    
-    local pos = GameRules.Definitions.TeamCenterPos[team]
+function WhoToAttack:SpawnNeutral(team, monsterName, count)
+	
+	if monsterName == nil then
+		monsterName = "evil_skeleton"
+	end
+	if count == nil then
+		count = 4
+	end
+	
+    local pos = GameRules.Definitions.TeamCenterPos[team] + Vector(0,-500,0)
 
-    -- for i = 1, 4 do
-        -- local unit = self:CreateUnit(3, pos, "evil_skeleton")
-        -- Timers:CreateTimer(0.5, function()
-            -- unit.in_battle_id = team;
-        -- end)
-    -- end
+    for i = 1, count do
+        local unit = self:CreateUnit(3, pos, monsterName)
+        Timers:CreateTimer(0.5, function()
+            unit.in_battle_id = team;
+        end)
+    end
     
 end
 
@@ -753,7 +761,12 @@ function WhoToAttack:DoPlayerDie(hero)
 	WtaThrones:ClearScore(hero.team);
 end
 
-function WhoToAttack:CreateUnit(team, pos, unitName)
+function WhoToAttack:CreateUnit(team, pos, unitName, spe)
+	
+	if spe then
+		unitName = unitName .. "_special"
+	end
+
     local hero = PlayerManager:getHeroByTeam(team)
     --local newyUnit = CreateUnitByName(unitName, pos, true, hero, hero, team)
     local newyUnit = CreateUnitByName(unitName, pos, true, nil, nil, team)
@@ -765,23 +778,36 @@ function WhoToAttack:CreateUnit(team, pos, unitName)
         self:InitUnit(team,newyUnit)
         
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
-        --local ret = a:ApplyDataDrivenModifier(newyUnit, newyUnit,"modifier_test_01",{})
         
-        
-        if not ret then
-            --print("add modifier fail")
-        else
-            --print("add modifier suc")
+		local firstSkill = newyUnit:GetAbilityByIndex(0)
+        firstSkill:SetLevel(1);
+        if spe then
+            firstSkill:SetLevel(2);
         end
-        --add buffs
-        -- if hero.buffs then
-            
-        -- end
+        
+
 		local yinshenFeature = newyUnit:FindAbilityByName("unit_feature_yinshen");
 		if yinshenFeature then
 			yinshenFeature:ApplyDataDrivenModifier(newyUnit, newyUnit, "modifier_yinshen_begin", {});
 		end
+		
+        newyUnit.originManaRegen = newyUnit:GetManaRegen();
+		newyUnit:SetBaseManaRegen(0);
         
+        local level = newyUnit:GetLevel();
+        if string.find(unitName, "nature") then
+            WtaThrones:AddScore(1,team, level)
+        elseif string.find(unitName, "evil") then
+            WtaThrones:AddScore(2,team, level)
+        elseif string.find(unitName, "hidden") then
+            WtaThrones:AddScore(3,team, level)
+        elseif string.find(unitName, "vibrant") then
+            WtaThrones:AddScore(4,team, level)
+        elseif string.find(unitName, "wizard") then
+            WtaThrones:AddScore(5,team, level)
+        elseif string.find(unitName, "brawn") then
+            WtaThrones:AddScore(6,team, level)
+		end
     end
     
     
@@ -1279,7 +1305,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
         return false
     end
 	
-    hero:ModifyGold(-cost, true, 0);
+    hero:ModifyGold(-cost, false, 0);
 	
     
     print("pick card  " .. unitName)
@@ -1466,20 +1492,23 @@ end
 
 
 
-function WhoToAttack:ModifyBaseHP(hero, hp)
-    if hero == nil or hp == nil then
-           return
+function WhoToAttack:ModifyBaseHP(base, modHp)
+	
+    if base == nil or modHp == nil then
+        return
     end
-
-    if not hero.base then
-          return
+	local hero = base.hero;
+	
+    if not hero then
+        return
     end
-    local base = hero.base;
+	
     local nowHp = base:GetHealth();
+	
     if nowHp <= 0 then
       return
     end
-    local newHp = nowHp + hp;
+    local newHp = nowHp + modHp;
     if newHp < 0 then
        newHp = 0
     end
@@ -1763,7 +1792,7 @@ function WhoToAttack:OnEntityKilled(keys)
     
     if hero1 and bonus then
         print("team " .. attacker_team .. " get bonus " .. bonus)
-        hero1:ModifyGold(bonus, true, 0);
+        hero1:ModifyGold(bonus, false, 0);
     end
     
     --local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
@@ -1965,7 +1994,7 @@ function WhoToAttack:OnDrawCards(keys)
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
     
     if not err then
-    	hero:ModifyGold(-GameRules.Definitions.CardRedrawCost, true, 0);
+    	hero:ModifyGold(-GameRules.Definitions.CardRedrawCost, false, 0);
     end
     
     local player = PlayerResource:GetPlayer(keys.PlayerID)
@@ -2125,7 +2154,7 @@ function WhoToAttack:InitGameMode()
     GameRules:SetHeroRespawnEnabled( false )
     GameRules:SetGoldTickTime(0)
     GameRules:SetGoldPerTick(0)
-    GameRules:SetStartingGold(7)
+    GameRules:SetStartingGold(70)
 	GameRules:GetGameModeEntity():SetFogOfWarDisabled(true);
     GameRules:GetGameModeEntity():SetSelectionGoldPenaltyEnabled(false)
     GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
@@ -2282,18 +2311,8 @@ function AddMaxHP(keys)
 	
 end
 
-function AddMaxHP2(keys)
-	local caster = keys.caster
+function Modifier_ChangeBaseHp(keys)
 	local target = keys.target
-	local hp = keys.hp
-	
-	local hp1 = target:GetMaxHealth()
-        local hp2 = target:GetHealth()
-	hp1 = hp1 + tonumber(hp)
-	hp2 = hp2 + tonumber(hp)	
-	
-	target:SetBaseMaxHealth(hp1)
-	target:SetMaxHealth(hp1)
-	target:SetHealth(hp2)
-	
+	local modHp = keys.modHp
+	GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(target, modHp)
 end
