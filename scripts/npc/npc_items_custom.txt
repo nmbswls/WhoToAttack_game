@@ -1073,7 +1073,7 @@
 						"Target"	"CASTER"
 						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
 						"Function"	"Modifier_ChangeBaseHp"
-						"modHp"	 "%addhp"
+						"modHp"	"%addhp"
 					}
 				}
 			}
