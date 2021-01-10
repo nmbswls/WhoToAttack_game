@@ -978,6 +978,27 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
     end
 end
 
+function WhoToAttack:TopCertainAbility(hero, skillIdx)
+	if skillIdx > hero.build_skill_cnt then
+        print("no such skill")
+        return
+    end
+	if hero.build_skill_cnt == 1 or skillIdx == 1 then
+		return
+	end
+	--1 2 3 4 5
+	--4 1 2 3 5
+	local tarAbiName = hero.build_skills[skillIdx].skill_name;
+	for i = skillIdx, 2, -1 do
+        hero:SwapAbilities(hero.build_skills[i].skill_name, hero.build_skills[i-1].skill_name, true, true)
+        local tmp = hero.build_skills[i]
+        hero.build_skills[i] = hero.build_skills[i-1]
+        hero.build_skills[i-1] = tmp;
+    end
+	
+	
+end
+
 function WhoToAttack:RemoveAbilityWithEmpty(hero, skillIdx)
     
     if not hero.build_skills[skillIdx] then
@@ -1880,6 +1901,14 @@ function WhoToAttack:HandleCommand(keys)
 	end
 	if tokens[1] == '-cp' then
 	
+	end
+	
+	if tokens[1] == '-top' then
+		local idx = 1
+        if tokens[2] ~= nil then
+            idx = tokens[2]
+        end
+		self:TopCertainAbility(hero,tonumber(idx))
 	end
     
     if tokens[1] == '-upskill' then
