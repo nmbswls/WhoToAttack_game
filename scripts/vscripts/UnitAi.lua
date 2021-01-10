@@ -26,7 +26,7 @@ function UnitAI:OnUnitThink(unit)
     local highestScore = 0
     local highestData = nil
     
-    if(unit == nil or not unit:IsValidEntity() or unit:IsAlive() == false) then
+    if(unit == nil or not IsValidEntity(unit) or unit:IsAlive() == false) then
         return nil
     end
     

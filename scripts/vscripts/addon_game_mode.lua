@@ -1757,7 +1757,7 @@ function WhoToAttack:OnEntityKilled(keys)
 	end
 
 	local u = EntIndexToHScript(keys.entindex_killed)
-	if u == nil or not u:IsValidEntity() then
+	if u == nil or not IsValidEntity(u) then
 		return
 	end
 	if u:IsHero() == true then
