@@ -1910,6 +1910,14 @@ function WhoToAttack:HandleCommand(keys)
         end
 		self:TopCertainAbility(hero,tonumber(idx))
 	end
+	
+	if tokens[1] == '-shijian' then
+		local eid = 1
+        if tokens[2] ~= nil then
+            eid = tokens[2]
+        end
+		WtaEncounters:handleOneEncounter(hero, tonumber(eid))
+	end
     
     if tokens[1] == '-upskill' then
         local stype = "evil"
