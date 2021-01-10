@@ -88,7 +88,7 @@ require 'utils'
 require 'definitions'
 require 'UnitAi'
 require 'timers'
-
+require 'amhc_library/amhc'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
