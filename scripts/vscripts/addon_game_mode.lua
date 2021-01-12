@@ -221,7 +221,7 @@ function WhoToAttack:StartGame()
         end
         
     end
-    
+    self:FakeBase()
     
     -- local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
     -- for _, pos in pairs(playerStarts) do
@@ -247,6 +247,13 @@ function WhoToAttack:StartGame()
     
     
     
+end
+
+function WhoToAttack:FakeBase()
+	local newBase = CreateUnitByName("player_jidi", GameRules.Definitions.TeamCenterPos[13], true, nil, nil, 13)
+	newBase.in_battle_id = 13
+	newBase.turn_attacker = {}
+	newBase.hero = nil
 end
 
 function WhoToAttack:CheckWinLoseForTeam(team)
@@ -1662,7 +1669,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
         
 	-- end
     Timers:CreateTimer(2,function()
-        --self:UpgradeBuildSkill(hero,"evil_abaddon")
+        self:UpgradeBuildSkill(hero,"brawn_siege")
     end)
     
     
