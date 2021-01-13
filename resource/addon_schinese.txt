@@ -523,5 +523,17 @@
 		"DOTA_Tooltip_ability_show_drawchance2_cost5chance"	"五费概率："
 		"DOTA_Tooltip_ability_show_drawchance2_cost6chance"	"六费概率："
 		"DOTA_Tooltip_ability_show_drawchance2_cost8chance"	"八费概率："
+		"DOTA_Tooltip_ability_item_mango2_Description"	"使用后回复2点魔法值"
+		"DOTA_Tooltip_ability_item_mango2"	"芒果（2）"
+		"DOTA_Tooltip_ability_item_mango4"	"芒果（4）"
+		"DOTA_Tooltip_ability_item_mango5"	"芒果（5）"
+		"DOTA_Tooltip_ability_item_mango7"	"芒果（7）"
+		"DOTA_Tooltip_ability_item_mango9"	"芒果（9）"
+		"DOTA_Tooltip_ability_item_mango10"	"芒果（10）"
+		"DOTA_Tooltip_ability_item_mango4_Description"	"使用后回复4点魔法值"
+		"DOTA_Tooltip_ability_item_mango5_Description"	"使用后回复5点魔法值"
+		"DOTA_Tooltip_ability_item_mango7_Description"	"使用后回复7点魔法值"
+		"DOTA_Tooltip_ability_item_mango9_Description"	"使用后回复9点魔法值"
+		"DOTA_Tooltip_ability_item_mango10_Description"	"使用后回复10点魔法值"
 	}
 }

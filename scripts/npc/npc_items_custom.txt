@@ -1026,6 +1026,302 @@
 		}
 	}
 
+	"item_mango2"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1514"
+		"ItemCost"	"1"
+		"ItemRequiresCharges"	"1"
+		"ItemInitialCharges"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees2"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees2"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_mango4"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1515"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"4"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_mango5"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1516"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"5"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_mango7"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1517"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"7"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_mango9"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1518"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"9"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
+	"item_mango10"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Enchanted_Mango_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"ID"	"1519"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+			"particle"	"particles/items3_fx/mango_active.vpcf"
+		}
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_item_mangotrees"
+				"Duration"	"1"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Mango.Activate"
+			}
+			"FireEffect"
+			{
+				"Target"	"CASTER"
+				"EffectAttachType"	"follow_origin"
+				"EffectName"	"particles/items3_fx/mango_active.vpcf"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_item_mangotrees"
+			{
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"10"
+				}
+				"Duration"	"1"
+			}
+		}
+	}
+
 	"item_repairhammer"
 	{
 		"BaseClass"	"item_datadriven"

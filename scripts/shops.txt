@@ -20,6 +20,7 @@
                 "item"          "item_shell"
                 "item"          "item_repairhammer"
                 "item"          "item_mangotrees"
+                "item"          "item_mango2"
                 "item"          "item_moneyevil"
                 "item"          "item_omni"
                 "item"          "item_pipe"
