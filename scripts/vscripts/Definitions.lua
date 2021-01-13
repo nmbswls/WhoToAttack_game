@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {30, 20, 25, 4}
+	GameRules.Definitions.StageTime = {5, 20, 25, 4}
 	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
@@ -35,6 +35,18 @@ if GameRules.Definitions == nil then
 		[12] = Vector(127,-7040,128),
 		[13] = Vector(4991,-7040,128),
     }
+	
+	GameRules.Definitions.StatueOffset = {
+	    [1] = Vector(-200,200,0),
+		[2] = Vector(-200,200,0),
+		[3] = Vector(-200,200,0),
+		[4] = Vector(-200,200,0),
+		[5] = Vector(-200,200,0),
+		[6] = Vector(-200,200,0),
+		[7] = Vector(-200,200,0),
+		[8] = Vector(-200,200,0),
+    }
+	
     GameRules.Definitions.MaxBuildSkill = 8
     
     GameRules.Definitions.CardRedrawCost = 2 -- 抽卡开销

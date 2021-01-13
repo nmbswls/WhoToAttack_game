@@ -160,28 +160,32 @@ EncounterInfo = {
 		level = 4,
 	},
 	[701] = {
-		etype = 6,
+		etype = 7,
+		level = 1,
 	},
 	[702] = {
-		etype = 6,
+		etype = 7,
+		level = 2,
 	},
 	[703] = {
-		etype = 6,
+		etype = 7,
+		level = 3,
 	},
 	[704] = {
-		etype = 6,
+		etype = 7,
+		level = 4,
 	},
 	[801] = {
-		etype = 6,
+		etype = 8,
 	},
 	[802] = {
-		etype = 6,
+		etype = 8,
 	},
 	[803] = {
-		etype = 6,
+		etype = 8,
 	},
 	[804] = {
-		etype = 6,
+		etype = 8,
 	},
 }
 
@@ -225,18 +229,18 @@ ChaoshengList = {
 		[4] = {name = "evil_skeleton", weight = 10},
 	},
 	[2] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
-		[5] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "nature_ursa", weight = 10},
+		[2] = {name = "nature_ursa", weight = 10},
+		[3] = {name = "nature_ursa", weight = 10},
+		[4] = {name = "nature_ursa", weight = 10},
+		[5] = {name = "nature_ursa", weight = 10},
 	},
 	[3] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
-		[5] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "hidden_drow", weight = 10},
+		[2] = {name = "hidden_drow", weight = 10},
+		[3] = {name = "hidden_drow", weight = 10},
+		[4] = {name = "hidden_drow", weight = 10},
+		[5] = {name = "hidden_drow", weight = 10},
 	},
 	[4] = {
 		[1] = {name = "evil_skeleton", weight = 10},
@@ -257,22 +261,22 @@ MonsterList = {
 		[4] = {name = "evil_skeleton", weight = 10},
 	},
 	[2] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
-		[5] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "nature_ursa", weight = 10},
+		[2] = {name = "nature_ursa", weight = 10},
+		[3] = {name = "nature_ursa", weight = 10},
+		[4] = {name = "nature_ursa", weight = 10},
+		[5] = {name = "nature_ursa", weight = 10},
 	},
 	[3] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
-		[5] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "hidden_drow", weight = 10},
+		[2] = {name = "hidden_drow", weight = 10},
+		[3] = {name = "hidden_drow", weight = 10},
+		[4] = {name = "hidden_drow", weight = 10},
+		[5] = {name = "hidden_drow", weight = 10},
 	},
 	[4] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "brawn_tusk", weight = 10},
+		[2] = {name = "brawn_tusk", weight = 10},
 	},
 	[5] = {
 		[1] = {name = "evil_skeleton", weight = 10},
@@ -290,6 +294,8 @@ end
 
 
 function WtaEncounters:handleOneEncounter(hero, eid)
+	
+	print('try to handle ' .. eid)
 	
 	if not hero or not hero:IsAlive() then
 		return false
@@ -345,12 +351,13 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		local units = ChaoshengList[data.level]
 		local retUnit = GetWeightedOne(units)
 		
-		WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(), retUnit.name, false)
+		GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(), retUnit.name, false)
 	elseif data.etype == ETYPE_RUQIN then
+		print('ETYPE_RUQIN ' .. data.level)
 		local monsters = MonsterList[data.level]
 		local retMonster = GetWeightedOne(monsters)
 		
-		WhoToAttack:SpawnNeutral(hero.team, retMonster.name, 5)
+		GameRules:GetGameModeEntity().WhoToAttack:SpawnNeutral(hero.team, retMonster.name, 5)
 	end
 	
 	-- print('handleOneEncounter ' .. eid);

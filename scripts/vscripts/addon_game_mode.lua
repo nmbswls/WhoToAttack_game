@@ -88,7 +88,7 @@ require 'utils'
 require 'definitions'
 require 'UnitAi'
 require 'timers'
-
+require 'amhc_library/amhc'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
@@ -221,7 +221,7 @@ function WhoToAttack:StartGame()
         end
         
     end
-    
+    self:FakeBase()
     
     -- local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
     -- for _, pos in pairs(playerStarts) do
@@ -247,6 +247,13 @@ function WhoToAttack:StartGame()
     
     
     
+end
+
+function WhoToAttack:FakeBase()
+	local newBase = CreateUnitByName("player_jidi", GameRules.Definitions.TeamCenterPos[13], true, nil, nil, 13)
+	newBase.in_battle_id = 13
+	newBase.turn_attacker = {}
+	newBase.hero = nil
 end
 
 function WhoToAttack:CheckWinLoseForTeam(team)
@@ -978,6 +985,27 @@ function WhoToAttack:DelBuildSkill(hero, skillIdx)
     end
 end
 
+function WhoToAttack:TopCertainAbility(hero, skillIdx)
+	if skillIdx > hero.build_skill_cnt then
+        print("no such skill")
+        return
+    end
+	if hero.build_skill_cnt == 1 or skillIdx == 1 then
+		return
+	end
+	--1 2 3 4 5
+	--4 1 2 3 5
+	local tarAbiName = hero.build_skills[skillIdx].skill_name;
+	for i = skillIdx, 2, -1 do
+        hero:SwapAbilities(hero.build_skills[i].skill_name, hero.build_skills[i-1].skill_name, true, true)
+        local tmp = hero.build_skills[i]
+        hero.build_skills[i] = hero.build_skills[i-1]
+        hero.build_skills[i-1] = tmp;
+    end
+	
+	
+end
+
 function WhoToAttack:RemoveAbilityWithEmpty(hero, skillIdx)
     
     if not hero.build_skills[skillIdx] then
@@ -1641,7 +1669,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
         
 	-- end
     Timers:CreateTimer(2,function()
-        --self:UpgradeBuildSkill(hero,"evil_abaddon")
+        self:UpgradeBuildSkill(hero,"brawn_siege")
     end)
     
     
@@ -1880,6 +1908,22 @@ function WhoToAttack:HandleCommand(keys)
 	end
 	if tokens[1] == '-cp' then
 	
+	end
+	
+	if tokens[1] == '-top' then
+		local idx = 1
+        if tokens[2] ~= nil then
+            idx = tokens[2]
+        end
+		self:TopCertainAbility(hero,tonumber(idx))
+	end
+	
+	if tokens[1] == '-shijian' then
+		local eid = 1
+        if tokens[2] ~= nil then
+            eid = tokens[2]
+        end
+		WtaEncounters:handleOneEncounter(hero, tonumber(eid))
 	end
     
     if tokens[1] == '-upskill' then

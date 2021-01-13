@@ -78,7 +78,15 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         if(unit:IsChanneling() or unit:IsStunned()) then
             return 0, nil
         end
-        
+        if unit:HasAbility('siegeattack') then
+			print("siegeattack has ability " .. unit:GetHealth() .. " " .. unit:GetMaxHealth())
+            if unit:GetHealth() < unit:GetMaxHealth() * 0.8 then
+				
+                local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
+				print("qiangzhi gongji laalal " .. base:GetUnitName())
+                return 30, base
+            end
+        end
         if(unit:IsIdle() == false) then
             if(unit:AttackReady() == false or unit:IsAttacking()) then
                 return 0, nil
@@ -91,12 +99,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         
         local unitName = unit:GetUnitName()
         
-        if unit:HasAbility('siegeattack') then
-            if unit:GetHealth() < unit:GetMaxHealth() * 0.35 then
-                local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
-                return 30, base
-            end
-        end
+        
         
         local attackTarget = unit:GetAttackTarget()
         
@@ -223,7 +226,6 @@ function UnitAI:ExecuteCommand(unit, cmdName, cmdData)
         if(unit.GetDisplayAttackSpeed ~= nil and unit:GetDisplayAttackSpeed() > 0) then
             delay = 170 / unit:GetDisplayAttackSpeed()
         end
-        
         return delay
     end
     
@@ -351,9 +353,11 @@ function UnitAI:ClosestEnemyAll(unit, radius)
     if #candidates == 0 then
         return ret, base
     end
-    
+	
     for index = 1, #candidates do
+		
         local candidate = candidates[index]
+		
         if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
             if not candidate:HasModifier("modifier_player_jidi") then
                 table.insert(ret, candidate)

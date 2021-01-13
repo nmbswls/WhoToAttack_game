@@ -74,7 +74,7 @@ function item_throw_one:CastFilterResultLocation(vLocation)
     end
     
     if not target.is_open then
-        return UF_FAIL_CUSTOM;
+        --return UF_FAIL_CUSTOM;
     end
     --DeepPrintTable(self:GetCaster())
     -- if not self:getcaster().can_toss then
