@@ -1035,8 +1035,9 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1514"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
-		"ItemRequiresCharges"	"1"
+		"ItemPermanent"	"0"
 		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
@@ -1062,6 +1063,7 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
@@ -1075,6 +1077,7 @@
 				"Duration"	"1"
 			}
 		}
+		"ItemDisplayCharges"	"1"
 	}
 
 	"item_mango4"
@@ -1086,7 +1089,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1515"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1098,7 +1104,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
+				"ModifierName"	"modifier_item_mangotrees4"
 				"Duration"	"1"
 			}
 			"FireSound"
@@ -1111,10 +1117,11 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
-			"modifier_item_mangotrees"
+			"modifier_item_mangotrees4"
 			{
 				"IsHidden"	"1"
 				"Properties"
@@ -1135,7 +1142,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1516"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1147,7 +1157,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
+				"ModifierName"	"modifier_item_mangotrees5"
 				"Duration"	"1"
 			}
 			"FireSound"
@@ -1160,10 +1170,11 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
-			"modifier_item_mangotrees"
+			"modifier_item_mangotrees5"
 			{
 				"IsHidden"	"1"
 				"Properties"
@@ -1184,7 +1195,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1517"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1196,7 +1210,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
+				"ModifierName"	"modifier_item_mangotrees7"
 				"Duration"	"1"
 			}
 			"FireSound"
@@ -1209,10 +1223,11 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
-			"modifier_item_mangotrees"
+			"modifier_item_mangotrees7"
 			{
 				"IsHidden"	"1"
 				"Properties"
@@ -1233,7 +1248,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1518"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1245,7 +1263,7 @@
 			"ApplyModifier"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
+				"ModifierName"	"modifier_item_mangotrees9"
 				"Duration"	"1"
 			}
 			"FireSound"
@@ -1258,10 +1276,11 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
-			"modifier_item_mangotrees"
+			"modifier_item_mangotrees9"
 			{
 				"IsHidden"	"1"
 				"Properties"
@@ -1282,7 +1301,10 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityCastPoint"	"0.1"
 		"ID"	"1519"
+		"ItemQuality"	"consumable"
 		"ItemCost"	"1"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1291,11 +1313,9 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"SpendMana"
 			{
-				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
-				"Duration"	"1"
+				"Mana"	"-10"
 			}
 			"FireSound"
 			{
@@ -1307,17 +1327,54 @@
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
+			"SpendCharge"	{}
 		}
 		"Modifiers"
 		{
-			"modifier_item_mangotrees"
+			"modifier_item_mangotrees10"
 			{
 				"IsHidden"	"1"
 				"Properties"
 				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"10"
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
 				}
 				"Duration"	"1"
+			}
+			"modifier_item_mango10"
+			{
+				"Duration"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
+				}
+			}
+			"modifier_item_mango10_2"
+			{
+				"Duration"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
+				}
+			}
+			"modifier_item_mango10_3"
+			{
+				"Duration"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
+				}
+			}
+			"modifier_item_mango10_4"
+			{
+				"Duration"	"1"
+				"IsHidden"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
+				}
 			}
 		}
 	}
