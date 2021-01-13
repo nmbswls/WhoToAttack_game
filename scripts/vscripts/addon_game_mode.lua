@@ -1603,7 +1603,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	   end
 	end
 	--移除物品
-	for slot=0,9 do
+	for slot=0,10 do
 		if hero:GetItemInSlot(slot)~= nil then
 			hero:RemoveItem(hero:GetItemInSlot(slot))
 		end
