@@ -2363,3 +2363,9 @@ function Modifier_ChangeBaseHp(keys)
 	local modHp = keys.modHp
 	GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(target, modHp)
 end
+
+function Modifier_GiveMana(keys)
+	local target = keys.target
+	local mana = keys.mana
+	target:GiveMana(mana);
+end
