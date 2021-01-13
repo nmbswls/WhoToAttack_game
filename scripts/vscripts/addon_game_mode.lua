@@ -2366,6 +2366,9 @@ end
 
 function Modifier_GiveMana(keys)
 	local target = keys.target
+	if not target then
+		target = keys.caster;
+	end
 	local mana = keys.mana
 	target:GiveMana(mana);
 end
