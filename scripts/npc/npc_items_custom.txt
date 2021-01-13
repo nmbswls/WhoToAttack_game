@@ -995,11 +995,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees"
-				"Duration"	"1"
+				"Function"	"Modifier_GiveMana"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"mana"	"2"
 			}
 			"FireSound"
 			{
@@ -1010,18 +1011,6 @@
 				"Target"	"CASTER"
 				"EffectAttachType"	"follow_origin"
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-				"Duration"	"1"
 			}
 		}
 	}
@@ -1047,11 +1036,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees2"
-				"Duration"	"1"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Modifier_GiveMana"
+				"mana"	"2"
 			}
 			"FireSound"
 			{
@@ -1064,18 +1054,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees2"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-				"Duration"	"1"
-			}
 		}
 		"ItemDisplayCharges"	"1"
 	}
@@ -1101,11 +1079,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees4"
-				"Duration"	"1"
+				"Function"	"Modifier_GiveMana"
+				"mana"	"4"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
 			}
 			"FireSound"
 			{
@@ -1118,18 +1097,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees4"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"4"
-				}
-				"Duration"	"1"
-			}
 		}
 	}
 
@@ -1154,11 +1121,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees5"
-				"Duration"	"1"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"mana"	"5"
+				"Function"	"Modifier_GiveMana"
 			}
 			"FireSound"
 			{
@@ -1171,18 +1139,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees5"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"5"
-				}
-				"Duration"	"1"
-			}
 		}
 	}
 
@@ -1207,11 +1163,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees7"
-				"Duration"	"1"
+				"Function"	"Modifier_GiveMana"
+				"mana"	"7"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
 			}
 			"FireSound"
 			{
@@ -1224,18 +1181,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees7"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"7"
-				}
-				"Duration"	"1"
-			}
 		}
 	}
 
@@ -1260,11 +1205,12 @@
 		}
 		"OnSpellStart"
 		{
-			"ApplyModifier"
+			"RunScript"
 			{
 				"Target"	"CASTER"
-				"ModifierName"	"modifier_item_mangotrees9"
-				"Duration"	"1"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Modifier_GiveMana"
+				"mana"	"9"
 			}
 			"FireSound"
 			{
@@ -1277,18 +1223,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees9"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"9"
-				}
-				"Duration"	"1"
-			}
 		}
 	}
 
@@ -1313,9 +1247,12 @@
 		}
 		"OnSpellStart"
 		{
-			"SpendMana"
+			"RunScript"
 			{
-				"Mana"	"-10"
+				"Target"	"CASTER"
+				"Function"	"Modifier_GiveMana"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"mana"	"10"
 			}
 			"FireSound"
 			{
@@ -1328,54 +1265,6 @@
 				"EffectName"	"particles/items3_fx/mango_active.vpcf"
 			}
 			"SpendCharge"	{}
-		}
-		"Modifiers"
-		{
-			"modifier_item_mangotrees10"
-			{
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-				"Duration"	"1"
-			}
-			"modifier_item_mango10"
-			{
-				"Duration"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-			}
-			"modifier_item_mango10_2"
-			{
-				"Duration"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-			}
-			"modifier_item_mango10_3"
-			{
-				"Duration"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-			}
-			"modifier_item_mango10_4"
-			{
-				"Duration"	"1"
-				"IsHidden"	"1"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"	"2"
-				}
-			}
 		}
 	}
 
