@@ -7,14 +7,12 @@ LinkLuaModifier("modifier_add_gold", "lua_modifier/modifier_add_gold.lua", LUA_M
 EncountersByTurn = {
 	[5] = {
 		[1] = {eid = 101, weight = 10},
-		[2] = {eid = 102, weight = 10},
-		[3] = {eid = 103, weight = 10},
-		[4] = {eid = 202, weight = 10},
-		[5] = {eid = 201, weight = 1},
-		[6] = {eid = 301, weight = 10},
-		[7] = {eid = 401, weight = 10},
-		[8] = {eid = 501, weight = 10},
-		[9] = {eid = 601, weight = 1},
+		[2] = {eid = 401, weight = 10},
+		[3] = {eid = 501, weight = 10},
+		[4] = {eid = 501, weight = 10},
+		[5] = {eid = 501, weight = 10},
+		[6] = {eid = 501, weight = 10},
+		[7] = {eid = 501, weight = 10},
 	},
 	[10] = {
 		[1] = {eid = 201, weight = 10},
@@ -112,7 +110,7 @@ EncounterInfo = {
 	},
 	[401] = {
 		etype = 4,
-		item_name = "item_mongo2"
+		item_name = "item_mango2"
 	},
 	[402] = {
 		etype = 4,
@@ -129,7 +127,7 @@ EncounterInfo = {
 	[501] = {
 		etype = 5,
 		level = 1,
-		cost = 30,
+		cost = 25,
 	},
 	[502] = {
 		etype = 5,
@@ -195,9 +193,12 @@ EncounterInfo = {
 ShopinfoList = {
 	[1] = {
 		[1] = {item = "item_sphere", weight = 10},
-		[2] = {item = "item_sphere", weight = 10},
-		[3] = {item = "item_sphere", weight = 10},
+		[2] = {item = "item_glimmer_cape", weight = 10},
+		[3] = {item = "item_philosophers_stone", weight = 10},
 		[4] = {item = "item_sphere", weight = 10},
+		[5] = {item = "item_sphere", weight = 10},
+		[6] = {item = "item_sphere", weight = 10},
+		[7] = {item = "item_sphere", weight = 10},
 	},
 	[2] = {
 		[1] = {item = "item_sphere", weight = 10},
