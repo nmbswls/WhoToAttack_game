@@ -41,7 +41,7 @@ EncountersByTurn = {
 ETYPE_KUGONG = 1
 ETYPE_YINHANGJIA = 2
 ETYPE_XIAOCHOU = 3
-ETYPE_CHANGDI = 4
+ETYPE_WUSHI = 4
 ETYPE_SHANGDIAN = 5
 ETYPE_CHAOSHENG = 6
 ETYPE_RUQIN = 7
@@ -112,16 +112,19 @@ EncounterInfo = {
 	},
 	[401] = {
 		etype = 4,
-		
+		item_name = "item_mongo2"
 	},
 	[402] = {
 		etype = 4,
+		item_name = "item_mongo4"
 	},
 	[403] = {
 		etype = 4,
+		item_name = "item_mongo5"
 	},
 	[404] = {
 		etype = 4,
+		item_name = "item_mongo7"
 	},
 	[501] = {
 		etype = 5,
@@ -336,8 +339,8 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		Timers:CreateTimer(1,function()
 			hero:ModifyGold(math.floor(ownedMoney * 1.25), false, 0)
 		end)
-	elseif data.etype == ETYPE_CHANGDI then
-	
+	elseif data.etype == ETYPE_WUSHI then
+		hero:AddItemByName(data.item_name)
 	elseif data.etype == ETYPE_SHANGDIAN then
 		local cost = data.cost;
 		if hero:GetGold() < cost then
@@ -347,6 +350,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		local shopItems = ShopinfoList[data.level]
 		local retItem = GetWeightedOne(shopItems)
 		print(retItem.item)
+		hero:AddItemByName(data.item_name)
 	elseif data.etype == ETYPE_CHAOSHENG then
 		local units = ChaoshengList[data.level]
 		local retUnit = GetWeightedOne(units)
