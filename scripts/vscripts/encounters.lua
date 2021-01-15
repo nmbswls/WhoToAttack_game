@@ -9,10 +9,8 @@ EncountersByTurn = {
 		[1] = {eid = 101, weight = 10},
 		[2] = {eid = 401, weight = 10},
 		[3] = {eid = 501, weight = 10},
-		[4] = {eid = 501, weight = 10},
-		[5] = {eid = 501, weight = 10},
-		[6] = {eid = 501, weight = 10},
-		[7] = {eid = 501, weight = 10},
+		[4] = {eid = 701, weight = 10},
+
 	},
 	[10] = {
 		[1] = {eid = 201, weight = 10},
@@ -131,7 +129,7 @@ EncounterInfo = {
 	},
 	[502] = {
 		etype = 5,
-		level = 1,
+		level = 2,
 		cost = 30,
 	},
 	[503] = {
@@ -201,11 +199,11 @@ ShopinfoList = {
 		[7] = {item = "item_sphere", weight = 10},
 	},
 	[2] = {
-		[1] = {item = "item_sphere", weight = 10},
-		[2] = {item = "item_sphere", weight = 10},
-		[3] = {item = "item_sphere", weight = 10},
-		[4] = {item = "item_sphere", weight = 10},
-		[5] = {item = "item_sphere", weight = 10},
+		[1] = {item = "item_moneyevil", weight = 10},
+		[2] = {item = "item_moneyevil", weight = 10},
+		[3] = {item = "item_moneyevil", weight = 10},
+		[4] = {item = "item_moneyevil", weight = 10},
+		[5] = {item = "item_moneyevil", weight = 10},
 	},
 	[3] = {
 		[1] = {item = "item_sphere", weight = 10},
@@ -227,10 +225,12 @@ ShopinfoList = {
 
 ChaoshengList = {
 	[1] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "hidden_ls", weight = 10},
+		[2] = {name = "nature_viper", weight = 10},
+		[3] = {name = "vibrant_techies", weight = 10},
+		[4] = {name = "evil_underlord", weight = 10},
+		[5] = {name = "wizard_leshrac", weight = 10},
+		[6] = {name = "brawn_siege", weight = 10},
 	},
 	[2] = {
 		[1] = {name = "nature_ursa", weight = 10},
@@ -259,10 +259,9 @@ ChaoshengList = {
 
 MonsterList = {
 	[1] = {
-		[1] = {name = "evil_skeleton", weight = 10},
-		[2] = {name = "evil_skeleton", weight = 10},
-		[3] = {name = "evil_skeleton", weight = 10},
-		[4] = {name = "evil_skeleton", weight = 10},
+		[1] = {name = "neutral_01", weight = 10},
+		[2] = {name = "neutral_01", weight = 10},
+		[3] = {name = "neutral_01", weight = 10},
 	},
 	[2] = {
 		[1] = {name = "nature_ursa", weight = 10},
@@ -272,11 +271,9 @@ MonsterList = {
 		[5] = {name = "nature_ursa", weight = 10},
 	},
 	[3] = {
-		[1] = {name = "hidden_drow", weight = 10},
-		[2] = {name = "hidden_drow", weight = 10},
-		[3] = {name = "hidden_drow", weight = 10},
-		[4] = {name = "hidden_drow", weight = 10},
-		[5] = {name = "hidden_drow", weight = 10},
+		[1] = {name = "neutral_03", weight = 10},
+		[2] = {name = "neutral_02", weight = 10},
+		[3] = {name = "neutral_03", weight = 10},
 	},
 	[4] = {
 		[1] = {name = "brawn_tusk", weight = 10},
