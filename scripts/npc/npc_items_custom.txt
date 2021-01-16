@@ -196,41 +196,6 @@
 		"ShouldBeSuggested"	"1"
 	}
 
-	"item_philosophers_stone"
-	{
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		// General
-		// -------------------------------------------------------------------------------------------------------------
-		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
-		"ID"	"290"
-		"Model"	"models/props_gameplay/neutral_box.vmdl"
-		// Item Info
-		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"30"
-		"ItemPurchasable"	"1"
-		"ItemRequirements"	{}
-		// Special
-		// -------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_gpm"	"3"
-			}
-			"02"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_mana"	"0"
-			}
-			"03"
-			{
-				"var_type"	"FIELD_INTEGER"
-				"bonus_damage"	"0"
-			}
-		}
-		"ItemIsNeutralDrop"	"0"
-	}
 
 	"item_pipe"
 	{
@@ -509,6 +474,47 @@
 					}
 				}
 				"ThinkInterval"	"5"
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"minusmana"	"-6"
+			}
+		}
+	}
+
+	"item_moneyold"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Philosophers_Stoneold_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"1520"
+		"ItemCost"	"30"
+		"ItemDroppable"	"0"
+		"ItemSellable"	"0"
+		"ItemKillable"	"0"
+		"ItemRequirements"	{}
+		"Modifiers"
+		{
+			"modifier_item_money_2"
+			{
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"Properties"	{}
+				"OnIntervalThink"
+				{
+					"GrantXPGold"
+					{
+						"Target"	"CASTER"
+						"SplitEvenly"	"0"
+						"GoldAmount"	"1"
+					}
+				}
+				"ThinkInterval"	"20"
 			}
 		}
 		"AbilitySpecial"

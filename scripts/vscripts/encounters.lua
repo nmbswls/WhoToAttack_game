@@ -192,7 +192,7 @@ ShopinfoList = {
 	[1] = {
 		[1] = {item = "item_sphere", weight = 10},
 		[2] = {item = "item_glimmer_cape", weight = 10},
-		[3] = {item = "item_philosophers_stone", weight = 10},
+		[3] = {item = "item_moneyold", weight = 10},
 		[4] = {item = "item_sphere", weight = 10},
 		[5] = {item = "item_sphere", weight = 10},
 		[6] = {item = "item_sphere", weight = 10},

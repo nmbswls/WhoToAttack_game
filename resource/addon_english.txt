@@ -460,8 +460,6 @@
 		"DOTA_Tooltip_nomana_Modifier"	"不回蓝"
 		"DOTA_Tooltip_TestSysAura_nomana"	"不回蓝"
 		"DOTA_Tooltip_TestSysAura_nomana_Description"	"回蓝-100%"
-		"DOTA_Tooltip_ability_item_moneyevil"	"<font color=\"#af11b3\">邪恶贤者石</font>"
-		"DOTA_Tooltip_ability_item_moneyevil_Description"	"持有者每5秒获得1金币，魔法值上限减少6"
 		"DOTA_Tooltip_model_Modifier"	"变鸡"
 		"DOTA_Tooltip_TestSysAura_model"	"小鸡"
 		"DOTA_Tooltip_modifier_ModelAura"	"c"
@@ -505,5 +503,7 @@
 		"DOTA_Tooltip_ability_ta_yinshen_Description"	"单位处于隐身状态，破隐一击造成额外50点物理伤害"
 		"DOTA_Tooltip_modifier_ta_armorreduction"	"护甲削弱"
 		"DOTA_Tooltip_modifier_ta_armorreduction_Description"	"-8护甲"
+		"DOTA_Tooltip_ability_item_moneyold"	"<font color=\"#af11b3\">邪恶贤者石</font>"
+		"DOTA_Tooltip_ability_item_moneyold_Description"	"持有者每5秒获得1金币，魔法值上限减少6"
 	}
 }

@@ -16,7 +16,7 @@
                 "item"          "item_exp_book"
                 "item"          "item_sphere"
                 "item"          "item_glimmer_cape"
-                "item"          "item_philosophers_stone"
+                "item"          "item_moneyold"
                 "item"          "item_shell"
                 "item"          "item_repairhammer"
                 "item"          "item_mangotrees"
