@@ -5,6 +5,27 @@ LinkLuaModifier("modifier_add_gold", "lua_modifier/modifier_add_gold.lua", LUA_M
 --encounter peizhi
 
 EncountersByTurn = {
+    [1] = {
+		[1] = {eid = 101, weight = 10},
+		[2] = {eid = 401, weight = 10},
+		[3] = {eid = 501, weight = 10},
+		[4] = {eid = 701, weight = 10},
+
+	},
+    [3] = {
+		[1] = {eid = 101, weight = 10},
+		[2] = {eid = 401, weight = 10},
+		[3] = {eid = 501, weight = 10},
+		[4] = {eid = 701, weight = 10},
+
+	},
+    [4] = {
+		[1] = {eid = 101, weight = 10},
+		[2] = {eid = 401, weight = 10},
+		[3] = {eid = 501, weight = 10},
+		[4] = {eid = 701, weight = 10},
+
+	},
 	[5] = {
 		[1] = {eid = 101, weight = 10},
 		[2] = {eid = 401, weight = 10},
@@ -348,7 +369,10 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		local shopItems = ShopinfoList[data.level]
 		local retItem = GetWeightedOne(shopItems)
 		print(retItem.item)
-		hero:AddItemByName(data.item_name)
+        if retItem.item then
+            hero:ModifyGold(-cost, false, 0)
+            hero:AddItemByName(retItem.item)
+        end
 	elseif data.etype == ETYPE_CHAOSHENG then
 		local units = ChaoshengList[data.level]
 		local retUnit = GetWeightedOne(units)
@@ -370,13 +394,7 @@ end
 function WtaEncounters:GetRandomEncounter(turn, num)
 
 	local turnEncounters = nil;
-	print('GetRandomEncounter')
-	for t, data in pairs(EncountersByTurn) do
-		turnEncounters = data;
-		if turn <= t then
-			break
-		end
-	end
+    turnEncounters = EncountersByTurn[turn]
 	
 	if turnEncounters == nil then
 		return nil
@@ -389,7 +407,7 @@ function WtaEncounters:GetRandomEncounter(turn, num)
 	local ret = {};
 	if poolNum <= num then
 		for i = 1, poolNum do
-			table.insert(ret, turnEncounters[i].id);
+			table.insert(ret, turnEncounters[i].eid);
 		end
 		return ret;
 	end

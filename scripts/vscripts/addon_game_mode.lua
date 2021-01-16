@@ -588,13 +588,18 @@ function WhoToAttack:StartAPrepareRound()
             hero:AddExperience(10,0,false,false);
 			
 			local eids = WtaEncounters:GetRandomEncounter(self.battle_round, 3)
-			
+			hero.cur_encounters = {}
 			if eids then
+                DeepPrintTable(eids)
 				CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
 					encounters = eids,
 				})
 				hero.cur_encounters = eids;
-			end
+			else
+                CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
+					encounters = nil,
+				})
+            end
 			
         end
     end
