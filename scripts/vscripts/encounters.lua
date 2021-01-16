@@ -371,7 +371,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		print(retItem.item)
         if retItem.item then
             hero:ModifyGold(-cost, false, 0)
-            hero:AddItemByName(retItem.item)
+            WhoToAttack:GiveItem(hero, retItem.item);
         end
 	elseif data.etype == ETYPE_CHAOSHENG then
 		local units = ChaoshengList[data.level]
