@@ -1663,6 +1663,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetAbilityPoints(0)
 	
 	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
+	hero.base_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
