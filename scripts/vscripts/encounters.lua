@@ -155,7 +155,7 @@ EncounterInfo = {
 	},
 	[503] = {
 		etype = 5,
-		level = 1,
+		level = 3,
 		cost = 30,
 	},
 	[504] = {
@@ -227,11 +227,11 @@ ShopinfoList = {
 		[5] = {item = "item_moneyevil", weight = 10},
 	},
 	[3] = {
-		[1] = {item = "item_sphere", weight = 10},
-		[2] = {item = "item_sphere", weight = 10},
-		[3] = {item = "item_sphere", weight = 10},
-		[4] = {item = "item_sphere", weight = 10},
-		[5] = {item = "item_sphere", weight = 10},
+		[1] = {item = "item_shell", weight = 10},
+		[2] = {item = "item_shell", weight = 10},
+		[3] = {item = "item_shell", weight = 10},
+		[4] = {item = "item_shell", weight = 10},
+		[5] = {item = "item_shell", weight = 10},
 	},
 	[4] = {
 		[1] = {item = "item_sphere", weight = 10},

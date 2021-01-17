@@ -196,7 +196,6 @@
 		"ShouldBeSuggested"	"1"
 	}
 
-
 	"item_pipe"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
@@ -493,7 +492,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1520"
 		"ItemCost"	"30"
-		"ItemDroppable"	"0"
+		"ItemDroppable"	"1"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
 		"ItemRequirements"	{}
