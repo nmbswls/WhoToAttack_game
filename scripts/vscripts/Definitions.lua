@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {3, 30, 3, 1}
+	GameRules.Definitions.StageTime = {5, 10, 3, 1}
 	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
@@ -385,5 +385,10 @@ if GameRules.Definitions == nil then
 		evil_skeleton = 'cm_mana_aura',
 		nature_ursa = 'axe_berserkers_call',
 		hidden_drow = 'dr_shooter_aura',
+	}
+    
+    GameRules.Definitions.LogicUrls = {
+		ranking_top = 'http://xxx/ranking/top',
+		refresh_shop = 'http://xxx/shop/v4/get',
 	}
 end

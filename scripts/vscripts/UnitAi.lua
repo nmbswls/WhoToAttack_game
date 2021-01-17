@@ -79,12 +79,15 @@ function UnitAI:EvaluateCommand(unit, cmdName)
             return 0, nil
         end
         if unit:HasAbility('siegeattack') then
-			print("siegeattack has ability " .. unit:GetHealth() .. " " .. unit:GetMaxHealth())
+			--print("siegeattack has ability " .. unit:GetHealth() .. " " .. unit:GetMaxHealth())
             if unit:GetHealth() < unit:GetMaxHealth() * 0.8 then
-				
-                local enemies, base = UnitAI:ClosestEnemyAll(unit, 2000)
-				print("qiangzhi gongji laalal " .. base:GetUnitName())
-                return 30, base
+                local base = self:GetCertainBase(unit.in_battle_id)
+                if base then
+                    unit:Stop();
+                    print("qiangzhi gongji laalal " .. base:GetUnitName())
+                    return 30, base
+                end
+                
             end
         end
         if(unit:IsIdle() == false) then
@@ -324,7 +327,7 @@ function UnitAI:GetUnitsWithHpLowerThan(unit, radius, teamFlag, hpThreshold, exc
     
     for index = 1, #candidates do
         local candidate = candidates[index]
-        if not candidate:IsHero() and candidate.in_battle_id ~= nil and candidate.in_battle_id == unit.in_battle_id then
+        if not candidate:IsHero() and candidate.in_battle_id and candidate.in_battle_id == unit.in_battle_id then
             
             local isValid = filterFunc(candidate, hpThreshold,excludeBuff);
             if isValid then
@@ -667,4 +670,11 @@ function UnitAI:GetSpellCastTime(hSpell)
     
     return flCastPoint
     
+end
+
+function UnitAI:GetCertainBase(battle_idx)
+    if not battle_idx then
+        return nil;
+    end
+    return GameRules:GetGameModeEntity().WhoToAttack.field_base[battle_idx];
 end

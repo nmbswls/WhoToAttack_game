@@ -215,13 +215,14 @@ function WhoToAttack:StartGame()
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
 			newBase.hero = hero
+            self.field_base[team_i] = newBase;
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
         end
         
     end
-    self:FakeBase()
+    --self:FakeBase()
     
     -- local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
     -- for _, pos in pairs(playerStarts) do
@@ -254,6 +255,7 @@ function WhoToAttack:FakeBase()
 	newBase.in_battle_id = 13
 	newBase.turn_attacker = {}
 	newBase.hero = nil
+    self.field_base[13] = newBase;
 end
 
 function WhoToAttack:CheckWinLoseForTeam(team)
@@ -1914,6 +1916,10 @@ function WhoToAttack:HandleCommand(keys)
 	if tokens[1] == '-cp' then
 	
 	end
+    
+    if tokens[1] == '-http' then
+        SendHttpGet("abc");
+    end
 	
 	if tokens[1] == '-top' then
 		local idx = 1
@@ -2130,6 +2136,78 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
 	-- end
 end
 
+
+function SendHTTPPost(url,game_data,success_cb, fail_cb)
+    local req = CreateHTTPRequestScriptVM("POST",url)
+    req:SetHTTPRequestHeaderValue("Content-Type", "application/json;charset=UTF-8")
+    -- ScoreSystemUpdateCount = ScoreSystemUpdateCount + 1
+    req:SetHTTPRequestGetOrPostParameter("data",json.encode(game_data))
+    req:Send(function(res)
+        if res.StatusCode ~= 200 or not res.Body then
+            return
+        end
+        -- local obj = json.decode(res.Body)
+        -- if callback ~= nil then
+        --     success_cb(obj)
+        -- end
+    end)
+end
+
+function SendHttpGet(url, success_cb, fail_cb)
+    local req = CreateHTTPRequestScriptVM('GET', url)
+	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
+    req:Send(function(res)
+        if res.StatusCode ~= 200 or not res.Body then
+            if fail_callback ~= nil then
+            	fail_callback(obj)
+            end
+            return
+        end
+
+        local obj = json.decode(res.Body)
+        if callback ~= nil then
+        	callback(obj)
+        end
+    end)
+end
+
+function WhoToAttack:OnKeing(keys)
+    local player_id = keys.PlayerID
+    local url = GameRules.Definitions.LogicUrls[keys.event];
+    if not url then
+        msg.bottom("逻辑异常", player_id, 1);
+        return;
+    end
+    
+    
+    
+    if keys.user_specific == 1 then
+        url = url..'/@'..PlayerManager.playerid2steamid[player_id]
+    end
+    
+    for i,v in pairs(keys.params) do
+        url = url..'&'..i..'='..v
+    end
+
+    url = url.."&key="..GetDedicatedServerKey('nmsl')
+    
+    Timers:CreateTimer(RandomFloat(0,1),function()
+			-- print(send_url)
+			SendHTTP(url,function(t)
+				-- DeepPrintTable(t)
+				-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id),'send_http_cb',{
+					-- key = GetClientKey(GameRules:GetGameModeEntity().playerid2team[player_id]),
+					-- event = keys.cb,
+					-- data = json.encode(t),
+				-- })
+                print('success');
+                DeepPrintTable(t)
+                
+			end)
+	    end)
+    
+end
+
 function WhoToAttack:InitTinyBornPlace()
     -- 将对应队伍的出生点放到随机的位置去
     local playerStarts = Entities:FindAllByClassname("info_player_start_dota")
@@ -2257,6 +2335,17 @@ function WhoToAttack:InitGameMode()
 		[13] = {},
 	}
 	
+    self.field_base = {
+        [6] = nil,
+        [7] = nil,
+        [8] = nil,
+        [9] = nil,
+        [10] = nil,
+        [11] = nil,
+        [12] = nil,
+        [13] = nil,
+    }
+    
 	self.thrones = {
     	[1] = {},
 		[2] = {},
@@ -2329,6 +2418,33 @@ function WhoToAttack:findEmptyAbility(hero)
 	end
 	return nil
 end
+
+
+function WhoToAttack:GiveItem(hero, item_name)
+    local has_enemy_slot = false
+    for slot=0,5 do
+        if hero:GetItemInSlot(slot) == nil or (hero:GetItemInSlot(slot):GetAbilityName() == item_name and hero:GetItemInSlot(slot):IsStackable()) then
+            has_enemy_slot = true
+        end
+    end
+    if has_enemy_slot == true then
+        hero:AddItemByName(item_name)
+    else
+        self:DropItemAppointed(item_name, hero, hero)
+    end
+end
+
+function WhoToAttack:DropItemAppointed(item_name, owner, center_unit)
+    if center_unit == nil or center_unit:IsNull() == true or center_unit:GetAbsOrigin() == nil then
+		center_unit = owner
+	end
+	local newItem = CreateItem( item_name, owner, owner )
+	local drop = CreateItemOnPositionForLaunch(center_unit:GetAbsOrigin(), newItem )
+	local dropRadius = RandomFloat( 10, 100 )
+	
+	newItem:LaunchLootInitialHeight( false, 0, 200, 0.75, center_unit:GetAbsOrigin() + Vector(RandomFloat( -100, 100 ),RandomFloat( -100, 100 ),0))
+end
+
 
 function GetBuildSkillName(unitName)
     return "build_" .. unitName
