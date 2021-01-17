@@ -48,7 +48,7 @@ function UnitAI:OnUnitThink(unit)
         return 0.4
     end
 	
-	if not unit.in_battle_id then 
+	if not unit.in_battle_id or unit.in_battle_id == 0 then 
         return 1
     end
     

@@ -85,21 +85,25 @@ EncounterInfo = {
 	[201] = {
 		etype = 2,
 		cost = 5,
+		delay = 150,
 		payback = 15,
 	},
 	[202] = {
 		etype = 2,
 		cost = 10,
+		delay = 150,
 		payback = 30,
 	},
 	[203] = {
 		etype = 2,
 		cost = 15,
+		delay = 150,
 		payback = 45,
 	},
 	[204] = {
 		etype = 2,
 		cost = 20,
+		delay = 150,
 		payback = 60,
 	},
 	[301] = {
@@ -338,9 +342,9 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 			msg.bottom('money not enough', 0)
 			return false;
 		end
-		
+		local delay = data.delay or 300;
 		--hero:AddNewModifier(hero, nil, "modifier_add_gold", {duration = 5, payback = 10});
-		Timers:CreateTimer(300,function()
+		Timers:CreateTimer(delay,function()
 			hero:ModifyGold(data[payback], false, 0)
 			--hero:AddNewModifier(hero, nil, "modifier_add_gold", {duration = 5, payback = 10});
 		end)
@@ -356,10 +360,20 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		hero:SetGold(0, false);
 		
 		Timers:CreateTimer(1,function()
-			hero:ModifyGold(math.floor(ownedMoney * 1.25), false, 0)
+			local rand = RandomInt(100);
+			local weightL = {5,15,35,70,90,100}
+			local valL = {0,0.5,0.75,1.25,1.5,2}
+			local rate = 1;
+			for i = 1,#weightL do
+				if rand <= weightL[i] then
+					rate = valL[i]
+				end
+			end
+			
+			hero:ModifyGold(math.floor(ownedMoney * rate), false, 0)
 		end)
 	elseif data.etype == ETYPE_WUSHI then
-		hero:AddItemByName(data.item_name)
+		WhoToAttack:GiveItem(hero, data.item_name);
 	elseif data.etype == ETYPE_SHANGDIAN then
 		local cost = data.cost;
 		if hero:GetGold() < cost then
@@ -379,7 +393,6 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		
 		GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(), retUnit.name, false)
 	elseif data.etype == ETYPE_RUQIN then
-		print('ETYPE_RUQIN ' .. data.level)
 		local monsters = MonsterList[data.level]
 		local retMonster = GetWeightedOne(monsters)
 		

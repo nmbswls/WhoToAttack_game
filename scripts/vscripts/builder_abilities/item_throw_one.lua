@@ -56,7 +56,7 @@ function item_throw_one:OnSpellStart()
             return;
         end
         GameRules:GetGameModeEntity().WhoToAttack:ChangeBattleField(target, idx)
-        GameRules:GetGameModeEntity().WhoToAttack:MoveUnit(target, pos)
+        GameRules:GetGameModeEntity().WhoToAttack:MoveUnit(caster, target, pos)
         
 		target:SetBaseManaRegen(target.originManaRegen or 0)
     end

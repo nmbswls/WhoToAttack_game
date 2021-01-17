@@ -80,6 +80,9 @@
 --throne_bonus         王座效果
 --cur_encounters       当前事件
 
+--throw_effect            饰品-投掷特效
+--base_model 		   饰品-基地模型
+
 --打怪 
 
 
@@ -161,6 +164,8 @@ function Precache( context )
     for _, v in pairs(sounds) do
         PrecacheResource("soundfile", v, context)
     end
+	PrecacheResource( "model",  "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl", context)
+	
     -- local precache_list = require("precache")
 	-- for _, precache_item in pairs(precache_list) do
 		-- --预载precache.lua里的资源
@@ -215,6 +220,12 @@ function WhoToAttack:StartGame()
             newBase.in_battle_id = team_i
             newBase.turn_attacker = {}
 			newBase.hero = hero
+			if hero.base_model ~= nil then
+				newBase:SetOriginalModel(hero.base_model)
+				newBase:SetModel(hero.base_model)
+			end
+			newBase.origin_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"
+			
             self.field_base[team_i] = newBase;
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
@@ -1557,7 +1568,7 @@ function WhoToAttack:ModifyBaseHP(base, modHp)
 
 end
 
-function WhoToAttack:MoveUnit(target, pos)
+function WhoToAttack:MoveUnit(hero, target, pos)
 
 
 	if target == nil or target:IsNull() == true then
@@ -1580,11 +1591,15 @@ function WhoToAttack:MoveUnit(target, pos)
 		-- return
 		target:RemoveModifierByName("modifier_toss")
 	end
-
+	local effName = nil;
+	if hero ~= nil and hero.throw_effect ~= nil then
+		effName = hero.throw_effect
+	end
 	target:AddNewModifier(target,nil,"modifier_toss",
 	{
 		vx = pos.x,
 		vy = pos.y,
+		throwEffect = effName,
 	})
 
 end
@@ -1646,6 +1661,8 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	
 	hero:SetHullRadius(1)
 	hero:SetAbilityPoints(0)
+	
+	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
@@ -1823,12 +1840,13 @@ function WhoToAttack:OnEntityKilled(keys)
     
     local killed_level = u:GetLevel()
     local bonus = killed_level * 1;
-    
+    if string.find(attacker:GetUnitName(), "neutral") then
+		bonus = killed_level * 2;
+	end
     local hero1 = PlayerManager:getHeroByTeam(attacker_team);
     
-	hero1:EmitSound("lockjaw_Courier.gold")
-    
     if hero1 and bonus then
+		hero1:EmitSound("lockjaw_Courier.gold")
         print("team " .. attacker_team .. " get bonus " .. bonus)
         hero1:ModifyGold(bonus, false, 0);
     end
@@ -2445,6 +2463,21 @@ function WhoToAttack:DropItemAppointed(item_name, owner, center_unit)
 	newItem:LaunchLootInitialHeight( false, 0, 200, 0.75, center_unit:GetAbsOrigin() + Vector(RandomFloat( -100, 100 ),RandomFloat( -100, 100 ),0))
 end
 
+function WhoToAttack:ChangeBaseModel(hero, model_name)
+	hero.base_model = model_name;
+	local base = hero.base;
+	if not base or base:IsNull() then
+		return
+	end
+	if base:IsAlive() then
+		base:SetModel(model_name);
+		base:SetOrigin(model_name);
+	end
+end
+
+function WhoToAttack:ChangeThrowEffect(hero, throw_effect)
+	hero.throw_effect = throw_effect;
+end
 
 function GetBuildSkillName(unitName)
     return "build_" .. unitName

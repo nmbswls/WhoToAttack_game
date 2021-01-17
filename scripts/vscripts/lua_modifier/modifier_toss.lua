@@ -30,6 +30,7 @@ function modifier_toss:OnCreated(kv)
         self.vDirection        = (self.vTargetPosition - self.vStartPosition):Normalized()
         self.fDistance         = (self.vTargetPosition - self.vStartPosition):Length2D()
         self.step = 0  --0~30
+		self.throwEffect = kv.throwEffect;
     end
 end
 
@@ -41,6 +42,8 @@ function modifier_toss:OnDestroy()
             self:GetParent().transfer_chess = false
             self:GetParent():SetForwardVector(Vector(0,1,0))
         end
+		play_particle(self.throwEffect, PATTACH_ABSORIGIN,self:GetParent(),3);
+		
     end
 end
 

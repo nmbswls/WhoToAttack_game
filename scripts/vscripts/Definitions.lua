@@ -2,7 +2,7 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {5, 10, 3, 1}
+	GameRules.Definitions.StageTime = {8, 10, 3, 1}
 	GameRules.Definitions.ThrowBaseRange = 1200
 	GameRules.Definitions.OpenDoorNumByAlive = {
 		[1] = 1,
@@ -207,6 +207,7 @@ if GameRules.Definitions == nil then
         [35] = "brawn_axe",
         [36] = "nature_treant",
         [37] = "hidden_willow",
+		[38] = "neutral_01",
     }
     GameRules.Definitions.ChessPoolSize = 8
     
