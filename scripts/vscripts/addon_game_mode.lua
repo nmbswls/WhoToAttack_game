@@ -2540,7 +2540,7 @@ function WhoToAttack:SendStartGameReq()
 		return
 	end
 	local url = "";
-	SendHTTPPost(url, function(t)
+	SendHTTPPost(url, {}, function(t)
 	
 	end, function(t)
 	
