@@ -249,7 +249,7 @@ function WhoToAttack:StartGame()
         
         print('GAME START!')
         --初始化棋子库
-        self:InitCardPool(GameRules:GetGameModeEntity().playing_player_count)
+        self:InitCardPool(PlayerManager:GetPlayingPlayerCount())
         self.start_time = GameRules:GetGameTime()
         self.battle_round = 1
         self:SetStage(1)
@@ -1663,6 +1663,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetAbilityPoints(0)
 	
 	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
+	hero.base_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
@@ -1737,7 +1738,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 		self.alive_count = playercount;
 		Timers:CreateTimer(0.1,function()
 			--开始
-			self:StartGame()
+			self:SendStartGameReq();
 		end)
 	end 
 	
@@ -2156,6 +2157,7 @@ end
 
 
 function SendHTTPPost(url,game_data,success_cb, fail_cb)
+	--document https://partner.steamgames.com/doc/api/isteamhttp
     local req = CreateHTTPRequestScriptVM("POST",url)
     req:SetHTTPRequestHeaderValue("Content-Type", "application/json;charset=UTF-8")
     -- ScoreSystemUpdateCount = ScoreSystemUpdateCount + 1
@@ -2271,7 +2273,6 @@ function WhoToAttack:InitGameMode()
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 );
     
     
-    GameRules:GetGameModeEntity().playing_player_count = 0
 
     
     ListenToGameEvent("game_rules_state_change", Dynamic_Wrap( WhoToAttack, 'OnGameRulesStateChange' ), self );
@@ -2525,4 +2526,25 @@ function Modifier_GiveMana(keys)
 	end
 	local mana = keys.mana
 	target:GiveMana(mana);
+end
+
+
+--fuck with logic server
+
+function WhoToAttack:SendStartGameReq()
+	
+	if PlayerManager:GetPlayingPlayerCount() == 0 then
+		Timers:CreateTimer(30,function()
+			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)				
+		end)
+		return
+	end
+	local url = "";
+	SendHTTPPost(url, function(t)
+	
+	end, function(t)
+	
+	end);
+	self:StartGame();
+	
 end
