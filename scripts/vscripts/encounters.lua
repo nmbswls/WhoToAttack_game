@@ -370,8 +370,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 					break;
 				end
 			end
-			print("rate = " .. rate);
-			hero:ModifyGold(math.floor(ownedMoney * rate), false, 0)
+			hero:ModifyGold(math.ceil(ownedMoney * rate), false, 0)
 		end)
 	elseif data.etype == ETYPE_WUSHI then
 		WhoToAttack:GiveItem(hero, data.item_name);
