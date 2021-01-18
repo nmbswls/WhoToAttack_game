@@ -208,6 +208,7 @@ if GameRules.Definitions == nil then
         [36] = "nature_treant",
         [37] = "hidden_willow",
 		[38] = "neutral_01",
+
     }
     GameRules.Definitions.ChessPoolSize = 8
     
