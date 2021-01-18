@@ -117,6 +117,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts",
     "soundevents/game_sounds_creeps.vsndevts",
     "soundevents/game_sounds_ui.vsndevts",
+    "soundevents/game_sounds_ui_imported.vsndevts",
     "soundevents/game_sounds_items.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts",
@@ -157,6 +158,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts",
 }
 
 function Precache( context )

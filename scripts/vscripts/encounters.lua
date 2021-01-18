@@ -718,6 +718,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 	
 	if data.etype == ETYPE_KUGONG then
 		WhoToAttack:ModifyBaseHP(hero.base, data.val);
+                hero:EmitSound("DOTA_Item.RepairKit.Target");
 	elseif data.etype == ETYPE_YINHANGJIA then
 		local cost = data.cost;
 		if hero:GetGold() < cost then
@@ -728,19 +729,21 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		--hero:AddNewModifier(hero, nil, "modifier_add_gold", {duration = 5, payback = 10});
 		Timers:CreateTimer(delay,function()
 			hero:ModifyGold(data.payback, false, 0)
+		hero:EmitSound("Quickbuy.Confirmation");
 			--hero:AddNewModifier(hero, nil, "modifier_add_gold", {duration = 5, payback = 10});
 		end)
 		
 		hero:ModifyGold(-cost, false, 0)
+                        hero:EmitSound("Quickbuy.Available");
 	elseif data.etype == ETYPE_XIAOCHOU then
 		
-		if hero:GetGold() < 5 then
+		if hero:GetGold() < 0 then
 			msg.bottom('you need to have minimun 5 gold', hero)
 			return false;
 		end
 		local ownedMoney = hero:GetGold();
 		hero:SetGold(0, false);
-		
+		hero:EmitSound("Quickbuy.Confirmation");
 		Timers:CreateTimer(1,function()
 			local rand = RandomInt(1, 100);
 			local weightL = {5,15,35,70,90,100}
@@ -753,9 +756,11 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 				end
 			end
 			hero:ModifyGold(math.ceil(ownedMoney * rate), false, 0)
+                        hero:EmitSound("Quickbuy.Available");
 		end)
 	elseif data.etype == ETYPE_WUSHI then
 		WhoToAttack:GiveItem(hero, data.item_name);
+                        hero:EmitSound("General.Buy");
 	elseif data.etype == ETYPE_SHANGDIAN then
 		local cost = data.cost;
 		if hero:GetGold() < cost then
@@ -768,6 +773,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
         if retItem.item then
             hero:ModifyGold(-cost, false, 0)
             WhoToAttack:GiveItem(hero, retItem.item);
+                        hero:EmitSound("General.Buy");
         end
 	elseif data.etype == ETYPE_CHAOSHENG then
 		local units = ChaoshengList[data.level]
@@ -779,6 +785,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		local retMonster = GetWeightedOne(monsters)
 		
 		GameRules:GetGameModeEntity().WhoToAttack:SpawnNeutral(hero.team, retMonster.name, 3)
+                        hero:EmitSound("NeutralStack.Success");
 	end
 	
 	-- print('handleOneEncounter ' .. eid);
