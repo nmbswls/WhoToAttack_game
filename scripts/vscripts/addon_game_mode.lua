@@ -92,6 +92,7 @@ require 'definitions'
 require 'UnitAi'
 require 'timers'
 require 'amhc_library/amhc'
+require 'utils.http_utils'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
@@ -2156,40 +2157,7 @@ function WhoToAttack:OnPlayerGainedLevel(keys)
 end
 
 
-function SendHTTPPost(url,game_data,success_cb, fail_cb)
-	--document https://partner.steamgames.com/doc/api/isteamhttp
-    local req = CreateHTTPRequestScriptVM("POST",url)
-    req:SetHTTPRequestHeaderValue("Content-Type", "application/json;charset=UTF-8")
-    -- ScoreSystemUpdateCount = ScoreSystemUpdateCount + 1
-    req:SetHTTPRequestGetOrPostParameter("data",json.encode(game_data))
-    req:Send(function(res)
-        if res.StatusCode ~= 200 or not res.Body then
-            return
-        end
-        -- local obj = json.decode(res.Body)
-        -- if callback ~= nil then
-        --     success_cb(obj)
-        -- end
-    end)
-end
 
-function SendHttpGet(url, success_cb, fail_cb)
-    local req = CreateHTTPRequestScriptVM('GET', url)
-	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
-    req:Send(function(res)
-        if res.StatusCode ~= 200 or not res.Body then
-            if fail_callback ~= nil then
-            	fail_callback(obj)
-            end
-            return
-        end
-
-        local obj = json.decode(res.Body)
-        if callback ~= nil then
-        	callback(obj)
-        end
-    end)
-end
 
 function WhoToAttack:OnKeing(keys)
     local player_id = keys.PlayerID
@@ -2213,7 +2181,7 @@ function WhoToAttack:OnKeing(keys)
     
     Timers:CreateTimer(RandomFloat(0,1),function()
 			-- print(send_url)
-			SendHTTP(url,function(t)
+			HttpUtils:SendHTTP(url,function(t)
 				-- DeepPrintTable(t)
 				-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id),'send_http_cb',{
 					-- key = GetClientKey(GameRules:GetGameModeEntity().playerid2team[player_id]),
