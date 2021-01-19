@@ -400,33 +400,37 @@ EncounterInfo = {
 	},
 	[201] = {
 		etype = 2,
-		cost = 5,
-		delay = 10,
-		payback = 15,
+		cost = 7,
+		delay = 300,
+		payback = 20,
 	},
 	[202] = {
 		etype = 2,
 		cost = 10,
-		delay = 150,
-		payback = 30,
+		delay = 300,
+		payback = 25,
 	},
 	[203] = {
 		etype = 2,
-		cost = 15,
-		delay = 150,
-		payback = 45,
+		cost = 20,
+		delay = 210,
+		payback = 40,
 	},
 	[204] = {
 		etype = 2,
-		cost = 20,
-		delay = 150,
+		cost = 30,
+		delay = 180,
 		payback = 60,
+	},
+	[205] = {
+		etype = 2,
+		cost = 50,
+		delay = 100,
+		payback = 100,
 	},
 	[301] = {
 		etype = 3,
 		gailv = {
-			[1] = 20,
-			[2] = 20,
 		}
 	},
 	[302] = {
