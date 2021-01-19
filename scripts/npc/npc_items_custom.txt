@@ -10,7 +10,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCooldown"	"0.1"
-		"AOERadius"	"600"
+		"AOERadius"	"300"
 		"ID"	"1500"
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
@@ -723,7 +723,7 @@
 		"precache"
 		{
 			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts"
 			"particle"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
 		}
 		"OnSpellStart"
@@ -736,7 +736,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Invoker.Alacrity"
+				"EffectName"	"Hero_Dark_Seer.Ion_Shield_Start"
 			}
 		}
 		"Modifiers"
@@ -802,7 +802,6 @@
 		"ItemRequirements"	{}
 		"precache"
 		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_invoker.vsndevts"
 			"particle"	"particles/econ/items/omniknight/omni_ti8_head/omniknight_repel_buff_ti8.vpcf"
 		}
 		"OnSpellStart"
@@ -815,7 +814,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Invoker.Alacrity"
+				"EffectName"	"Hero_Omniknight.Repel.TI8"
 			}
 		}
 		"Modifiers"
@@ -1301,7 +1300,7 @@
 			}
 			"FireSound"
 			{
-				"EffectName"	"Hero_Invoker.Alacrity"
+				"EffectName"	"DOTA_Item.RepairKit.Target"
 			}
 		}
 		"Modifiers"
@@ -1348,6 +1347,9 @@
 		"ID"	"1513"
 		"ItemCost"	"999"
 		"ItemRequirements"	{}
+		"precache"
+		{
+		}
 		"OnSpellStart"
 		{
 			"SpawnUnit"
@@ -1355,7 +1357,10 @@
 				"Target"	"CASTER"
 				"OnSpawn"
 				{
-					"FireSound"	{}
+					"FireSound"
+					{
+						"EffectName"	"DOTA_Item.PhoenixAsh.Cast"
+					}
 				}
 				"UnitName"	"tiny_illusion"
 				"UnitCount"	"1"

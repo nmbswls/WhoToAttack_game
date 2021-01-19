@@ -95,6 +95,7 @@ require 'amhc_library/amhc'
 require 'utils.http_utils'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
+LinkLuaModifier("modifier_toss_fast", "lua_modifier/modifier_toss_fast.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_hide", "lua_modifier/modifier_hide.lua", LUA_MODIFIER_MOTION_NONE)
 
 
@@ -118,6 +119,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_ogre_magi.vsndevts",
     "soundevents/game_sounds_creeps.vsndevts",
     "soundevents/game_sounds_ui.vsndevts",
+    "soundevents/game_sounds_ui_imported.vsndevts",
     "soundevents/game_sounds_items.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_legion_commander.vsndevts",
@@ -158,6 +160,7 @@ local sounds = {
     "soundevents/game_sounds_heroes/game_sounds_dark_willow.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_tiny.vsndevts",
     "soundevents/game_sounds_heroes/game_sounds_brewmaster.vsndevts",
+    "soundevents/game_sounds_heroes/game_sounds_dark_seer.vsndevts",
 }
 
 function Precache( context )
@@ -1569,7 +1572,7 @@ function WhoToAttack:ModifyBaseHP(base, modHp)
 
 end
 
-function WhoToAttack:MoveUnit(hero, target, pos)
+function WhoToAttack:MoveUnit(hero, target, pos, isFast)
 
 
 	if target == nil or target:IsNull() == true then
@@ -1591,12 +1594,17 @@ function WhoToAttack:MoveUnit(hero, target, pos)
 	if target:HasModifier("modifier_toss")  then
 		-- return
 		target:RemoveModifierByName("modifier_toss")
+		target:RemoveModifierByName("modifier_toss_fast")
 	end
 	local effName = nil;
 	if hero ~= nil and hero.throw_effect ~= nil then
 		effName = hero.throw_effect
 	end
-	target:AddNewModifier(target,nil,"modifier_toss",
+	local modifierName = "modifier_toss";
+	if isFast then
+		modifierName = "modifier_toss_fast";
+	end
+	target:AddNewModifier(target,nil,modifierName,
 	{
 		vx = pos.x,
 		vy = pos.y,
@@ -2494,6 +2502,33 @@ function Modifier_GiveMana(keys)
 	end
 	local mana = keys.mana
 	target:GiveMana(mana);
+end
+
+function Action_DrawCard(keys)
+	local hero = keys.caster;
+	if hero == nil or not hero:IsAlive() then
+		return
+	end
+	GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero.team);
+end
+
+function Action_SpawnRandomLv5(keys)
+	local hero = keys.caster;
+	if hero == nil or not hero:IsAlive() then
+		return
+	end
+	local speGailv = keys.gailv;
+	
+	local rand = RandomInt(1,100)
+	
+    local spe = false;
+    if rand <= speGailv then
+        spe = true
+    end
+    
+	--GameRules.Definitions.
+    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brwan_siege",spe);
+	
 end
 
 
