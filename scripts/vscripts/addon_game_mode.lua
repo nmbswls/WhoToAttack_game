@@ -108,6 +108,7 @@ require 'treasure'
 require 'throne'
 require 'encounters'
 require 'player_manager'
+require 'econ_manager'
 
 
 local sounds = {
@@ -2267,6 +2268,7 @@ function WhoToAttack:InitGameMode()
 	CustomGameEventManager:RegisterListener("ChooseEncounterReq",Dynamic_Wrap(WhoToAttack, 'OnChooseEncounter'))
     
     
+	CustomGameEventManager:RegisterListener("player_query_shop_items_req",Dynamic_Wrap(EconManager, 'OnPlayerQueryShopItemsReq'))
     
     --出生点初始化
     Timers:CreateTimer(1, function()
@@ -2543,7 +2545,7 @@ function WhoToAttack:SendStartGameReq()
 		return
 	end
 	local url = "";
-	SendHTTPPost(url, {}, function(t)
+	HttpUtils:SendHTTPPost(url, {}, function(t)
 	
 	end, function(t)
 	
