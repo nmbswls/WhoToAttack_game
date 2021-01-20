@@ -78,7 +78,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         if(unit:IsChanneling() or unit:IsStunned()) then
             return 0, nil
         end
-        if unit:HasAbility('siegeattack') then
+        if unit:HasAbility('siegeattack')  and unit.in_battle_id ~= unit:GetTeam() then
 			--print("siegeattack has ability " .. unit:GetHealth() .. " " .. unit:GetMaxHealth())
             if unit:GetHealth() < unit:GetMaxHealth() * 0.8 then
                 local base = self:GetCertainBase(unit.in_battle_id)
