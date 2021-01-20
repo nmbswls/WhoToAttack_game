@@ -1368,4 +1368,94 @@
 			}
 		}
 	}
+
+	"item_drawcard"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Siltbreaker_Creed_of_Omniscience_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"30"
+		"ID"	"1521"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_ui.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Action_DrawCard"
+			}
+			"FireSound"
+			{
+				"EffectName"	"Item.PickUpRecipeWorld"
+			}
+		}
+	}
+
+	"item_summonunit"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Necronomicon_3_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityCastPoint"	"0.1"
+		"AbilityCooldown"	"50"
+		"ID"	"1522"
+		"ItemCost"	"1"
+		"ItemRequirements"	{}
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_items.vsndevts"
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Action_SpawnRandomLv5"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.Necronomicon.Activate"
+			}
+		}
+	}
+
+	"item_throwdamage"
+	{
+		"AbilityTextureName"	"item_Tossdamage_icon"
+		"ID"	"1523"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"builder_abilities/item_throw_one_fast.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"0.1"
+		"AOERadius"	"300"
+		"ItemDroppable"	"0"
+		"ItemRequirements"	{}
+	}
+
+	"item_throwmany"
+	{
+		"AbilityTextureName"	"item_Tossmany_icon"
+		"ID"	"1524"
+		"BaseClass"	"item_lua"
+		"ScriptFile"	"builder_abilities/item_throw_many.lua"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityCooldown"	"0.1"
+		"AOERadius"	"300"
+		"ItemDroppable"	"0"
+		"ItemRequirements"	{}
+	}
 }
