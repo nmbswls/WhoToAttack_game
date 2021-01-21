@@ -2097,7 +2097,7 @@ function WhoToAttack:OnLockCards(keys)
     local locked = keys.locked
     local player = PlayerResource:GetPlayer(keys.PlayerID)
 	local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
-	if self:LockCard(hero, locked) then
+	if WhoToAttack:LockCard(hero, locked) then
 		CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = locked});
 	end
 end
