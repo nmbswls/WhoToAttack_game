@@ -1273,9 +1273,12 @@ end
 
 function WhoToAttack:LockCard(team_id, locked)
 	local hero = PlayerManager:getHeroByTeam(team_id)
-	if hero then
-		hero.lock_draw = locked
+	if hero == nil then
+		return false;
 	end
+	
+	hero.lock_draw = locked
+	return true
 end
 
 function WhoToAttack:DrawCards(team_id, auto_draw)
@@ -2093,7 +2096,10 @@ end
 function WhoToAttack:OnLockCards(keys)
     local locked = keys.locked
     local player = PlayerResource:GetPlayer(keys.PlayerID)
-    CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = locked});
+	local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
+	if self:LockCard(hero, locked) then
+		CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = locked});
+	end
 end
 
 function WhoToAttack:OnConfirmRemoveAbility(keys)
