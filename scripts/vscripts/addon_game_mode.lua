@@ -2528,20 +2528,25 @@ function Action_SpawnRandomLv5(keys)
 	if hero == nil or not hero:IsAlive() then
 		return
 	end
-	local speGailv = keys.gailv;
 	
-	local rand = RandomInt(1,100)
+    local level5units = GameRules.Definitions.CardListByCost[5];
+	if not level5units then
+		return
+	end
 	
-    local spe = false;
-    if rand <= speGailv then
-        spe = true
-    end
-    
-	--GameRules.Definitions.
-    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brwan_siege",spe);
-	
+	local rand = RandomInt(1,#level5units)
+	local unitName = level5units[rand];
+    GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),unitName,false);
 end
 
+function Action_SpawnTiny(keys)
+	local hero = keys.caster;
+	if hero == nil or not hero:IsAlive() then
+		return
+	end  
+	--GameRules.Definitions.
+    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brwan_siege",spe);
+end
 
 --fuck with logic server
 
