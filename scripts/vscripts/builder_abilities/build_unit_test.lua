@@ -18,6 +18,13 @@ function AddBuildAbility(keys)
         return 
     end
     
+	
+	if caster:HasModifier("modifier_item_castrefresh") then
+		local a = caster:FindModifierByName("modifier_item_castrefresh"):GetAbility();
+		local restoreGailv = a:GetLevelSpecialValueFor("refreshchance", (ability:GetLevel() -1))
+		print('refreshchance ' .. refreshchance);
+	end
+	
     local rand = RandomInt(1,100)
     local speGailv = ability:GetSpecialValueFor("gailv")
     
