@@ -14,14 +14,11 @@
 	{
 	        "item"          "item_remove_ability"
                 "item"          "item_exp_book"
-                "item"          "item_sphere"
-                "item"          "item_glimmer_cape"
-                "item"          "item_moneyold"
                 "item"          "item_drawcard"
                 "item"          "item_repairhammer"
                 "item"          "item_mangotrees"
-                "item"          "item_throwmany"
-                "item"          "item_throwdamage"
+                "item"          "item_throw_many"
+                "item"          "item_throw_one_fast"
                 "item"          "item_summonunit"
                 "item"          "item_pipe"
                 "item"          "item_asms"
@@ -35,65 +32,56 @@
 			
 	"misc"
 	{
-		
-		"item"		"item_blink"		
+				
 	}	
 	
 	// Level 1 - Green Recipes
 	"basics"
 	{		
-		"item"		"item_magic_wand"
 		
 	}
 
 	// Level 2 - Blue Recipes
 	"support"
 	{
-		"item"		"item_ring_of_basilius"
 		
 	}
 				
 	"magics"			
 	{
-		"item"		"item_glimmer_cape"
 		
 	}
 		
 	// Level 3 - Purple Recipes	
 	"defense"
 	{
-		"item"		"item_hood_of_defiance"
 		
 	}
 			
 	"weapons"
 	{	
 		
-		"item"		"item_bloodthorn"
 	}
 		
 	// Level 4 - Orange / Orb / Artifacts				
 	"artifacts"
 	{	
- 		"item"		"item_mjollnir"
+
 	}
 
 	"sideshop1"
 	{
 		
-		"item"		"item_robe"
 	}
 
 	"sideshop2"
 	{
 		
-		"item"		"item_blink"
 	}
 	
 	"secretshop"
 	{							
 		
-		"item"		"item_relic"
 	}
 
 	"pregame"

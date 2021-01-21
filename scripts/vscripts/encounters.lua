@@ -577,14 +577,14 @@ ShopinfoList = {
 	[3] = {
 		[1] = {item = "item_moneyevil", weight = 10},
 		[2] = {item = "item_omni", weight = 10},
-		[3] = {item = "item_moneyevil", weight = 10},
-		[4] = {item = "item_omni", weight = 10},
+		[3] = {item = "item_throw_one_fast", weight = 10},
+		[4] = {item = "item_summonunit", weight = 10},
 	},
 	[4] = {
 		[1] = {item = "item_asms", weight = 10},
 		[2] = {item = "item_pipe", weight = 10},
 		[3] = {item = "item_addmana", weight = 10},
-		[4] = {item = "item_pipe", weight = 10},
+		[4] = {item = "item_throw_many", weight = 10},
 	},
 	[5] = {
 		[1] = {item = "item_mjollnir", weight = 10},

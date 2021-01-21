@@ -15,26 +15,26 @@
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
-	
+
 	"item_throw_one_fast"
 	{
 		"BaseClass"	"item_lua"
-		"AbilityTextureName"	"Toss_icon"
+		"AbilityTextureName"	"item_Tossdamage_icon"
 		"ScriptFile"	"builder_abilities/item_throw_one_fast.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityCooldown"	"0.1"
+		"AbilityCooldown"	"5"
 		"AOERadius"	"300"
 		"ID"	"1600"
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
-	
+
 	"item_throw_many"
 	{
 		"BaseClass"	"item_lua"
-		"AbilityTextureName"	"Toss_icon"
+		"AbilityTextureName"	"item_Tossmany_icon"
 		"ScriptFile"	"builder_abilities/item_throw_many.lua"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -633,7 +633,6 @@
 				"Properties"	{}
 				"States"	{}
 				"IsHidden"	"0"
-
 				"Passive"	"1"
 			}
 			"modifier_item_castrefresh_2"
@@ -657,7 +656,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"refreshchance"	"50"
+				"refreshchance"	"25"
 			}
 			"02"
 			{
@@ -1355,19 +1354,14 @@
 		}
 		"OnSpellStart"
 		{
-			"SpawnUnit"
+			"RunScript"
 			{
-				"Target"	"CASTER"
-				"OnSpawn"
-				{
-					"FireSound"
-					{
-						"EffectName"	"DOTA_Item.PhoenixAsh.Cast"
-					}
-				}
-				"UnitName"	"tiny_illusion"
-				"UnitCount"	"1"
-				"Duration"	"50"
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Action_SpawnTiny"
+			}
+			"FireSound"
+			{
+				"EffectName"	"DOTA_Item.PhoenixAsh.Cast"
 			}
 		}
 	}
