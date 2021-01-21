@@ -1694,8 +1694,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
     local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
     growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
-    hero:AddItemByName("item_throw_many")
-	hero:AddItemByName("item_castrefresh")
+    hero:AddItemByName("item_throw_one")
     
     
     -- hero:SetAbilityByIndex(a0,11);
@@ -2547,7 +2546,7 @@ function Action_SpawnTiny(keys)
 		return
 	end  
 	--GameRules.Definitions.
-    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brwan_siege",spe);
+    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brawn_siege",spe);
 end
 
 --fuck with logic server

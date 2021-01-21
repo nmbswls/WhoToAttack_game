@@ -166,6 +166,27 @@ if GameRules.Definitions == nil then
         [37] = {
             name = "hidden_willow"
             },
+        [38] = {
+            name = "neutral_01"
+            },
+        [39] = {
+            name = "neutral_02"
+            },
+        [40] = {
+            name = "neutral_03"
+            },
+        [41] = {
+            name = "neutral_04"
+            },
+        [42] = {
+            name = "neutral_05"
+            },
+        [43] = {
+            name = "neutral_06"
+            },
+        [44] = {
+            name = "tiny_illusion"
+            },
     }
     
     

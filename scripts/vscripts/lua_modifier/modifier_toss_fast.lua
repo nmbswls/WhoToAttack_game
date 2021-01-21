@@ -51,7 +51,7 @@ function modifier_toss_fast:OnDestroy()
 			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, true)
 			
 		for i = 1, #aroundUnits do
-			ApplyDamage({victim = aroundUnits[i], attacker = owner, damage = 50, damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NONE})
+			ApplyDamage({victim = aroundUnits[i], attacker = owner, damage = 90, damage_type = DAMAGE_TYPE_MAGICAL, damage_flags = DOTA_DAMAGE_FLAG_NONE})
 		end
 		
     end
