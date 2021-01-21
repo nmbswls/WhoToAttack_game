@@ -1851,7 +1851,7 @@ function WhoToAttack:OnEntityKilled(keys)
     
     local killed_level = u:GetLevel()
     local bonus = killed_level * 1;
-    if string.find(attacker:GetUnitName(), "neutral") then
+    if string.find(u:GetUnitName(), "neutral") then
 		bonus = killed_level * 2;
 	end
     local hero1 = PlayerManager:getHeroByTeam(attacker_team);
