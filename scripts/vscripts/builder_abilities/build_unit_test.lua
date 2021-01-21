@@ -22,7 +22,9 @@ function AddBuildAbility(keys)
 	if caster:HasModifier("modifier_item_castrefresh") then
 		local a = caster:FindModifierByName("modifier_item_castrefresh"):GetAbility();
 		local restoreGailv = a:GetLevelSpecialValueFor("refreshchance", (ability:GetLevel() -1))
-		print('refreshchance ' .. refreshchance);
+		if RandomInt(1,100) < restoreGailv then
+			ability:RefundManaCost()
+		end
 	end
 	
     local rand = RandomInt(1,100)

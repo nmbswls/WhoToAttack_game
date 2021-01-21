@@ -1,11 +1,11 @@
-item_throw_one = class({})
+item_throw_one_fast = class({})
 
-function item_throw_one:GetAOERadius()
+function item_throw_one_fast:GetAOERadius()
     return 300
 end
 
 
-function item_throw_one:OnSpellStart()
+function item_throw_one_fast:OnSpellStart()
     local caster = self:GetCaster()
     local casterPos = caster:GetAbsOrigin()
     local team = caster:GetTeam()
@@ -63,7 +63,7 @@ function item_throw_one:OnSpellStart()
 end
 
 
-function item_throw_one:CastFilterResultLocation(vLocation)
+function item_throw_one_fast:CastFilterResultLocation(vLocation)
     if not IsServer() then
         return;
     end
@@ -85,7 +85,7 @@ function item_throw_one:CastFilterResultLocation(vLocation)
     return UF_SUCCESS
 end
 
-function item_throw_one:GetCustomCastErrorLocation(vLocation)
+function item_throw_one_fast:GetCustomCastErrorLocation(vLocation)
 	
 	return "只能选择开门的地方"
 end

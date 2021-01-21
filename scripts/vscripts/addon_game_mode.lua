@@ -873,7 +873,9 @@ function WhoToAttack:InitUnit(team, unit)
     if table.contains(GameRules.Definitions.UnitNames, unitName) then
         table.insert(self.to_be_destory_list[1], unit)
         Timers:CreateTimer(0.5, function()
-            unit:SetContextThink("OnUnitThink", function() return UnitAI:OnUnitThink(unit) end, 1)
+			if IsValidEntity(unit) then
+				unit:SetContextThink("OnUnitThink", function() return UnitAI:OnUnitThink(unit) end, 1)
+			end
         end)
     end
     
@@ -1690,7 +1692,8 @@ function WhoToAttack:OnPlayerPickHero(keys)
     --local a2 = AddAbilityAndSetLevel(hero,"wudi",1)
     local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
     growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
-    hero:AddItemByName("item_throw_one")
+    hero:AddItemByName("item_throw_many")
+	hero:AddItemByName("item_castrefresh")
     
     
     -- hero:SetAbilityByIndex(a0,11);

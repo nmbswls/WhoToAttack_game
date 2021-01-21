@@ -633,34 +633,7 @@
 				"Properties"	{}
 				"States"	{}
 				"IsHidden"	"0"
-				"OnSpentMana"
-				{
-					"Random"
-					{
-						"OnSuccess"
-						{
-							"ApplyModifier"
-							{
-								"Target"	"CASTER"
-								"ModifierName"	"modifier_item_castrefresh_2"
-								"Duration"	"5"
-							}
-							"FireEffect"
-							{
-								"Target"	"CASTER"
-								"ControlPoints"	{}
-								"ControlPointEntities"	{}
-								"EffectName"	"particles/items2_fx/refresher.vpcf"
-								"EffectAttachType"	"follow_origin"
-							}
-							"FireSound"
-							{
-								"EffectName"	"DOTA_Item.Refresher.Activate"
-							}
-						}
-						"Chance"	"%refreshchance"
-					}
-				}
+
 				"Passive"	"1"
 			}
 			"modifier_item_castrefresh_2"
