@@ -1278,7 +1278,9 @@ function WhoToAttack:LockCard(team_id, locked)
 	if hero == nil then
 		return false;
 	end
-	
+	if locked then
+		print("locked? " .. locked)
+	end
 	hero.lock_draw = locked
 	return true
 end
@@ -2100,7 +2102,7 @@ function WhoToAttack:OnLockCards(keys)
     local locked = keys.locked
     local player = PlayerResource:GetPlayer(keys.PlayerID)
 	local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
-	if WhoToAttack:LockCard(hero, locked) then
+	if WhoToAttack:LockCard(hero.team, locked) then
 		CustomGameEventManager:Send_ServerToPlayer(player, "lock_cards_rsp", {locked = locked});
 	end
 end
@@ -2277,7 +2279,7 @@ function WhoToAttack:InitGameMode()
 	CustomGameEventManager:RegisterListener("ChooseEncounterReq",Dynamic_Wrap(WhoToAttack, 'OnChooseEncounter'))
     
     
-	CustomGameEventManager:RegisterListener("player_query_shop_items_req",Dynamic_Wrap(EconManager, 'OnPlayerQueryShopItemsReq'))
+	
     
     --出生点初始化
     Timers:CreateTimer(1, function()

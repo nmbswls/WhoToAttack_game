@@ -28,6 +28,7 @@
 		"DOTA_Tooltip_ability_build_hidden_drow"	"黑暗游侠"
 		"DOTA_Tooltip_ability_build_wizard_zeus"	"宙斯"
 		"DOTA_Tooltip_ability_build_vibrant_warlock"	"术士"
+		"purchase_cost" "{s:cost} 骨币"
 		"class_evil"	"邪恶"
 		"class_wizard"	"巫师"
 		"class_brawn"	"刚毅"
