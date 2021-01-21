@@ -646,54 +646,65 @@ ChaoshengList = {
 	},
 }
 
-MonsterList = {
+MonsterGroupPool = {
 	[1] = {
-		[1] = {name = "neutral_01", weight = 10},
-		[2] = {name = "neutral_01", weight = 10},
-		[3] = {name = "neutral_01", weight = 10},
-		[4] = {name = "neutral_01", weight = 10},
-		[5] = {name = "neutral_01", weight = 10},
-		[6] = {name = "neutral_01", weight = 10},
+		[1] = {groupId = 100, weight = 10},
+		[2] = {groupId = 100, weight = 10},
+		[3] = {groupId = 100, weight = 10},
+		[4] = {groupId = 100, weight = 10},
+		[5] = {groupId = 100, weight = 10},
+		[6] = {groupId = 100, weight = 10},
 	},
 	[2] = {
-		[1] = {name = "neutral_02", weight = 10},
-		[2] = {name = "neutral_02", weight = 10},
-		[3] = {name = "neutral_02", weight = 10},
-		[4] = {name = "neutral_02", weight = 10},
-		[5] = {name = "neutral_02", weight = 10},
-		[6] = {name = "neutral_02", weight = 10},
+		[1] = {groupId = 101, weight = 10},
+		[2] = {groupId = 101, weight = 10},
+		[3] = {groupId = 101, weight = 10},
+		[4] = {groupId = 101, weight = 10},
+		[5] = {groupId = 101, weight = 10},
+		[6] = {groupId = 101, weight = 10},
 	},
 	[3] = {
-		[1] = {name = "neutral_03", weight = 10},
-		[2] = {name = "neutral_03", weight = 10},
-		[3] = {name = "neutral_03", weight = 10},
-		[4] = {name = "neutral_03", weight = 10},
-		[5] = {name = "neutral_02", weight = 10},
-		[6] = {name = "neutral_02", weight = 10},
+		[1] = {groupId = 101, weight = 10},
+		[2] = {groupId = 101, weight = 10},
+		[3] = {groupId = 101, weight = 10},
+		[4] = {groupId = 101, weight = 10},
+		[5] = {groupId = 101, weight = 10},
+		[6] = {groupId = 101, weight = 10},
 	},
 	[4] = {
-		[1] = {name = "neutral_04", weight = 10},
-		[2] = {name = "neutral_04", weight = 10},
-		[3] = {name = "neutral_04", weight = 10},
-		[4] = {name = "neutral_04", weight = 10},
-		[5] = {name = "neutral_03", weight = 10},
-		[6] = {name = "neutral_03", weight = 10},
+		[1] = {groupId = 103, weight = 10},
+		[2] = {groupId = 103, weight = 10},
+		[3] = {groupId = 103, weight = 10},
+		[4] = {groupId = 103, weight = 10},
+		[5] = {groupId = 103, weight = 10},
+		[6] = {groupId = 103, weight = 10},
 	},
 	[5] = {
-		[1] = {name = "neutral_05", weight = 10},
-		[2] = {name = "neutral_05", weight = 10},
-		[3] = {name = "neutral_05", weight = 10},
-		[4] = {name = "neutral_05", weight = 10},
-		[5] = {name = "neutral_04", weight = 10},
-		[6] = {name = "neutral_04", weight = 10},
+		[1] = {groupId = 104, weight = 10},
 	},
 	[6] = {
-		[1] = {name = "neutral_06", weight = 10},
-		[2] = {name = "neutral_06", weight = 10},
-		[3] = {name = "neutral_06", weight = 10},
-		[4] = {name = "neutral_06", weight = 10},
-		[5] = {name = "neutral_05", weight = 10},
-		[6] = {name = "neutral_05", weight = 10},
+		[1] = {groupId = 105, weight = 10},
+	},
+}
+
+MonsterGroupInfo = {
+	[100] = {
+		[1] = {name = "neutral_01", cnt = 5};
+	},
+	[101] = {
+		[1] = {name = "neutral_02", cnt = 5};
+	},
+	[102] = {
+		[1] = {name = "neutral_03", cnt = 5};
+	},
+	[103] = {
+		[1] = {name = "neutral_04", cnt = 5};
+	},
+	[104] = {
+		[1] = {name = "neutral_05", cnt = 5};
+	},
+	[105] = {
+		[1] = {name = "neutral_06", cnt = 5};
 	},
 }
 
@@ -785,11 +796,15 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		
 		GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(), retUnit.name, false)
 	elseif data.etype == ETYPE_RUQIN then
-		local monsters = MonsterList[data.level]
-		local retMonster = GetWeightedOne(monsters)
+		local pool = MonsterGroupPool[data.level]
+		local retGroupInfo = GetWeightedOne(pool)
+		local gInfo = MonsterGroupInfo[retGroupInfo.groupId];
+		for _,info in pairs(gInfo) do
+			GameRules:GetGameModeEntity().WhoToAttack:SpawnNeutral(hero.team, info.name, info.cnt)	
+		end	
 		
-		GameRules:GetGameModeEntity().WhoToAttack:SpawnNeutral(hero.team, retMonster.name, 3)
-                        hero:EmitSound("NeutralStack.Success");
+		
+               hero:EmitSound("NeutralStack.Success");
 	end
 	
 	-- print('handleOneEncounter ' .. eid);
