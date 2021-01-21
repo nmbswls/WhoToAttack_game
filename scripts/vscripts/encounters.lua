@@ -572,13 +572,13 @@ ShopinfoList = {
 		[1] = {item = "item_shell", weight = 10},
 		[2] = {item = "item_repairhammer", weight = 10},
 		[3] = {item = "item_mangotrees", weight = 10},
-		[4] = {item = "item_shell", weight = 10},
+		[4] = {item = "item_drawcard", weight = 10},
 	},
 	[3] = {
 		[1] = {item = "item_moneyevil", weight = 10},
 		[2] = {item = "item_omni", weight = 10},
-		[3] = {item = "item_shell", weight = 10},
-		[4] = {item = "item_shell", weight = 10},
+		[3] = {item = "item_moneyevil", weight = 10},
+		[4] = {item = "item_omni", weight = 10},
 	},
 	[4] = {
 		[1] = {item = "item_asms", weight = 10},
@@ -664,12 +664,12 @@ MonsterGroupPool = {
 		[6] = {groupId = 101, weight = 10},
 	},
 	[3] = {
-		[1] = {groupId = 101, weight = 10},
-		[2] = {groupId = 101, weight = 10},
-		[3] = {groupId = 101, weight = 10},
-		[4] = {groupId = 101, weight = 10},
-		[5] = {groupId = 101, weight = 10},
-		[6] = {groupId = 101, weight = 10},
+		[1] = {groupId = 102, weight = 10},
+		[2] = {groupId = 102, weight = 10},
+		[3] = {groupId = 102, weight = 10},
+		[4] = {groupId = 102, weight = 10},
+		[5] = {groupId = 102, weight = 10},
+		[6] = {groupId = 102, weight = 10},
 	},
 	[4] = {
 		[1] = {groupId = 103, weight = 10},
@@ -681,30 +681,44 @@ MonsterGroupPool = {
 	},
 	[5] = {
 		[1] = {groupId = 104, weight = 10},
+		[2] = {groupId = 104, weight = 10},
+		[3] = {groupId = 104, weight = 10},
+		[4] = {groupId = 104, weight = 10},
+		[5] = {groupId = 104, weight = 10},
+		[6] = {groupId = 104, weight = 10},
 	},
 	[6] = {
 		[1] = {groupId = 105, weight = 10},
+		[2] = {groupId = 105, weight = 10},
+		[3] = {groupId = 105, weight = 10},
+		[4] = {groupId = 105, weight = 10},
+		[5] = {groupId = 105, weight = 10},
+		[6] = {groupId = 105, weight = 10},
 	},
 }
 
 MonsterGroupInfo = {
 	[100] = {
-		[1] = {name = "neutral_01", cnt = 5};
+		[1] = {name = "neutral_01", cnt = 3};
 	},
 	[101] = {
-		[1] = {name = "neutral_02", cnt = 5};
+		[1] = {name = "neutral_02", cnt = 3};
 	},
 	[102] = {
-		[1] = {name = "neutral_03", cnt = 5};
+		[1] = {name = "neutral_03", cnt = 2};
+                [2] = {name = "neutral_02", cnt = 1};
 	},
 	[103] = {
-		[1] = {name = "neutral_04", cnt = 5};
+		[1] = {name = "neutral_04", cnt = 2};
+                [2] = {name = "neutral_03", cnt = 1};
 	},
 	[104] = {
-		[1] = {name = "neutral_05", cnt = 5};
+		[1] = {name = "neutral_05", cnt = 2};
+                [2] = {name = "neutral_04", cnt = 1};
 	},
 	[105] = {
-		[1] = {name = "neutral_06", cnt = 5};
+		[1] = {name = "neutral_06", cnt = 2};
+                [2] = {name = "neutral_05", cnt = 1};
 	},
 }
 

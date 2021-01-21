@@ -2281,7 +2281,7 @@ function WhoToAttack:InitGameMode()
     GameRules:SetHeroRespawnEnabled( false )
     GameRules:SetGoldTickTime(0)
     GameRules:SetGoldPerTick(0)
-    GameRules:SetStartingGold(70)
+    GameRules:SetStartingGold(7)
 	GameRules:GetGameModeEntity():SetFogOfWarDisabled(true);
     GameRules:GetGameModeEntity():SetSelectionGoldPenaltyEnabled(false)
     GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
