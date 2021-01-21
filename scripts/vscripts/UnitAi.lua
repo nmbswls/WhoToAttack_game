@@ -80,7 +80,7 @@ function UnitAI:EvaluateCommand(unit, cmdName)
         end
         if unit:HasAbility('siegeattack')  and unit.in_battle_id ~= unit:GetTeam() then
 			--print("siegeattack has ability " .. unit:GetHealth() .. " " .. unit:GetMaxHealth())
-            if unit:GetHealth() < unit:GetMaxHealth() * 0.8 then
+            if unit:GetHealth() < unit:GetMaxHealth() * 0.35 then
                 local base = self:GetCertainBase(unit.in_battle_id)
                 if base then
                     unit:Stop();
