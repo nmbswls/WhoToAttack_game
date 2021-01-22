@@ -7083,7 +7083,7 @@
 	"SnowAura"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityTextureName"	"Shiva_Guard_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -7143,7 +7143,7 @@
 	"FireAura"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityTextureName"	"Cloak_of_Flames_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
