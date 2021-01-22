@@ -20,10 +20,13 @@ function AddBuildAbility(keys)
     
 	
 	if caster:HasModifier("modifier_item_castrefresh") then
+                local particle = "particles/items2_fx/refresher.vpcf"
 		local a = caster:FindModifierByName("modifier_item_castrefresh"):GetAbility();
 		local restoreGailv = a:GetLevelSpecialValueFor("refreshchance", (ability:GetLevel() -1))
 		if RandomInt(1,100) < restoreGailv then
 			ability:RefundManaCost()
+                        caster:EmitSound("DOTA_Item.Refresher.Activate")
+                        ParticleManager:CreateParticle(particle,PATTACH_ABSORIGIN_FOLLOW,caster)
 		end
 	end
 	

@@ -2546,7 +2546,7 @@ function Action_SpawnTiny(keys)
 		return
 	end  
 	--GameRules.Definitions.
-    --local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"brawn_siege",spe);
+     local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"tiny_illusion",spe);
 end
 
 --fuck with logic server
