@@ -370,6 +370,7 @@ ETYPE_WUSHI = 4
 ETYPE_SHANGDIAN = 5
 ETYPE_CHAOSHENG = 6
 ETYPE_RUQIN = 7
+ETYPE_SUIPIAN = 8
 --1 - kugong
 --2 - yinhangjia
 --3 - xiaochou
@@ -550,15 +551,28 @@ EncounterInfo = {
 	},
 	[801] = {
 		etype = 8,
+        items = {
+            [1] = {item = "item_summontiny", cnt = 1},
+            [2] = {item = "item_mango9", cnt = 2},
+        },
 	},
 	[802] = {
 		etype = 8,
+        items = {
+            [1] = {item = "item_summontiny", cnt = 1}
+        },
 	},
 	[803] = {
 		etype = 8,
+        items = {
+            [1] = {item = "item_summontiny", cnt = 1}
+        },
 	},
 	[804] = {
 		etype = 8,
+        items = {
+            [1] = {item = "item_summontiny", cnt = 1}
+        },
 	},
 }
 
@@ -818,7 +832,26 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		end	
 		
 		
-               hero:EmitSound("NeutralStack.Success");
+        hero:EmitSound("NeutralStack.Success");
+        
+    elseif data.etype == ETYPE_SUIPIAN then
+		local items = data.items;
+        if not items then
+            return false
+        end
+		for _,item in pairs(items) do
+            local cnt = item.cnt;
+            local name = item.item;
+            if type(cnt) ~= "number" then
+                cnt = 1;
+            end
+            for i = 1,cnt do
+                WhoToAttack:GiveItem(hero, name);
+            end
+        end
+		
+		
+        hero:EmitSound("NeutralStack.Success");
 	end
 	
 	-- print('handleOneEncounter ' .. eid);

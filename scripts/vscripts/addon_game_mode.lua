@@ -1696,7 +1696,6 @@ function WhoToAttack:OnPlayerPickHero(keys)
     local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
     growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
     hero:AddItemByName("item_throw_one")
-    hero:AddItemByName("item_summontiny")
     
     
     -- hero:SetAbilityByIndex(a0,11);
@@ -2430,6 +2429,9 @@ end
 
 
 function WhoToAttack:GiveItem(hero, item_name)
+    if not item_name then
+        return;
+    end
     local has_enemy_slot = false
     for slot=0,5 do
         if hero:GetItemInSlot(slot) == nil or (hero:GetItemInSlot(slot):GetAbilityName() == item_name and hero:GetItemInSlot(slot):IsStackable()) then
