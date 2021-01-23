@@ -2551,6 +2551,25 @@ function Action_SpawnTiny(keys)
      local newyUnit = GameRules:GetGameModeEntity().WhoToAttack:CreateUnit(hero.team, hero:GetAbsOrigin(),"tiny_illusion",spe);
 end
 
+function Action_AddBaseFeature(keys)
+	local hero = keys.caster;
+    --local featureId = keys.featureId;
+    
+
+	if hero == nil or not hero:IsAlive() then
+		return
+	end  
+    local base = hero.base;
+    if not base or not base:IsAlive() then
+        return
+    end
+    -- if not featureId then
+        -- return
+    -- end
+	--local fname = GameRules.Definitions.JidiFeatures[featureId];
+    base:AddAbility("SnowAura");
+end
+
 --fuck with logic server
 
 function WhoToAttack:SendStartGameReq()
