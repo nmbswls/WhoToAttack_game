@@ -1508,10 +1508,25 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ID"	"1526"
-		"ItemCastOnPickup"	"0"
+		"ItemCastOnPickup"	"1"
 		"ItemPermanent"	"0"
 		"ItemRequirements"	{}
 		"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Action_AddBaseFeature"
+			}
+			"FireSound"
+			{
+				"EffectName"	"hud.equip.agh_scepter"
+			}
+		}
 	}
 
 	"item_recipe_snowaura"
@@ -1520,6 +1535,7 @@
 		"AbilityTextureName"	"item_Default_recipe_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1527"
+		"ItemCastOnPickup"	"0"
 		"ItemCost"	"10"
 		"ItemRecipe"	"1"
 		"ItemResult"	"item_snowaura"
