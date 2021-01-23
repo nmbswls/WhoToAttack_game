@@ -2575,6 +2575,28 @@ function Action_AddBaseFeature(keys)
     end
 end
 
+function Action_AddFireBaseFeature(keys)
+	local hero = keys.caster;
+    --local featureId = keys.featureId;
+    
+
+	if hero == nil or not hero:IsAlive() then
+		return
+	end  
+    local base = hero.base;
+    if not base or not base:IsAlive() then
+        return
+    end
+    -- if not featureId then
+        -- return
+    -- end
+	--local fname = GameRules.Definitions.JidiFeatures[featureId];
+    local newAbility = base:AddAbility("FireAura");
+    if newAbility then
+        newAbility:SetLevel(1);
+    end
+end
+
 --fuck with logic server
 
 function WhoToAttack:SendStartGameReq()

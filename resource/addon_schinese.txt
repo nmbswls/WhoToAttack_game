@@ -617,5 +617,12 @@
 		"DOTA_Tooltip_ability_item_snowaura"	"寒冰之地"
 		"DOTA_Tooltip_ability_item_snowaura_Description"	"使己方场地变为寒冰之地\n在场单位移动速度减少80%"
 		"DOTA_Tooltip_ability_item_recipe_snowaura"	"寒冰之地合成卷轴"
+		"DOTA_Tooltip_ability_SnowAura"	"寒冰之地"
+		"DOTA_Tooltip_ability_SnowAura_Description"	"寒冰之地上的单位受到极寒效果，移动速度降低80%"
+		"DOTA_Tooltip_ability_FireAura"	"火焰之地"
+		"DOTA_Tooltip_ability_FireAura_Description"	"火焰之地上的单位受到灼烧效果，每秒损失3%当前生命值"
+		"DOTA_Tooltip_ability_item_fireaura"	"火焰之地"
+		"DOTA_Tooltip_ability_item_fireaura_Description"	"使己方场地变为火焰之地\n在场单位每秒损失3%当前生命值"
+		"DOTA_Tooltip_ability_item_recipe_fireaura"	"火焰之地合成卷轴"
 	}
 }

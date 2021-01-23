@@ -552,26 +552,40 @@ EncounterInfo = {
 	[801] = {
 		etype = 8,
         items = {
-            [1] = {item = "item_summontiny", cnt = 1},
-            [2] = {item = "item_mango9", cnt = 2},
+            [1] = {item = "item_aurashard", cnt = 1},
         },
 	},
 	[802] = {
 		etype = 8,
         items = {
-            [1] = {item = "item_summontiny", cnt = 1}
+            [1] = {item = "item_aurashard", cnt = 2}
         },
 	},
 	[803] = {
 		etype = 8,
         items = {
-            [1] = {item = "item_summontiny", cnt = 1}
+            [1] = {item = "item_aurashard_big", cnt = 1}
         },
 	},
 	[804] = {
 		etype = 8,
         items = {
-            [1] = {item = "item_summontiny", cnt = 1}
+            [1] = {item = "item_aurashard_big", cnt = 1},
+            [2] = {item = "item_aurashard", cnt = 1},
+        },
+	},
+	[805] = {
+		etype = 8,
+        items = {
+            [1] = {item = "item_aurashard_big", cnt = 1},
+            [2] = {item = "item_aurashard", cnt = 2},
+        },
+	},
+	[806] = {
+		etype = 8,
+        items = {
+            [1] = {item = "item_aurashard_big", cnt = 2},
+
         },
 	},
 }
@@ -851,7 +865,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
         end
 		
 		
-        hero:EmitSound("NeutralStack.Success");
+        hero:EmitSound("General.Buy");
 	end
 	
 	-- print('handleOneEncounter ' .. eid);
