@@ -27,6 +27,7 @@
 		"AbilityCooldown"	"5"
 		"AOERadius"	"300"
 		"ID"	"1600"
+		"ItemCost"	"2"
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
@@ -42,6 +43,7 @@
 		"AbilityCooldown"	"0.1"
 		"AOERadius"	"300"
 		"ID"	"1601"
+		"ItemCost"	"2"
 		"ItemDroppable"	"0"
 		"ItemRequirements"	{}
 	}
@@ -136,7 +138,7 @@
 		"ItemQuality"	"epic"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"30"
+		"ItemCost"	"2"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"regen_health;regen_mana;str;agi;int;hard_to_tag"
 		"ItemAliases"	"ls;linken's sphere"
@@ -190,7 +192,7 @@
 		"ItemQuality"	"rare"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"30"
+		"ItemCost"	"2"
 		"ItemAliases"	"glimmer cape"
 		"ItemRequirements"	{}
 		// Special
@@ -243,7 +245,7 @@
 		"ItemQuality"	"rare"
 		// Item Info
 		// -------------------------------------------------------------------------------------------------------------
-		"ItemCost"	"90"
+		"ItemCost"	"2"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemAlertable"	"1"
 		"ItemShopTags"	"regen_health;boost_magic_resist"
@@ -337,7 +339,7 @@
 		// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"ID"	"158"
 		"ItemQuality"	"artifact"
-		"ItemCost"	"120"
+		"ItemCost"	"2"
 		"ItemDeclarations"	"DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_IN_SPEECH | DECLARE_PURCHASES_TO_SPECTATORS"
 		"ItemShopTags"	"damage;attack_speed;unique"
 		"ItemAliases"	"mjollnir"
@@ -436,7 +438,7 @@
 		"AbilityTextureName"	"item_Energy_Booster_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1502"
-		"ItemCost"	"90"
+		"ItemCost"	"2"
 		"ItemDroppable"	"0"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -470,7 +472,7 @@
 		"AbilityTextureName"	"item_Philosopher_Stone_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1503"
-		"ItemCost"	"60"
+		"ItemCost"	"2"
 		"ItemDroppable"	"0"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -521,7 +523,7 @@
 		"AbilityTextureName"	"item_Philosophers_Stoneold_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ID"	"1520"
-		"ItemCost"	"30"
+		"ItemCost"	"2"
 		"ItemDroppable"	"1"
 		"ItemSellable"	"0"
 		"ItemKillable"	"0"
@@ -568,7 +570,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1504"
-		"ItemCost"	"120"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -619,7 +621,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"ID"	"1505"
-		"ItemCost"	"999"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -720,7 +722,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1507"
-		"ItemCost"	"50"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -800,7 +802,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1508"
-		"ItemCost"	"60"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -861,7 +863,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1509"
-		"ItemCost"	"110"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -930,7 +932,7 @@
 		"AbilityCooldown"	"50"
 		"AbilityCastRange"	"15000"
 		"ID"	"1510"
-		"ItemCost"	"120"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -992,7 +994,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"55"
 		"ID"	"1511"
-		"ItemCost"	"60"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1285,7 +1287,7 @@
 		"AbilityCooldown"	"300"
 		"AbilityCastRange"	"5000"
 		"ID"	"1512"
-		"ItemCost"	"60"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1347,7 +1349,7 @@
 		"AbilityCooldown"	"160"
 		"AbilityManaCost"	"10"
 		"ID"	"1513"
-		"ItemCost"	"999"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1376,7 +1378,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"30"
 		"ID"	"1521"
-		"ItemCost"	"1"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{
@@ -1406,7 +1408,7 @@
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"50"
 		"ID"	"1522"
-		"ItemCost"	"1"
+		"ItemCost"	"2"
 		"ItemRequirements"	{}
 		"precache"
 		{

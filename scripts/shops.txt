@@ -14,12 +14,9 @@
 	{
 	        "item"          "item_remove_ability"
                 "item"          "item_exp_book"
-                "item"          "item_drawcard"
-                "item"          "item_repairhammer"
                 "item"          "item_snowaura"
                 "item"          "item_throw_many"
                 "item"          "item_throw_one_fast"
-                "item"          "item_radiance"
                 "item"          "item_summontiny"
                 "item"          "item_castrefresh"
 	}
