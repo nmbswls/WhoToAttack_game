@@ -2569,7 +2569,10 @@ function Action_AddBaseFeature(keys)
         -- return
     -- end
 	--local fname = GameRules.Definitions.JidiFeatures[featureId];
-    base:AddAbility("SnowAura");
+    local newAbility = base:AddAbility("SnowAura");
+    if newAbility then
+        newAbility:SetLevel(1);
+    end
 end
 
 --fuck with logic server
