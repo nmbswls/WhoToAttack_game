@@ -1696,6 +1696,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
     local growAbility = AddAbilityAndSetLevel(hero,"builder_growth",1)
     growAbility:ApplyDataDrivenModifier(hero,hero,"modifier_builder_growth",{});
     hero:AddItemByName("item_throw_one")
+    hero:AddItemByName("item_summontiny")
     
     
     -- hero:SetAbilityByIndex(a0,11);

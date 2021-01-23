@@ -10703,6 +10703,7 @@
 		"Model"	"models/items/tiny/burning_stone_giant/burning_stone_giant_04.vmdl"
 		"ModelScale"	"2.5"
 		"Level"	"10"
+        "AutoAttacksByDefault"	"0"
 		"ConsideredHero"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
 		"RingRadius"	"150"
