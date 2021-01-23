@@ -73,8 +73,8 @@ function item_throw_one:CastFilterResultLocation(vLocation)
         return UF_FAIL_CUSTOM;
     end
     
-    if not target.is_open then
-        --return UF_FAIL_CUSTOM;
+    if not target.is_open and target.idx ~= self:GetCaster():GetTeam() then
+        return UF_FAIL_CUSTOM;
     end
     --DeepPrintTable(self:GetCaster())
     -- if not self:getcaster().can_toss then
