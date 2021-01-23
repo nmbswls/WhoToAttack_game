@@ -670,7 +670,7 @@ function WhoToAttack:StartABattleRound()
         self:ShowPrepare(i)
         
         --test code
-        self:SpawnNeutral(i);
+        --self:SpawnNeutral(i);
     end
     
     GameRules:SetTimeOfDay(0.3)
@@ -1711,7 +1711,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
         
 	-- end
     Timers:CreateTimer(2,function()
-        self:UpgradeBuildSkill(hero,"brawn_siege")
+        -- self:UpgradeBuildSkill(hero,"brawn_siege")
     end)
     
     
