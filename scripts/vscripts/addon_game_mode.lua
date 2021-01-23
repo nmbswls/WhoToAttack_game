@@ -1278,10 +1278,11 @@ function WhoToAttack:LockCard(team_id, locked)
 	if hero == nil then
 		return false;
 	end
-	if locked then
-		print("locked? " .. locked)
+	if locked == 1 then
+		hero.lock_draw = true
+    else
+        hero.lock_draw = false
 	end
-	hero.lock_draw = locked
 	return true
 end
 
@@ -2377,14 +2378,14 @@ function WhoToAttack:InitGameMode()
 	GameRules:GetGameModeEntity().isConnected = {}
 	
 	self.battle_field_list = {
-        [6] = {is_open = true},
-		[7] = {is_open = true},
-		[8] = {is_open = true},
-		[9] = {is_open = true},
-		[10] = {is_open = true},
-		[11] = {is_open = true},
-		[12] = {is_open = true},
-		[13] = {is_open = true},
+        [6] = {idx = 6, is_open = true},
+		[7] = {idx = 7, is_open = true},
+		[8] = {idx = 8, is_open = true},
+		[9] = {idx = 9, is_open = true},
+		[10] = {idx = 10, is_open = true},
+		[11] = {idx = 11, is_open = true},
+		[12] = {idx = 12, is_open = true},
+		[13] = {idx = 13, is_open = true},
     }
 
 	self.card_pool = {
