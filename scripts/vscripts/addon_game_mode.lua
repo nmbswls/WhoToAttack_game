@@ -2074,6 +2074,9 @@ function WhoToAttack:OnChooseEncounter(keys)
 	if hero and hero.cur_encounters then
 		if eidx > 0 and eidx <= #hero.cur_encounters then
 			ret = WtaEncounters:handleOneEncounter(hero, hero.cur_encounters[eidx])
+			if ret == true then	
+				hero.cur_encounters = {};
+			end
 		end
 	end
 	CustomGameEventManager:Send_ServerToTeam(hero.team, "ChooseEncounterRsp", {ret = ret});
