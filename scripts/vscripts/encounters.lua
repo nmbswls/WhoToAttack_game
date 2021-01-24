@@ -479,17 +479,17 @@ EncounterInfo = {
 	[501] = {
 		etype = 5,
 		level = 1,
-		cost = 25,
+		cost = 20,
 	},
 	[502] = {
 		etype = 5,
 		level = 2,
-		cost = 40,
+		cost = 35,
 	},
 	[503] = {
 		etype = 5,
 		level = 3,
-		cost = 60,
+		cost = 55,
 	},
 	[504] = {
 		etype = 5,
@@ -499,7 +499,7 @@ EncounterInfo = {
 	[505] = {
 		etype = 5,
 		level = 5,
-		cost = 120,
+		cost = 125,
 	},
 	[601] = {
 		etype = 6,
