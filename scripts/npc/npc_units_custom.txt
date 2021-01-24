@@ -5160,11 +5160,11 @@
 		// Range within a target can be acquired.
 		"AttackAcquisitionRange"	"2000"
 		// Range within a target can be attacked.
-		"AttackRange"	"1500"
+		"AttackRange"	"1300"
 		// Particle system model for projectile.
 		"ProjectileModel"	"particles/base_attacks/ranged_siege_good.vpcf"
 		// Speed of projectile.
-		"ProjectileSpeed"	"600"
+		"ProjectileSpeed"	"1000"
 		// Bounds
 		// ----------------------------------------------------------------
 		"RingRadius"	"75"
@@ -5259,11 +5259,11 @@
 		// Range within a target can be acquired.
 		"AttackAcquisitionRange"	"2000"
 		// Range within a target can be attacked.
-		"AttackRange"	"1500"
+		"AttackRange"	"1300"
 		// Particle system model for projectile.
 		"ProjectileModel"	"particles/base_attacks/ranged_siege_bad.vpcf"
 		// Speed of projectile.
-		"ProjectileSpeed"	"600"
+		"ProjectileSpeed"	"1000"
 		// Bounds
 		// ----------------------------------------------------------------
 		"RingRadius"	"75"
@@ -6527,7 +6527,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		// Base health.
-		"StatusHealth"	"600"
+		"StatusHealth"	"580"
 		// Health regeneration rate.
 		"StatusHealthRegen"	"1"
 		// Base mana.
@@ -6656,7 +6656,7 @@
 		// Status
 		// ----------------------------------------------------------------
 		// Base health.
-		"StatusHealth"	"750"
+		"StatusHealth"	"720"
 		// Health regeneration rate.
 		"StatusHealthRegen"	"1"
 		// Base mana.
@@ -9855,9 +9855,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"45"
+		"AttackDamageMin"	"65"
 		// Damage range max.
-		"AttackDamageMax"	"50"
+		"AttackDamageMax"	"70"
 		"AttackRate"	"1.7"
 		// Speed of attack.
 		"BaseAttackSpeed"	"200"
@@ -9995,9 +9995,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"65"
+		"AttackDamageMin"	"95"
 		// Damage range max.
-		"AttackDamageMax"	"70"
+		"AttackDamageMax"	"100"
 		"AttackRate"	"1.7"
 		// Speed of attack.
 		"BaseAttackSpeed"	"200"
@@ -10703,7 +10703,7 @@
 		"Model"	"models/items/tiny/burning_stone_giant/burning_stone_giant_04.vmdl"
 		"ModelScale"	"2.5"
 		"Level"	"10"
-        "AutoAttacksByDefault"	"0"
+		"AutoAttacksByDefault"	"0"
 		"ConsideredHero"	"0"
 		"BoundsHullName"	"DOTA_HULL_SIZE_FILLER"
 		"RingRadius"	"150"

@@ -125,7 +125,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_PERCENTAGE"	"-100"
-					"MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT"	"-100"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-100"
 					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
 				}
 				"States"
@@ -1540,7 +1540,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"damage_absorb"	"80 110"
+				"damage_absorb"	"70 100"
 				"LinkedSpecialBonus"	"special_bonus_unique_abaddon"
 			}
 			"03"
@@ -3317,6 +3317,7 @@
 	"brewmaster_thunder_clap"
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
@@ -6721,7 +6722,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"150 250"
+				"damage"	"110 220"
 			}
 		}
 	}
