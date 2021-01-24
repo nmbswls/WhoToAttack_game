@@ -2,19 +2,17 @@ if WtaThrones == nil then
 	WtaThrones = class({})
 end
 
-function WtaThrones:init(teamNum)
+function WtaThrones:init()
 
-    print("throne init num:" .. teamNum)
     
 	local throneNum = GameRules.Definitions.ThroneCnt;
-	self.teamNum = teamNum;
 	self.throneList = {};
 	self.throneTeamScores = {};
 	self.sortedTeamIdx = {};
 	for i=1,throneNum do 
 		table.insert(self.throneTeamScores,{});
 		table.insert(self.sortedTeamIdx,{});
-		for tid = 6, 6+self.teamNum-1 do
+		for tid = 6, 13 do
 			self.throneTeamScores[i][tid] = 5;
 			table.insert(self.sortedTeamIdx[i],tid);
 		end
@@ -28,7 +26,7 @@ function WtaThrones:init(teamNum)
 		local throne = CreateUnitByName(config.unit_name, GameRules.Definitions.ThronePos[i], true, nil, nil, 3);
 		table.insert(self.throneList,throne);
 		local throneAb = throne:FindAbilityByName("throne_show_score");
-		for tid = 6, 6+self.teamNum-1 do
+		for tid = 6, 13 do
             local name = "modifier_show_score_player_" .. string.format("%02d", tid);
 			local mod = throneAb:ApplyDataDrivenModifier(throne,throne,name,{duration = -1});
             mod:SetStackCount(5);
@@ -97,7 +95,7 @@ function WtaThrones:_updateThroneShow(throneIdx)
 	local throne = self.throneList[throneIdx];
 	
     --不再删除后重新加buff 提高效率
-	-- for tid=6,6+self.teamNum-1 do
+	-- for tid=6,13 do
 		-- --remove all
 		-- throne:RemoveModifierByName("modifier_show_score_player_" .. string.format("%02d", tid));
 	-- end
@@ -121,7 +119,7 @@ function WtaThrones:ReorderTeams(throneIdx)
 
 	local scoreList = self.throneTeamScores[throneIdx];
 	local newOrder = {};
-	for tid=6,6+self.teamNum-1 do
+	for tid=6,13 do
 		table.insert(newOrder, tid);
 	end
 	
