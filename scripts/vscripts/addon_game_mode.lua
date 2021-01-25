@@ -2557,7 +2557,6 @@ end
 
 function Setmodel_Chicken(keys)
         local unit = keys.target;
-        unit:NotifyWearablesOfModelChange(1);
         unit:SetModel("models/items/courier/mighty_chicken/mighty_chicken.vmdl");
         
 
