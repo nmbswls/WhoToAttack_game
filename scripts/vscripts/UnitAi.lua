@@ -417,9 +417,9 @@ function UnitAI:GetSpellData(hSpell)
             if abilityName == 'axe_culling_blade' then
                 local hpMin = 0
                 if hSpell:GetLevel() == 1 then
-                    hpMin = 100
-                elseif hSpell:GetLevel() == 2 then
                     hpMin = 200
+                elseif hSpell:GetLevel() == 2 then
+                    hpMin = 300
                 end
                 
                 if hTarget ~= nil and hTarget:IsAlive() and hTarget:GetHealth() > hpMin then

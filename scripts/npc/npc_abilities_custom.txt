@@ -873,7 +873,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"1"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0"
@@ -1623,7 +1623,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_6"
 		// Time
@@ -2148,7 +2148,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"2"
 		"AbilityCastPoint"	"0.5"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
@@ -2491,7 +2491,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.3"
@@ -2861,7 +2861,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"	"1"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"3"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -3004,7 +3004,7 @@
 		"AbilityUnitDamageType"	"DAMAGE_TYPE_MAGICAL"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"AbilityCastPoint"	"0.3"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
@@ -3207,7 +3207,7 @@
 	{
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"2"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// General
@@ -4119,7 +4119,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"2"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -4145,13 +4145,13 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"kill_threshold"	"100 200"
+				"kill_threshold"	"200 300"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_5"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"100 200"
+				"damage"	"200 300"
 			}
 			"03"
 			{
@@ -4227,7 +4227,7 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_NO"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"2"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -4681,7 +4681,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_NO"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityCastPoint"	"0.0"
@@ -7308,7 +7308,7 @@
 				"IsPurgable"	"0"
 				"Properties"	{}
 				"IsBuff"	"0"
-				"ThinkInterval"	"1"
+				"ThinkInterval"	"0.1"
 				"States"	{}
 				"OnIntervalThink"
 				{
@@ -7317,6 +7317,12 @@
 						"Target"	"TARGET"
 						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
 						"Function"	"Setmodel_Chicken"
+					}
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"RemoveOriginalWearables"
 					}
 				}
 			}

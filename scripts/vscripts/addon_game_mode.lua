@@ -2562,6 +2562,15 @@ function Setmodel_Chicken(keys)
 
 end
 
+function RemoveOriginalWearables(keys)
+        local unit = keys.target;
+	for i, v in pairs(unit:GetChildren()) do
+		if v:GetClassname() == 'dota_item_wearable' then
+			v:RemoveSelf()
+		end
+	end
+end
+
 function Action_SpawnRandomLv5(keys)
 	local hero = keys.caster;
 	if hero == nil or not hero:IsAlive() then

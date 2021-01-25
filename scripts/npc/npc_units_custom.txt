@@ -10247,7 +10247,7 @@
 		// General
 		// ----------------------------------------------------------------
 		// Model.
-		"Model"	"models/heroes/axe/axe.vmdl"
+		"Model"	"models/items/axe/ti9_jungle_axe/axe_bare.vmdl"
 		"BaseClass"	"npc_dota_creature"
 		"SoundSet"	"Hero_Axe"
 		"GameSoundsFile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"

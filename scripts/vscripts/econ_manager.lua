@@ -96,7 +96,7 @@ function EconManager:OnPlayerQueryEconData(keys)
 	CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
 	CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = 10})
 	
-	return;
+
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
 	local req = CreateHTTPRequestScriptVM("POST","http://yueyutech.com:10010/GetCollection")
 	req:SetHTTPRequestGetOrPostParameter("steamid",tostring(steamid))
@@ -178,7 +178,7 @@ function EconManager:OnPlayerPurchase(keys)
 	local item = keys.ItemName
 	local steamid = PlayerResource:GetSteamAccountID(id)
 	
-	return;
+
 	
 	local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
 	req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
