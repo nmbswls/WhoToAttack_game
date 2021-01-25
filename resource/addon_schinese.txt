@@ -4,6 +4,14 @@
 	"Tokens"
 	{
 		"addon_game_name"	"到底打谁"
+		"Dota_Custom1"	"影承废墟"
+		"Dota_Custom2"	"魔霭圣池"
+		"Dota_Custom3"	"遮面神庙"
+		"Dota_Custom4"	"战栗之岛"
+		"Dota_Custom5"	"闪烁荒原"
+		"Dota_Custom6"	"溪谷幽林"
+		"Dota_Custom7"	"荒邪之狱"
+		"Dota_Custom8"	"蔓生帝国"
 		"DOTA_Tooltip_ability_empty1"	"Empty Normal"
 		"DOTA_Tooltip_ability_empty2"	"Empty Normal"
 		"DOTA_Tooltip_modifier_jidi_wudi"	"无敌"
@@ -624,5 +632,10 @@
 		"DOTA_Tooltip_ability_item_fireaura"	"火焰之地"
 		"DOTA_Tooltip_ability_item_fireaura_Description"	"使己方场地变为火焰之地\n在场单位每秒损失3%当前生命值"
 		"DOTA_Tooltip_ability_item_recipe_fireaura"	"火焰之地合成卷轴"
+		"DOTA_Tooltip_ability_ModelAura"	"混乱之地"
+		"DOTA_Tooltip_ability_item_modelaura"	"混乱之地"
+		"DOTA_Tooltip_ability_ModelAura_Description"	"混乱之地上的单位将受到变形效果"
+		"DOTA_Tooltip_ability_item_recipe_modelaura"	"混乱之地合成卷轴"
+		"DOTA_Tooltip_ability_item_modelaura_Description"	"使己方场地变为混乱之地\n在场单位变成小鸡"
 	}
 }

@@ -16,6 +16,7 @@
                 "item"          "item_exp_book"
                 "item"          "item_snowaura"
                 "item"          "item_fireaura"
+                "item"          "item_modelaura"
 	}
 			
 	"misc"

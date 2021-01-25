@@ -7277,7 +7277,7 @@
 	"ModelAura"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityTextureName"	"Scythe_of_Vyse_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -7287,10 +7287,6 @@
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"1500"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
-		}
 		"Modifiers"
 		{
 			"model_Modifier"
@@ -7312,9 +7308,25 @@
 				"IsPurgable"	"0"
 				"Properties"	{}
 				"IsBuff"	"0"
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
-				"EffectAttachType"	"follow_origin"
 				"ThinkInterval"	"1"
+				"States"	{}
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"Target"	"TARGET"
+						"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+						"Function"	"Setmodel_Chicken"
+					}
+				}
+			}
+			"modifier_ModelAura"
+			{
+				"IsDebuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MODEL_CHANGE"	"models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+				}
 				"States"	{}
 			}
 		}

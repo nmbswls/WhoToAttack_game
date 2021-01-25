@@ -1562,6 +1562,37 @@
 		}
 	}
 
+	"item_modelaura"
+	{
+		"BaseClass"	"item_datadriven"
+		"AbilityTextureName"	"item_Scythe_of_Vyse_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"ID"	"1532"
+		"ItemCastOnPickup"	"0"
+		"ItemPermanent"	"0"
+		"ItemInitialCharges"	"1"
+		"ItemRequirements"	{}
+		"ItemDisassembleRule"	"DOTA_ITEM_DISASSEMBLE_NEVER"
+		"precache"
+		{
+		}
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"scripts/vscripts/addon_game_mode.lua"
+				"Function"	"Action_AddModelBaseFeature"
+			}
+			"FireSound"
+			{
+				"EffectName"	"hud.equip.agh_scepter"
+			}
+			"SpendCharge"	{}
+		}
+	}
+
 	"item_recipe_snowaura"
 	{
 		"BaseClass"	"item_recipe_arcane_boots"
@@ -1588,6 +1619,22 @@
 		"ItemCost"	"10"
 		"ItemRecipe"	"1"
 		"ItemResult"	"item_fireaura"
+		"ItemRequirements"
+		{
+			"01"	"item_aurashard_big;item_aurashard_big;item_aurashard_big"
+		}
+	}
+
+	"item_recipe_modelaura"
+	{
+		"BaseClass"	"item_recipe_arcane_boots"
+		"AbilityTextureName"	"item_Default_recipe_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"ID"	"1533"
+		"ItemCastOnPickup"	"0"
+		"ItemCost"	"10"
+		"ItemRecipe"	"1"
+		"ItemResult"	"item_modelaura"
 		"ItemRequirements"
 		{
 			"01"	"item_aurashard_big;item_aurashard_big;item_aurashard_big"

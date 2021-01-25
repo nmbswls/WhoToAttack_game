@@ -1,6 +1,10 @@
 "AddonInfo"
 {
-
+      maps			"wtamap"
+    "wtamap"
+	{
+	    "MaxPlayers"                    "8"
+	} 
     "Default_Keys"
 	{
 		"01"

@@ -310,6 +310,9 @@ function WhoToAttack:CheckWinLoseForTeam(team)
 end
 
 function WhoToAttack:OnThink()
+	for nPlayerID = 0, PlayerResource:GetPlayerCount() do
+		self:UpdatePlayerColor( nPlayerID )
+	end
     if IsClient() or self.is_game_ended then return nil end
     
     if self.stage == nil or self.stage == 0 then
@@ -1352,7 +1355,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
     end
     
     if hero:GetGold() < cost then
-        msg.bottom('no enough money', pid, 1)
+        msg.bottom('金钱不足', pid, 1)
         return false
     end
     
@@ -2086,7 +2089,7 @@ end
 function WhoToAttack:OnDrawCards(keys)
     local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
     if hero:GetGold() < GameRules.Definitions.CardRedrawCost then
-        msg.bottom('money not enough', keys.PlayerID)
+        msg.bottom('金钱不足', keys.PlayerID)
         return
     end
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
@@ -2262,6 +2265,27 @@ function WhoToAttack:InitGameMode()
 	
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 0 );
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 );
+	self.m_TeamColors = {}
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_1] = { 255, 0, 0 }	--		red
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_2]  = { 243, 201, 9 }		--		Yellow
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_3] = { 197, 77, 168 }	--      Pink
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_4] = { 255, 108, 0 }		--		Orange
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_5] = { 52, 85, 255 }		--		Blue
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_6] = { 101, 212, 19 }	--		Green
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_7] = { 129, 83, 54 }		--		Brown
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_8] = { 27, 192, 216 }	--		Cyan
+
+
+	for team = 0, (DOTA_TEAM_COUNT-1) do
+		color = self.m_TeamColors[ team ]
+		if color then
+			SetTeamCustomHealthbarColor( team, color[1], color[2], color[3] )
+		end
+	end
+
+	for nPlayerID = 0, PlayerResource:GetPlayerCount() do
+		self:UpdatePlayerColor( nPlayerID )
+	end
     
     
 
@@ -2531,6 +2555,14 @@ function Action_DrawCard(keys)
 	GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero.team);
 end
 
+function Setmodel_Chicken(keys)
+        local unit = keys.target;
+        unit:NotifyWearablesOfModelChange(1);
+        unit:SetModel("models/items/courier/mighty_chicken/mighty_chicken.vmdl");
+        
+
+end
+
 function Action_SpawnRandomLv5(keys)
 	local hero = keys.caster;
 	if hero == nil or not hero:IsAlive() then
@@ -2600,7 +2632,52 @@ function Action_AddFireBaseFeature(keys)
     end
 end
 
+function Action_AddModelBaseFeature(keys)
+	local hero = keys.caster;
+    --local featureId = keys.featureId;
+    
+
+	if hero == nil or not hero:IsAlive() then
+		return
+	end  
+    local base = hero.base;
+    if not base or not base:IsAlive() then
+        return
+    end
+    -- if not featureId then
+        -- return
+    -- end
+	--local fname = GameRules.Definitions.JidiFeatures[featureId];
+    local newAbility = base:AddAbility("ModelAura");
+    if newAbility then
+        newAbility:SetLevel(1);
+    end
+end
+
 --fuck with logic server
+
+function WhoToAttack:ColorForTeam( teamID )
+	local color = self.m_TeamColors[ teamID ]
+	if color == nil then
+		color = { 255, 255, 255 } -- default to white
+	end
+	return color
+end
+
+function WhoToAttack:UpdatePlayerColor( nPlayerID )
+	if not PlayerResource:HasSelectedHero( nPlayerID ) then
+		return
+	end
+
+	local hero = PlayerResource:GetSelectedHeroEntity( nPlayerID )
+	if hero == nil then
+		return
+	end
+
+	local teamID = PlayerResource:GetTeam( nPlayerID )
+	local color = self:ColorForTeam( teamID )
+	PlayerResource:SetCustomPlayerColor( nPlayerID, color[1], color[2], color[3] )
+end
 
 function WhoToAttack:SendStartGameReq()
 	
