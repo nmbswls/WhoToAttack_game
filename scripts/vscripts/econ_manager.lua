@@ -138,6 +138,7 @@ function EconManager:OnPlayerEquip(keys)
 	
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
 	
+	--zhao yixia  zhuanhuan biaoqian
 	--jiaoyan
 	if to_equip ~= nil then
 		if EconFuncs["OnEquip_" .. to_equip .. "_server"] then
