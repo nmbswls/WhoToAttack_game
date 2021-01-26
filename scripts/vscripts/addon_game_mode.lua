@@ -2273,7 +2273,7 @@ function WhoToAttack:InitGameMode()
 	self.m_TeamColors[DOTA_TEAM_CUSTOM_5] = { 52, 85, 255 }		--		Blue
 	self.m_TeamColors[DOTA_TEAM_CUSTOM_6] = { 101, 212, 19 }	--		Green
 	self.m_TeamColors[DOTA_TEAM_CUSTOM_7] = { 129, 83, 54 }		--		Brown
-	self.m_TeamColors[DOTA_TEAM_CUSTOM_8] = { 27, 192, 216 }	--		Cyan
+	self.m_TeamColors[DOTA_TEAM_CUSTOM_8] = { 140, 42, 244 }	--		purple
 
 
 	for team = 0, (DOTA_TEAM_COUNT-1) do

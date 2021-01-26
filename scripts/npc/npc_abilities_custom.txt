@@ -3221,7 +3221,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"crit_chance"	"15"
+				"crit_chance"	"15 20"
 				"LinkedSpecialBonus"	"special_bonus_unique_phantom_assassin_2"
 			}
 			"02"
@@ -4119,7 +4119,6 @@
 		"SpellImmunityType"	"SPELL_IMMUNITY_ENEMIES_YES"
 		"SpellDispellableType"	"SPELL_DISPELLABLE_YES"
 		"FightRecapLevel"	"2"
-		"AbilityType"	"DOTA_ABILITY_TYPE_BASIC"
 		"MaxLevel"	"2"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
@@ -4156,22 +4155,22 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed_bonus"	"30"
+				"speed_bonus"	"30 30"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_speed_bonus"	"30"
+				"atk_speed_bonus"	"30 30"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"speed_duration"	"6"
+				"speed_duration"	"6 6"
 			}
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed_aoe"	"900"
+				"speed_aoe"	"900 900"
 			}
 		}
 		"AbilitySound"	"Hero_Axe.Culling_Blade_Success"
@@ -4411,7 +4410,7 @@
 			"06"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"burn_damage"	"60"
+				"burn_damage"	"55"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_2"
 			}
 			"07"
@@ -4477,7 +4476,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"2.0"
+				"duration"	"1.8"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro"
 			}
 			"03"
@@ -4529,7 +4528,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"100"
+				"damage"	"90"
 				"LinkedSpecialBonus"	"special_bonus_unique_jakiro_7"
 			}
 			"02"
@@ -4545,7 +4544,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"duration"	"10"
+				"duration"	"7"
 			}
 			"05"
 			{
