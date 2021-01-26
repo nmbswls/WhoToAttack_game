@@ -1313,7 +1313,7 @@ function WhoToAttack:DrawCards(team_id, auto_draw)
 	h.now_hold_cards = now_hold_cards
     
     local pid = GameRules:GetGameModeEntity().team2playerid[team_id]
-    msg.bottom('draw card '..cards, pid)
+    --msg.bottom('draw card '..cards, pid)
 
     -- for _,n in pairs(now_hold_cards) do
         -- print("c: " .. n)

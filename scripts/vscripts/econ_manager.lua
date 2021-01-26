@@ -86,39 +86,39 @@ function EconManager:OnPlayerQueryEconData(keys)
 	local playerid = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerid)
 	if not player then return end
-	local hero = player:GetAssignedHero()
-	if not hero then return end
 	local data = {
 		[1] = "t10",
-		[2] = "t11",
+		[2] = "t15",
 	}
+	
+	print('OnPlayerQueryEconData 2')
 	
 	CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
 	CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = 10})
 	
 
-	local steamid = PlayerResource:GetSteamAccountID(playerid)
-	local req = CreateHTTPRequestScriptVM("POST","http://yueyutech.com:10010/GetCollection")
-	req:SetHTTPRequestGetOrPostParameter("steamid",tostring(steamid))
-	req:Send(function(result)
-		if result.StatusCode == 200 then
-			local data = JSON:decode(result.Body)
-			for name, equip in pairs(data) do
-				if name ~= 'steamid' then
-					if equip == true then
-						if Econ["OnEquip_" .. name .. "_server"] then
-							Econ["OnEquip_" .. name .. "_server"](hero)
-						end
-					else
-						if Econ["OnRemove_" .. name .. "_server"] then
-							Econ["OnRemove_" .. name .. "_server"](hero)
-						end
-					end
-				end
-			end
-			CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
-		end
-	end)
+	-- local steamid = PlayerResource:GetSteamAccountID(playerid)
+	-- local req = CreateHTTPRequestScriptVM("POST","http://yueyutech.com:10010/GetCollection")
+	-- req:SetHTTPRequestGetOrPostParameter("steamid",tostring(steamid))
+	-- req:Send(function(result)
+		-- if result.StatusCode == 200 then
+			-- local data = JSON:decode(result.Body)
+			-- for name, equip in pairs(data) do
+				-- if name ~= 'steamid' then
+					-- if equip == true then
+						-- if Econ["OnEquip_" .. name .. "_server"] then
+							-- Econ["OnEquip_" .. name .. "_server"](hero)
+						-- end
+					-- else
+						-- if Econ["OnRemove_" .. name .. "_server"] then
+							-- Econ["OnRemove_" .. name .. "_server"](hero)
+						-- end
+					-- end
+				-- end
+			-- end
+			-- CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
+		-- end
+	-- end)
 end
 
 
@@ -180,15 +180,15 @@ function EconManager:OnPlayerPurchase(keys)
 	
 
 	
-	local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
-	req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
-	req:SetHTTPRequestGetOrPostParameter('item', tostring(item))
-	req:Send(function(result)
-		if result.StatusCode == 200 then
-			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), 'bom_player_purchase_message', {})
-		end
-		self:OnPlayerAskCollection({PlayerID=id})
-	end)
+	-- local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
+	-- req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
+	-- req:SetHTTPRequestGetOrPostParameter('item', tostring(item))
+	-- req:Send(function(result)
+		-- if result.StatusCode == 200 then
+			-- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), 'bom_player_purchase_message', {})
+		-- end
+		-- self:OnPlayerAskCollection({PlayerID=id})
+	-- end)
 end
 
 
