@@ -813,8 +813,8 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
         
 	for i = 0,4 do
-		local pSkill = newyUnit:GetAbilityByIndex(i)
-		pSkill:SetLevel(1);
+		local pSkill = newyUnit:GetAbilityByIndex(i)           
+                pSkill:SetLevel(1);
 		if spe then
 		    pSkill:SetLevel(2);
 		end
