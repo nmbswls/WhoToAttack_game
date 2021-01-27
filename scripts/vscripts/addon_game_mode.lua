@@ -2662,6 +2662,28 @@ function Action_AddModelBaseFeature(keys)
     end
 end
 
+function Action_AddBlinkBaseFeature(keys)
+	local hero = keys.caster;
+    --local featureId = keys.featureId;
+    
+
+	if hero == nil or not hero:IsAlive() then
+		return
+	end  
+    local base = hero.base;
+    if not base or not base:IsAlive() then
+        return
+    end
+    -- if not featureId then
+        -- return
+    -- end
+	--local fname = GameRules.Definitions.JidiFeatures[featureId];
+    local newAbility = base:AddAbility("BlinkAura");
+    if newAbility then
+        newAbility:SetLevel(1);
+    end
+end
+
 --fuck with logic server
 
 function WhoToAttack:ColorForTeam( teamID )

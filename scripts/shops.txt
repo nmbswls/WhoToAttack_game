@@ -17,6 +17,7 @@
                 "item"          "item_snowaura"
                 "item"          "item_fireaura"
                 "item"          "item_modelaura"
+                "item"          "item_blinkaura"
 	}
 			
 	"misc"

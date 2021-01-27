@@ -2733,7 +2733,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"5.0"
+				"duration"	"4.0"
 			}
 		}
 		"AbilitySound"	"Hero_Dazzle.Shallow_Grave"
@@ -4613,7 +4613,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"8"
+				"duration"	"6"
 			}
 			"03"
 			{
@@ -4623,7 +4623,7 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"armor_reduction"	"5 6"
+				"armor_reduction"	"4 6"
 				"LinkedSpecialBonus"	"special_bonus_unique_alchemist_5"
 			}
 			"05"
@@ -5270,7 +5270,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"gailv"	"2 4 7 12 17 22 27 33 40 50"
+				"gailv"	"5 10 16 23 31 40 50 62 75 90"
 			}
 		}
 	}
@@ -5690,7 +5690,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"5 10 16 23 31 40 50 62 75 90"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -5720,7 +5720,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gailv"	"5 10 16 23 31 40 50 62 75 90"
+				"gailv"	"2 4 7 12 17 22 27 33 40 50"
 			}
 		}
 	}
@@ -7213,10 +7213,10 @@
 		}
 	}
 
-	"NomanaAura"
+	"BlinkAura"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityTextureName"	"Flicker_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
@@ -7226,18 +7226,14 @@
 		"AbilityCooldown"	"0"
 		"AbilityManaCost"	"0"
 		"AbilityCastRange"	"1500"
-		"precache"
-		{
-			"particle"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
-		}
 		"Modifiers"
 		{
-			"nomana_Modifier"
+			"blink_Modifier"
 			{
 				"IsBuff"	"1"
 				"IsHidden"	"0"
 				"IsPurgable"	"0"
-				"Aura"	"TestSysAura_nomana"
+				"Aura"	"TestSysAura_blink"
 				"Aura_Radius"	"1500"
 				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 				"Aura_Types"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_COURIER | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM | DOTA_UNIT_TARGET_OTHER"
@@ -7245,17 +7241,37 @@
 				"Aura_ApplyToCaster"	"0"
 				"Passive"	"1"
 			}
-			"TestSysAura_nomana"
+			"TestSysAura_blink"
 			{
 				"IsDebuff"	"1"
 				"IsPurgable"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%nomanapct"
-				}
+				"Properties"	{}
 				"IsBuff"	"0"
-				"EffectName"	"particles/units/heroes/hero_night_stalker/nightstalker_crippling_fear_aura.vpcf"
-				"EffectAttachType"	"follow_origin"
+				"ThinkInterval"	"1"
+				"OnCreated"
+				{
+					"AddAbility"
+					{
+						"Target"	"TARGET"
+						"AbilityName"	"blink_land"
+					}
+					"LevelUpAbility"
+					{
+						"Target"	"TARGET"
+						"AbilityName"	"blink_land"
+					}
+				}
+			}
+			"modifier_BlinkAura"
+			{
+				"IsDebuff"	"1"
+				"OnTakeDamage"
+				{
+					"Blink"
+					{
+						"Target"	"ATTACKER"
+					}
+				}
 			}
 		}
 		"AbilitySpecial"
@@ -7913,6 +7929,68 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"max_targets"	"4"
+			}
+		}
+	}
+
+	"blink_land"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Flicker_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+		"SpellImmunityType"	"SPELL_IMMUNITY_ALLIES_YES"
+		"MaxLevel"	"1"
+		"AbilityCastPoint"	"0.0"
+		"Modifiers"
+		{
+			"modifier_blink_land"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"Aura"	"modifier_blink_land_2"
+				"Aura_Radius"	"10"
+				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+				"Aura_Types"	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_OTHER"
+				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+				"Aura_ApplyToCaster"	"1"
+				"IsHidden"	"1"
+			}
+			"modifier_blink_land_2"
+			{
+				"IsDebuff"	"1"
+				"OnTakeDamage"
+				{
+					"Blink"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_BASIC"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_BOTH"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+							"Center"	"ATTACKER"
+							"Radius"	"500"
+						}
+					}
+				}
+				"IsHidden"	"1"
+			}
+		}
+	}
+
+	"ga_addgold"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"Bounty_Rune_minimap_icon"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"OnKill"
+		{
+			"GrantXPGold"
+			{
+				"Target"	"CASTER"
+				"GoldAmount"	"1"
 			}
 		}
 	}
