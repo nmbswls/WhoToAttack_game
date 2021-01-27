@@ -812,11 +812,14 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
         
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
         
-		local firstSkill = newyUnit:GetAbilityByIndex(0)
-        firstSkill:SetLevel(1);
-        if spe then
-            firstSkill:SetLevel(2);
-        end
+	for i = 0,4 do
+		local pSkill = newyUnit:GetAbilityByIndex(i)
+		pSkill:SetLevel(1);
+		if spe then
+		    pSkill:SetLevel(2);
+		end
+	end
+	
         
 
 		local yinshenFeature = newyUnit:FindAbilityByName("unit_feature_yinshen");
