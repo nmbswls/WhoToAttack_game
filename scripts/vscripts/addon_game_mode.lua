@@ -813,12 +813,6 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
         
 
-	for i = 0,4 do
-		local pSkill = newyUnit:GetAbilityByIndex(i)           
-                pSkill:SetLevel(1);
-		if spe then
-		    pSkill:SetLevel(2);
-
 		for i = 0,4 do
 			local pSkill = newyUnit:GetAbilityByIndex(i)
 			if pSkill then
@@ -1697,7 +1691,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetAbilityPoints(0)
 	
 	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
-	hero.base_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl";
+	hero.base_model = "models/heroes/undying/undying_tower.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
@@ -2739,3 +2733,4 @@ function WhoToAttack:SendStartGameReq()
 	self:StartGame();
 	
 end
+
