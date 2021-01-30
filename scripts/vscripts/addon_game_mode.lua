@@ -210,7 +210,7 @@ function WhoToAttack:StartGame()
 
        for i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
         CustomGameEventManager:Send_ServerToTeam(i,"start_game",{
-            key = GetClientToken(i),
+            -- key = GetClientToken(i),
         })
         
     end
@@ -260,9 +260,6 @@ function WhoToAttack:StartGame()
         self:SetStage(1)
         --StartAPrepareRound()
     end)
-    
-    
-    
     
 end
 
@@ -2763,7 +2760,29 @@ function WhoToAttack:SendStartGameReq()
 	end, function(t)
 	
 	end);
-	self:StartGame();
+    
+    Timers:CreateTimer(3,function()
+        
+        
+        self:OnStartGameReqSuccess();
+    end)
 	
+	
+end
+
+function WhoToAttack:OnStartGameReqSuccess(data)
+    
+    --start game with shipin for each player
+    
+    --初始化设置
+    
+    --初始化卡池
+    --初始化分数信息，放进nettable 客户端显示
+    self:StartGame();
+
+end
+
+function WhoToAttack:OnStartGameReqFail()
+    self:StartGame();
 end
 
