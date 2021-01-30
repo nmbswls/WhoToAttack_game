@@ -549,6 +549,10 @@ function WhoToAttack:StartAPrepareRound()
 	for tid =6,13 do
 		self.battle_field_list[tid].is_open = false;
 	end
+    
+    if playerNum == 0 then
+        return
+    end
 	
     local openDoorTurn = self.battle_round  % 5;
     
@@ -784,14 +788,32 @@ function WhoToAttack:DoPlayerDie(hero)
 	end
 	
 	hero.ranking = self.alive_count;
-	
+    
 	self.alive_count = self.alive_count - 1;
-	
+	print('alive count ' .. self.alive_count)
 	if self.alive_count == 0 then
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+        print('single game end')
+        self:EndGame(DOTA_TEAM_BADGUYS)
+    elseif self.alive_count == 1 then
+        print('multi game end')
+        self:EndGame(hero.team)
+		
 	end
 	
 	WtaThrones:ClearScore(hero.team);
+end
+
+function WhoToAttack:EndGame(winTeam)
+    winTeam = winTeam or DOTA_TEAM_BADGUYS
+    
+    local endData = {}
+    for _,hero in pairs(PlayerManager.heromap) do
+        --self:CheckWinLoseForTeam(hero)
+        print("end game info " .. hero.ranking);
+        table.insert(endData,{player_id = hero:GetPlayerID(), tid = hero.team, rank = hero.ranking})
+    end
+    CustomNetTables:SetTableValue( "end_info", "end_info", endData)
+    GameRules:SetGameWinner(winTeam)
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName, spe)
@@ -1934,6 +1956,9 @@ function WhoToAttack:OnGameRulesStateChange()
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS  then
 	
 		print("start game")
+    elseif nNewState == DOTA_GAMERULES_STATE_POST_GAME then
+        print('post game')
+    
 	end
 end
 
@@ -1963,6 +1988,12 @@ function WhoToAttack:HandleCommand(keys)
 	if tokens[1] == '-cp' then
 	
 	end
+    
+    if tokens[1] == '-end' then
+        self:DoPlayerDie(hero);
+        --self:EndGame(DOTA_TEAM_BADGUYS)
+        --self:DoPlayerDie(hero);
+    end
     
     if tokens[1] == '-http' then
         SendHttpGet("abc");
@@ -2259,7 +2290,6 @@ function WhoToAttack:InitGameMode()
   	GameRules:SetStrategyTime(0)
   	GameRules:SetShowcaseTime(0)
     
-	
     
     GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 1 );
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 1 );
@@ -2491,6 +2521,9 @@ function WhoToAttack:DropItemAppointed(item_name, owner, center_unit)
 end
 
 function WhoToAttack:ChangeBaseModel(hero, model_name)
+    if model_name == nil or model_name == "" then
+        return
+    end
 	hero.base_model = model_name;
 	local base = hero.base;
 	if not base or base:IsNull() then

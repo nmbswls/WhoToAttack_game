@@ -4,5 +4,6 @@
 	[
 		"player_info_table",
 		"econ_data",
+		"end_info",
 	]
 }
