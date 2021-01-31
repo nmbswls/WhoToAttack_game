@@ -2767,6 +2767,37 @@ function WhoToAttack:SendStartGameReq()
         self:OnStartGameReqSuccess();
     end)
 	
+    --拼接要向服务器发送的steamid数据
+	-- for pid,sid in pairs(PlayerManager.playerid2steamid) do
+		-- if PlayerResource:GetTeam(pid) >= 6 and PlayerResource:GetTeam(pid) <= 13 then
+			-- table.insert(GameRules:GetGameModeEntity().send_status,sid)
+			-- GameRules:GetGameModeEntity().upload_detail_stat[sid] = {}
+			-- if GameRules:GetGameModeEntity().playerid2hero[pid] ~= nil then
+				-- if GameRules:GetGameModeEntity().steamidlist == '' then
+					-- GameRules:GetGameModeEntity().steamidlist = sid
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = sid..'_'..GameRules:GetGameModeEntity().playerid2hero[pid]:entindex()
+				-- else
+					-- GameRules:GetGameModeEntity().steamidlist = GameRules:GetGameModeEntity().steamidlist..','..sid
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = GameRules:GetGameModeEntity().steamidlist_heroindex..','..sid..'_'..GameRules:GetGameModeEntity().playerid2hero[pid]:entindex()
+				-- end
+				-- if PlayerResource:HasCustomGameTicketForPlayerID ( pid ) == true then
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = GameRules:GetGameModeEntity().steamidlist_heroindex..'_vip'
+				-- end
+			-- end
+		-- end
+	-- end
+    
+    -- for id = 0, DOTA_MAX_TEAM_PLAYERS do
+        -- if PlayerResource:IsValidPlayer(id) then
+            -- local steamid = PlayerResource:GetSteamAccountID(id)
+            -- steamid_playerid_map[steamid] = id
+            -- table.insert(players, steamid)
+        -- end
+    -- end
+    
+    -- local player_json = JSON:encode(players)
+    -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
+    -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
 end
 
