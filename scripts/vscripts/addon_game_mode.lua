@@ -797,9 +797,7 @@ function WhoToAttack:DoPlayerDie(hero)
         self:EndGame(hero.team)
 		
 	end
-	local pid = hero:GetPlayerID()
-	local steam_id = PlayerManager:GetSteamIdByPid(pid)
-	self:ReportPlayer(steam_id,1,1);
+	
 	WtaThrones:ClearScore(hero.team);
 end
 
@@ -814,6 +812,9 @@ function WhoToAttack:EndGame(winTeam)
     end
     CustomNetTables:SetTableValue( "end_info", "end_info", endData)
     GameRules:SetGameWinner(winTeam)
+	
+	
+	self:ReportEndInfo();
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName, spe)
@@ -2824,10 +2825,17 @@ function WhoToAttack:OnStartGameReqFail()
     self:StartGame();
 end
 
-function WhoToAttack:ReportPlayer(steam_id, score_diff, game_result)
+function WhoToAttack:ReportEndInfo()
 
-	local data = {steam_id= steam_id, score_diff = score_diff, game_result = game_result}
-	-- HttpUtils:SendHTTPPost(url, data, function(t)
+	local reportInfo = {}
+	for _,hero in pairs(PlayerManager.heromap) do
+		local pid = hero:GetPlayerID()
+		local steam_id = PlayerManager:GetSteamIdByPid(pid)
+		table.insert(reportInfo, {player_id = pid, tid = hero.team, rank = hero.ranking})
+    end
+
+	local sssstr = JSON.encode(reportInfo)
+	-- HttpUtils:SendHTTPPost(url, reportInfo, function(t)
 	
 	-- end, function(t)
 	
