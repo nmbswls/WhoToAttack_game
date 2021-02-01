@@ -251,7 +251,7 @@ function WhoToAttack:StartGame()
     self:UpdateThroneInfo()
     
     --5秒后开始游戏
-    Timers:CreateTimer(5,function()
+    Timers:CreateTimer(3,function()
         
         print('GAME START!')
         --初始化棋子库
@@ -2759,17 +2759,24 @@ function WhoToAttack:SendStartGameReq()
 		return
 	end
 	local url = "";
-	HttpUtils:SendHTTPPost(url, {}, function(t)
+	-- HttpUtils:SendHTTPPost(url, {}, function(t)
 	
-	end, function(t)
+	-- end, function(t)
 	
-	end);
+	-- end);
     
     Timers:CreateTimer(3,function()
         
         
         self:OnStartGameReqSuccess();
     end)
+	
+	local steamids = {}
+	for _,hero in pairs(PlayerManager.heromap) do
+		local pid = hero:GetPlayerID()
+		local steam_id = PlayerManager:GetSteamIdByPid(pid)
+		table.insert(steamids, {steam_id = steam_id})
+    end
 	
     --拼接要向服务器发送的steamid数据
 	-- for pid,sid in pairs(PlayerManager.playerid2steamid) do
@@ -2798,19 +2805,20 @@ function WhoToAttack:SendStartGameReq()
             -- table.insert(players, steamid)
         -- end
     -- end
-    local testTable = {};
-	table.insert(testTable,"asdsadasf")
-	table.insert(testTable,"asdsadasfs22")
-	local player_json = JSON:encode({a = "asd"})
-	print(player_json)
+    
     -- local player_json = JSON:encode(players)
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
+	-- local info_json = JSON:encode({steamids = steamids})
+	-- print(info_json)
 end
 
 function WhoToAttack:OnStartGameReqSuccess(data)
     
+	-- local fakeData = '[{"info1":2,"info2":3},{"info1":20,"info2":30}]'
+	-- local tt = JSON:decode(fakeData)
+	-- DeepPrintTable(tt);
     --start game with shipin for each player
     
     --初始化设置
@@ -2838,10 +2846,11 @@ function WhoToAttack:ReportEndInfo()
 		
 		local pid = hero:GetPlayerID()
 		local steam_id = PlayerManager:GetSteamIdByPid(pid)
-		table.insert(reportInfo, {player_id = pid, tid = hero.team, rank = hero.ranking, coin_diff = coinGain})
+		table.insert(reportInfo, {steam_id = steam_id, tid = hero.team, rank = hero.ranking, coin_diff = coinGain})
     end
 
-	local sssstr = JSON.encode(reportInfo)
+	local sssstr = JSON:encode(reportInfo)
+	-- print(sssstr)
 	-- HttpUtils:SendHTTPPost(url, reportInfo, function(t)
 	
 	-- end, function(t)
