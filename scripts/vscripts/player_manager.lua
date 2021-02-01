@@ -19,6 +19,10 @@ function PlayerManager:init()
 	self.userid2player = {}
 end
 
+function PlayerManager:GetSteamIdByPid(pid)
+	return self.playerid2steamid[pid] or 0;
+end
+
 function PlayerManager:getHeroByPlayer(player_id)
 	
 	return self.playerid2hero[player_id]

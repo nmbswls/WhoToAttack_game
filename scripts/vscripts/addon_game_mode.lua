@@ -797,7 +797,9 @@ function WhoToAttack:DoPlayerDie(hero)
         self:EndGame(hero.team)
 		
 	end
-	
+	local pid = hero:GetPlayerID()
+	local steam_id = PlayerManager:GetSteamIdByPid(pid)
+	self:ReportPlayer(steam_id,1,1);
 	WtaThrones:ClearScore(hero.team);
 end
 
@@ -2798,7 +2800,7 @@ function WhoToAttack:SendStartGameReq()
     local testTable = {};
 	table.insert(testTable,"asdsadasf")
 	table.insert(testTable,"asdsadasfs22")
-	local player_json = json:encode({a = "asd"})
+	local player_json = JSON:encode({a = "asd"})
 	print(player_json)
     -- local player_json = JSON:encode(players)
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
@@ -2822,3 +2824,12 @@ function WhoToAttack:OnStartGameReqFail()
     self:StartGame();
 end
 
+function WhoToAttack:ReportPlayer(steam_id, score_diff, game_result)
+
+	local data = {steam_id= steam_id, score_diff = score_diff, game_result = game_result}
+	-- HttpUtils:SendHTTPPost(url, data, function(t)
+	
+	-- end, function(t)
+	
+	-- end);
+end
