@@ -653,5 +653,18 @@
 		"DOTA_Tooltip_ability_item_recipe_blinkaura"	"闪烁之地合成卷轴"
 		"DOTA_Tooltip_ability_item_blinkaura_Description"	"使己方场地变为闪烁之地\n在场单位受到伤害后闪烁至攻击者周围"
 		"DOTA_Tooltip_modifier_BlinkAura"	"c"
+        
+        
+        
+        "econ_t10"	"t10号"
+        "econ_t13"	"t13号"
+        "econ_t15"	"t15号"
+        
+        "description_t10"	"t10号道具，xxxxxxx"
+        "description_t13"	"t13号道具，xxxxxxx"
+        "description_t15"	"t15号道具，xxxxxxx"
+        
+        "confirm_purchase_msg"      "你确定需要消耗 {d:cost} 点积分购买 {s:item_name} 吗？<br>{s:item_description}"
+        "confirm" "确认"
 	}
 }

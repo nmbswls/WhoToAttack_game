@@ -211,7 +211,7 @@ function WhoToAttack:StartGame()
 
        for i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
         CustomGameEventManager:Send_ServerToTeam(i,"start_game",{
-            key = GetClientToken(i),
+            -- key = GetClientToken(i),
         })
         
     end
@@ -261,9 +261,6 @@ function WhoToAttack:StartGame()
         self:SetStage(1)
         --StartAPrepareRound()
     end)
-    
-    
-    
     
 end
 
@@ -550,6 +547,10 @@ function WhoToAttack:StartAPrepareRound()
 	for tid =6,13 do
 		self.battle_field_list[tid].is_open = false;
 	end
+    
+    if playerNum == 0 then
+        return
+    end
 	
     local openDoorTurn = self.battle_round  % 5;
     
@@ -785,14 +786,32 @@ function WhoToAttack:DoPlayerDie(hero)
 	end
 	
 	hero.ranking = self.alive_count;
-	
+    
 	self.alive_count = self.alive_count - 1;
-	
+	print('alive count ' .. self.alive_count)
 	if self.alive_count == 0 then
-		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+        print('single game end')
+        self:EndGame(DOTA_TEAM_BADGUYS)
+    elseif self.alive_count == 1 then
+        print('multi game end')
+        self:EndGame(hero.team)
+		
 	end
 	
 	WtaThrones:ClearScore(hero.team);
+end
+
+function WhoToAttack:EndGame(winTeam)
+    winTeam = winTeam or DOTA_TEAM_BADGUYS
+    
+    local endData = {}
+    for _,hero in pairs(PlayerManager.heromap) do
+        --self:CheckWinLoseForTeam(hero)
+        print("end game info " .. hero.ranking);
+        table.insert(endData,{player_id = hero:GetPlayerID(), tid = hero.team, rank = hero.ranking})
+    end
+    CustomNetTables:SetTableValue( "end_info", "end_info", endData)
+    GameRules:SetGameWinner(winTeam)
 end
 
 function WhoToAttack:CreateUnit(team, pos, unitName, spe)
@@ -813,6 +832,7 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
         
         local a = AddAbilityAndSetLevel(newyUnit, "modifier_container",1)
         
+
 		for i = 0,4 do
 			local pSkill = newyUnit:GetAbilityByIndex(i)
 			if pSkill then
@@ -821,6 +841,7 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
 					pSkill:SetLevel(2);
 				end
 			end
+
 		end
 	
         
@@ -1690,7 +1711,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetAbilityPoints(0)
 	
 	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
-	hero.base_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl";
+	hero.base_model = "models/heroes/undying/undying_tower.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
@@ -1933,6 +1954,9 @@ function WhoToAttack:OnGameRulesStateChange()
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS  then
 	
 		print("start game")
+    elseif nNewState == DOTA_GAMERULES_STATE_POST_GAME then
+        print('post game')
+    
 	end
 end
 
@@ -1962,6 +1986,12 @@ function WhoToAttack:HandleCommand(keys)
 	if tokens[1] == '-cp' then
 	
 	end
+    
+    if tokens[1] == '-end' then
+        self:DoPlayerDie(hero);
+        --self:EndGame(DOTA_TEAM_BADGUYS)
+        --self:DoPlayerDie(hero);
+    end
     
     if tokens[1] == '-http' then
         SendHttpGet("abc");
@@ -2258,7 +2288,6 @@ function WhoToAttack:InitGameMode()
   	GameRules:SetStrategyTime(0)
   	GameRules:SetShowcaseTime(0)
     
-	
     
     GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_1, 1 );
 	GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_CUSTOM_2, 1 );
@@ -2490,6 +2519,9 @@ function WhoToAttack:DropItemAppointed(item_name, owner, center_unit)
 end
 
 function WhoToAttack:ChangeBaseModel(hero, model_name)
+    if model_name == nil or model_name == "" then
+        return
+    end
 	hero.base_model = model_name;
 	local base = hero.base;
 	if not base or base:IsNull() then
@@ -2729,6 +2761,64 @@ function WhoToAttack:SendStartGameReq()
 	end, function(t)
 	
 	end);
-	self:StartGame();
+    
+    Timers:CreateTimer(3,function()
+        
+        
+        self:OnStartGameReqSuccess();
+    end)
+	
+    --拼接要向服务器发送的steamid数据
+	-- for pid,sid in pairs(PlayerManager.playerid2steamid) do
+		-- if PlayerResource:GetTeam(pid) >= 6 and PlayerResource:GetTeam(pid) <= 13 then
+			-- table.insert(GameRules:GetGameModeEntity().send_status,sid)
+			-- GameRules:GetGameModeEntity().upload_detail_stat[sid] = {}
+			-- if GameRules:GetGameModeEntity().playerid2hero[pid] ~= nil then
+				-- if GameRules:GetGameModeEntity().steamidlist == '' then
+					-- GameRules:GetGameModeEntity().steamidlist = sid
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = sid..'_'..GameRules:GetGameModeEntity().playerid2hero[pid]:entindex()
+				-- else
+					-- GameRules:GetGameModeEntity().steamidlist = GameRules:GetGameModeEntity().steamidlist..','..sid
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = GameRules:GetGameModeEntity().steamidlist_heroindex..','..sid..'_'..GameRules:GetGameModeEntity().playerid2hero[pid]:entindex()
+				-- end
+				-- if PlayerResource:HasCustomGameTicketForPlayerID ( pid ) == true then
+					-- GameRules:GetGameModeEntity().steamidlist_heroindex = GameRules:GetGameModeEntity().steamidlist_heroindex..'_vip'
+				-- end
+			-- end
+		-- end
+	-- end
+    
+    -- for id = 0, DOTA_MAX_TEAM_PLAYERS do
+        -- if PlayerResource:IsValidPlayer(id) then
+            -- local steamid = PlayerResource:GetSteamAccountID(id)
+            -- steamid_playerid_map[steamid] = id
+            -- table.insert(players, steamid)
+        -- end
+    -- end
+    local testTable = {};
+	table.insert(testTable,"asdsadasf")
+	table.insert(testTable,"asdsadasfs22")
+	local player_json = json:encode({a = "asd"})
+	print(player_json)
+    -- local player_json = JSON:encode(players)
+    -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
+    -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
 end
+
+function WhoToAttack:OnStartGameReqSuccess(data)
+    
+    --start game with shipin for each player
+    
+    --初始化设置
+    
+    --初始化卡池
+    --初始化分数信息，放进nettable 客户端显示
+    self:StartGame();
+
+end
+
+function WhoToAttack:OnStartGameReqFail()
+    self:StartGame();
+end
+

@@ -15,28 +15,34 @@ end
 
 EconFuncs = {}
 
-EconFuncs.OnEquip_e101_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnEquip_t10_server = function(hero)
+    print('equip t10')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnRemove_e101_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnRemove_t10_server = function(hero)
+    print('unequip t10')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnEquip_e102_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnEquip_t13_server = function(hero)
+    print('equip t13')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnRemove_e102_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnRemove_t13_server = function(hero)
+    print('unequip t13')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnEquip_e103_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnEquip_t15_server = function(hero)
+    print('equip t15')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnRemove_e103_server = function(hero)
-	WhoToAttack:ChangeBaseModel(hero, "")
+EconFuncs.OnRemove_t15_server = function(hero)
+    print('unequip t15')
+	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
 if EconManager == nil then EconManager = class({}) end
@@ -44,6 +50,7 @@ if EconManager == nil then EconManager = class({}) end
 print('require econ manager')
 function EconManager:constructor()
 	
+    self.SlotInfo = {}
 	
 	CustomGameEventManager:RegisterListener("player_query_shop_items_req",function(_, keys)
 		self:OnPlayerQueryShopItemsReq(keys)
@@ -57,6 +64,9 @@ function EconManager:constructor()
 		self:OnPlayerEquip(keys)
 	end)
 	
+    CustomGameEventManager:RegisterListener("player_preview_req",function(_, keys)
+		self:OnPlayerPreview(keys)
+	end)
 	
 end
 function EconManager:OnPlayerQueryShopItemsReq(keys)
@@ -81,7 +91,6 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 end
 
 function EconManager:OnPlayerQueryEconData(keys)
-	print('OnPlayerQueryEconInfo')
 	
 	local playerid = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerid)
@@ -91,7 +100,6 @@ function EconManager:OnPlayerQueryEconData(keys)
 		[2] = "t15",
 	}
 	
-	print('OnPlayerQueryEconData 2')
 	
 	CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
 	CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = 10})
@@ -124,11 +132,20 @@ end
 
 function EconManager:OnPlayerEquip(keys)
 	local playerid = keys.PlayerID
+    local player = PlayerResource:GetPlayer(playerid)
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
 	local to_equip = keys.to_equip
 	local slot = 1  -- read config
-	local equips = GetTableValue('econ_data', 'equip_info_' .. playerid);
+    
+    local equips = self:GetPlayerEquipInfo(playerid);
+    
+    if not equips then
+        print("get equip info fail.");
+        return
+    end
 	
+    print('OnPlayerEquip ' .. tostring(to_equip))
+    
 	local hero = player:GetAssignedHero()
 	if not hero then return end
 	
@@ -158,23 +175,40 @@ function EconManager:OnPlayerPreview(keys)
 	local playerid = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerid)
 	if not player then return end
+    
 	local hero = player:GetAssignedHero()
+    
+    
 	if not hero then return end
 
 	local name = keys.item
-
-	if Econ["OnEquip_" .. name .. "_server"] then
-		Econ["OnEquip_" .. name .. "_server"](hero)
+    local slot = 1  -- read config
+    
+    
+	local equips = self:GetPlayerEquipInfo(playerid);
+    if not equips then
+        print("get equip info fail.");
+        return
+    end
+    
+	equips[slot] = nil;
+	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
+    
+    --handle already equip
+    
+	if EconFuncs["OnEquip_" .. name .. "_server"] then
+		EconFuncs["OnEquip_" .. name .. "_server"](hero)
 	end
 
-	Timer(10, function()
-		Econ["OnRemove_" .. name .. "_server"](hero)
+	Timers:CreateTimer(10, function()
+		EconFuncs["OnRemove_" .. name .. "_server"](hero)
 	end)
 end
 
 
 function EconManager:OnPlayerPurchase(keys)
 	local id = keys.PlayerID
+    local player = PlayerResource:GetPlayer(playerid)
 	local item = keys.ItemName
 	local steamid = PlayerResource:GetSteamAccountID(id)
 	
@@ -189,6 +223,19 @@ function EconManager:OnPlayerPurchase(keys)
 		-- end
 		-- self:OnPlayerAskCollection({PlayerID=id})
 	-- end)
+end
+
+function EconManager:GetPlayerEquipInfo(playerid)
+    local equips = self.SlotInfo[playerid];
+    if equips == nil then
+        equips = {
+            [1] = nil,
+            [2] = nil,
+            [3] = nil,
+        }
+        self.SlotInfo[playerid] = equips
+    end
+    return equips;
 end
 
 

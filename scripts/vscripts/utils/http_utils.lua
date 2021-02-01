@@ -17,7 +17,14 @@ function HttpUtils:SendHTTPPost(url,game_data,success_cb, fail_cb)
     end)
 end
 
-function HttpUtils:SendHttpGet(url, success_cb, fail_cb)
+function HttpUtils:SendHttpGet(url, params, success_cb, fail_cb)
+    
+    if params ~= nil then
+        for k,v in pairs(params) do
+            url = url .. "&" .. tostring(k) .. "=" .. tostring(v)
+        end
+    end
+
     local req = CreateHTTPRequestScriptVM('GET', url)
 	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
     req:Send(function(res)
