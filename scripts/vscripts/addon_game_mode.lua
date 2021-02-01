@@ -93,6 +93,7 @@ require 'UnitAi'
 require 'timers'
 require 'amhc_library/amhc'
 require 'utils.http_utils'
+require 'utils.json'
 
 LinkLuaModifier("modifier_toss", "lua_modifier/modifier_toss.lua", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier("modifier_toss_fast", "lua_modifier/modifier_toss_fast.lua", LUA_MODIFIER_MOTION_BOTH)
@@ -1922,11 +1923,11 @@ function WhoToAttack:OnGameRulesStateChange()
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
         print("hero selection")
         for nPlayerNumber = 0, DOTA_MAX_TEAM_PLAYERS do
-                Timers:CreateTimer(0,function()
-                    local hPlayer = PlayerResource:GetPlayer(nPlayerNumber)
-                    if hPlayer and PlayerResource:IsValidTeamPlayer(nPlayerNumber) then
-                        hPlayer:MakeRandomHeroSelection()
-					end
+			Timers:CreateTimer(0,function()
+				local hPlayer = PlayerResource:GetPlayer(nPlayerNumber)
+				if hPlayer and PlayerResource:IsValidTeamPlayer(nPlayerNumber) then
+					hPlayer:MakeRandomHeroSelection()
+				end
 			end)
 		end
 	elseif nNewState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS  then
