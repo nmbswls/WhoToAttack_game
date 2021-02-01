@@ -19,7 +19,7 @@ end
 
 function HttpUtils:SendHttpGet(url, params, success_cb, fail_cb)
     
-    if params != nil then
+    if params ~= nil then
         for k,v in pairs(params) do
             url = url .. "&" .. tostring(k) .. "=" .. tostring(v)
         end

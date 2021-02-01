@@ -2794,7 +2794,11 @@ function WhoToAttack:SendStartGameReq()
             -- table.insert(players, steamid)
         -- end
     -- end
-    
+    local testTable = {};
+	table.insert(testTable,"asdsadasf")
+	table.insert(testTable,"asdsadasfs22")
+	local player_json = json:encode({a = "asd"})
+	print(player_json)
     -- local player_json = JSON:encode(players)
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
