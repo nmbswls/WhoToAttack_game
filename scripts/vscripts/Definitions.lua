@@ -15,6 +15,17 @@ if GameRules.Definitions == nil then
 		[8] = 5,
 	}
 	
+	GameRules.Definitions.RankingCoinReward = {
+		[1] = 4,
+		[2] = 2,
+		[3] = 1,
+		[4] = 0,
+		[5] = 0,
+		[6] = 0,
+		[7] = 0,
+		[8] = 0,
+	}
+	
     GameRules.Definitions.TeamCenterPos = {
 	    [6] = Vector(-4735,4735,128),
 		[7] = Vector(127,4735,128),

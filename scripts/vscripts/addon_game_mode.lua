@@ -2829,9 +2829,16 @@ function WhoToAttack:ReportEndInfo()
 
 	local reportInfo = {}
 	for _,hero in pairs(PlayerManager.heromap) do
+		
+		local coinGain = 0
+		if hero.ranking then 
+			coinGain = GameRules.Definitions.RankingCoinReward[hero.ranking] or 0;
+		end
+		
+		
 		local pid = hero:GetPlayerID()
 		local steam_id = PlayerManager:GetSteamIdByPid(pid)
-		table.insert(reportInfo, {player_id = pid, tid = hero.team, rank = hero.ranking})
+		table.insert(reportInfo, {player_id = pid, tid = hero.team, rank = hero.ranking, coin_diff = coinGain})
     end
 
 	local sssstr = JSON.encode(reportInfo)
