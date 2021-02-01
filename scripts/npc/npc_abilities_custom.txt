@@ -2733,7 +2733,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"4.0"
+				"duration"	"3.5"
 			}
 		}
 		"AbilitySound"	"Hero_Dazzle.Shallow_Grave"
@@ -3015,7 +3015,7 @@
 		"AbilityManaCost"	"100"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"900"
+		"AbilityCastRange"	"1200"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
@@ -3097,11 +3097,11 @@
 		"AbilityCooldown"	"5"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"	"5"
+		"AbilityManaCost"	"1"
 		// Casting
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"	"850"
-		"AbilityChannelTime"	"2.6"
+		"AbilityCastRange"	"1200"
+		"AbilityChannelTime"	"2.1"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
@@ -3113,18 +3113,18 @@
 			"01"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"duration"	"2.5"
+				"duration"	"2.0"
 			}
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"mana_per_second"	"40"
+				"mana_per_second"	"50"
 				"LinkedSpecialBonus"	"special_bonus_unique_lion_5"
 			}
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"break_distance"	"1200"
+				"break_distance"	"1500"
 			}
 			"04"
 			{
@@ -4192,7 +4192,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"necromastery_damage_per_soul"	"20 30"
+				"necromastery_damage_per_soul"	"50 70"
 				"CalculateSpellDamageTooltip"	"0"
 				"LinkedSpecialBonus"	"special_bonus_unique_nevermore_1"
 			}

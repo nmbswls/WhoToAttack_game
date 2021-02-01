@@ -715,8 +715,8 @@
 		"BaseClass"	"item_datadriven"
 		"AbilityTextureName"	"item_Ion_Shell_icon"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_BOTH"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
 		"AbilityCastPoint"	"0.1"
 		"AbilityCooldown"	"50"
@@ -742,6 +742,12 @@
 			{
 				"EffectName"	"Hero_Dark_Seer.Ion_Shield_Start"
 			}
+			"ApplyModifier"
+			{
+				"Target"	"TARGET"
+				"ModifierName"	"modifier_item_shell_2"
+				"Duration"	"60"
+			}
 		}
 		"Modifiers"
 		{
@@ -758,7 +764,7 @@
 							"Types"	"DOTA_UNIT_TARGET_BASIC"
 							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 							"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
-							"Center"	"CASTER"
+							"Center"	"TARGET"
 							"Radius"	"275"
 						}
 						"Type"	"DAMAGE_TYPE_MAGICAL"
@@ -768,6 +774,29 @@
 				"ThinkInterval"	"0.2"
 				"EffectName"	"particles/econ/items/dark_seer/dark_seer_ti8_immortal_arms/dark_seer_ti8_immortal_ion_shell.vpcf"
 				"EffectAttachType"	"follow_head"
+				"Properties"	{}
+			}
+			"modifier_item_shell_2"
+			{
+				"Duration"	"60"
+				"IsBuff"	"1"
+				"IsHidden"	"1"
+				"OnIntervalThink"
+				{
+					"Heal"
+					{
+						"Target"
+						{
+							"Types"	"DOTA_UNIT_TARGET_BASIC"
+							"Flags"	"DOTA_UNIT_TARGET_FLAG_NOT_ANCIENTS"
+							"Teams"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Center"	"TARGET"
+							"Radius"	"1"
+						}
+						"HealAmount"	"5"
+					}
+				}
+				"ThinkInterval"	"0.2"
 			}
 		}
 		"AbilitySpecial"

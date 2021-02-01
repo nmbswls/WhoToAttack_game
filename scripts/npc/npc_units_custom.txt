@@ -7805,7 +7805,7 @@
 		// Ability 1
 		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
-		"Ability2"	"alchemist_goblins_greed"
+		"Ability2"	""
 		// Ability 3
 		"Ability3"	"ga_des"
 		// Ability 4
@@ -7952,7 +7952,7 @@
 		// Ability 1
 		"Ability1"	"alchemist_acid_spray"
 		// Ability 2
-		"Ability2"	"alchemist_goblins_greed"
+		"Ability2"	""
 		// Ability 3
 		"Ability3"	"alchemist_chemical_rage"
 		// Ability 4
@@ -9855,9 +9855,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"65"
+		"AttackDamageMin"	"100"
 		// Damage range max.
-		"AttackDamageMax"	"70"
+		"AttackDamageMax"	"105"
 		"AttackRate"	"1.7"
 		// Speed of attack.
 		"BaseAttackSpeed"	"200"
@@ -9894,7 +9894,7 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"80"
+		"StatusStartingMana"	"70"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"2"
 		// Vision
@@ -9995,9 +9995,9 @@
 		// ----------------------------------------------------------------
 		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
 		// Damage range min.
-		"AttackDamageMin"	"95"
+		"AttackDamageMin"	"150"
 		// Damage range max.
-		"AttackDamageMax"	"100"
+		"AttackDamageMax"	"155"
 		"AttackRate"	"1.7"
 		// Speed of attack.
 		"BaseAttackSpeed"	"200"
@@ -10034,7 +10034,7 @@
 		"StatusHealthRegen"	"1"
 		// Base mana.
 		"StatusMana"	"100"
-		"StatusStartingMana"	"80"
+		"StatusStartingMana"	"70"
 		// Mana regeneration rate.
 		"StatusManaRegen"	"2"
 		// Vision
