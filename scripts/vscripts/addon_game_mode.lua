@@ -1713,7 +1713,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetHullRadius(1)
 	hero:SetAbilityPoints(0)
 	
-	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
+	hero.throw_effect = "";
 	hero.base_model = "models/heroes/undying/undying_tower.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
