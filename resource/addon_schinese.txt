@@ -618,7 +618,7 @@
 		"DOTA_Tooltip_ability_item_throw_one_fast"	"<font color=\"#af11b3\">快速投掷</font>"
 		"DOTA_Tooltip_ability_item_throw_many"	"<font color=\"#f0ad4e\">范围投掷</font>"
 		"DOTA_Tooltip_ability_item_throwmany"	"投掷（全部）"
-		"DOTA_Tooltip_ability_item_throw_one_fast_Description"	"投掷单位落地时造成90点范围伤害"
+		"DOTA_Tooltip_ability_item_throw_one_fast_Description"	"投掷单位落地时造成110点范围伤害"
 		"DOTA_Tooltip_ability_item_throw_many_Description"	"投掷周围所有单位"
 		"DOTA_Tooltip_fire_Modifier_Description"	"火焰之地上的单位受到灼烧效果，持续掉血"
 		"DOTA_Tooltip_TestSysAura_fire_Description"	"每秒损失3%当前生命值"
@@ -653,18 +653,13 @@
 		"DOTA_Tooltip_ability_item_recipe_blinkaura"	"闪烁之地合成卷轴"
 		"DOTA_Tooltip_ability_item_blinkaura_Description"	"使己方场地变为闪烁之地\n在场单位受到伤害后闪烁至攻击者周围"
 		"DOTA_Tooltip_modifier_BlinkAura"	"c"
-        
-        
-        
-        "econ_t10"	"t10号"
-        "econ_t13"	"t13号"
-        "econ_t15"	"t15号"
-        
-        "description_t10"	"t10号道具，xxxxxxx"
-        "description_t13"	"t13号道具，xxxxxxx"
-        "description_t15"	"t15号道具，xxxxxxx"
-        
-        "confirm_purchase_msg"      "你确定需要消耗 {d:cost} 点积分购买 {s:item_name} 吗？<br>{s:item_description}"
-        "confirm" "确认"
+		"econ_t10"	"t10号"
+		"econ_t13"	"t13号"
+		"econ_t15"	"t15号"
+		"description_t10"	"t10号道具，xxxxxxx"
+		"description_t13"	"t13号道具，xxxxxxx"
+		"description_t15"	"t15号道具，xxxxxxx"
+		"confirm_purchase_msg"	"你确定需要消耗 {d:cost} 点积分购买 {s:item_name} 吗？<br>{s:item_description}"
+		"confirm"	"确认"
 	}
 }

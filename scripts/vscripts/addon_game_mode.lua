@@ -795,7 +795,6 @@ function WhoToAttack:DoPlayerDie(hero)
     elseif self.alive_count == 1 then
         print('multi game end')
         self:EndGame(hero.team)
-		
 	end
 	
 	WtaThrones:ClearScore(hero.team);
@@ -807,6 +806,9 @@ function WhoToAttack:EndGame(winTeam)
     local endData = {}
     for _,hero in pairs(PlayerManager.heromap) do
         --self:CheckWinLoseForTeam(hero)
+		if hero:IsAlive() then
+			hero.ranking = 1
+		end
         print("end game info " .. hero.ranking);
         table.insert(endData,{player_id = hero:GetPlayerID(), tid = hero.team, rank = hero.ranking})
     end
@@ -1713,7 +1715,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetHullRadius(1)
 	hero:SetAbilityPoints(0)
 	
-	hero.throw_effect = "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike_body.vpcf";
+	hero.throw_effect = "";
 	hero.base_model = "models/heroes/undying/undying_tower.vmdl";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
