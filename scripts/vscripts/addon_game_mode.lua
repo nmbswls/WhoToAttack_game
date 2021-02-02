@@ -791,27 +791,29 @@ function WhoToAttack:DoPlayerDie(hero)
 	print('alive count ' .. self.alive_count)
 	if self.alive_count == 0 then
         print('single game end')
-        self:EndGame(DOTA_TEAM_BADGUYS)
+        self:EndGame()
     elseif self.alive_count == 1 then
         print('multi game end')
-        self:EndGame(hero.team)
+        self:EndGame()
 	end
 	
-	WtaThrones:ClearScore(hero.team);
+	WtaThrones:ClearScore();
 end
 
-function WhoToAttack:EndGame(winTeam)
-    winTeam = winTeam or DOTA_TEAM_BADGUYS
+function WhoToAttack:EndGame()
     
+    local winTeam = nil
     local endData = {}
     for _,hero in pairs(PlayerManager.heromap) do
         --self:CheckWinLoseForTeam(hero)
 		if hero:IsAlive() then
 			hero.ranking = 1
+			winTeam = hero.team
 		end
         print("end game info " .. hero.ranking);
         table.insert(endData,{player_id = hero:GetPlayerID(), tid = hero.team, rank = hero.ranking})
     end
+	winTeam = winTeam or DOTA_TEAM_BADGUYS
     CustomNetTables:SetTableValue( "end_info", "end_info", endData)
     GameRules:SetGameWinner(winTeam)
 	
