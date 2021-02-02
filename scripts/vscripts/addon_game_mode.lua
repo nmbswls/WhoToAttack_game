@@ -2810,17 +2810,27 @@ function WhoToAttack:SendStartGameReq()
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
-	-- local info_json = JSON:encode({steamids = steamids})
-	-- print(info_json)
+	local info_json = JSON:encode({steamids = steamids})
+	print(info_json)
 end
 
 function WhoToAttack:OnStartGameReqSuccess(data)
     
-	-- local fakeData = '[{"info1":2,"info2":3},{"info1":20,"info2":30}]'
-	-- local tt = JSON:decode(fakeData)
-	-- DeepPrintTable(tt);
+	local fakeData = '{"data":[{"steam_id":"76561198063208676","client_econ_info":{"coin_1":2,"coin_2":3,"decoration_info":[{"use_status":1,"decoration":{"decoration_id":1001}}]}}]}'
+	local fakeDataTable = JSON:decode(fakeData)
+	-- DeepPrintTable(fakeDataTable);
     --start game with shipin for each player
     
+	
+	
+	for _,v in pairs(fakeDataTable.data) do
+		
+		local steam_id = v.steam_id
+		print(steam_id)
+		GameRules.EconManager:InitPlayerEconInfo(steam_id, v.client_econ_info);
+	end
+	
+	
     --初始化设置
     
     --初始化卡池

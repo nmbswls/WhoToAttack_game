@@ -50,7 +50,9 @@ if EconManager == nil then EconManager = class({}) end
 print('require econ manager')
 function EconManager:constructor()
 	
-    self.SlotInfo = {}
+	self.playerEconInfo = {}
+	self.playerCollection = {}
+    self.playerSlotInfo = {}
 	
 	CustomGameEventManager:RegisterListener("player_query_shop_items_req",function(_, keys)
 		self:OnPlayerQueryShopItemsReq(keys)
@@ -226,17 +228,43 @@ function EconManager:OnPlayerPurchase(keys)
 end
 
 function EconManager:GetPlayerEquipInfo(playerid)
-    local equips = self.SlotInfo[playerid];
+    local equips = self.playerSlotInfo[playerid];
     if equips == nil then
         equips = {
             [1] = nil,
             [2] = nil,
             [3] = nil,
         }
-        self.SlotInfo[playerid] = equips
+        self.playerSlotInfo[playerid] = equips
     end
     return equips;
 end
 
+function EconManager:InitPlayerEconInfo(steam_id, econ_info)
+	local pid = PlayerManager.steamid2playerid[tostring(steam_id)];
+	if pid == nil then
+		print("invalid steam_id response.")
+		return
+	end
+	local coin_1 = econ_info.coin_1;
+	local coin_2 = econ_info.coin_2;
+	self.playerSlotInfo[pid] = {
+		[1] = nil,
+		[2] = nil,
+		[3] = nil,
+	}
+	self.playerCollection[pid] = {}
+	self.playerEconInfo[pid] = {coin = coin_1}
+	for _, info in pairs(econ_info.decoration_info) do
+		if info.use_status then
+			self.playerSlotInfo[pid][1] = info.decoration.decoration_id
+		end
+		table.insert(self.playerCollection[pid],{eid = info.decoration.decoration_id})
+	end
+	
+	DeepPrintTable(self.playerCollection[pid])
+	DeepPrintTable(self.playerSlotInfo[pid])
+	DeepPrintTable(self.playerEconInfo[pid])
+end
 
 if GameRules.EconManager == nil then GameRules.EconManager = EconManager() end
