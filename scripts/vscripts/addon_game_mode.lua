@@ -795,7 +795,6 @@ function WhoToAttack:DoPlayerDie(hero)
     elseif self.alive_count == 1 then
         print('multi game end')
         self:EndGame(hero.team)
-		
 	end
 	
 	WtaThrones:ClearScore(hero.team);
@@ -807,6 +806,9 @@ function WhoToAttack:EndGame(winTeam)
     local endData = {}
     for _,hero in pairs(PlayerManager.heromap) do
         --self:CheckWinLoseForTeam(hero)
+		if hero:IsAlive() then
+			hero.ranking = 1
+		end
         print("end game info " .. hero.ranking);
         table.insert(endData,{player_id = hero:GetPlayerID(), tid = hero.team, rank = hero.ranking})
     end
