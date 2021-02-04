@@ -78,6 +78,13 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 			[1] = {name = "t10", image = "", cost = 3};
 			[2] = {name = "t13", image = "", cost = 5};
 			[3] = {name = "t15", image = "", cost = 3};
+			[4] = {name = "t16", image = "", cost = 3};
+			[5] = {name = "t17", image = "", cost = 3};
+			[6] = {name = "t18", image = "", cost = 3};
+			[7] = {name = "b01", image = "", cost = 3};
+			[8] = {name = "b02", image = "", cost = 3};
+			[9] = {name = "b03", image = "", cost = 3};
+			[10] = {name = "b04", image = "", cost = 3};
 		}
 		CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
 	end
