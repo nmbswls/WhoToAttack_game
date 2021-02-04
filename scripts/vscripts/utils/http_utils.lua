@@ -5,15 +5,15 @@ function HttpUtils:SendHTTPPost(url,game_data,success_cb, fail_cb)
     local req = CreateHTTPRequestScriptVM("POST",url)
     req:SetHTTPRequestHeaderValue("Content-Type", "application/json;charset=UTF-8")
     -- ScoreSystemUpdateCount = ScoreSystemUpdateCount + 1
-    req:SetHTTPRequestGetOrPostParameter("data", JSON.encode(game_data))
+    req:SetHTTPRequestGetOrPostParameter("data", JSON:encode(game_data))
     req:Send(function(res)
         if res.StatusCode ~= 200 or not res.Body then
             return
         end
-        -- local obj = json.decode(res.Body)
-        -- if callback ~= nil then
-        --     success_cb(obj)
-        -- end
+        local obj = JSON:decode(res.Body)
+        if callback ~= nil then
+            success_cb(obj)
+        end
     end)
 end
 
@@ -35,7 +35,7 @@ function HttpUtils:SendHttpGet(url, params, success_cb, fail_cb)
             return
         end
 
-        local obj = JSON.decode(res.Body)
+        local obj = JSON:decode(res.Body)
         if callback ~= nil then
         	callback(obj)
         end

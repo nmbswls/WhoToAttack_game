@@ -70,6 +70,10 @@ function EconManager:constructor()
 		self:OnPlayerPreview(keys)
 	end)
 	
+	CustomGameEventManager:RegisterListener("player_purchase_req",function(_, keys)
+		self:OnPlayerPurchase(keys)
+	end)
+	
 end
 function EconManager:OnPlayerQueryShopItemsReq(keys)
 	print('OnPlayerQueryShopItemsReq')
@@ -104,14 +108,21 @@ function EconManager:OnPlayerQueryEconData(keys)
 	local playerid = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerid)
 	if not player then return end
-	local data = {
-		[1] = "t10",
-		[2] = "t15",
-	}
+	
+	if self.playerCollection[playerid] then
+		CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, self.playerCollection[playerid])
+	end
+	
+	if self.playerEconInfo[playerid] then
+		CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = self.playerEconInfo[playerid].coin})
+	end
 	
 	
-	CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
-	CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = 10})
+	local equips = self:GetPlayerEquipInfo(playerid);
+    
+    if equips then
+        CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
+    end
 	
 
 	-- local steamid = PlayerResource:GetSteamAccountID(playerid)
@@ -144,7 +155,7 @@ function EconManager:OnPlayerEquip(keys)
     local player = PlayerResource:GetPlayer(playerid)
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
 	local to_equip = keys.to_equip
-	local slot = 1  -- read config
+	local slot = 0  -- read config
     
     local equips = self:GetPlayerEquipInfo(playerid);
     
@@ -191,7 +202,7 @@ function EconManager:OnPlayerPreview(keys)
 	if not hero then return end
 
 	local name = keys.item
-    local slot = 1  -- read config
+    local slot = 0  -- read config
     
     
 	local equips = self:GetPlayerEquipInfo(playerid);
@@ -216,12 +227,27 @@ end
 
 
 function EconManager:OnPlayerPurchase(keys)
-	local id = keys.PlayerID
+	local playerid = keys.PlayerID
     local player = PlayerResource:GetPlayer(playerid)
 	local item = keys.ItemName
-	local steamid = PlayerResource:GetSteamAccountID(id)
+	local steamid = PlayerResource:GetSteamAccountID(playerid)
+	print('purchase ' .. item)
 	
-
+	table.insert(self.playerCollection[playerid], item)
+	
+	CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = true})
+	
+	
+	HttpUtils:SendHTTPPost(url, {steam_id = steamid, prop_id = 100}, function(obj)
+		DeepPrintTable(obj)
+		-- if result.StatusCode == 200 then
+			-- --flush all collection_data_
+			-- --update point
+		-- end
+		--obj coin
+	end, function(t)
+	
+	end);
 	
 	-- local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
 	-- req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
@@ -238,9 +264,9 @@ function EconManager:GetPlayerEquipInfo(playerid)
     local equips = self.playerSlotInfo[playerid];
     if equips == nil then
         equips = {
+            [0] = nil,
             [1] = nil,
             [2] = nil,
-            [3] = nil,
         }
         self.playerSlotInfo[playerid] = equips
     end
@@ -256,22 +282,24 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 	local coin_1 = econ_info.coin_1;
 	local coin_2 = econ_info.coin_2;
 	self.playerSlotInfo[pid] = {
+		[0] = nil,
 		[1] = nil,
 		[2] = nil,
-		[3] = nil,
 	}
 	self.playerCollection[pid] = {}
 	self.playerEconInfo[pid] = {coin = coin_1}
 	for _, info in pairs(econ_info.decoration_info) do
 		if info.use_status then
-			self.playerSlotInfo[pid][1] = info.decoration.decoration_id
+			self.playerSlotInfo[pid][0] = info.decoration.decoration_id
 		end
-		table.insert(self.playerCollection[pid],{eid = info.decoration.decoration_id})
+		table.insert(self.playerCollection[pid],info.decoration.decoration_id)
 	end
 	
 	DeepPrintTable(self.playerCollection[pid])
 	DeepPrintTable(self.playerSlotInfo[pid])
 	DeepPrintTable(self.playerEconInfo[pid])
+	
+	self:OnPlayerQueryEconData({PlayerID = pid})
 end
 
 if GameRules.EconManager == nil then GameRules.EconManager = EconManager() end

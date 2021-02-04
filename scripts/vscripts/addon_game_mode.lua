@@ -2820,7 +2820,7 @@ end
 
 function WhoToAttack:OnStartGameReqSuccess(data)
     
-	local fakeData = '{"data":[{"steam_id":"76561198063208676","client_econ_info":{"coin_1":2,"coin_2":3,"decoration_info":[{"use_status":1,"decoration":{"decoration_id":1001}}]}}]}'
+	local fakeData = '{"data":[{"steam_id":"76561198063208676","client_econ_info":{"coin_1":5,"coin_2":3,"decoration_info":[{"use_status":1,"decoration":{"decoration_id":1001}}]}}]}'
 	local fakeDataTable = JSON:decode(fakeData)
 	-- DeepPrintTable(fakeDataTable);
     --start game with shipin for each player
