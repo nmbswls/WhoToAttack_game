@@ -9,17 +9,26 @@ function HttpUtils:SendHTTPPost(url,game_data,success_cb, fail_cb)
     req:SetHTTPRequestHeaderValue("Content-Type", "application/json;charset=UTF-8")
     -- ScoreSystemUpdateCount = ScoreSystemUpdateCount + 1
     --req:SetHTTPRequestGetOrPostParameter("data", JSON:encode(game_data))
-    for k,v in pairs(game_data) do
-        req:SetHTTPRequestGetOrPostParameter(tostring(k), JSON:encode(v))
-    end
+    print(JSON:encode(game_data))
+    req:SetHTTPRequestRawPostBody("application/json;charset=UTF-8", JSON:encode(game_data))
+    -- for k,v in pairs(game_data) do
+        -- req:SetHTTPRequestGetOrPostParameter(tostring(k), JSON:encode(v))
+    -- end
     req:Send(function(res)
+        print('code ' .. res.StatusCode)
         if res.StatusCode ~= 200 or not res.Body then
             if fail_cb ~= nil then
-                fail_cb();
+                fail_cb(-1);
             end
             return
         end
         local obj = JSON:decode(res.Body)
+        if obj.errno ~= 0 then
+            if fail_cb ~= nil then
+                fail_cb(obj.errno);
+            end
+            return;
+        end
         if success_cb ~= nil then
             success_cb(obj)
         end

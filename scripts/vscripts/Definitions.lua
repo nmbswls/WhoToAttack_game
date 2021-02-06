@@ -430,8 +430,12 @@ if GameRules.Definitions == nil then
     
 
     GameRules.Definitions.LogicUrls = {
-		info = 'http://xiaobeijixiong.com/who_to_kill/runtime/info',
-		refresh_shop = 'http://xxx/shop/v4/get',
+		-- info = 'http://xiaobeijixiong.com/who_to_kill/runtime/info',
+        info = 'http://192.168.1.14:8098/who_to_kill/runtime/info',
+		--report = 'http://xiaobeijixiong.com/who_to_kill/runtime/report',
+        report = 'http://192.168.1.14:8098/who_to_kill/runtime/report',
+        -- refresh_shop = 'http://xxx/shop/v4/get',
+        donate = 'http://192.168.1.14:8098/who_to_kill/store/donate',
 	}
     
 end

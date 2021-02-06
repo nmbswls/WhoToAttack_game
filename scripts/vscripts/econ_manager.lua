@@ -75,7 +75,12 @@ function EconManager:constructor()
 		self:OnPlayerPurchase(keys)
 	end)
 	
+    CustomGameEventManager:RegisterListener("create_donate_order_req",function(_, keys)
+		self:HandleDonateOrder(keys)
+	end)
+    
 end
+
 function EconManager:OnPlayerQueryShopItemsReq(keys)
 	print('OnPlayerQueryShopItemsReq')
 	if self.vEconItems == nil then 
@@ -320,6 +325,97 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 	DeepPrintTable(self.playerEconInfo[pid])
 	
 	self:OnPlayerQueryEconData({PlayerID = pid})
+end
+
+function LookAtDonatePaymentIsComplete( player, key )
+	GameMode:SetContextThink( DoUniqueString( "LookAtDonatePaymentIsComplete" ), function ()
+        local times = 0
+        local url = GameRules.Definitions.LogicUrls['donate']
+        local state = 0;
+        
+        HttpUtils:SendHTTPPost(url, { key = key }, function(t)
+            CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
+            state = 2
+        end, function(t)
+            state = 1
+        end);
+        
+        
+        if state == 0 then
+            return 1
+        end
+        
+        if state == 1 then
+            times = times + 1
+            return 0.1
+        end
+        
+        if state == 2 then
+            return nil
+        end
+        
+	end, 1)
+end
+
+
+function EconManager:HandleDonateOrder(keys)
+
+    DeepPrintTable(keys)
+
+    local price = tonumber(keys.price) or 1.00
+	if price <= 0.01 then return end
+    
+	local pay_method = keys.method
+	if pay_method ~= "alipay" and pay_method ~= "wechatpay" then return end
+    
+	local url = ""
+	local steamid = PlayerResource:GetSteamAccountID(keys.PlayerID)
+    print('steamd id '.. steamid)
+	CustomNetTables:SetTableValue( "bom_plus", "donate_order_"..steamid, nil )
+
+    local url = GameRules.Definitions.LogicUrls['donate']
+    
+    if url then
+        HttpUtils:SendHTTPPost(url, 
+        {
+            steamid = steamid,
+			pay_method = pay_method,
+			price = string.format("%.2f", price)
+        },
+        function(t)
+            DeepPrintTable(t)
+            url = t.result
+            print('get url ' .. url)
+            LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), t.key)
+        end, function(t)
+            print('HandleDonateOrder fail')
+        end);
+    end
+    
+	-- retry( 6, function ()
+		-- local iStatusCode, szBody = send( "/donate/prepay", {
+			-- steamid = steamid,
+			-- pay_method = pay_method,
+			-- game = Game,
+			-- price = string.format("%.2f", price)
+		-- })
+		-- if iStatusCode == 200 then
+			-- local body = jsonDecode(szBody)
+			-- if body ~= nil and body["result"] ~= nil then
+				-- url = body["result"]
+				-- LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), body["key"])
+			-- end
+			-- return true
+		-- end
+		-- Sleep(0.5)
+	-- end)
+
+	if url ~= "" then
+		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {url=url} )
+	end
+    
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {url=url} )
+    
 end
 
 if GameRules.EconManager == nil then GameRules.EconManager = EconManager() end

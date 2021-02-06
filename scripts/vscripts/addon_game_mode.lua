@@ -1994,6 +1994,10 @@ function WhoToAttack:HandleCommand(keys)
 	
 	end
     
+    if tokens[1] == '-report' then
+        self:ReportEndInfo()
+    end
+    
     if tokens[1] == '-end' then
         self:DoPlayerDie(hero);
         --self:EndGame(DOTA_TEAM_BADGUYS)
@@ -2814,16 +2818,37 @@ function WhoToAttack:SendStartGameReq()
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
-	local info_json = JSON:encode({required = steamids})
+	local info_json = JSON:encode({data = steamids})
 	print(info_json)
     local url = GameRules.Definitions.LogicUrls['info']
     
+    
     if url then
-        HttpUtils:SendHTTPPost(url, {required = steamids}, function(t)
+        HttpUtils:SendHTTPPost(url, {data = steamids}, function(t)
             print('http success')
+            
+           -- data                            	= table: 0x002ef828 (table)
+           -- {
+              -- list                            	= table: 0x0030db48 (array table)
+              -- [
+                 -- 1                               	= table: 0x0030db70 (table)
+                 -- {
+                    -- client_basic_info               	= table: 0x00336758 (table)
+                    -- {
+                       -- steam_id                        	= "76561198063208676" (string)
+                       -- score                           	= 0 (number)
+                    -- }
+                 -- }
+              -- ]
+           -- }
+            
             DeepPrintTable(t)
-        end, function(t)
+        end, function(errno)
             print('http fail')
+            if errno == -1 then
+                self:OnNetError();
+                return;
+            end
         end)
     end
 end
@@ -2867,17 +2892,30 @@ function WhoToAttack:ReportEndInfo()
 			coinGain = GameRules.Definitions.RankingCoinReward[hero.ranking] or 0;
 		end
 		
-		
+        if not hero.ranking then
+            hero.ranking = -1;
+        end
+        
 		local pid = hero:GetPlayerID()
 		local steam_id = PlayerManager:GetSteamIdByPid(pid)
-		table.insert(reportInfo, {steam_id = steam_id, tid = hero.team, rank = hero.ranking, coin_diff = coinGain})
+		table.insert(reportInfo, {steam_id = steam_id, team = hero.team, rank = -1, coin_diff = coinGain, score_diff = 0})
+    end
+    
+    local url = GameRules.Definitions.LogicUrls['report']
+    
+    if url then
+        HttpUtils:SendHTTPPost(url, {game_id = "100002", report_detail = reportInfo}, function(t)
+            DeepPrintTable(t)
+        end, function(errno)
+            print('report fail ' .. errno)
+        end);
     end
 
 	local sssstr = JSON:encode(reportInfo)
-	-- print(sssstr)
-	-- HttpUtils:SendHTTPPost(url, reportInfo, function(t)
 	
-	-- end, function(t)
-	
-	-- end);
+end
+
+function WhoToAttack:OnNetError()
+    print('net error');
+    msg.bottom('服务器之神嗝屁了',nil,3);
 end
