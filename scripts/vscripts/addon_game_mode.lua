@@ -2814,8 +2814,18 @@ function WhoToAttack:SendStartGameReq()
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
-	local info_json = JSON:encode({steamids = steamids})
+	local info_json = JSON:encode({required = steamids})
 	print(info_json)
+    local url = GameRules.Definitions.LogicUrls['info']
+    
+    if url then
+        HttpUtils:SendHTTPPost(url, {required = steamids}, function(t)
+            print('http success')
+            DeepPrintTable(t)
+        end, function(t)
+            print('http fail')
+        end)
+    end
 end
 
 function WhoToAttack:OnStartGameReqSuccess(data)

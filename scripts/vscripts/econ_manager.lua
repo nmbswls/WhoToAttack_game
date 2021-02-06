@@ -45,6 +45,7 @@ EconFuncs.OnRemove_t15_server = function(hero)
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
+
 if EconManager == nil then EconManager = class({}) end
 
 print('require econ manager')
@@ -79,16 +80,16 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 	print('OnPlayerQueryShopItemsReq')
 	if self.vEconItems == nil then 
 		self.vEconItems = {
-			[1] = {name = "t10", image = "", cost = 3};
-			[2] = {name = "t13", image = "", cost = 5};
-			[3] = {name = "t15", image = "", cost = 3};
-			[4] = {name = "t16", image = "", cost = 3};
-			[5] = {name = "t17", image = "", cost = 3};
-			[6] = {name = "t18", image = "", cost = 3};
-			[7] = {name = "b01", image = "", cost = 3};
-			[8] = {name = "b02", image = "", cost = 3};
-			[9] = {name = "b03", image = "", cost = 3};
-			[10] = {name = "b04", image = "", cost = 3};
+			[1001] = {name = "t10", slot = 1, cost = 3, is_count = 0};
+			[1002] = {name = "t13", slot = 1, cost = 5, is_count = 0};
+			[1003] = {name = "t15", slot = 1, cost = 3, is_count = 0};
+			[1004] = {name = "t16", slot = 1, cost = 3, is_count = 0};
+			[1005] = {name = "t17", slot = 1, cost = 3, is_count = 0};
+			[1006] = {name = "t18", slot = 1, cost = 3, is_count = 0};
+			[2001] = {name = "b01", slot = 2, cost = 3, is_count = 0};
+			[2002] = {name = "b02", slot = 2, cost = 3, is_count = 0};
+			[2003] = {name = "b03", slot = 2, cost = 3, is_count = 0};
+			[2004] = {name = "b04", slot = 2, cost = 3, is_count = 0};
 		}
 		CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
 	end
@@ -154,8 +155,7 @@ function EconManager:OnPlayerEquip(keys)
 	local playerid = keys.PlayerID
     local player = PlayerResource:GetPlayer(playerid)
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
-	local to_equip = keys.to_equip
-	local slot = 0  -- read config
+	local toEuipId = keys.itemId
     
     local equips = self:GetPlayerEquipInfo(playerid);
     
@@ -164,27 +164,47 @@ function EconManager:OnPlayerEquip(keys)
         return
     end
 	
-    print('OnPlayerEquip ' .. tostring(to_equip))
-    
-	local hero = player:GetAssignedHero()
+    local hero = player:GetAssignedHero()
 	if not hero then return end
-	
-	
-	local oldEquip = equips[slot];
-	equips[slot] = to_equip;
+    
+    if not toEuipId or not tonumber(toEuipId) then
+        print('toEuipId not valid.')
+        return
+    end
+    
+    local toEuipInfo = self.vEconItems[toEuipId]
+    
+    if not toEuipInfo then
+        print('toEuipInfo not found.')
+        return
+    end
+    
+    local slot = toEuipInfo.slot;
+    
+    if not slot then
+        print('toEuipInfo slot info invalid.')
+        return
+    end
+    print('OnPlayerEquip ' .. tostring(toEuipId))
+    
+	local oldEquipId = equips[slot];
+	equips[slot] = toEuipId;
 	
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
 	
 	--zhao yixia  zhuanhuan biaoqian
 	--jiaoyan
-	if to_equip ~= nil then
-		if EconFuncs["OnEquip_" .. to_equip .. "_server"] then
-			EconFuncs["OnEquip_" .. to_equip .. "_server"](hero)
+	if toEuipId ~= nil then
+		if EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"] then
+			EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"](hero)
 		end
 	end
 	
-	if oldEquip ~= nil and EconFuncs["OnEquip_" .. oldEquip .. "_server"]  then
-		EconFuncs["OnEquip_" .. oldEquip .. "_server"](hero)
+	if oldEquipId ~= nil and self.vEconItems[oldEquipId] ~= nil then
+        local oldEquipData = self.vEconItems[oldEquipId]
+        if EconFuncs["OnEquip_" .. oldEquipData.name .. "_server"]  then
+            EconFuncs["OnEquip_" .. oldEquipData.name .. "_server"](hero)
+        end
 	end
 	
 end
@@ -201,7 +221,7 @@ function EconManager:OnPlayerPreview(keys)
     
 	if not hero then return end
 
-	local name = keys.item
+	local itemId = keys.itemId
     local slot = 0  -- read config
     
     

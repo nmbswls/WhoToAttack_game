@@ -427,8 +427,11 @@ if GameRules.Definitions == nil then
 		hidden_drow = 'dr_shooter_aura',
 	}
     
+    
+
     GameRules.Definitions.LogicUrls = {
-		ranking_top = 'http://xxx/ranking/top',
+		info = 'http://xiaobeijixiong.com/who_to_kill/runtime/info',
 		refresh_shop = 'http://xxx/shop/v4/get',
 	}
+    
 end
