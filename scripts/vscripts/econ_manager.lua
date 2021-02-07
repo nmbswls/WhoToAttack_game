@@ -76,7 +76,9 @@ function EconManager:constructor()
 	end)
 	
     CustomGameEventManager:RegisterListener("create_donate_order_req",function(_, keys)
-		self:HandleDonateOrder(keys)
+        Co(function ()
+            self:HandleDonateOrder(keys)
+        end)
 	end)
     
 end
@@ -371,26 +373,25 @@ function EconManager:HandleDonateOrder(keys)
 	local url = ""
 	local steamid = PlayerResource:GetSteamAccountID(keys.PlayerID)
     print('steamd id '.. steamid)
-	CustomNetTables:SetTableValue( "bom_plus", "donate_order_"..steamid, nil )
+	CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, nil )
 
-    local url = GameRules.Definitions.LogicUrls['donate']
+    local donateUrl = GameRules.Definitions.LogicUrls['donate']
     
-    if url then
-        HttpUtils:SendHTTPPost(url, 
-        {
+    if not donateUrl then
+        return;
+    end
+    
+    
+    -- local tryGetCode = function()
+        
+    -- end
+    
+    local errno, rspTable = HttpUtils:SendHTTPPostSync(donateUrl, {
             steamid = steamid,
 			pay_method = pay_method,
 			price = string.format("%.2f", price)
-        },
-        function(t)
-            DeepPrintTable(t)
-            url = t.result
-            print('get url ' .. url)
-            LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), t.key)
-        end, function(t)
-            print('HandleDonateOrder fail')
-        end);
-    end
+        });
+    
     
 	-- retry( 6, function ()
 		-- local iStatusCode, szBody = send( "/donate/prepay", {

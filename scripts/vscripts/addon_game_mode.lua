@@ -87,7 +87,8 @@
 
 
 require 'utils.msg'
-require 'utils'
+require 'utils.table_func'
+require 'utils.system'
 require 'definitions'
 require 'UnitAi'
 require 'timers'
