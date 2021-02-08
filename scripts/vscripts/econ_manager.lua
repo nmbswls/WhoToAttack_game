@@ -178,7 +178,7 @@ function EconManager:OnPlayerEquip(keys)
         print('toEuipId not valid.')
         return
     end
-    
+    toEuipId = tonumber(toEuipId)
     local toEuipInfo = self.vEconItems[toEuipId]
     
     if not toEuipInfo then
@@ -187,32 +187,43 @@ function EconManager:OnPlayerEquip(keys)
     end
     
     local slot = toEuipInfo.slot;
-    
     if not slot then
         print('toEuipInfo slot info invalid.')
         return
     end
-    print('OnPlayerEquip ' .. tostring(toEuipId))
+    DeepPrintTable(equips);
     
 	local oldEquipId = equips[slot];
-	equips[slot] = toEuipId;
+	print('OnPlayerEquip ' .. tostring(oldEquipId) .. " " .. toEuipId)
+	if oldEquipId == toEuipId then
+		print("tuo zhuangbei ");
+		--相同表示脱装备
+		equips[slot] = nil;
+		
+	else
+	
+		equips[slot] = toEuipId;
+		
+		if toEuipId ~= nil then
+			if EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"] then
+				EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"](hero)
+			end
+		end
+	end
+	
+	if oldEquipId ~= nil and self.vEconItems[oldEquipId] ~= nil then
+		local oldEquipData = self.vEconItems[oldEquipId]
+		if EconFuncs["OnRemove_" .. oldEquipData.name .. "_server"]  then
+			EconFuncs["OnRemove_" .. oldEquipData.name .. "_server"](hero)
+		end
+	end
+	
 	
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
 	
 	--zhao yixia  zhuanhuan biaoqian
 	--jiaoyan
-	if toEuipId ~= nil then
-		if EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"] then
-			EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"](hero)
-		end
-	end
 	
-	if oldEquipId ~= nil and self.vEconItems[oldEquipId] ~= nil then
-        local oldEquipData = self.vEconItems[oldEquipId]
-        if EconFuncs["OnEquip_" .. oldEquipData.name .. "_server"]  then
-            EconFuncs["OnEquip_" .. oldEquipData.name .. "_server"](hero)
-        end
-	end
 	
 end
 
@@ -291,9 +302,9 @@ function EconManager:GetPlayerEquipInfo(playerid)
     local equips = self.playerSlotInfo[playerid];
     if equips == nil then
         equips = {
-            [0] = nil,
             [1] = nil,
             [2] = nil,
+            [3] = nil,
         }
         self.playerSlotInfo[playerid] = equips
     end
@@ -309,22 +320,23 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 	local coin_1 = econ_info.coin_1;
 	local coin_2 = econ_info.coin_2;
 	self.playerSlotInfo[pid] = {
-		[0] = nil,
 		[1] = nil,
 		[2] = nil,
+		[3] = nil,
 	}
 	self.playerCollection[pid] = {}
 	self.playerEconInfo[pid] = {coin = coin_1}
 	for _, info in pairs(econ_info.decoration_info) do
 		if info.use_status then
-			self.playerSlotInfo[pid][0] = info.decoration.decoration_id
+			local targetSlot = self.vEconItems[tonumber(info.decoration.decoration_id)].slot;
+			self.playerSlotInfo[pid][targetSlot] = info.decoration.decoration_id
 		end
 		table.insert(self.playerCollection[pid],info.decoration.decoration_id)
 	end
 	
-	DeepPrintTable(self.playerCollection[pid])
-	DeepPrintTable(self.playerSlotInfo[pid])
-	DeepPrintTable(self.playerEconInfo[pid])
+	-- DeepPrintTable(self.playerCollection[pid])
+	-- DeepPrintTable(self.playerSlotInfo[pid])
+	-- DeepPrintTable(self.playerEconInfo[pid])
 	
 	self:OnPlayerQueryEconData({PlayerID = pid})
 end
@@ -392,7 +404,8 @@ function EconManager:HandleDonateOrder(keys)
 			price = string.format("%.2f", price)
         });
     
-    
+    print("ret " .. errno)
+	
 	-- retry( 6, function ()
 		-- local iStatusCode, szBody = send( "/donate/prepay", {
 			-- steamid = steamid,
@@ -415,7 +428,7 @@ function EconManager:HandleDonateOrder(keys)
 		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {url=url} )
 	end
     
-    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {url=url} )
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {url="http://www.baidu.com"} )
     
 end
 

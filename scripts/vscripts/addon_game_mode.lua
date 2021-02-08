@@ -251,8 +251,8 @@ function WhoToAttack:StartGame()
     
     self:UpdateThroneInfo()
     
-    --5秒后开始游戏
-    Timers:CreateTimer(3,function()
+    --延迟后开始游戏
+    Timers:CreateTimer(1,function()
         
         print('GAME START!')
         --初始化棋子库
@@ -2774,11 +2774,11 @@ function WhoToAttack:SendStartGameReq()
 	
 	-- end);
     
-    Timers:CreateTimer(3,function()
+    -- Timers:CreateTimer(3,function()
         
         
-        self:OnStartGameReqSuccess();
-    end)
+        -- self:OnStartGameReqSuccess();
+    -- end)
 	
 	local steamids = {}
 	for _,hero in pairs(PlayerManager.heromap) do
@@ -2848,8 +2848,10 @@ function WhoToAttack:SendStartGameReq()
             print('http fail')
             if errno == -1 then
                 self:OnNetError();
-                return;
             end
+			
+			--继续游戏
+			self:OnStartGameReqSuccess()
         end)
     end
 end
