@@ -406,6 +406,7 @@ function EconManager:HandleDonateOrder(keys)
     
     print("ret " .. errno)
 	
+	LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), "nmb_key")
 	-- retry( 6, function ()
 		-- local iStatusCode, szBody = send( "/donate/prepay", {
 			-- steamid = steamid,
