@@ -343,32 +343,29 @@ end
 
 function LookAtDonatePaymentIsComplete( player, key )
 	GameMode:SetContextThink( DoUniqueString( "LookAtDonatePaymentIsComplete" ), function ()
-        local times = 0
-        local url = GameRules.Definitions.LogicUrls['donate']
-        local state = 0;
-        
-        HttpUtils:SendHTTPPost(url, { key = key }, function(t)
-            CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
-            state = 2
-        end, function(t)
-            state = 1
-        end);
-        
-        
-        if state == 0 then
-            return 1
-        end
-        
-        if state == 1 then
-            times = times + 1
-            return 0.1
-        end
-        
-        if state == 2 then
-            return nil
-        end
-        
-	end, 1)
+
+		Co(function ()
+			local times = 0
+			local url = GameRules.Definitions.LogicUrls['donate']
+			url = url..key
+			while true do
+				times = times + 1
+
+				local errno, rspTable = HttpUtils:SendHTTPPostSync(url,{})
+				if errno == 0 then
+					
+					if rspTable ~= nil and rspTable["status"] == "success" then
+						CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
+						break
+					end
+				end
+
+				if times >= 400 then break end
+				Sleep(1)
+			end
+		end)
+		
+	end, 5)
 end
 
 
@@ -405,8 +402,8 @@ function EconManager:HandleDonateOrder(keys)
         });
     
     print("ret " .. errno)
-	
-	LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), "nmb_key")
+	Sleep(0.5)
+	--LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), "nmb_key")
 	-- retry( 6, function ()
 		-- local iStatusCode, szBody = send( "/donate/prepay", {
 			-- steamid = steamid,
