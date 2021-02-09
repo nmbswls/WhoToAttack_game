@@ -4,10 +4,11 @@ end
 
 
 function Sleep( fTime, szUnique )
+    print('try sleep')
 	local co = coroutine.running()
 	szUnique = szUnique or DoUniqueString("sleep")
-	GameMode:SetContextThink(szUnique, function ( )
-		print('sleep szUnique ' .. resume)
+	PlayerResource:SetContextThink(szUnique, function ( )
+        print('sleep wake')
 		coroutine.resume(co)
 	end, fTime )
 	coroutine.yield()

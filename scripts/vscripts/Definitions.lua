@@ -431,11 +431,14 @@ if GameRules.Definitions == nil then
 
     GameRules.Definitions.LogicUrls = {
 		-- info = 'http://xiaobeijixiong.com/who_to_kill/runtime/info',
-        info = 'http://192.168.1.14:8098/who_to_kill/runtime/info',
+        info = 'http://xiaobeijixiong.com:8099/who_to_kill/runtime/info',
 		--report = 'http://xiaobeijixiong.com/who_to_kill/runtime/report',
-        report = 'http://192.168.1.14:8098/who_to_kill/runtime/report',
+        report = 'http://xiaobeijixiong.com:8099/who_to_kill/runtime/report',
         -- refresh_shop = 'http://xxx/shop/v4/get',
-        donate = 'http://192.168.1.14:8098/who_to_kill/store/donate',
+        donate = 'http://xiaobeijixiong.com:8099/who_to_kill/store/donate',
+        purchase = 'http://xiaobeijixiong.com:8099/who_to_kill/store/purchase',
+        checkComplete = 'http://xiaobeijixiong.com:8099/who_to_kill/store/donate_state',
+        inventory = 'http://xiaobeijixiong.com:8099/who_to_kill/store/inventory',
 	}
     
 end

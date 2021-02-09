@@ -798,7 +798,7 @@ function WhoToAttack:DoPlayerDie(hero)
         self:EndGame()
 	end
 	
-	WtaThrones:ClearScore();
+	WtaThrones:ClearScore(hero.team);
 end
 
 function WhoToAttack:EndGame()
@@ -2290,6 +2290,7 @@ function WhoToAttack:InitGameMode()
     
 	PlayerManager:init()
 	
+    self.game_id = "";
 	self.teamNum = 8;
 	self.numPerTeam = 1;
     self.stage = 0
@@ -2844,6 +2845,8 @@ function WhoToAttack:SendStartGameReq()
            -- }
             
             DeepPrintTable(t)
+            self.game_id = t.data.game_id
+            self:OnStartGameReqSuccess()
         end, function(errno)
             print('http fail')
             if errno == -1 then
@@ -2901,13 +2904,13 @@ function WhoToAttack:ReportEndInfo()
         
 		local pid = hero:GetPlayerID()
 		local steam_id = PlayerManager:GetSteamIdByPid(pid)
-		table.insert(reportInfo, {steam_id = steam_id, team = hero.team, rank = -1, coin_diff = coinGain, score_diff = 0})
+		table.insert(reportInfo, {steam_id = tostring(steam_id), team = hero.team, rank = -1, coin_diff = coinGain, score_diff = 0})
     end
     
     local url = GameRules.Definitions.LogicUrls['report']
-    
+    print('end game game id ' .. self.game_id)
     if url then
-        HttpUtils:SendHTTPPost(url, {game_id = "100002", report_detail = reportInfo}, function(t)
+        HttpUtils:SendHTTPPost(url, {game_id = self.game_id, report_detail = reportInfo}, function(t)
             DeepPrintTable(t)
         end, function(errno)
             print('report fail ' .. errno)

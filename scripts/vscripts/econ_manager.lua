@@ -81,6 +81,19 @@ function EconManager:constructor()
         end)
 	end)
     
+    self.vEconItems = {
+			[1001] = {name = "t10", slot = 1, cost = 3, is_count = 0};
+			[1002] = {name = "t13", slot = 1, cost = 5, is_count = 0};
+			[1003] = {name = "t15", slot = 1, cost = 3, is_count = 0};
+			[1004] = {name = "t16", slot = 1, cost = 3, is_count = 0};
+			[1005] = {name = "t17", slot = 1, cost = 3, is_count = 0};
+			[1006] = {name = "t18", slot = 1, cost = 3, is_count = 0};
+			[2001] = {name = "b01", slot = 2, cost = 3, is_count = 0};
+			[2002] = {name = "b02", slot = 2, cost = 3, is_count = 0};
+			[2003] = {name = "b03", slot = 2, cost = 3, is_count = 0};
+			[2004] = {name = "b04", slot = 2, cost = 3, is_count = 0};
+		}
+    
 end
 
 function EconManager:OnPlayerQueryShopItemsReq(keys)
@@ -98,7 +111,7 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 			[2003] = {name = "b03", slot = 2, cost = 3, is_count = 0};
 			[2004] = {name = "b04", slot = 2, cost = 3, is_count = 0};
 		}
-		CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
+		
 	end
 	--if self.vEconItems == nil then 
 	--	HttpUtils:SendHTTPGet('http://yueyutech.com:10010/GetShopItems',function(result)
@@ -109,6 +122,7 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 	--		end
 	--	end);
 	--end
+    CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
 end
 
 function EconManager:OnPlayerQueryEconData(keys)
@@ -276,17 +290,39 @@ function EconManager:OnPlayerPurchase(keys)
 	CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = true})
 	
 	
-	HttpUtils:SendHTTPPost(url, {steam_id = steamid, prop_id = 100}, function(obj)
+    local purchaseUrl = GameRules.Definitions.LogicUrls['purchase']
+    
+	HttpUtils:SendHTTPPost(purchaseUrl, {steam_id = tostring(steamid), prop_name = tostring(1)}, function(obj)
 		DeepPrintTable(obj)
 		-- if result.StatusCode == 200 then
 			-- --flush all collection_data_
 			-- --update point
 		-- end
 		--obj coin
+        
+        
 	end, function(t)
-	
+        print(t)
+        local invUrl = GameRules.Definitions.LogicUrls['inventory']
+        print(invUrl)
+        HttpUtils:SendHttpGet(invUrl, {steam_id = tostring(steamid)}, function(obj)
+            print('get inv')
+            DeepPrintTable(obj)
+            -- if result.StatusCode == 200 then
+                -- --flush all collection_data_
+                -- --update point
+            -- end
+            --obj coin
+        end, function(t)
+            print('fail')
+            print(t)
+        end);
+        
 	end);
 	
+    
+    
+    
 	-- local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
 	-- req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
 	-- req:SetHTTPRequestGetOrPostParameter('item', tostring(item))
@@ -342,30 +378,34 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 end
 
 function LookAtDonatePaymentIsComplete( player, key )
-	GameMode:SetContextThink( DoUniqueString( "LookAtDonatePaymentIsComplete" ), function ()
-
-		Co(function ()
-			local times = 0
-			local url = GameRules.Definitions.LogicUrls['donate']
-			url = url..key
-			while true do
-				times = times + 1
-
-				local errno, rspTable = HttpUtils:SendHTTPPostSync(url,{})
-				if errno == 0 then
-					
-					if rspTable ~= nil and rspTable["status"] == "success" then
-						CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
-						break
-					end
-				end
-
-				if times >= 400 then break end
-				Sleep(1)
-			end
-		end)
+	
+    Co(function ()
+        local times = 0
+        local url = GameRules.Definitions.LogicUrls['checkComplete']
+        while true do
+            times = times + 1
+            local errno, rspTable = HttpUtils:SendHTTPPostSync(url,{out_trade_no = key})
+            if errno == 0 then
+                DeepPrintTable(rspTable)
+                if rspTable ~= nil and rspTable.data.trade_state == "SUCCESS" then
+                    print("pay good");
+                    local amount = rspTable.data.amount;
+                    GameRules.EconManager:UpdateCurrency(player:GetPlayerID(),amount);
+                    CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
+                    break
+                end
+            end
+            
+            if times >= 400 then break end
+            Sleep(1)
+        end
+    end)
+    
+    -- player:SetContextThink( DoUniqueString( "LookAtDonatePaymentIsComplete" ), function ()
+        -- print("nmb LookAtDonatePaymentIsComplete")
 		
-	end, 5)
+		
+	-- end, 5)
 end
 
 
@@ -394,16 +434,20 @@ function EconManager:HandleDonateOrder(keys)
     -- local tryGetCode = function()
         
     -- end
-    
+    -- tonumber(price)
     local errno, rspTable = HttpUtils:SendHTTPPostSync(donateUrl, {
-            steamid = steamid,
+            steam_id = tostring(steamid),
 			pay_method = pay_method,
-			price = string.format("%.2f", price)
+            donate_type = 2,
+			donate_amt = 1,
         });
     
     print("ret " .. errno)
-	Sleep(0.5)
-	--LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), "nmb_key")
+    DeepPrintTable(rspTable);
+    local key = rspTable.data.out_trade_no;
+    url = rspTable.data.code_url;
+    
+	LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), key)
 	-- retry( 6, function ()
 		-- local iStatusCode, szBody = send( "/donate/prepay", {
 			-- steamid = steamid,
@@ -425,9 +469,14 @@ function EconManager:HandleDonateOrder(keys)
 	if url ~= "" then
 		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {url=url} )
 	end
+    print("nmbnmc nmc nmc");
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {img_url=url} )
     
-    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {url="http://www.baidu.com"} )
-    
+end
+
+function EconManager:UpdateCurrency(playerId, amount_info)
+    print('UpdateCurrency for' .. tostring(playerId));
+    DeepPrintTable(amount_info)
 end
 
 if GameRules.EconManager == nil then GameRules.EconManager = EconManager() end
