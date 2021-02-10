@@ -87,7 +87,8 @@
 
 
 require 'utils.msg'
-require 'utils'
+require 'utils.table_func'
+require 'utils.system'
 require 'definitions'
 require 'UnitAi'
 require 'timers'
@@ -250,8 +251,8 @@ function WhoToAttack:StartGame()
     
     self:UpdateThroneInfo()
     
-    --5秒后开始游戏
-    Timers:CreateTimer(3,function()
+    --延迟后开始游戏
+    Timers:CreateTimer(1,function()
         
         print('GAME START!')
         --初始化棋子库
@@ -797,7 +798,7 @@ function WhoToAttack:DoPlayerDie(hero)
         self:EndGame()
 	end
 	
-	WtaThrones:ClearScore();
+	WtaThrones:ClearScore(hero.team);
 end
 
 function WhoToAttack:EndGame()
@@ -1994,6 +1995,10 @@ function WhoToAttack:HandleCommand(keys)
 	
 	end
     
+    if tokens[1] == '-report' then
+        self:ReportEndInfo()
+    end
+    
     if tokens[1] == '-end' then
         self:DoPlayerDie(hero);
         --self:EndGame(DOTA_TEAM_BADGUYS)
@@ -2285,6 +2290,7 @@ function WhoToAttack:InitGameMode()
     
 	PlayerManager:init()
 	
+    self.game_id = "";
 	self.teamNum = 8;
 	self.numPerTeam = 1;
     self.stage = 0
@@ -2769,11 +2775,11 @@ function WhoToAttack:SendStartGameReq()
 	
 	-- end);
     
-    Timers:CreateTimer(3,function()
+    -- Timers:CreateTimer(3,function()
         
         
-        self:OnStartGameReqSuccess();
-    end)
+        -- self:OnStartGameReqSuccess();
+    -- end)
 	
 	local steamids = {}
 	for _,hero in pairs(PlayerManager.heromap) do
@@ -2814,13 +2820,48 @@ function WhoToAttack:SendStartGameReq()
     -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
     -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
-	local info_json = JSON:encode({steamids = steamids})
+	local info_json = JSON:encode({data = steamids})
 	print(info_json)
+    local url = GameRules.Definitions.LogicUrls['info']
+    
+    
+    if url then
+        HttpUtils:SendHTTPPost(url, {data = steamids}, function(t)
+            print('http success')
+            
+           -- data                            	= table: 0x002ef828 (table)
+           -- {
+              -- list                            	= table: 0x0030db48 (array table)
+              -- [
+                 -- 1                               	= table: 0x0030db70 (table)
+                 -- {
+                    -- client_basic_info               	= table: 0x00336758 (table)
+                    -- {
+                       -- steam_id                        	= "76561198063208676" (string)
+                       -- score                           	= 0 (number)
+                    -- }
+                 -- }
+              -- ]
+           -- }
+            
+            DeepPrintTable(t)
+            self.game_id = t.data.game_id
+            self:OnStartGameReqSuccess()
+        end, function(errno)
+            print('http fail')
+            if errno == -1 then
+                self:OnNetError();
+            end
+			
+			--继续游戏
+			self:OnStartGameReqSuccess()
+        end)
+    end
 end
 
 function WhoToAttack:OnStartGameReqSuccess(data)
     
-	local fakeData = '{"data":[{"steam_id":"76561198063208676","client_econ_info":{"coin_1":2,"coin_2":3,"decoration_info":[{"use_status":1,"decoration":{"decoration_id":1001}}]}}]}'
+	local fakeData = '{"data":[{"steam_id":"76561198063208676","client_econ_info":{"coin_1":5,"coin_2":3,"decoration_info":[{"use_status":1,"decoration":{"decoration_id":1001}}]}}]}'
 	local fakeDataTable = JSON:decode(fakeData)
 	-- DeepPrintTable(fakeDataTable);
     --start game with shipin for each player
@@ -2857,17 +2898,30 @@ function WhoToAttack:ReportEndInfo()
 			coinGain = GameRules.Definitions.RankingCoinReward[hero.ranking] or 0;
 		end
 		
-		
+        if not hero.ranking then
+            hero.ranking = -1;
+        end
+        
 		local pid = hero:GetPlayerID()
 		local steam_id = PlayerManager:GetSteamIdByPid(pid)
-		table.insert(reportInfo, {steam_id = steam_id, tid = hero.team, rank = hero.ranking, coin_diff = coinGain})
+		table.insert(reportInfo, {steam_id = tostring(steam_id), team = hero.team, rank = -1, coin_diff = coinGain, score_diff = 0})
+    end
+    
+    local url = GameRules.Definitions.LogicUrls['report']
+    print('end game game id ' .. self.game_id)
+    if url then
+        HttpUtils:SendHTTPPost(url, {game_id = self.game_id, report_detail = reportInfo}, function(t)
+            DeepPrintTable(t)
+        end, function(errno)
+            print('report fail ' .. errno)
+        end);
     end
 
 	local sssstr = JSON:encode(reportInfo)
-	-- print(sssstr)
-	-- HttpUtils:SendHTTPPost(url, reportInfo, function(t)
 	
-	-- end, function(t)
-	
-	-- end);
+end
+
+function WhoToAttack:OnNetError()
+    print('net error');
+    msg.bottom('服务器之神嗝屁了',nil,3);
 end

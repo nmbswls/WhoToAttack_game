@@ -11,7 +11,7 @@ end
 -- 默认为没有魔法的声音，如果需要其他报错声音，需要传递报错声音的字符串
 function m.bottom(msg, id, duration, color, sound)
 	if id == nil then
-		CustomGameEventManager:Send_ServerToAllClients(PlayerResource:GetPlayer(id), 'msg_bottom', {
+		CustomGameEventManager:Send_ServerToAllClients('msg_bottom', {
 			Message = tostring(msg),
 			Color = color,
 			Sound = sound,

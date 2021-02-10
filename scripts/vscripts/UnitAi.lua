@@ -3,7 +3,7 @@
 ----ability = hSpell 技能实例
 ----type = "unit_target" 目标类型
 ----target = hTarget
-require 'utils'
+require 'utils.table_func'
 
 local MIN_TIME_CAST = 1
 if UnitAI == nil then UnitAI = class({}) end

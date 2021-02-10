@@ -45,6 +45,7 @@ EconFuncs.OnRemove_t15_server = function(hero)
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
+
 if EconManager == nil then EconManager = class({}) end
 
 print('require econ manager')
@@ -70,16 +71,47 @@ function EconManager:constructor()
 		self:OnPlayerPreview(keys)
 	end)
 	
+	CustomGameEventManager:RegisterListener("player_purchase_req",function(_, keys)
+		self:OnPlayerPurchase(keys)
+	end)
+	
+    CustomGameEventManager:RegisterListener("create_donate_order_req",function(_, keys)
+        Co(function ()
+            self:HandleDonateOrder(keys)
+        end)
+	end)
+    
+    self.vEconItems = {
+			[1001] = {name = "t10", slot = 1, cost = 3, is_count = 0};
+			[1002] = {name = "t13", slot = 1, cost = 5, is_count = 0};
+			[1003] = {name = "t15", slot = 1, cost = 3, is_count = 0};
+			[1004] = {name = "t16", slot = 1, cost = 3, is_count = 0};
+			[1005] = {name = "t17", slot = 1, cost = 3, is_count = 0};
+			[1006] = {name = "t18", slot = 1, cost = 3, is_count = 0};
+			[2001] = {name = "b01", slot = 2, cost = 3, is_count = 0};
+			[2002] = {name = "b02", slot = 2, cost = 3, is_count = 0};
+			[2003] = {name = "b03", slot = 2, cost = 3, is_count = 0};
+			[2004] = {name = "b04", slot = 2, cost = 3, is_count = 0};
+		}
+    
 end
+
 function EconManager:OnPlayerQueryShopItemsReq(keys)
 	print('OnPlayerQueryShopItemsReq')
 	if self.vEconItems == nil then 
 		self.vEconItems = {
-			[1] = {name = "t10", image = "", cost = 3};
-			[2] = {name = "t13", image = "", cost = 5};
-			[3] = {name = "t15", image = "", cost = 3};
+			[1001] = {name = "t10", slot = 1, cost = 3, is_count = 0};
+			[1002] = {name = "t13", slot = 1, cost = 5, is_count = 0};
+			[1003] = {name = "t15", slot = 1, cost = 3, is_count = 0};
+			[1004] = {name = "t16", slot = 1, cost = 3, is_count = 0};
+			[1005] = {name = "t17", slot = 1, cost = 3, is_count = 0};
+			[1006] = {name = "t18", slot = 1, cost = 3, is_count = 0};
+			[2001] = {name = "b01", slot = 2, cost = 3, is_count = 0};
+			[2002] = {name = "b02", slot = 2, cost = 3, is_count = 0};
+			[2003] = {name = "b03", slot = 2, cost = 3, is_count = 0};
+			[2004] = {name = "b04", slot = 2, cost = 3, is_count = 0};
 		}
-		CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
+		
 	end
 	--if self.vEconItems == nil then 
 	--	HttpUtils:SendHTTPGet('http://yueyutech.com:10010/GetShopItems',function(result)
@@ -90,6 +122,7 @@ function EconManager:OnPlayerQueryShopItemsReq(keys)
 	--		end
 	--	end);
 	--end
+    CustomNetTables:SetTableValue('econ_data', 'shop_items', self.vEconItems)
 end
 
 function EconManager:OnPlayerQueryEconData(keys)
@@ -97,14 +130,21 @@ function EconManager:OnPlayerQueryEconData(keys)
 	local playerid = keys.PlayerID
 	local player = PlayerResource:GetPlayer(playerid)
 	if not player then return end
-	local data = {
-		[1] = "t10",
-		[2] = "t15",
-	}
+	
+	if self.playerCollection[playerid] then
+		CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, self.playerCollection[playerid])
+	end
+	
+	if self.playerEconInfo[playerid] then
+		CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = self.playerEconInfo[playerid].coin})
+	end
 	
 	
-	CustomNetTables:SetTableValue('econ_data', 'collection_data_' .. playerid, data)
-	CustomNetTables:SetTableValue('econ_data', 'coin_data_' .. playerid, {amount = 10})
+	local equips = self:GetPlayerEquipInfo(playerid);
+    
+    if equips then
+        CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
+    end
 	
 
 	-- local steamid = PlayerResource:GetSteamAccountID(playerid)
@@ -136,8 +176,7 @@ function EconManager:OnPlayerEquip(keys)
 	local playerid = keys.PlayerID
     local player = PlayerResource:GetPlayer(playerid)
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
-	local to_equip = keys.to_equip
-	local slot = 1  -- read config
+	local toEuipId = keys.itemId
     
     local equips = self:GetPlayerEquipInfo(playerid);
     
@@ -146,28 +185,59 @@ function EconManager:OnPlayerEquip(keys)
         return
     end
 	
-    print('OnPlayerEquip ' .. tostring(to_equip))
-    
-	local hero = player:GetAssignedHero()
+    local hero = player:GetAssignedHero()
 	if not hero then return end
+    
+    if not toEuipId or not tonumber(toEuipId) then
+        print('toEuipId not valid.')
+        return
+    end
+    toEuipId = tonumber(toEuipId)
+    local toEuipInfo = self.vEconItems[toEuipId]
+    
+    if not toEuipInfo then
+        print('toEuipInfo not found.')
+        return
+    end
+    
+    local slot = toEuipInfo.slot;
+    if not slot then
+        print('toEuipInfo slot info invalid.')
+        return
+    end
+    DeepPrintTable(equips);
+    
+	local oldEquipId = equips[slot];
+	print('OnPlayerEquip ' .. tostring(oldEquipId) .. " " .. toEuipId)
+	if oldEquipId == toEuipId then
+		print("tuo zhuangbei ");
+		--相同表示脱装备
+		equips[slot] = nil;
+		
+	else
 	
+		equips[slot] = toEuipId;
+		
+		if toEuipId ~= nil then
+			if EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"] then
+				EconFuncs["OnEquip_" .. toEuipInfo.name .. "_server"](hero)
+			end
+		end
+	end
 	
-	local oldEquip = equips[slot];
-	equips[slot] = to_equip;
+	if oldEquipId ~= nil and self.vEconItems[oldEquipId] ~= nil then
+		local oldEquipData = self.vEconItems[oldEquipId]
+		if EconFuncs["OnRemove_" .. oldEquipData.name .. "_server"]  then
+			EconFuncs["OnRemove_" .. oldEquipData.name .. "_server"](hero)
+		end
+	end
+	
 	
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
 	
 	--zhao yixia  zhuanhuan biaoqian
 	--jiaoyan
-	if to_equip ~= nil then
-		if EconFuncs["OnEquip_" .. to_equip .. "_server"] then
-			EconFuncs["OnEquip_" .. to_equip .. "_server"](hero)
-		end
-	end
 	
-	if oldEquip ~= nil and EconFuncs["OnEquip_" .. oldEquip .. "_server"]  then
-		EconFuncs["OnEquip_" .. oldEquip .. "_server"](hero)
-	end
 	
 end
 
@@ -183,8 +253,8 @@ function EconManager:OnPlayerPreview(keys)
     
 	if not hero then return end
 
-	local name = keys.item
-    local slot = 1  -- read config
+	local itemId = keys.itemId
+    local slot = 0  -- read config
     
     
 	local equips = self:GetPlayerEquipInfo(playerid);
@@ -209,13 +279,50 @@ end
 
 
 function EconManager:OnPlayerPurchase(keys)
-	local id = keys.PlayerID
+	local playerid = keys.PlayerID
     local player = PlayerResource:GetPlayer(playerid)
 	local item = keys.ItemName
-	local steamid = PlayerResource:GetSteamAccountID(id)
+	local steamid = PlayerResource:GetSteamAccountID(playerid)
+	print('purchase ' .. item)
 	
-
+	table.insert(self.playerCollection[playerid], item)
 	
+	CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = true})
+	
+	
+    local purchaseUrl = GameRules.Definitions.LogicUrls['purchase']
+    
+	HttpUtils:SendHTTPPost(purchaseUrl, {steam_id = tostring(steamid), prop_name = tostring(1)}, function(obj)
+		DeepPrintTable(obj)
+		-- if result.StatusCode == 200 then
+			-- --flush all collection_data_
+			-- --update point
+		-- end
+		--obj coin
+        
+        
+	end, function(t)
+        print(t)
+        local invUrl = GameRules.Definitions.LogicUrls['inventory']
+        print(invUrl)
+        HttpUtils:SendHttpGet(invUrl, {steam_id = tostring(steamid)}, function(obj)
+            print('get inv')
+            DeepPrintTable(obj)
+            -- if result.StatusCode == 200 then
+                -- --flush all collection_data_
+                -- --update point
+            -- end
+            --obj coin
+        end, function(t)
+            print('fail')
+            print(t)
+        end);
+        
+	end);
+	
+    
+    
+    
 	-- local req = CreateHTTPRequestScriptVM('POST', 'http://yueyutech.com:10010/Purchase')
 	-- req:SetHTTPRequestGetOrPostParameter('steamid', tostring(steamid))
 	-- req:SetHTTPRequestGetOrPostParameter('item', tostring(item))
@@ -257,14 +364,119 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 	self.playerEconInfo[pid] = {coin = coin_1}
 	for _, info in pairs(econ_info.decoration_info) do
 		if info.use_status then
-			self.playerSlotInfo[pid][1] = info.decoration.decoration_id
+			local targetSlot = self.vEconItems[tonumber(info.decoration.decoration_id)].slot;
+			self.playerSlotInfo[pid][targetSlot] = info.decoration.decoration_id
 		end
-		table.insert(self.playerCollection[pid],{eid = info.decoration.decoration_id})
+		table.insert(self.playerCollection[pid],info.decoration.decoration_id)
 	end
 	
-	DeepPrintTable(self.playerCollection[pid])
-	DeepPrintTable(self.playerSlotInfo[pid])
-	DeepPrintTable(self.playerEconInfo[pid])
+	-- DeepPrintTable(self.playerCollection[pid])
+	-- DeepPrintTable(self.playerSlotInfo[pid])
+	-- DeepPrintTable(self.playerEconInfo[pid])
+	
+	self:OnPlayerQueryEconData({PlayerID = pid})
+end
+
+function LookAtDonatePaymentIsComplete( player, key )
+	
+    Co(function ()
+        local times = 0
+        local url = GameRules.Definitions.LogicUrls['checkComplete']
+        while true do
+            times = times + 1
+            local errno, rspTable = HttpUtils:SendHTTPPostSync(url,{out_trade_no = key})
+            if errno == 0 then
+                DeepPrintTable(rspTable)
+                if rspTable ~= nil and rspTable.data.trade_state == "SUCCESS" then
+                    print("pay good");
+                    local amount = rspTable.data.amount;
+                    GameRules.EconManager:UpdateCurrency(player:GetPlayerID(),amount);
+                    CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
+                    break
+                end
+            end
+            
+            if times >= 400 then break end
+            Sleep(1)
+        end
+    end)
+    
+    -- player:SetContextThink( DoUniqueString( "LookAtDonatePaymentIsComplete" ), function ()
+        -- print("nmb LookAtDonatePaymentIsComplete")
+		
+		
+	-- end, 5)
+end
+
+
+function EconManager:HandleDonateOrder(keys)
+
+    DeepPrintTable(keys)
+
+    local price = tonumber(keys.price) or 1.00
+	if price <= 0.01 then return end
+    
+	local pay_method = keys.method
+	if pay_method ~= "alipay" and pay_method ~= "wechatpay" then return end
+    
+	local url = ""
+	local steamid = PlayerResource:GetSteamAccountID(keys.PlayerID)
+    print('steamd id '.. steamid)
+	CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, nil )
+
+    local donateUrl = GameRules.Definitions.LogicUrls['donate']
+    
+    if not donateUrl then
+        return;
+    end
+    
+    
+    -- local tryGetCode = function()
+        
+    -- end
+    -- tonumber(price)
+    local errno, rspTable = HttpUtils:SendHTTPPostSync(donateUrl, {
+            steam_id = tostring(steamid),
+			pay_method = pay_method,
+            donate_type = 2,
+			donate_amt = 1,
+        });
+    
+    print("ret " .. errno)
+    DeepPrintTable(rspTable);
+    local key = rspTable.data.out_trade_no;
+    url = rspTable.data.code_url;
+    
+	LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), key)
+	-- retry( 6, function ()
+		-- local iStatusCode, szBody = send( "/donate/prepay", {
+			-- steamid = steamid,
+			-- pay_method = pay_method,
+			-- game = Game,
+			-- price = string.format("%.2f", price)
+		-- })
+		-- if iStatusCode == 200 then
+			-- local body = jsonDecode(szBody)
+			-- if body ~= nil and body["result"] ~= nil then
+				-- url = body["result"]
+				-- LookAtDonatePaymentIsComplete( PlayerResource:GetPlayer( keys.PlayerID ), body["key"])
+			-- end
+			-- return true
+		-- end
+		-- Sleep(0.5)
+	-- end)
+
+	if url ~= "" then
+		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {url=url} )
+	end
+    print("nmbnmc nmc nmc");
+    CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {img_url=url} )
+    
+end
+
+function EconManager:UpdateCurrency(playerId, amount_info)
+    print('UpdateCurrency for' .. tostring(playerId));
+    DeepPrintTable(amount_info)
 end
 
 if GameRules.EconManager == nil then GameRules.EconManager = EconManager() end
