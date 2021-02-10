@@ -205,10 +205,9 @@ function EconManager:OnPlayerEquip(keys)
         print('toEuipInfo slot info invalid.')
         return
     end
-    DeepPrintTable(equips);
     
 	local oldEquipId = equips[slot];
-	print('OnPlayerEquip ' .. tostring(oldEquipId) .. " " .. toEuipId)
+	print('OnPlayer try Equip ' .. tostring(oldEquipId) .. " " .. tostring(toEuipId))
 	if oldEquipId == toEuipId then
 		print("tuo zhuangbei ");
 		--相同表示脱装备
@@ -254,7 +253,6 @@ function EconManager:OnPlayerPreview(keys)
 	if not hero then return end
 
 	local itemId = keys.itemId
-    local slot = 0  -- read config
     
     
 	local equips = self:GetPlayerEquipInfo(playerid);
@@ -263,17 +261,34 @@ function EconManager:OnPlayerPreview(keys)
         return
     end
     
+    local toEuipInfo = self.vEconItems[toEuipId]
+    
+    if not toEuipInfo then
+        print('toEuipInfo not found.')
+        return
+    end
+    
+    
+    local slot = toEuipInfo.slot;  -- read config
+    
+    if not slot then
+        print('toEuipInfo slot info invalid.')
+        return
+    end
+    
 	equips[slot] = nil;
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
     
     --handle already equip
     
-	if EconFuncs["OnEquip_" .. name .. "_server"] then
-		EconFuncs["OnEquip_" .. name .. "_server"](hero)
+	if EconFuncs["OnEquip_" .. itemId.name .. "_server"] then
+		EconFuncs["OnEquip_" .. itemId.name .. "_server"](hero)
 	end
 
 	Timers:CreateTimer(10, function()
-		EconFuncs["OnRemove_" .. name .. "_server"](hero)
+        if EconFuncs["OnRemove_" .. itemId.name .. "_server"] then
+            EconFuncs["OnRemove_" .. itemId.name .. "_server"](hero)
+        end
 	end)
 end
 
@@ -285,10 +300,6 @@ function EconManager:OnPlayerPurchase(keys)
 	local steamid = PlayerResource:GetSteamAccountID(playerid)
 	print('purchase ' .. item)
 	
-	table.insert(self.playerCollection[playerid], item)
-	
-	CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = true})
-	
 	
     local purchaseUrl = GameRules.Definitions.LogicUrls['purchase']
     
@@ -299,9 +310,10 @@ function EconManager:OnPlayerPurchase(keys)
 			-- --update point
 		-- end
 		--obj coin
+        table.insert(self.playerCollection[playerid], item)
+        CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = 1})
         
-        
-	end, function(t)
+	end, function(errno)
         print(t)
         local invUrl = GameRules.Definitions.LogicUrls['inventory']
         print(invUrl)
@@ -317,7 +329,7 @@ function EconManager:OnPlayerPurchase(keys)
             print('fail')
             print(t)
         end);
-        
+        CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = 0})
 	end);
 	
     
@@ -391,7 +403,7 @@ function LookAtDonatePaymentIsComplete( player, key )
                     print("pay good");
                     local amount = rspTable.data.amount;
                     GameRules.EconManager:UpdateCurrency(player:GetPlayerID(),amount);
-                    CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {} )
+                    CustomGameEventManager:Send_ServerToPlayer( player, "donate_order_complete", {trade_no = key} )
                     break
                 end
             end
@@ -413,8 +425,8 @@ function EconManager:HandleDonateOrder(keys)
 
     DeepPrintTable(keys)
 
-    local price = tonumber(keys.price) or 1.00
-	if price <= 0.01 then return end
+    local price = tonumber(keys.price) or 100
+	if price <= 1 then return end
     
 	local pay_method = keys.method
 	if pay_method ~= "alipay" and pay_method ~= "wechatpay" then return end
@@ -439,7 +451,7 @@ function EconManager:HandleDonateOrder(keys)
             steam_id = tostring(steamid),
 			pay_method = pay_method,
             donate_type = 2,
-			donate_amt = 1,
+			donate_amt = price,
         });
     
     print("ret " .. errno)
@@ -467,7 +479,7 @@ function EconManager:HandleDonateOrder(keys)
 	-- end)
 
 	if url ~= "" then
-		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {url=url} )
+		CustomNetTables:SetTableValue( "econ_data", "donate_order_"..steamid, {img_url = url} )
 	end
     print("nmbnmc nmc nmc");
     CustomGameEventManager:Send_ServerToPlayer( PlayerResource:GetPlayer( keys.PlayerID ), "create_donate_order_rsp", {img_url=url} )
