@@ -14,7 +14,7 @@ function HttpUtils:SendHTTPPost(url,game_data,success_cb, fail_cb)
             end
         else
             if fail_cb ~= nil then
-                fail_cb(errno)
+                fail_cb(errno, rsp.errmsg)
             end
         end
     end)
@@ -89,17 +89,15 @@ function HttpUtils:_HTTPGetRequest(url, queryString, cbFunc, fTimeout)
 end
 
 function HttpUtils:_parseRsp(statusCode, body)
-    if statusCode ~= 200 or not body then
-        return -statusCode, nil
+    if not body then
+        return -1, {}
     end
-    
     local obj = JSON:decode(body)
     if obj.errno ~= 0 then
-        return obj.errno, nil
+        return obj.errno, obj
     end
     
     return 0, obj
-    
 end
 
 function HttpUtils:SendHTTPPostSync(url, data, timeout)

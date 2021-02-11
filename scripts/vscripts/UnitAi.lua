@@ -388,7 +388,6 @@ function UnitAI:GetSpellData(hSpell)
     if(caster == nil or caster:IsNull()) then
         return nil
     end
-    print("check skill " .. abilityName)
     --handle special skills
     -- if(abilityName == "item_blink") then
         -- return {ability = hSpell, type = "point_target", target = castPos}

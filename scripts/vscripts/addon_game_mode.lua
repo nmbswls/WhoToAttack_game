@@ -231,7 +231,7 @@ function WhoToAttack:StartGame()
 				newBase:SetOriginalModel(hero.base_model)
 				newBase:SetModel(hero.base_model)
 			end
-			newBase.origin_model = "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"
+			newBase.origin_model = "models/heroes/undying/undying_tower.vmdl"
 			
             self.field_base[team_i] = newBase;
             for i = 1,GameRules.Definitions.ThroneCnt do
@@ -614,7 +614,6 @@ function WhoToAttack:StartAPrepareRound()
 			local eids = WtaEncounters:GetRandomEncounter(self.battle_round, 3)
 			hero.cur_encounters = {}
 			if eids then
-                DeepPrintTable(eids)
 				CustomGameEventManager:Send_ServerToTeam(hero.team,"show_encounters",{
 					encounters = eids,
 				})
@@ -1718,8 +1717,7 @@ function WhoToAttack:OnPlayerPickHero(keys)
 	hero:SetHullRadius(1)
 	hero:SetAbilityPoints(0)
 	
-	hero.throw_effect = "";
-	hero.base_model = "models/heroes/undying/undying_tower.vmdl";
+	hero.throw_effect = nil; --"particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath_start.vpcf";
 	
     for i=1, GameRules.Definitions.MaxBuildSkill do 
         hero:FindAbilityByName("empty"..i):SetLevel(1)
@@ -1807,9 +1805,9 @@ function WhoToAttack:OnPlayerConnectFull(keys)
 	-- prt('[OnPlayerConnectFull] PlayerID='..keys.PlayerID..',userid='..keys.userid..',index='..keys.index)
     
     
-	PlayerManager.playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamID(keys.PlayerID))
-	PlayerManager.steamid2playerid[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = keys.PlayerID
-	PlayerManager.steamid2name[tostring(PlayerResource:GetSteamID(keys.PlayerID))] = tostring(PlayerResource:GetPlayerName(keys.PlayerID))
+	PlayerManager.playerid2steamid[keys.PlayerID] = tostring(PlayerResource:GetSteamAccountID(keys.PlayerID))
+	PlayerManager.steamid2playerid[tostring(PlayerResource:GetSteamAccountID(keys.PlayerID))] = keys.PlayerID
+	PlayerManager.steamid2name[tostring(PlayerResource:GetSteamAccountID(keys.PlayerID))] = tostring(PlayerResource:GetPlayerName(keys.PlayerID))
 	PlayerManager.userid2player[keys.userid] = keys.index + 1
 
 	GameRules:GetGameModeEntity().connect_state[keys.PlayerID] = true
@@ -2532,17 +2530,23 @@ function WhoToAttack:DropItemAppointed(item_name, owner, center_unit)
 end
 
 function WhoToAttack:ChangeBaseModel(hero, model_name)
-    if model_name == nil or model_name == "" then
-        return
-    end
+    
 	hero.base_model = model_name;
 	local base = hero.base;
 	if not base or base:IsNull() then
 		return
 	end
+    
+    if model_name == nil or model_name == "" then
+        model_name = base.origin_model;
+    end
+    if not model_name then
+        return --"models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl";
+    end
+    
 	if base:IsAlive() then
 		base:SetModel(model_name);
-		base:SetOrigin(model_name);
+		base:SetOriginalModel(model_name);
 	end
 end
 
@@ -2808,17 +2812,7 @@ function WhoToAttack:SendStartGameReq()
 		-- end
 	-- end
     
-    -- for id = 0, DOTA_MAX_TEAM_PLAYERS do
-        -- if PlayerResource:IsValidPlayer(id) then
-            -- local steamid = PlayerResource:GetSteamAccountID(id)
-            -- steamid_playerid_map[steamid] = id
-            -- table.insert(players, steamid)
-        -- end
-    -- end
     
-    -- local player_json = JSON:encode(players)
-    -- local req = CreateHTTPRequestScriptVM("POST", GameRules.__NewServerUrl__ .. "/GetRating")
-    -- req:SetHTTPRequestGetOrPostParameter('player_json', player_json)
 	
 	local info_json = JSON:encode({data = steamids})
 	print(info_json)
@@ -2827,7 +2821,6 @@ function WhoToAttack:SendStartGameReq()
     
     if url then
         HttpUtils:SendHTTPPost(url, {data = steamids}, function(t)
-            print('http success')
             
            -- data                            	= table: 0x002ef828 (table)
            -- {
@@ -2844,11 +2837,15 @@ function WhoToAttack:SendStartGameReq()
               -- ]
            -- }
             
-            DeepPrintTable(t)
-            self.game_id = t.data.game_id
-            self:OnStartGameReqSuccess()
+            if t.data then
+                self.game_id = t.data.game_id
+                self:OnStartGameReqSuccess(t.data.list)
+            else
+                self:OnStartGameReqSuccess(nil)
+            end
+            
         end, function(errno)
-            print('http fail')
+            print('info fail')
             if errno == -1 then
                 self:OnNetError();
             end
@@ -2866,14 +2863,14 @@ function WhoToAttack:OnStartGameReqSuccess(data)
 	-- DeepPrintTable(fakeDataTable);
     --start game with shipin for each player
     
+	if data then
+        for _,v in pairs(data) do
+            local steam_id = v.client_basic_info.steam_id
+            GameRules.EconManager:InitPlayerEconInfo(steam_id, v.client_econ_info);
+        end
+    end
 	
 	
-	for _,v in pairs(fakeDataTable.data) do
-		
-		local steam_id = v.steam_id
-		print(steam_id)
-		GameRules.EconManager:InitPlayerEconInfo(steam_id, v.client_econ_info);
-	end
 	
 	
     --初始化设置

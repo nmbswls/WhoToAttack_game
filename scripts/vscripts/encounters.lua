@@ -826,7 +826,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 		end
 		local shopItems = ShopinfoList[data.level]
 		local retItem = GetWeightedOne(shopItems)
-		print(retItem.item)
+        
         if retItem.item then
             hero:ModifyGold(-cost, false, 0)
             WhoToAttack:GiveItem(hero, retItem.item);
@@ -883,7 +883,6 @@ function WtaEncounters:GetRandomEncounter(turn, num)
 	end
 	
 	local poolNum = #turnEncounters
-	print('poolNum ' .. poolNum)
 	
 	
 	local ret = {};

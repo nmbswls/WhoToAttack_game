@@ -434,7 +434,7 @@ if GameRules.Definitions == nil then
         info = 'http://xiaobeijixiong.com:8099/who_to_kill/runtime/info',
 		--report = 'http://xiaobeijixiong.com/who_to_kill/runtime/report',
         report = 'http://xiaobeijixiong.com:8099/who_to_kill/runtime/report',
-        shopList = 'http://xiaobeijixiong.com:8099/who_to_kill/runtime/shop_list',
+        shopList = 'http://xiaobeijixiong.com:8099/who_to_kill/store/shopping_list',
         -- refresh_shop = 'http://xxx/shop/v4/get',
         donate = 'http://xiaobeijixiong.com:8099/who_to_kill/store/donate',
         purchase = 'http://xiaobeijixiong.com:8099/who_to_kill/store/purchase',
