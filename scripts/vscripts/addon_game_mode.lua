@@ -689,6 +689,10 @@ end
 
 function WhoToAttack:SpawnNeutral(team, monsterName, count)
 	
+    if not self.is_single then
+        return
+    end
+    
 	if monsterName == nil then
 		monsterName = "evil_skeleton"
 	end
