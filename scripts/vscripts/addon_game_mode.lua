@@ -710,6 +710,7 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
     
     local round = self.battle_round;
     count = math.ceil((round * 1.6 + 5 )/ cost);
+    
     -- local hero = PlayerManager:getHeroByTeam(team)
     -- if hero then
         -- local mana = hero:GetMaxMana();
