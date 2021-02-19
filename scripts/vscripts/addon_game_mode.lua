@@ -675,7 +675,12 @@ function WhoToAttack:StartABattleRound()
         self:ShowPrepare(i)
         
         --test code
-        --self:SpawnNeutral(i);
+        
+    end
+    
+    
+    for _,hero in pairs(PlayerManager.heromap) do
+        self:SpawnNeutral(hero.team);
     end
     
     GameRules:SetTimeOfDay(0.3)
@@ -700,10 +705,21 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
 		count = 4
 	end
 	
+    local randUnit = GameRules.Definitions.UnitNames[RandomInt(1, #GameRules.Definitions.UnitNames)];
+    local cost = GameRules.Definitions.Uname2Cost[randUnit];
+    
+    local round = self.battle_round;
+    count = math.ceil((round * 1.6 + 5 )/ cost);
+    -- local hero = PlayerManager:getHeroByTeam(team)
+    -- if hero then
+        -- local mana = hero:GetMaxMana();
+        -- count = math.ceil(mana / cost);
+    -- end
+    
     local pos = GameRules.Definitions.TeamCenterPos[team] + Vector(0,-500,0)
 
     for i = 1, count do
-        local unit = self:CreateUnit(3, pos, monsterName)
+        local unit = self:CreateUnit(3, pos, randUnit)
         Timers:CreateTimer(0.5, function()
             unit.in_battle_id = team;
         end)
@@ -1798,6 +1814,10 @@ function WhoToAttack:OnPlayerPickHero(keys)
 			--开始
 			self:SendStartGameReq();
 		end)
+        
+        if playercount == 1 then
+            self.is_single = true;
+        end
 	end 
 	
 end
