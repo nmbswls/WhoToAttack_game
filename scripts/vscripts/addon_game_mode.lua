@@ -708,6 +708,9 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
     local randUnit = GameRules.Definitions.UnitNames[RandomInt(1, #GameRules.Definitions.UnitNames)];
     local cost = GameRules.Definitions.Uname2Cost[randUnit];
     
+    if not cost then
+        cost = 1
+    end
     local round = self.battle_round;
     count = math.ceil((round * 1.6 + 5 )/ cost);
     
