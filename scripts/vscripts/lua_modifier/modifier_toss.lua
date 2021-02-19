@@ -42,8 +42,9 @@ function modifier_toss:OnDestroy()
             self:GetParent().transfer_chess = false
             self:GetParent():SetForwardVector(Vector(0,1,0))
         end
-		play_particle(self.throwEffect, PATTACH_ABSORIGIN,self:GetParent(),3);
-		
+        if self.throwEffect then
+            play_particle(self.throwEffect, PATTACH_ABSORIGIN,self:GetParent(),3);
+		end
     end
 end
 
