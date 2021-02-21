@@ -299,6 +299,12 @@ function EconManager:OnPlayerPreview(keys)
     
     local previewInfo = self.vEconItems[itemId]
     
+    local nowPreviewingItemId = self.preview_item_id;
+    
+    -- if nowPreviewingItemId == itemId then
+        -- return;
+    -- end
+    
     print('OnPlayerPreview ' .. itemId)
     if not previewInfo then
         print('previewInfo not found.')
@@ -318,7 +324,12 @@ function EconManager:OnPlayerPreview(keys)
             EconFuncs["OnRemove_" .. tostring(self.vEconItems[oldEuip].id) .. "_server"](hero)
         end
     end
-        
+       
+    if nowPreviewingItemId and self.vEconItems[nowPreviewingItemId] then
+        if EconFuncs["OnRemove_" .. tostring(self.vEconItems[nowPreviewingItemId].id) .. "_server"] then
+            EconFuncs["OnRemove_" .. tostring(self.vEconItems[nowPreviewingItemId].id) .. "_server"](hero)
+        end
+    end
         
 	equips[slot] = nil;
 	CustomNetTables:SetTableValue('econ_data', 'equip_info_' .. playerid, equips)
@@ -329,11 +340,17 @@ function EconManager:OnPlayerPreview(keys)
 		EconFuncs["OnEquip_" .. tostring(previewInfo.id) .. "_server"](hero)
 	end
 
-	Timers:CreateTimer(5, function()
+	Timers:CreateTimer(10, function()
+        if self.preview_item_id ~= itemId then
+            return
+        end
         if EconFuncs["OnRemove_" .. tostring(previewInfo.id) .. "_server"] then
             EconFuncs["OnRemove_" .. tostring(previewInfo.id) .. "_server"](hero)
         end
+        self.preview_item_id = nil;
 	end)
+    
+    self.preview_item_id = itemId;
 end
 
 
