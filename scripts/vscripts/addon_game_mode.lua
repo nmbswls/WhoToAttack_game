@@ -37,7 +37,7 @@
 --alive_count          存活玩家个数
 
 --*dead_chess_list      各战场墓地
-
+--player_stat
 --stage_start_time     state 开始时间
 --game_start_time      全局游戏开始时间
 --last_tick            上次tick时间
@@ -237,6 +237,8 @@ function WhoToAttack:StartGame()
             for i = 1,GameRules.Definitions.ThroneCnt do
                 table.insert(self.thrones[i], {team = team_i, score = 0})
             end
+			
+			self:UpdatePlayerStat(hero);
         end
         
     end
@@ -246,11 +248,12 @@ function WhoToAttack:StartGame()
     -- for _, pos in pairs(playerStarts) do
     
     -- end
-    
+    CustomNetTables:SetTableValue( "player_info_table", "user_panel_ranking", self.player_stat);
     WtaThrones:init(PlayerManager.player_count);
     
     self:UpdateThroneInfo()
     
+	
     --延迟后开始游戏
     Timers:CreateTimer(1,function()
         
@@ -499,6 +502,10 @@ function WhoToAttack:StartAPrepareRound()
 		-- end
 	end
 	
+	for _,hero in pairs(PlayerManager.heromap) do
+        self:SpawnNeutral(hero.team);
+    end
+	
     self:AddJidiWudi();
     
     WtaThrones:UpdateLevelByTurn(self.battle_round)
@@ -679,9 +686,7 @@ function WhoToAttack:StartABattleRound()
     end
     
     
-    for _,hero in pairs(PlayerManager.heromap) do
-        self:SpawnNeutral(hero.team);
-    end
+    
     
     GameRules:SetTimeOfDay(0.3)
     self.game_status = 2 --game_status 2 zhandou zhong
@@ -882,8 +887,13 @@ function WhoToAttack:CreateUnit(team, pos, unitName, spe)
 			yinshenFeature:ApplyDataDrivenModifier(newyUnit, newyUnit, "modifier_yinshen_begin", {});
 		end
 		
-        newyUnit.originManaRegen = newyUnit:GetManaRegen();
-		newyUnit:SetBaseManaRegen(0);
+		if team ~= 3 then
+			newyUnit.originManaRegen = newyUnit:GetManaRegen();
+			newyUnit:SetBaseManaRegen(0);
+		end
+        
+		
+		
         
         local level = newyUnit:GetLevel();
         if string.find(unitName, "nature") then
@@ -1640,6 +1650,22 @@ function WhoToAttack:ModifyBaseHP(base, modHp)
        base:SetHealth(newHp)
     end
 
+	self:UpdatePlayerStat(hero);
+	CustomNetTables:SetTableValue( "player_info_table", "user_panel_ranking", self.player_stat);
+	
+end
+
+function WhoToAttack:UpdatePlayerStat(hero)
+	if not hero or not hero.base then
+		return
+	end
+	
+	local pid = hero:GetPlayerID()
+	local steamId = PlayerResource:GetSteamID(pid)
+	local hp = hero.base:GetHealth();
+	self.player_stat[pid] = {pid = pid, steamId = steamId,hp = hp};
+	
+	
 end
 
 function WhoToAttack:MoveUnit(hero, target, pos, isFast)
@@ -2319,7 +2345,9 @@ function WhoToAttack:InitGameMode()
     self.game_id = "";
 	self.teamNum = 8;
 	self.numPerTeam = 1;
-    self.stage = 0
+    self.stage = 0;
+	self.player_stat = {}
+	
     GameRules:GetGameModeEntity():SetThink("OnThink", self, 0)
     
     GameRules:SetSameHeroSelectionEnabled(true)
