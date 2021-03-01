@@ -141,7 +141,7 @@ function EconManager:UpdateEconData(playerid, econ_info)
     
     if econ_info.decoration_info then
         for _, info in pairs(econ_info.decoration_info) do
-            table.insert(self.playerCollection[playerid],info.decoration.decoration_id)
+            table.insert(self.playerCollection[playerid],info.decoration.decoration_name)
         end
     end
     
@@ -364,20 +364,21 @@ function EconManager:OnPlayerPurchase(keys)
 	
     local purchaseUrl = GameRules.Definitions.LogicUrls['purchase']
     
-	HttpUtils:SendHTTPPost(purchaseUrl, {steam_id = tostring(steamid), prop_name = tostring(1)}, function(obj)
+	HttpUtils:SendHTTPPost(purchaseUrl, {steam_id = tostring(steamid), prop_name = tostring(item)}, function(obj)
 		-- if result.StatusCode == 200 then
 			-- --flush all collection_data_
 			-- --update point
 		-- end
 		--obj coin
-        
+        print("buy success ");
+		DeepPrintTable(obj)
         self:OnPlayerQueryEconData({PlayerID = playerid});
         -- table.insert(self.playerCollection[playerid], item)
         CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = 1})
 	end, function(errno, errmsg)
         print('purchase fail errno:' .. errno .. " " .. tostring(errmsg))
         CustomGameEventManager:Send_ServerToPlayer(player, 'player_purchase_rsp', {ret = 0})
-        msg.bottom("购买失败.", playerid, 3)
+        msg.bottom("购买失败." .. tostring(errmsg), playerid, 3)
 	end);
 	
     
@@ -422,14 +423,14 @@ function EconManager:InitPlayerEconInfo(steam_id, econ_info)
 	}
 	self.playerCollection[pid] = {}
 	self.playerEconInfo[pid] = {coin = coin_1}
-    
+    DeepPrintTable(econ_info)
     if econ_info.client_decorations_info then
         for _, info in pairs(econ_info.client_decorations_info) do
-            if info.use_status then
-                local targetSlot = self.vEconItems[tonumber(info.decoration.decoration_id)].slot;
-                self.playerSlotInfo[pid][targetSlot] = info.decoration.decoration_id
+            if info.use_status == 1 then
+                local targetSlot = self.vEconItems[tonumber(info.decoration.decoration_name)].slot;
+                self.playerSlotInfo[pid][targetSlot] = info.decoration.decoration_name
             end
-            table.insert(self.playerCollection[pid],info.decoration.decoration_id)
+            table.insert(self.playerCollection[pid],info.decoration.decoration_name)
         end
     end
 	
