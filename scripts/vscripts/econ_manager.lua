@@ -30,14 +30,14 @@ EconFuncs.OnRemove_1001_server = function(hero)
 end
 
 EconFuncs.OnEquip_1002_server = function(hero)
-    print('equip t13')
-    GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, nil)
-    
+    print('equip t12')
+    GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, "models/props/ice_biome/buildings/tuskhouse01.vmdl")
+    GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf")
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
 EconFuncs.OnRemove_1002_server = function(hero)
-    print('unequip t13')
+    print('unequip t12')
 	-- WhoToAttack:ChangeBaseModel(hero, "")
     GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, nil)
 end
