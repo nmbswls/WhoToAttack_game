@@ -139,8 +139,8 @@ function EconManager:UpdateEconData(playerid, econ_info)
 	self.playerCollection[playerid] = {}
 	self.playerEconInfo[playerid] = {coin = coin}
     
-    if econ_info.decoration_info then
-        for _, info in pairs(econ_info.decoration_info) do
+    if econ_info.client_decorations_info then
+        for _, info in pairs(econ_info.client_decorations_info) do
             table.insert(self.playerCollection[playerid],info.decoration.decoration_name)
         end
     end
@@ -170,6 +170,7 @@ function EconManager:OnPlayerQueryEconData(keys)
     local steamid = PlayerResource:GetSteamAccountID(playerid)
     local invUrl = GameRules.Definitions.LogicUrls['inventory']
     HttpUtils:SendHttpGet(invUrl, {steam_id = tostring(steamid)}, function(obj)
+		DeepPrintTable(obj)
         self:UpdateEconData(playerid, obj.data.client_econ_info)
     end, function(t)
         print('OnPlayerQueryEconData fail')
