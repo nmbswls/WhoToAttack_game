@@ -16,39 +16,40 @@ end
 EconFuncs = {}
 
 EconFuncs.OnEquip_1001_server = function(hero)
-    print('equip t10')
+    print('equip t1')
     GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, "models/heroes/techies/fx_techies_remotebomb.vmdl")
     GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, "particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath_start.vpcf")
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
 EconFuncs.OnRemove_1001_server = function(hero)
-    print('unequip t10')
+    print('unequip t1')
     GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, nil)
     GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, nil)
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
 EconFuncs.OnEquip_1002_server = function(hero)
-    print('equip t12')
-    GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, "models/props/ice_biome/buildings/tuskhouse01.vmdl")
+    print('equip t2')
     GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, "particles/units/heroes/hero_techies/techies_bomb_ground_debris.vpcf")
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
 EconFuncs.OnRemove_1002_server = function(hero)
-    print('unequip t12')
+    print('unequip t2')
 	-- WhoToAttack:ChangeBaseModel(hero, "")
     GameRules:GetGameModeEntity().WhoToAttack:ChangeThrowEffect(hero, nil)
 end
 
-EconFuncs.OnEquip_1002_server = function(hero)
-    print('equip t15')
+EconFuncs.OnEquip_1003_server = function(hero)
+    print('equip t3')
+    GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, "models/props/ice_biome/buildings/tuskhouse01.vmdl")
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
-EconFuncs.OnRemove_1002_server = function(hero)
-    print('unequip t15')
+EconFuncs.OnRemove_1003_server = function(hero)
+    print('unequip t3')
+    GameRules:GetGameModeEntity().WhoToAttack:ChangeBaseModel(hero, nil)
 	-- WhoToAttack:ChangeBaseModel(hero, "")
 end
 
