@@ -710,7 +710,7 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
 		count = 4
 	end
 	
-    local randUnit = GameRules.Definitions.UnitNames[RandomInt(1, #GameRules.Definitions.UnitNames)];
+    local randUnit = GameRules.Definitions.SoloMonsterPool[RandomInt(1, #GameRules.Definitions.SoloMonsterPool)];
     local cost = GameRules.Definitions.Uname2Cost[randUnit];
     
     if not cost then
