@@ -457,6 +457,13 @@ if GameRules.Definitions == nil then
         evil_sf = 8,
         brawn_axe = 8,
         nature_treant = 8,
+        neutral_01 = 1,
+        neutral_02 = 2,
+        neutral_03 = 3,
+        neutral_04 = 4,
+        neutral_05 = 5,
+        neutral_06 = 6,
+        tiny_illusion = 13,
     }
     
     GameRules.Definitions.UnitAbilityMap = {

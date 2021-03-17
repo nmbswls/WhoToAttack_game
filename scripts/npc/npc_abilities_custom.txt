@@ -3529,13 +3529,13 @@
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"echo_slam_echo_damage"	"30"
+				"echo_slam_echo_damage"	"50"
 				"LinkedSpecialBonus"	"special_bonus_unique_earthshaker_2"
 			}
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"echo_slam_initial_damage"	"20"
+				"echo_slam_initial_damage"	"40"
 			}
 		}
 		"AbilitySound"	"Hero_EarthShaker.EchoSlam"
@@ -3670,7 +3670,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"bonus_armor"	"7"
+				"bonus_armor"	"8"
 			}
 			"03"
 			{
@@ -4087,7 +4087,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damage"	"80"
+				"damage"	"110"
 				"LinkedSpecialBonus"	"special_bonus_unique_axe_4"
 			}
 			"02"
@@ -4126,7 +4126,7 @@
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_4"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"65.0"
+		"AbilityCooldown"	"20.0"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"0 0"
@@ -4155,12 +4155,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"speed_bonus"	"30 30"
+				"speed_bonus"	"40 70"
 			}
 			"04"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"atk_speed_bonus"	"30 30"
+				"atk_speed_bonus"	"40 70"
 			}
 			"05"
 			{
@@ -6334,8 +6334,8 @@
 			}
 			"03"
 			{
-				"var_type"	"FIELD_INTEGER"
-				"regen_pct"	"0 0 1 2 3 4 5 6"
+				"var_type"	"FIELD_FLOAT"
+				"regen_pct"	"0 0 0.5 1 1.5 2 3 4"
 			}
 		}
 	}
@@ -6466,7 +6466,7 @@
 			"02"
 			{
 				"var_type"	"FIELD_FLOAT"
-				"bonus_health"	"10 20 40 80 130 180 240 300"
+				"bonus_health"	"15 25 45 90 140 200 280 360"
 			}
 			"03"
 			{
