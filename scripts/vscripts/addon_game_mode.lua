@@ -462,6 +462,7 @@ function WhoToAttack:OnStageChanged()
         for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
             self:ClearBattle(team_i)
         end
+		CustomNetTables:SetTableValue( "player_info_table", "user_panel_ranking", self.player_stat);
     end
     
     for team_i=DOTA_TEAM_CUSTOM_MIN, DOTA_TEAM_CUSTOM_MAX do
@@ -1664,8 +1665,13 @@ function WhoToAttack:UpdatePlayerStat(hero)
 	local steamId = PlayerResource:GetSteamID(pid)
 	local hp = hero.base:GetHealth();
 	local money = hero:GetGold() or 0;
-	self.player_stat[pid] = {pid = pid, steamId = steamId,hp = hp, money = money};
-	
+	if not self.player_stat[pid] then
+		self.player_stat[pid] = {}
+	end
+	self.player_stat[pid].pid = pid;
+	self.player_stat[pid].steamId = steamId;
+	self.player_stat[pid].hp = hp;
+	self.player_stat[pid].money = money;
 	
 end
 
@@ -1959,6 +1965,7 @@ function WhoToAttack:OnEntityKilled(keys)
 		hero1:EmitSound("lockjaw_Courier.gold")
         print("team " .. attacker_team .. " get bonus " .. bonus)
         hero1:ModifyGold(bonus, false, 0);
+		self:UpdatePlayerStat(hero1);
     end
     
     --local bonus = GameRules.Definitions.Uname2Cost[attacker:GetUnitName()] * GameRules.Definitions.UnitBonusRate;
