@@ -774,7 +774,7 @@ function WtaEncounters:handleOneEncounter(hero, eid)
 	end
 	
 	if data.etype == ETYPE_KUGONG then
-		WhoToAttack:ModifyBaseHP(hero.base, data.val);
+		GameRules:GetGameModeEntity().WhoToAttack:ModifyBaseHP(hero.base, data.val);
                 hero:EmitSound("DOTA_Item.RepairKit.Target");
 	elseif data.etype == ETYPE_YINHANGJIA then
 		local cost = data.cost;
