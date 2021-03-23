@@ -2397,7 +2397,7 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
-	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
+	--ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
     ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(WhoToAttack,"OnPlayerGainedLevel"), self)
     
     CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
