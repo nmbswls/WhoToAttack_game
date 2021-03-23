@@ -1663,7 +1663,8 @@ function WhoToAttack:UpdatePlayerStat(hero)
 	local pid = hero:GetPlayerID()
 	local steamId = PlayerResource:GetSteamID(pid)
 	local hp = hero.base:GetHealth();
-	self.player_stat[pid] = {pid = pid, steamId = steamId,hp = hp};
+	local money = hero:GetGold() or 0;
+	self.player_stat[pid] = {pid = pid, steamId = steamId,hp = hp, money = money};
 	
 	
 end
