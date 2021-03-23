@@ -237,6 +237,13 @@ if GameRules.Definitions == nil then
         "brawn_axe",
         "nature_treant",
         "hidden_willow",
+        "neutral_01",
+	"neutral_02",
+	"neutral_03",
+	"neutral_04",
+	"neutral_05",
+	"neutral_06",
+	"tiny_illusion",
 	}
 	
     GameRules.Definitions.UnitNames = {

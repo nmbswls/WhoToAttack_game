@@ -669,7 +669,7 @@
         "card_draw"     "Draw"
         "card_openclose"     "Open/Close"
         "game_guide"     "Guide"
-        "no_event"     "Nothing happened"
-        "show_event"     "Show Events"
+        "no_event"     "Nothinghappened"
+        "show_event"     "Events"
 	}
 }
