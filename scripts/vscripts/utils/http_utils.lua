@@ -93,6 +93,9 @@ function HttpUtils:_parseRsp(statusCode, body)
         return -1, {}
     end
     local obj = JSON:decode(body)
+	if  not obj then
+		return -1, obj
+	end
     if obj.errno ~= 0 then
         return obj.errno, obj
     end
