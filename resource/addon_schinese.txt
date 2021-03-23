@@ -665,5 +665,11 @@
         "text_stat_title_lineup" "玩家信息"
         "text_stat_title_buff" "兵种"
         "text_stat_title_gold" "金币"
+        "card_lock"     "锁定"
+        "card_draw"     "抽卡"
+        "card_openclose"     "开关界面"
+        "game_guide"     "教程"
+        "no_event"     "无事发生"
+        "show_event"     "事件显示"
 	}
 }

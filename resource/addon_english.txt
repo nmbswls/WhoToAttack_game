@@ -89,7 +89,7 @@
 		"summon_effect5"	"（Pray to the statue and randomly summon a level 8 unit）"
 		"summon_effect6"	"（Pray to the statue and randomly summon a special level 8 unit）"
 		"neutral_title"	"Chaos"
-		"neutral_desp"	"There are few days of peace for Titan ridge, but there are always days that are more turbulent than usual. Who will be the visitors today? Doghead, greedy devil, or something? Well, whoever it is, it's not good. But what you can't figure out is what's worth plundering among the ruins Maybe there's no answer, they just want to break something, a jar, or a skull, that's all."
+		"neutral_desp"	"There are few days of peace for Titan ridge, but there are always days that are more turbulent than usual. Who will be the visitors today? Doghead, greedy devil, or something? Well, whoever it is, it's not good. But what you can't figure out is what's worth plundering among the ruins Maybe there's no answer, they just want to break something."
 		"neutral_effect1"	"（Monsters invaded，plenty gold after killing）"
 		"neutral_effect2"	"（Monsters invaded，plenty gold after killing）"
 		"neutral_effect3"	"（Monsters invaded，plenty gold after killing）"
@@ -665,5 +665,11 @@
         "text_stat_title_lineup" "Info"
         "text_stat_title_buff" "..."
         "text_stat_title_gold" "Gold"
+        "card_lock"     "Lock"
+        "card_draw"     "Draw"
+        "card_openclose"     "Open/Close"
+        "game_guide"     "Guide"
+        "no_event"     "Nothing happened"
+        "show_event"     "Show Events"
 	}
 }
