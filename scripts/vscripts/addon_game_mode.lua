@@ -582,6 +582,10 @@ function WhoToAttack:StartAPrepareRound()
         end
         self.open_door_list = tmp
     end
+	
+	
+	local open_door_info = {}
+	
     --print("open list:");
     for i = 1, #self.open_door_list do
         
@@ -601,9 +605,9 @@ function WhoToAttack:StartAPrepareRound()
                 })
             end
         end
-        
+        table.insert(open_door_info, hero:GetPlayerID());
     end
-    
+    CustomNetTables:SetTableValue( "player_info_table", "open_door_info", open_door_info);
     for _,hero in pairs(PlayerManager.heromap) do
         if IsHeroValid(hero) == true then
             --给蓝
