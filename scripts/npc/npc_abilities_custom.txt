@@ -7994,4 +7994,24 @@
 			}
 		}
 	}
+
+	"dragon_blood"
+	{
+		"BaseClass"	"ability_datadriven"
+		"AbilityTextureName"	"icon_00"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"modifier_dragon_blood"
+			{
+				"Passive"	"1"
+				"IsBuff"	"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"10"
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"7"
+				}
+			}
+		}
+	}
 }

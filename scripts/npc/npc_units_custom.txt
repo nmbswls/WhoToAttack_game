@@ -3050,11 +3050,11 @@
 		// Abilities
 		// ----------------------------------------------------------------
 		// Ability 1
-		"Ability1"	""
+		"Ability1"	"dragon_blood"
 		// Ability 2
 		"Ability2"	"dragon_knight_dragon_tail"
 		// Ability 3
-		"Ability3"	"dragon_knight_dragon_blood"
+		"Ability3"	""
 		// Ability 4
 		"Ability4"	"dk_des2"
 		// Armor
