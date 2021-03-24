@@ -732,7 +732,7 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
     local pos = GameRules.Definitions.TeamCenterPos[team] + Vector(0,-500,0)
 
     for i = 1, count do
-        local unit = self:CreateUnit(3, pos, randUnit)
+        local unit = self:CreateUnit(3, pos, monsterName)
         Timers:CreateTimer(0.5, function()
             unit.in_battle_id = team;
         end)
