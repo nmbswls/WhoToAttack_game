@@ -503,9 +503,19 @@ function WhoToAttack:StartAPrepareRound()
 		-- end
 	end
 	
-	for _,hero in pairs(PlayerManager.heromap) do
-        self:SpawnNeutral(hero.team);
-    end
+	if self.is_single then
+		local randUnit = GameRules.Definitions.SoloMonsterPool[RandomInt(1, #GameRules.Definitions.SoloMonsterPool)];
+		local cost = GameRules.Definitions.Uname2Cost[randUnit];
+    
+		if not cost then
+			cost = 1
+		end
+		local round = self.battle_round;
+		local count = math.ceil((round * 1.6 + 5 )/ cost);
+		for _,hero in pairs(PlayerManager.heromap) do
+			self:SpawnNeutral(hero.team,randUnit,count);
+		end
+	end
 	
     self:AddJidiWudi();
     
@@ -704,9 +714,7 @@ end
 
 function WhoToAttack:SpawnNeutral(team, monsterName, count)
 	
-    if not self.is_single then
-        return
-    end
+    
     
 	if monsterName == nil then
 		monsterName = "evil_skeleton"
@@ -714,15 +722,6 @@ function WhoToAttack:SpawnNeutral(team, monsterName, count)
 	if count == nil then
 		count = 4
 	end
-	
-    local randUnit = GameRules.Definitions.SoloMonsterPool[RandomInt(1, #GameRules.Definitions.SoloMonsterPool)];
-    local cost = GameRules.Definitions.Uname2Cost[randUnit];
-    
-    if not cost then
-        cost = 1
-    end
-    local round = self.battle_round;
-    count = math.ceil((round * 1.6 + 5 )/ cost);
     
     -- local hero = PlayerManager:getHeroByTeam(team)
     -- if hero then
