@@ -12,7 +12,7 @@ function item_throw_one:OnSpellStart()
     
     if not GameRules:GetGameModeEntity().WhoToAttack:CanThrow() then
         local pid = GameRules:GetGameModeEntity().team2playerid[team]
-        msg.bottom('时机未到',pid)
+        msg.bottom('时机未到(Not yet)',pid)
         return;
     end
     
@@ -52,7 +52,7 @@ function item_throw_one:OnSpellStart()
         
         if idx == -1 then
             local pid = GameRules:GetGameModeEntity().team2playerid[team]
-            msg.bottom('只能选择基地投掷',pid)
+            msg.bottom('只能选择基地投掷(Base Only)',pid)
             return;
         end
         GameRules:GetGameModeEntity().WhoToAttack:ChangeBattleField(target, idx)
@@ -87,5 +87,5 @@ end
 
 function item_throw_one:GetCustomCastErrorLocation(vLocation)
 	
-	return "只能选择开门的地方"
+	return "只能选择开门的地方(Ping Area Only)"
 end

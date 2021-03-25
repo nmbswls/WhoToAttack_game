@@ -997,7 +997,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
 	--new skill check num
 	if hero.build_skill_cnt >= GameRules.Definitions.MaxBuildSkill then
 		print("too many build skills");
-		msg.bottom('技能栏满', pid, 1)
+		msg.bottom('技能栏满(Full)', pid, 1)
 		return false
 	    end
 		
@@ -1008,7 +1008,7 @@ function WhoToAttack:UpgradeBuildSkill(hero, buildUnit)
         ability = self:AddBuildSkill(hero, completeSkillName)
     else 
         if hero.build_skills[skillIdx].level == 10 then
-            msg.bottom('召唤升到满级', pid, 1)
+            msg.bottom('召唤升到满级(Max Level)', pid, 1)
             return false;
         end
         --print("try find exists skill")
@@ -1427,7 +1427,7 @@ function WhoToAttack:PickCard(team_id, card_idx)
     end
     
     if hero:GetGold() < cost then
-        msg.bottom('金钱不足', pid, 1)
+        msg.bottom('金钱不足(No Gold)', pid, 1)
         return false
     end
     
@@ -2200,7 +2200,7 @@ end
 function WhoToAttack:OnDrawCards(keys)
     local hero = PlayerManager:getHeroByPlayer(keys.PlayerID)
     if hero:GetGold() < GameRules.Definitions.CardRedrawCost then
-        msg.bottom('金钱不足', keys.PlayerID)
+        msg.bottom('金钱不足(No Gold)', keys.PlayerID)
         return
     end
     local err = GameRules:GetGameModeEntity().WhoToAttack:DrawCards(hero:GetTeam());
@@ -2408,7 +2408,7 @@ function WhoToAttack:InitGameMode()
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(WhoToAttack,"OnPlayerConnectFull" ),self)
 	ListenToGameEvent("player_disconnect", Dynamic_Wrap(WhoToAttack, "OnPlayerDisconnect"), self)
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(WhoToAttack, "OnEntityKilled"), self)
-	ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
+	--ListenToGameEvent("player_chat",Dynamic_Wrap(WhoToAttack,"HandleCommand"),self)
     ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(WhoToAttack,"OnPlayerGainedLevel"), self)
     
     CustomGameEventManager:RegisterListener("PickCard",Dynamic_Wrap(WhoToAttack, 'OnPickCard'))
