@@ -2,17 +2,17 @@ if GameRules.Definitions == nil then
 	GameRules.Definitions = {}
     GameRules.Definitions.StageCount = 4;
 	GameRules.Definitions.StageName = {"PREPARE", "PREFIGHT", "FIGHTING", "NEWROUND"}
-	GameRules.Definitions.StageTime = {30, 20, 25, 1}
+	GameRules.Definitions.StageTime = {25, 20, 35, 1}
 	
 	GameRules.Definitions.OverrideBattleTime = {
-		[1] = 25,
-		[2] = 25,
-		[3] = 25,
-		[4] = 25,
+		[1] = 8,
+		[2] = 12,
+		[3] = 16,
+		[4] = 21,
 		[5] = 25,
-		[6] = 25,
-		[7] = 25,
-		[8] = 25,
+		[6] = 28,
+		[7] = 30,
+		[8] = 35,
 	}
 	
 	GameRules.Definitions.ThrowBaseRange = 1200
