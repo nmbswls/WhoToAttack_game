@@ -322,7 +322,11 @@ function WhoToAttack:OnThink()
     end
     
     local stageElapsed = GameRules:GetGameTime() - self.stage_start_time
-    local stageCountdown = math.floor(GameRules.Definitions.StageTime[self.stage] - stageElapsed)
+	
+	local stageTime = self.stageTime or 5;
+	
+    local stageCountdown = math.floor(stageTime - stageElapsed)
+	
     local isNext = false;
     
     if(self.stage == 1) then
@@ -438,6 +442,19 @@ function WhoToAttack:OnStageChanged()
     
     print("new state " .. self.stage .. " round " .. self.battle_round)
     
+	
+	
+	local stageCountdown = GameRules.Definitions.StageTime[self.stage]
+	
+	if self.stage == 3 then
+		local idx = math.ceil(self.battle_round / 5);
+		if idx <= #GameRules.Definitions.OverrideBattleTime then
+			stageCountdown = GameRules.Definitions.OverrideBattleTime[idx]
+		end
+	end
+	
+	self.stageTime = stageCountdown;
+	
     if(self.stage == 1) then
         self:StartAPrepareRound()
     end
